@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SGM - Novo Usuário</title>
+
+    <link rel="stylesheet" href="../-css/pages/cadastro_usuario.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+      <!-- Menu lateral -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <span class="logo-icon">S</span>
+
+            <div class="logo-text">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Navegação principal">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="dashboard">
+                <span class="nav-icon">▣</span>
+                <span>Dashboard</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="ordens">
+                <span class="nav-icon">▤</span>
+                <span>Ordens de Serviço</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="equipamentos">
+                <span class="nav-icon">▢</span>
+                <span>Equipamentos</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="manutencao">
+                <span class="nav-icon">⚒</span>
+                <span>Manutenção</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="pecas">
+                <span class="nav-icon">⬡</span>
+                <span>Peças</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+            </li>
+
+            <li class="nav-item active">
+              <button class="nav-link" type="button" data-menu="administracao">
+                <span class="nav-icon">♧</span>
+                <span>Administração</span>
+                <span class="nav-arrow">⌃</span>
+              </button>
+
+              <ul class="submenu">
+                <li class="submenu-item">
+                  <a href="usuarios.html"> Usuários </a>
+                </li>
+
+                <li class="submenu-item">
+                  <a href="niveis_acesso.html"> Níveis de acesso </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Conteúdo principal -->
+      <div class="main-wrapper">
+        <!-- Cabeçalho -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <button
+              class="menu-toggle"
+              id="menuToggle"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="topbar-right">
+            <button
+              class="notification-button"
+              id="notificationButton"
+              type="button"
+              aria-label="Notificações"
+            >
+              ♧
+            </button>
+
+            <div class="user-profile">
+              <div class="user-avatar">AS</div>
+
+              <div class="user-info">
+                <strong>Admin Sistema</strong>
+
+                <span>Administrador</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Conteúdo da página -->
+        <main class="main-content">
+          <div class="page-header">
+            <h1>Novo Usuário</h1>
+          </div>
+
+          <div class="user-form-layout">
+            <!-- Formulário -->
+            <section class="form-card">
+              <form id="userForm">
+                <div class="form-group">
+                  <label for="userName"> Nome completo </label>
+
+                  <input
+                    type="text"
+                    id="userName"
+                    name="name"
+                    placeholder="Nome do usuário"
+                    autocomplete="name"
+                    required
+                  />
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="userRegistration"> Matrícula </label>
+
+                    <input
+                      type="text"
+                      id="userRegistration"
+                      name="registration"
+                      placeholder="Ex:12345"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="userContact"> Contato </label>
+
+                    <input
+                      type="tel"
+                      id="userContact"
+                      name="contact"
+                      placeholder="(11) 99999-0000"
+                      autocomplete="tel"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="userFunction"> Função </label>
+
+                  <input
+                    type="text"
+                    id="userFunction"
+                    name="function"
+                    placeholder="Ex: Técnico de Manutenção"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="userPassword"> Senha </label>
+
+                  <input
+                    type="password"
+                    id="userPassword"
+                    name="password"
+                    placeholder="Senha de Acesso"
+                    autocomplete="new-password"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="userLevel"> Nível de acesso </label>
+
+                  <select id="userLevel" name="level" required>
+                    <option value="usuario">Usuário - Abertura de OS</option>
+
+                    <option value="tecnico">Técnico</option>
+
+                    <option value="gerencia">Gerência</option>
+
+                    <option value="administrador">Administrador</option>
+                  </select>
+                </div>
+
+                <div class="form-actions">
+                  <a href="usuarios.html" class="button button-secondary">
+                    Cancelar
+                  </a>
+
+                  <button
+                    type="submit"
+                    class="button button-primary"
+                    id="saveUserButton"
+                  >
+                    Cadastrar Usuário
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <!-- Área para ilustração -->
+            <aside class="form-illustration" aria-hidden="true">
+              <div class="illustration-shape illustration-circle-large"></div>
+
+              <div class="illustration-shape illustration-circle-small"></div>
+
+              <div class="illustration-shape illustration-quarter"></div>
+
+              <div class="illustration-shape illustration-arc"></div>
+
+              <div class="illustration-shape illustration-square"></div>
+
+              <div class="illustration-dot illustration-dot-one"></div>
+
+              <div class="illustration-dot illustration-dot-two"></div>
+
+              <div class="illustration-dot illustration-dot-three"></div>
+
+              <div class="illustration-lines illustration-lines-one"></div>
+
+              <div class="illustration-lines illustration-lines-two"></div>
+            </aside>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="../-js/global.js"></script>
+  </body>
+</html>

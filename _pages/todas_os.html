@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SGM - Ordens de Serviço</title>
+
+    <link rel="stylesheet" href="../-css/pages/todas_os.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+      <!-- Menu lateral -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
+          <div class="logo">
+            <span class="icone-logo">S</span>
+
+            <div class="texto-logo">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="navegacao-lateral" aria-label="Navegação principal">
+          <ul class="lista-navegacao">
+            <li class="item-navegacao">
+              <a href="dashboard.html">
+                <button
+                  class="link-navegacao"
+                  type="button"
+                  data-menu="dashboard"
+                >
+                  <span class="icone-navegacao">▣</span>
+                  <span> Dashboard </span>
+                  <span class="seta-navegacao"></span>
+                </button>
+              </a>
+            </li>
+
+            <!-- Ordens de Serviço -->
+            <li class="item-navegacao ativo">
+              <button
+                class="link-navegacao"
+                type="button"
+                data-menu="ordens-servico"
+              >
+                <span class="icone-navegacao">▤</span>
+                <span>Ordens de Serviço</span>
+                <span class="seta-navegacao">⌃</span>
+              </button>
+
+              <ul class="submenu">
+                <li class="item-submenu ativo">
+                  <a href="todas_os.html"> Todas as OS </a>
+                </li>
+
+                <li class="item-submenu">
+                  <a href="abrir_os.html"> Abrir OS </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="item-navegacao">
+              <button
+                class="link-navegacao"
+                type="button"
+                data-menu="equipamentos"
+              >
+                <span class="icone-navegacao">▢</span>
+                <span>Equipamentos</span>
+                <span class="seta-navegacao">⌄</span>
+              </button>
+            </li>
+
+            <li class="item-navegacao">
+              <button
+                class="link-navegacao"
+                type="button"
+                data-menu="manutencao"
+              >
+                <span class="icone-navegacao">⚒</span>
+                <span>Manutenção</span>
+                <span class="seta-navegacao">⌄</span>
+              </button>
+            </li>
+
+            <li class="item-navegacao">
+              <button class="link-navegacao" type="button" data-menu="pecas">
+                <span class="icone-navegacao">⬡</span>
+                <span>Peças</span>
+                <span class="seta-navegacao">⌄</span>
+              </button>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="usuarios.html">
+                <button
+                  class="link-navegacao"
+                  type="button"
+                  data-menu="administracao"
+                >
+                  <span class="icone-navegacao">♧</span>
+                  <span> Administração </span>
+                  <span class="seta-navegacao">⌄</span>
+                </button>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Área principal -->
+      <div class="area-principal">
+        <!-- Cabeçalho -->
+        <header class="cabecalho">
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="cabecalho-direito">
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            ></button>
+
+            <div class="perfil-usuario">
+              <div class="avatar-usuario">AS</div>
+
+              <div class="informacoes-usuario">
+                <strong>Admin Sistema</strong>
+
+                <span>Administrador</span>
+              </div>
+
+              <span class="seta-perfil"> ⌄ </span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Conteúdo -->
+        <main class="conteudo-principal">
+          <div class="cabecalho-pagina">
+            <div class="caminho-pagina">
+              <!-- Ordens de Serviço / Todas as OS -->
+            </div>
+
+            <div class="titulo-com-botao">
+              <h1>Ordens de Serviço</h1>
+
+              <a href="abrir_os.html" class="botao-principal">
+                <span>+</span>
+                Nova Ordem de Serviço
+              </a>
+            </div>
+          </div>
+
+          <!-- Filtros -->
+          <section class="filtros-os">
+            <form class="formulario-filtros" id="formularioFiltros">
+              <div class="campo-pesquisa-os">
+                <span class="icone-pesquisa">⌕</span>
+
+                <input
+                  type="search"
+                  id="pesquisaOS"
+                  name="pesquisa"
+                  placeholder="Pesquisar OS, equipamento..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="campo-filtro">
+                <label for="filtroStatus" class="sr-only">
+                  Filtrar por status
+                </label>
+
+                <select id="filtroStatus" name="status">
+                  <option value="todos">Todos os status</option>
+
+                  <option value="aberta">Aberta</option>
+
+                  <option value="andamento">Em andamento</option>
+
+                  <option value="encerrada">Encerrada</option>
+                </select>
+              </div>
+
+              <div class="campo-filtro">
+                <label for="filtroTipo" class="sr-only">
+                  Filtrar por tipo
+                </label>
+
+                <select id="filtroTipo" name="tipo">
+                  <option value="todos">Todos os tipos</option>
+
+                  <option value="corretivo">Corretivo</option>
+
+                  <option value="preventivo">Preventivo</option>
+
+                  <option value="preditivo">Preditivo</option>
+                </select>
+              </div>
+
+              <span class="quantidade-registros" id="quantidadeRegistros">
+                5 registros
+              </span>
+            </form>
+          </section>
+
+          <!-- Tabela -->
+          <section class="tabela-os">
+            <div class="tabela-container">
+              <table id="tabelaOrdens">
+                <thead>
+                  <tr>
+                    <th scope="col">NÚMERO</th>
+
+                    <th scope="col">EQUIPAMENTO</th>
+
+                    <th scope="col">TIPO</th>
+
+                    <th scope="col">SOLICITANTE</th>
+
+                    <th scope="col">ABERTURA</th>
+
+                    <th scope="col">STATUS</th>
+
+                    <th scope="col">AÇÕES</th>
+                  </tr>
+                </thead>
+
+                <tbody id="corpoTabelaOrdens">
+                  <tr data-os-id="000125">
+                    <td>
+                      <a href="#" class="numero-os"> #000125 </a>
+                    </td>
+
+                    <td>
+                      <div class="informacao-equipamento">
+                        <span> Compressor de Ar </span>
+
+                        <small> EQP-00125 </small>
+                      </div>
+                    </td>
+
+                    <td>
+                      <span class="etiqueta-os etiqueta-corretivo">
+                        Corretivo
+                      </span>
+                    </td>
+
+                    <td>Christiano Custodio</td>
+
+                    <td>27/08/2026</td>
+
+                    <td>
+                      <span class="status-os status-aberta"> Aberta </span>
+                    </td>
+
+                    <td>
+                      <button
+                        class="botao-visualizar"
+                        type="button"
+                        data-acao="visualizar"
+                        data-os-id="000125"
+                        aria-label="Visualizar ordem 000125"
+                      >
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"
+                          ></path>
+                          <circle cx="12" cy="12" r="2.5"></circle>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr data-os-id="000126">
+                    <td>
+                      <a href="#" class="numero-os"> #000126 </a>
+                    </td>
+
+                    <td>
+                      <div class="informacao-equipamento">
+                        <span> Esteira Transportadora </span>
+
+                        <small> EQP-00126 </small>
+                      </div>
+                    </td>
+
+                    <td>
+                      <span class="etiqueta-os etiqueta-preventivo">
+                        Preventivo
+                      </span>
+                    </td>
+
+                    <td>Christiano Custodio</td>
+
+                    <td>26/08/2026</td>
+
+                    <td>
+                      <span class="status-os status-andamento">
+                        Em andamento
+                      </span>
+                    </td>
+
+                    <td>
+                      <button
+                        class="botao-visualizar"
+                        type="button"
+                        data-acao="visualizar"
+                        data-os-id="000126"
+                        aria-label="Visualizar ordem 000126"
+                      >
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"
+                          ></path>
+                          <circle cx="12" cy="12" r="2.5"></circle>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr data-os-id="000124">
+                    <td>
+                      <a href="#" class="numero-os"> #000124 </a>
+                    </td>
+
+                    <td>
+                      <div class="informacao-equipamento">
+                        <span> Bomba Hidráulica </span>
+
+                        <small> EQP-00127 </small>
+                      </div>
+                    </td>
+
+                    <td>
+                      <span class="etiqueta-os etiqueta-preditivo">
+                        Preditivo
+                      </span>
+                    </td>
+
+                    <td>Christiano Custodio</td>
+
+                    <td>20/08/2026</td>
+
+                    <td>
+                      <span class="status-os status-encerrada">
+                        Encerrada
+                      </span>
+                    </td>
+
+                    <td>
+                      <button
+                        class="botao-visualizar"
+                        type="button"
+                        data-acao="visualizar"
+                        data-os-id="000124"
+                        aria-label="Visualizar ordem 000124"
+                      >
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"
+                          ></path>
+                          <circle cx="12" cy="12" r="2.5"></circle>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr data-os-id="000123">
+                    <td>
+                      <a href="#" class="numero-os"> #000123 </a>
+                    </td>
+
+                    <td>
+                      <div class="informacao-equipamento">
+                        <span> Motor Elétrico </span>
+
+                        <small> EQP-00128 </small>
+                      </div>
+                    </td>
+
+                    <td>
+                      <span class="etiqueta-os etiqueta-corretivo">
+                        Corretivo
+                      </span>
+                    </td>
+
+                    <td>Admin Sistema</td>
+
+                    <td>15/08/2026</td>
+
+                    <td>
+                      <span class="status-os status-encerrada">
+                        Encerrada
+                      </span>
+                    </td>
+
+                    <td>
+                      <button
+                        class="botao-visualizar"
+                        type="button"
+                        data-acao="visualizar"
+                        data-os-id="000123"
+                        aria-label="Visualizar ordem 000123"
+                      >
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"
+                          ></path>
+                          <circle cx="12" cy="12" r="2.5"></circle>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr data-os-id="000127">
+                    <td>
+                      <a href="#" class="numero-os"> #000127 </a>
+                    </td>
+
+                    <td>
+                      <div class="informacao-equipamento">
+                        <span> Compressor de Ar </span>
+
+                        <small> EQP-00125 </small>
+                      </div>
+                    </td>
+
+                    <td>
+                      <span class="etiqueta-os etiqueta-preventivo">
+                        Preventivo
+                      </span>
+                    </td>
+
+                    <td>Christiano Custodio</td>
+
+                    <td>27/08/2026</td>
+
+                    <td>
+                      <span class="status-os status-andamento">
+                        Em andamento
+                      </span>
+                    </td>
+
+                    <td>
+                      <button
+                        class="botao-visualizar"
+                        type="button"
+                        data-acao="visualizar"
+                        data-os-id="000127"
+                        aria-label="Visualizar ordem 000127"
+                      >
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"
+                          ></path>
+                          <circle cx="12" cy="12" r="2.5"></circle>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../-js/global.js"></script>
+  </body>
+</html>

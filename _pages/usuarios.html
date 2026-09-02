@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SGM - Usuários</title>
+
+    <link rel="stylesheet" href="../-css/pages/usuarios.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+      <!-- Menu lateral -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <span class="logo-icon">S</span>
+
+            <div class="logo-text">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Navegação principal">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="dashboard.html">
+                <button class="nav-link" type="button" data-menu="dashboard">
+                  <span class="nav-icon">▣</span>
+                  <span>Dashboard</span>
+                  <span class="nav-arrow"></span>
+                </button>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="todas_os.html">
+                <button class="nav-link" type="button" data-menu="ordens">
+                  <span class="nav-icon">▤</span>
+                  <span> Ordens de Serviço </span>
+                  <span class="nav-arrow">⌄</span>
+                </button>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="equipamentos">
+                <span class="nav-icon">▢</span>
+                <span>Equipamentos</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="manutencao">
+                <span class="nav-icon">⚒</span>
+                <span>Manutenção</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="pecas">
+                <span class="nav-icon">⬡</span>
+                <span>Peças</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+            </li>
+
+            <li class="nav-item active">
+              <button class="nav-link" type="button" data-menu="administracao">
+                <span class="nav-icon">♧</span>
+                <span>Administração</span>
+                <span class="nav-arrow">⌃</span>
+              </button>
+
+              <ul class="submenu">
+                <li class="submenu-item active">
+                  <a href="usuarios.html">Usuários</a>
+                </li>
+
+                <li class="submenu-item">
+                  <a href="niveis_acesso.html">Níveis de acesso</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Área principal -->
+      <div class="main-wrapper">
+        <!-- Cabeçalho -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <button
+              class="menu-toggle"
+              id="menuToggle"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="topbar-right">
+            <button
+              class="notification-button"
+              id="notificationButton"
+              type="button"
+              aria-label="Notificações"
+            ></button>
+
+            <div class="user-profile">
+              <div class="user-avatar">AS</div>
+
+              <div class="user-info">
+                <strong>Admin Sistema</strong>
+                <span>Administrador</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Conteúdo -->
+        <main class="main-content">
+          <div class="page-header">
+            <div>
+              <h1>Usuários</h1>
+            </div>
+
+            <button
+              class="button button-primary"
+              id="newUserButton"
+              type="button"
+            >
+              <span>+</span>
+              <a href="cadastro_usuario.html"> Novo Usuário </a>
+            </button>
+          </div>
+
+          <!-- Área de filtros -->
+          <section class="filter-card" aria-label="Filtros de usuários">
+            <form class="filter-form" id="userFilterForm">
+              <div class="search-field">
+                <label for="userSearch" class="sr-only">
+                  Pesquisar usuário
+                </label>
+
+                <span class="search-icon">⌕</span>
+
+                <input
+                  type="search"
+                  id="userSearch"
+                  name="search"
+                  placeholder="Pesquisar por nome, matrícula..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="select-field">
+                <label for="levelFilter" class="sr-only">
+                  Filtrar por nível
+                </label>
+
+                <select id="levelFilter" name="level">
+                  <option value="all">Todos os níveis</option>
+
+                  <option value="administrador">Administrador</option>
+
+                  <option value="gerencia">Gerência</option>
+
+                  <option value="tecnico">Técnico</option>
+
+                  <option value="usuario">Usuário</option>
+                </select>
+              </div>
+            </form>
+          </section>
+
+          <!-- Tabela de usuários -->
+          <section class="table-card">
+            <div class="table-container">
+              <table id="usersTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Matrícula</th>
+                    <th scope="col">Função</th>
+                    <th scope="col">Nível</th>
+                    <th scope="col">Contato</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+
+                <tbody id="usersTableBody">
+                  <tr data-user-id="1">
+                    <td>
+                      <div class="user-cell">
+                        <div class="table-avatar">CC</div>
+
+                        <span>Christiano Custodio</span>
+                      </div>
+                    </td>
+
+                    <td>12314</td>
+
+                    <td>Técnico de Manutenção</td>
+
+                    <td>
+                      <span class="badge badge-tecnico"> Técnico </span>
+                    </td>
+
+                    <td>(11) 99999-0001</td>
+
+                    <td>
+                      <span class="status status-active"> Ativo </span>
+                    </td>
+                  </tr>
+
+                  <tr data-user-id="2">
+                    <td>
+                      <div class="user-cell">
+                        <div class="table-avatar">AS</div>
+
+                        <span>Admin Sistema</span>
+                      </div>
+                    </td>
+
+                    <td>12314</td>
+
+                    <td>Técnico de Manutenção</td>
+
+                    <td>
+                      <span class="badge badge-administrador">
+                        Administrador
+                      </span>
+                    </td>
+
+                    <td>(11) 99999-0001</td>
+
+                    <td>
+                      <span class="status status-active"> Ativo </span>
+                    </td>
+                  </tr>
+
+                  <tr data-user-id="3">
+                    <td>
+                      <div class="user-cell">
+                        <div class="table-avatar">MG</div>
+
+                        <span>Maria Gerência</span>
+                      </div>
+                    </td>
+
+                    <td>12314</td>
+
+                    <td>Técnico de Manutenção</td>
+
+                    <td>
+                      <span class="badge badge-gerencia"> Gerência </span>
+                    </td>
+
+                    <td>(11) 99999-0001</td>
+
+                    <td>
+                      <span class="status status-active"> Ativo </span>
+                    </td>
+                  </tr>
+
+                  <tr data-user-id="4">
+                    <td>
+                      <div class="user-cell">
+                        <div class="table-avatar">JO</div>
+
+                        <span>João Operador</span>
+                      </div>
+                    </td>
+
+                    <td>12314</td>
+
+                    <td>Técnico de Manutenção</td>
+
+                    <td>
+                      <span class="badge badge-usuario"> Usuário </span>
+                    </td>
+
+                    <td>(11) 99999-0001</td>
+
+                    <td>
+                      <span class="status status-active"> Ativo </span>
+                    </td>
+                  </tr>
+
+                  <tr data-user-id="5">
+                    <td>
+                      <div class="user-cell">
+                        <div class="table-avatar">PT</div>
+
+                        <span>Pedro Técnico</span>
+                      </div>
+                    </td>
+
+                    <td>12314</td>
+
+                    <td>Técnico de Manutenção</td>
+
+                    <td>
+                      <span class="badge badge-tecnico"> Técnico </span>
+                    </td>
+
+                    <td>(11) 99999-0001</td>
+
+                    <td>
+                      <span class="status status-inactive"> Inativo </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Modal de usuário -->
+    <dialog class="modal" id="userModal">
+      <div class="modal-content">
+        <header class="modal-header">
+          <h2 id="modalTitle">Novo Usuário</h2>
+
+          <button
+            class="modal-close"
+            id="closeModalButton"
+            type="button"
+            aria-label="Fechar"
+          >
+            ×
+          </button>
+        </header>
+
+        <form id="userForm">
+          <div class="form-group">
+            <label for="userName"> Nome </label>
+
+            <input type="text" id="userName" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="userRegistration"> Matrícula </label>
+
+            <input
+              type="text"
+              id="userRegistration"
+              name="registration"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="userFunction"> Função </label>
+
+            <input type="text" id="userFunction" name="function" required />
+          </div>
+
+          <div class="form-group">
+            <label for="userLevel"> Nível </label>
+
+            <select id="userLevel" name="id_nivel_usuario" required>
+              <option value="">Selecione um nível</option>
+
+              <option value="1">Administrador</option>
+
+              <option value="4">Gerência</option>
+
+              <option value="3">Técnico</option>
+
+              <option value="2">Usuário</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="userContact"> Contato </label>
+
+            <input type="tel" id="userContact" name="contact" />
+          </div>
+
+          <div class="form-group">
+            <label for="userStatus"> Status </label>
+
+            <select id="userStatus" name="status" required>
+              <option value="ativo">Ativo</option>
+
+              <option value="inativo">Inativo</option>
+            </select>
+          </div>
+
+          <div class="modal-actions">
+            <button
+              class="button button-secondary"
+              id="cancelUserButton"
+              type="button"
+            >
+              Cancelar
+            </button>
+
+            <button class="button button-primary" type="submit">
+              Salvar Usuário
+            </button>
+          </div>
+        </form>
+      </div>
+      <script src="../-js/global.js"></script>
+    </dialog>
+  </body>
+</html>

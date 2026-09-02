@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SGM - Níveis de Acesso</title>
+
+    <link rel="stylesheet" href="../-css/pages/niveis_acesso.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+      <!-- Menu lateral -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
+          <div class="logo">
+            <span class="icone-logo">S</span>
+
+            <div class="texto-logo">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="navegacao-lateral" aria-label="Navegação principal">
+          <ul class="lista-navegacao">
+            <li class="item-navegacao">
+              <button
+                class="link-navegacao"
+                type="button"
+                data-menu="dashboard"
+              >
+                <span class="icone-navegacao">▣</span>
+                <span>Dashboard</span>
+                <span class="seta-navegacao"></span>
+              </button>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="todas_os.html">
+                <button class="link-navegacao" type="button" data-menu="ordens">
+                  <span class="icone-navegacao">▤</span>
+                  <span> Ordens de Serviço </span>
+                  <span class="seta-navegacao">⌄</span>
+                </button>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <button
+                class="link-navegacao"
+                type="button"
+                data-menu="equipamentos"
+              >
+                <span class="icone-navegacao">▢</span>
+                <span>Equipamentos</span>
+                <span class="seta-navegacao">⌄</span>
+              </button>
+            </li>
+
+            <li class="item-navegacao">
+              <button
+                class="link-navegacao"
+                type="button"
+                data-menu="manutencao"
+              >
+                <span class="icone-navegacao">⚒</span>
+                <span>Manutenção</span>
+                <span class="seta-navegacao">⌄</span>
+              </button>
+            </li>
+
+            <li class="item-navegacao">
+              <button class="link-navegacao" type="button" data-menu="pecas">
+                <span class="icone-navegacao">⬡</span>
+                <span>Peças</span>
+                <span class="seta-navegacao">⌄</span>
+              </button>
+            </li>
+
+            <li class="item-navegacao ativo">
+              <button
+                class="link-navegacao"
+                type="button"
+                data-menu="administracao"
+              >
+                <span class="icone-navegacao">♧</span>
+                <span>Administração</span>
+                <span class="seta-navegacao">⌃</span>
+              </button>
+
+              <ul class="submenu">
+                <li class="item-submenu">
+                  <a href="usuarios.html"> Usuários </a>
+                </li>
+
+                <li class="item-submenu ativo">
+                  <a href="niveis_acesso.html"> Níveis de acesso </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Área principal -->
+      <div class="area-principal">
+        <!-- Cabeçalho -->
+        <header class="cabecalho">
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="cabecalho-direito">
+            <!-- temporarrio!! -->
+
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            ></button>
+
+            <div class="perfil-usuario">
+              <div class="avatar-usuario">AS</div>
+
+              <div class="informacoes-usuario">
+                <strong>Admin Sistema</strong>
+
+                <span>Administrador</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Conteúdo -->
+        <main class="conteudo-principal">
+          <div class="cabecalho-pagina">
+            <h1>Níveis de Acesso</h1>
+          </div>
+
+          <section
+            class="niveis-acesso"
+            id="niveisAcesso"
+            aria-label="Níveis de acesso"
+          >
+            <!-- Administrador -->
+            <article
+              class="cartao-nivel cartao-administrador"
+              data-nivel-id="0"
+              data-nivel="administrador"
+            >
+              <header class="cabecalho-cartao">
+                <div class="titulo-cartao">
+                  <span class="etiqueta etiqueta-administrador">
+                    Administrador
+                  </span>
+
+                  <span class="numero-nivel"> Nível 0 </span>
+                </div>
+              </header>
+
+              <div class="corpo-cartao">
+                <h2>PERMISSÕES:</h2>
+
+                <ul class="lista-permissoes">
+                  <li>Dashboard</li>
+
+                  <li>Ordens de Serviço</li>
+
+                  <li>Equipamentos</li>
+
+                  <li>Manutenção</li>
+
+                  <li>Peças</li>
+
+                  <li>Relatórios</li>
+
+                  <li>Usuários</li>
+
+                  <li>Níveis de acesso</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Usuário -->
+            <article
+              class="cartao-nivel cartao-usuario"
+              data-nivel-id="1"
+              data-nivel="usuario"
+            >
+              <header class="cabecalho-cartao">
+                <div class="titulo-cartao">
+                  <span class="etiqueta etiqueta-usuario"> Usuário </span>
+
+                  <span class="numero-nivel"> Nível 1 </span>
+                </div>
+              </header>
+
+              <div class="corpo-cartao">
+                <h2>PERMISSÕES:</h2>
+
+                <ul class="lista-permissoes">
+                  <li>Dashboard</li>
+
+                  <li>Abrir OS</li>
+
+                  <li>Minhas OS</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Técnico -->
+            <article
+              class="cartao-nivel cartao-tecnico"
+              data-nivel-id="2"
+              data-nivel="tecnico"
+            >
+              <header class="cabecalho-cartao">
+                <div class="titulo-cartao">
+                  <span class="etiqueta etiqueta-tecnico"> Técnico </span>
+
+                  <span class="numero-nivel"> Nível 2 </span>
+                </div>
+              </header>
+
+              <div class="corpo-cartao">
+                <h2>PERMISSÕES:</h2>
+
+                <ul class="lista-permissoes">
+                  <li>Dashboard</li>
+
+                  <li>Ordens de Serviço</li>
+
+                  <li>Equipamentos</li>
+
+                  <li>Atividades</li>
+
+                  <li>Peças</li>
+
+                  <li>Encerrar OS</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Gerência -->
+            <article
+              class="cartao-nivel cartao-gerencia"
+              data-nivel-id="3"
+              data-nivel="gerencia"
+            >
+              <header class="cabecalho-cartao">
+                <div class="titulo-cartao">
+                  <span class="etiqueta etiqueta-gerencia"> Gerência </span>
+
+                  <span class="numero-nivel"> Nível 3 </span>
+                </div>
+              </header>
+
+              <div class="corpo-cartao">
+                <h2>PERMISSÕES:</h2>
+
+                <ul class="lista-permissoes">
+                  <li>Dashboard</li>
+
+                  <li>Ordens de Serviço (leitura)</li>
+
+                  <li>Equipamentos (leitura)</li>
+
+                  <li>Relatórios</li>
+                </ul>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../-js/global.js"></script>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SGM - Login</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- CONTAINER DA TELA INTEIRA -->
+
+    <div class="login-container">
+      <!-- ===================================== -->
+      <!--          LADO ESQUERDO                -->
+      <!--              SGM                      -->
+      <!-- ===================================== -->
+
+      <div class="lado-esquerdo">
+        <div class="conteudo-logo">
+          <!-- LOGO -->
+
+          <h1 class="logo-sgm">SGM</h1>
+
+          <!-- LINHA DO LOGO -->
+
+          <div class="linha-logo"></div>
+
+          <!-- DESCRIÇÃO -->
+
+          <p class="descricao-logo">SISTEMA DE GESTÃO DE MANUTENÇÃO</p>
+        </div>
+      </div>
+
+      <!-- ===================================== -->
+      <!--           LADO DIREITO                -->
+      <!--             LOGIN                     -->
+      <!-- ===================================== -->
+
+      <div class="lado-direito">
+        <!-- CARD CENTRAL -->
+
+        <div class="card-login">
+          <!-- ÍCONE USUÁRIO -->
+
+          <div class="area-icone">
+            <div class="icone-usuario">
+              <svg
+                class="icon-user"
+                xmlns="http://w3.org"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <!-- TÍTULO -->
+
+          <h2 class="titulo-login">Bem vindo de volta!</h2>
+
+          <!-- FORMULÁRIO -->
+
+          <form class="formulario-login">
+            <!-- ========================= -->
+            <!--        MATRÍCULA          -->
+            <!-- ========================= -->
+
+            <div class="campo-formulario">
+              <label for="matricula"> Matrícula </label>
+
+              <div class="input-container">
+                <span class="icone-input">
+                  <svg
+                    class="icon-user"
+                    xmlns="http://w3.org"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </span>
+
+                <input
+                  type="text"
+                  id="matricula"
+                  name="matricula"
+                  placeholder="Digite sua matrícula"
+                />
+              </div>
+            </div>
+
+            <!-- ========================= -->
+            <!--          SENHA            -->
+            <!-- ========================= -->
+
+            <div class="campo-formulario">
+              <label for="senha"> Senha </label>
+
+              <div class="input-container">
+                <span class="icone-input">
+                  <svg
+                    class="icon-lock"
+                    xmlns="http://w3.org"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect
+                      x="3"
+                      y="11"
+                      width="18"
+                      height="11"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                </span>
+
+                <input
+                  type="password"
+                  id="senha"
+                  name="senha"
+                  placeholder="Digite senha"
+                />
+
+                <span class="icone-olho"> 👁 </span>
+              </div>
+            </div>
+
+            <!-- ========================= -->
+            <!--      OPÇÕES DO LOGIN      -->
+            <!-- ========================= -->
+
+            <div class="opcoes-login">
+              <div class="lembrar-dados">
+                <input type="checkbox" id="lembrar" name="lembrar" />
+
+                <label for="lembrar"> Lembrar meus dados </label>
+              </div>
+
+              <a href="#" class="link-senha"> Esqueci minha senha </a>
+            </div>
+
+            <!-- ========================= -->
+            <!--       BOTÃO ENTRAR        -->
+            <!-- ========================= -->
+
+            <button type="submit" class="botao-login">Entrar no Sistema</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

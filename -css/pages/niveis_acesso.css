@@ -1,0 +1,199 @@
+@import url("../global.css");
+@import url("../layout/sidebar.css");
+@import url("../layout/header.css");
+
+/* Grade dos níveis */
+.niveis-acesso {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  width: 100%;
+}
+
+/* Cartão */
+.cartao-nivel {
+  position: relative;
+  min-height: 297px;
+  padding: 13px 28px 22px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid #d9dde3;
+  border-radius: 8px;
+  box-shadow:
+    0 2px 3px rgba(0, 0, 0, 0.08),
+    0 5px 10px rgba(0, 0, 0, 0.03);
+}
+.cartao-nivel::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 105px;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+/* Degradês */
+.cartao-administrador::after {
+  background: linear-gradient(
+    to top,
+    rgba(96, 117, 235, 0.35),
+    rgba(96, 117, 235, 0)
+  );
+}
+.cartao-usuario::after {
+  background: linear-gradient(
+    to top,
+    rgba(63, 145, 235, 0.32),
+    rgba(63, 145, 235, 0)
+  );
+}
+.cartao-tecnico::after {
+  background: linear-gradient(
+    to top,
+    rgba(225, 218, 128, 0.32),
+    rgba(225, 218, 128, 0)
+  );
+}
+.cartao-gerencia::after {
+  background: linear-gradient(
+    to top,
+    rgba(67, 196, 135, 0.32),
+    rgba(67, 196, 135, 0)
+  );
+}
+
+/* Cabeçalho do cartão */
+.cabecalho-cartao {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 12px;
+  border-bottom: 1px solid;
+}
+.cartao-administrador .cabecalho-cartao {
+  border-color: #b8adff;
+}
+.cartao-usuario .cabecalho-cartao {
+  border-color: #7db3ff;
+}
+.cartao-tecnico .cabecalho-cartao {
+  border-color: #f2c796;
+}
+.cartao-gerencia .cabecalho-cartao {
+  border-color: #a9dfa9;
+}
+.titulo-cartao {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* Etiquetas */
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 27px;
+  padding: 2px 8px;
+  border: 1px solid;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.etiqueta-administrador {
+  color: #6647de;
+  background: #ebe7ff;
+  border-color: #8067f3;
+}
+.etiqueta-usuario {
+  color: #2876dc;
+  background: #dceeff;
+  border-color: #5599ed;
+}
+.etiqueta-tecnico {
+  color: #dc8600;
+  background: #fff0d7;
+  border-color: #f0b052;
+}
+.etiqueta-gerencia {
+  color: #258d25;
+  background: #e0f8df;
+  border-color: #60b85b;
+}
+
+/* Número do nível */
+.numero-nivel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 25px;
+  padding: 2px 9px;
+  border-radius: 10px;
+  background: #eeeeef;
+  color: #77797d;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+/* Conteúdo */
+.corpo-cartao {
+  position: relative;
+  z-index: 2;
+  padding-top: 10px;
+}
+.corpo-cartao h2 {
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 400;
+}
+.cartao-administrador .corpo-cartao h2 {
+  color: #5b67e9;
+}
+.cartao-usuario .corpo-cartao h2 {
+  color: #4080e4;
+}
+.cartao-tecnico .corpo-cartao h2 {
+  color: #c47b13;
+}
+.cartao-gerencia .corpo-cartao h2 {
+  color: #379638;
+}
+
+/* Permissões */
+.lista-permissoes {
+  padding-left: 17px;
+  list-style: disc;
+}
+.lista-permissoes li {
+  margin-bottom: 5px;
+  color: #45474b;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+/* Responsividade Específica */
+@media (max-width: 900px) {
+  .niveis-acesso {
+    gap: 15px;
+  }
+  .cartao-nivel {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+}
+@media (max-width: 700px) {
+  .niveis-acesso {
+    grid-template-columns: 1fr;
+  }
+  .cartao-nivel {
+    min-height: 270px;
+  }
+}
+@media (max-width: 650px) {
+  .cartao-nivel {
+    min-height: 260px;
+    padding: 14px 18px 20px;
+  }
+}

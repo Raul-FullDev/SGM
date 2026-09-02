@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SGM - Dashboard</title>
+
+    <link rel="stylesheet" href="../-css/pages/dashboard.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+      <!-- Menu lateral -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
+          <div class="logo">
+            <span class="icone-logo">S</span>
+
+            <div class="texto-logo">
+              <strong>SGM</strong>
+
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="navegacao-lateral" aria-label="Navegação principal">
+          <ul class="lista-navegacao">
+            <!-- Dashboard -->
+
+            <li class="item-navegacao ativo">
+              <a href="dashboard.html" class="link-navegacao">
+                <span class="icone-navegacao">▣</span>
+
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <!-- Ordens de Serviço -->
+
+            <li class="item-navegacao">
+              <a href="todas_os.html" class="link-navegacao">
+                <span class="icone-navegacao">▤</span>
+
+                <span>Ordens de Serviço</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Equipamentos -->
+
+            <li class="item-navegacao">
+              <a href="todos-equipamentos.html" class="link-navegacao">
+                <span class="icone-navegacao">□</span>
+
+                <span>Equipamentos</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Manutenção -->
+
+            <li class="item-navegacao">
+              <a href="#" class="link-navegacao">
+                <span class="icone-navegacao">⚒</span>
+
+                <span>Manutenção</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Peças -->
+
+            <li class="item-navegacao">
+              <a href="#" class="link-navegacao">
+                <span class="icone-navegacao">◇</span>
+
+                <span>Peças</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Administração -->
+
+            <li class="item-navegacao">
+              <a href="#" class="link-navegacao">
+                <span class="icone-navegacao">♧</span>
+
+                <span> Administração </span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Área principal -->
+      <div class="area-principal">
+        <!-- Cabeçalho -->
+        <header class="cabecalho">
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="cabecalho-direito">
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            ></button>
+
+            <div class="perfil-usuario">
+              <div class="avatar-usuario">AS</div>
+
+              <div class="informacoes-usuario">
+                <strong>Admin Sistema</strong>
+
+                <span>Administrador</span>
+              </div>
+
+              <span class="seta-perfil"> ⌄ </span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Dashboard -->
+        <main class="conteudo-principal">
+          <!-- Cabeçalho do dashboard -->
+
+          <section class="cabecalho-pagina">
+            <h1>Dashboard</h1>
+
+            <p>Visão geral do sistema de gestão de manutenção.</p>
+          </section>
+
+          <!-- Cards -->
+
+          <section class="cards-dashboard" id="cardsDashboard">
+            <!-- Total de equipamentos -->
+
+            <article class="card-dashboard" data-card="equipamentos">
+              <p>Total de Equipamentos</p>
+
+              <h2>24</h2>
+            </article>
+
+            <!-- Ordens de serviço -->
+
+            <article class="card-dashboard" data-card="ordens">
+              <p>Ordens de Serviço</p>
+
+              <h2>12</h2>
+            </article>
+
+            <!-- Manutenções pendentes -->
+
+            <article class="card-dashboard" data-card="manutencoes-pendentes">
+              <p>Manutenções Pendentes</p>
+
+              <h2>8</h2>
+            </article>
+
+            <!-- Equipamentos em manutenção -->
+
+            <article class="card-dashboard" data-card="equipamentos-manutencao">
+              <p>Equipamentos em Manutenção</p>
+
+              <h2>4</h2>
+            </article>
+          </section>
+
+          <!-- Conteúdo inferior -->
+
+          <section class="conteudo-dashboard">
+            <!-- Coluna esquerda -->
+
+            <div class="dashboard-esquerda">
+              <!-- Ordens recentes -->
+
+              <section class="card-principal">
+                <div class="cabecalho-card">
+                  <div>
+                    <h2>Ordens de Serviço Recentes</h2>
+
+                    <p>Últimas ordens cadastradas.</p>
+                  </div>
+
+                  <a href="todas_os.html" class="botao-ver-todas">
+                    Ver todas
+                  </a>
+                </div>
+
+                <div class="lista-ordens" id="listaOrdens">
+                  <div class="ordem-item" data-os-id="001">
+                    <div>
+                      <strong> OS-001 </strong>
+
+                      <p>Manutenção preventiva do Compressor</p>
+                    </div>
+
+                    <span class="status-pendente"> Pendente </span>
+                  </div>
+
+                  <div class="ordem-item" data-os-id="002">
+                    <div>
+                      <strong> OS-002 </strong>
+
+                      <p>Verificação do Motor Elétrico</p>
+                    </div>
+
+                    <span class="status-andamento"> Em andamento </span>
+                  </div>
+
+                  <div class="ordem-item" data-os-id="003">
+                    <div>
+                      <strong> OS-003 </strong>
+
+                      <p>Inspeção da Bomba Hidráulica</p>
+                    </div>
+
+                    <span class="status-concluida"> Concluída </span>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <!-- Coluna direita -->
+
+            <div class="dashboard-direita">
+              <!-- Status dos equipamentos -->
+
+              <section class="card-lateral">
+                <h2>Status dos Equipamentos</h2>
+
+                <div class="lista-status" id="listaStatus">
+                  <div class="status-item">
+                    <span> Ativos </span>
+
+                    <strong> 18 </strong>
+                  </div>
+
+                  <div class="status-item">
+                    <span> Em Manutenção </span>
+
+                    <strong> 4 </strong>
+                  </div>
+
+                  <div class="status-item">
+                    <span> Inativos </span>
+
+                    <strong> 2 </strong>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Próximas manutenções -->
+
+              <section class="card-lateral">
+                <h2>Próximas Manutenções</h2>
+
+                <div class="lista-manutencoes" id="listaManutencoes">
+                  <div class="manutencao-item">
+                    <div>
+                      <strong> Compressor Industrial </strong>
+
+                      <p>Manutenção preventiva</p>
+                    </div>
+
+                    <span> 02/09 </span>
+                  </div>
+
+                  <div class="manutencao-item">
+                    <div>
+                      <strong> Motor Elétrico </strong>
+
+                      <p>Inspeção técnica</p>
+                    </div>
+
+                    <span> 05/09 </span>
+                  </div>
+
+                  <div class="manutencao-item">
+                    <div>
+                      <strong> Gerador Industrial </strong>
+
+                      <p>Revisão preventiva</p>
+                    </div>
+
+                    <span> 10/09 </span>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../-js/global.js"></script>
+  </body>
+</html>

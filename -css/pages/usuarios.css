@@ -1,0 +1,344 @@
+@import url("../global.css");
+@import url("../layout/sidebar.css");
+@import url("../layout/header.css");
+
+/* Buttons */
+.button {
+  border: none;
+  border-radius: 7px;
+  min-height: 35px;
+  padding: 0 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 12px;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
+}
+.button:active {
+  transform: translateY(1px);
+}
+.button-primary {
+  background: var(--blue);
+  color: white;
+  box-shadow: 0 2px 5px rgba(20, 91, 234, 0.18);
+}
+.button-primary:hover {
+  background: #0d4ed5;
+}
+.button-secondary {
+  background: var(--gray-100);
+  color: var(--gray-700);
+}
+.button-secondary:hover {
+  background: var(--gray-200);
+}
+.button-primary span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Filter */
+.filter-card {
+  background: var(--white);
+  border: 1px solid #e0e3e7;
+  border-radius: 8px;
+  padding: 11px 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  margin-bottom: 10px;
+}
+.filter-form {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+.search-field {
+  position: relative;
+  flex: 1;
+}
+.search-field input {
+  width: 100%;
+  height: 34px;
+  padding: 0 12px 0 34px;
+  border: 1px solid #d9dce0;
+  border-radius: 7px;
+  outline: none;
+  color: var(--gray-700);
+  background: white;
+  font-size: 11px;
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.search-field input::placeholder {
+  color: #999;
+}
+.search-field input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(20, 91, 234, 0.08);
+}
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 18px;
+  pointer-events: none;
+}
+.select-field {
+  width: 115px;
+}
+.select-field select {
+  width: 100%;
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid #d9dce0;
+  border-radius: 7px;
+  background: white;
+  color: #666;
+  outline: none;
+  font-size: 10px;
+  cursor: pointer;
+}
+.select-field select:focus {
+  border-color: var(--blue);
+}
+
+/* Table */
+.table-card {
+  background: white;
+  border: 1px solid #e0e3e7;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 11px;
+}
+th {
+  height: 38px;
+  padding: 0 16px;
+  color: #444;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: left;
+  border-bottom: 1px solid #dfe2e6;
+}
+td {
+  height: 52px;
+  padding: 0 16px;
+  color: #454545;
+  border-bottom: 1px solid #e5e7ea;
+  vertical-align: middle;
+}
+tbody tr:last-child td {
+  border-bottom: none;
+}
+tbody tr {
+  transition: background 0.15s ease;
+}
+tbody tr:hover {
+  background: #f8faff;
+}
+
+/* Table columns widths */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 22%;
+}
+th:nth-child(2),
+td:nth-child(2) {
+  width: 12%;
+}
+th:nth-child(3),
+td:nth-child(3) {
+  width: 20%;
+}
+th:nth-child(4),
+td:nth-child(4) {
+  width: 17%;
+}
+th:nth-child(5),
+td:nth-child(5) {
+  width: 18%;
+}
+th:nth-child(6),
+td:nth-child(6) {
+  width: 11%;
+}
+
+/* User cell */
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.table-avatar {
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--azul-escuro);
+  color: white;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+/* Badges e Status */
+.badge,
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  font-size: 10px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.badge {
+  min-height: 23px;
+  padding: 2px 8px;
+}
+.status {
+  min-width: 52px;
+  min-height: 21px;
+  padding: 2px 9px;
+}
+
+.badge-tecnico {
+  color: #e58b00;
+  background: var(--amarelo-claro);
+  border: 1px solid #f5c36a;
+}
+.badge-administrador {
+  color: #6846df;
+  background: var(--roxo-fundo);
+  border: 1px solid #8d75ed;
+}
+.badge-gerencia {
+  color: #249328;
+  background: #ddf8d9;
+  border: 1px solid #6ed169;
+}
+.badge-usuario {
+  color: #347cf5;
+  background: #dceaff;
+  border: 1px solid #71a4ff;
+}
+.status-active {
+  color: #159b72;
+  background: var(--verde-claro);
+  border: 1px solid #6bd8b8;
+}
+.status-inactive {
+  color: #b83d3d;
+  background: var(--vermelho-claro);
+  border: 1px solid #dd8a8a;
+}
+
+/* Modal */
+.modal {
+  width: min(460px, calc(100% - 30px));
+  padding: 0;
+  border: none;
+  border-radius: 9px;
+  background: white;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+.modal::backdrop {
+  background: rgba(5, 25, 60, 0.45);
+}
+.modal-content {
+  width: 100%;
+}
+.modal-header {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.modal-header h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.modal-close {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #777;
+  font-size: 22px;
+}
+.modal-close:hover {
+  background: var(--gray-100);
+}
+#userForm {
+  padding: 20px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 15px;
+}
+.form-group label {
+  color: #454545;
+  font-size: 11px;
+  font-weight: 500;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  height: 35px;
+  padding: 0 10px;
+  border: 1px solid #d5d9de;
+  border-radius: 6px;
+  outline: none;
+  font-size: 12px;
+}
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(20, 91, 234, 0.08);
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 21px;
+}
+
+/* Responsividade Específica */
+@media (max-width: 850px) {
+  table {
+    min-width: 800px;
+  }
+}
+@media (max-width: 650px) {
+  .filter-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 9px;
+  }
+  .select-field {
+    width: 100%;
+  }
+}
