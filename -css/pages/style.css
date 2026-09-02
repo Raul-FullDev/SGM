@@ -1,3 +1,4 @@
+/* Base */
 * {
   margin: 0;
   padding: 0;
@@ -8,80 +9,64 @@ body {
   font-family: Arial, sans-serif;
 }
 
+/* Estrutura Principal */
 .login-container {
   width: 100%;
   min-height: 100vh;
-
   display: flex;
 }
 
+/* Lado Esquerdo (Logo) */
 .lado-esquerdo {
   width: 48%;
   min-height: 100vh;
-
   background: linear-gradient(#02215c, #00389f);
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/* logo */
 .conteudo-logo {
   text-align: center;
 }
-
 .logo-sgm {
   color: white;
-
   font-size: 88px;
   font-weight: 300;
-
   letter-spacing: 2px;
 }
-/* linha da logo */
 .linha-logo {
   width: 145px;
   height: 1px;
-
   background-color: white;
-
   margin: 0 auto 18px;
 }
-
 .descricao-logo {
   color: #d0d8e8;
-
   font-size: 14px;
   font-weight: 400;
-
   letter-spacing: 0.3px;
 }
 
+/* Lado Direito (Formulário) */
 .lado-direito {
   width: 52%;
   min-height: 100vh;
-
   background: linear-gradient(#fafafa, #b3ceff);
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/* bloco branco do login */
 .card-login {
   width: 500px;
   min-height: 520px;
-
   background-color: white;
-
   border: 1px solid #ddd;
   border-radius: 7px;
-
   padding: 40px;
-
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
 }
-/* icone na bola */
+
+/* Ícone de Usuário no Topo */
 .icone-usuario {
   width: 56px;
   height: 56px;
@@ -98,159 +83,120 @@ body {
   stroke: #0046c7;
   stroke-width: 1.5px;
 }
-/* descrição login */
+
+/* Textos e Inputs */
 .titulo-login {
   margin-top: 12px;
   margin-bottom: 22px;
-
   text-align: center;
-
   font-size: 20px;
   font-weight: 400;
-
   color: #333;
 }
-
 .formulario-login {
   width: 100%;
-  /* ocupar todo o espaço disponivel */
 }
-
 .campo-formulario label {
   display: block;
-
   margin-bottom: 7px;
-
   font-size: 13px;
   color: #333;
 }
-/* espaco para escrever */
 .input-container {
   height: 42px;
-
   display: flex;
   align-items: center;
-
   border: 1px solid #d5d5d5;
   border-radius: 7px;
-
   background-color: #f7f7f7;
 }
-
 .icone-input {
   width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .icone-input svg {
   width: 18px;
   height: 18px;
   stroke: #5f5f5f;
   stroke-width: 1.2px;
 }
-/* area do do texto modificada */
 .input-container input {
   flex: 1;
-
   height: 100%;
-
   border: none;
   outline: none;
-
   background: transparent;
-
   font-size: 13px;
 }
-
 .input-container input::placeholder {
   color: #999;
 }
-/* olho da senha */
 .icone-olho {
   padding: 0 14px;
-
   font-size: 16px;
-
   cursor: pointer;
 }
-/* dados de baixo da senha */
+
+/* Opções e Botão de Login */
 .opcoes-login {
   display: flex;
-
   align-items: center;
   justify-content: space-between;
-
   margin-top: 14px;
   margin-bottom: 23px;
 }
-/* espaco do lembrar dados */
 .lembrar-dados {
   display: flex;
   align-items: center;
 }
-/* tamanho da caixa do lembrar dados */
 .lembrar-dados input {
   width: 21px;
   height: 21px;
-
   margin-right: 7px;
 }
-/* texto do lembrar dados */
 .lembrar-dados label {
   font-size: 13px;
   color: #333;
 }
-/* link de esqueci minha senha */
 .link-senha {
   color: #0754d6;
-
   text-decoration: none;
-
   font-size: 13px;
 }
-/* botao para entrar */
 .botao-login {
   width: 100%;
   height: 44px;
-
   border: none;
   border-radius: 7px;
-
   background-color: #064dc4;
   color: white;
-
   font-size: 14px;
-
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
-/* efeito para botão */
 .botao-login:hover {
   background-color: #023586;
 }
-/* Responsividade (poder virar) */
+
+/* Responsividade */
 @media (max-width: 768px) {
   .login-container {
     flex-direction: column;
   }
-
   .lado-esquerdo {
     width: 100%;
     min-height: 35vh;
   }
-
   .lado-direito {
     width: 100%;
     min-height: 65vh;
-
     padding: 20px;
   }
-
   .logo-sgm {
     font-size: 60px;
   }
-
   .card-login {
     width: 100%;
     max-width: 385px;

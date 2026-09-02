@@ -7,7 +7,8 @@
 
     <title>SGM - Login</title>
 
-    <link rel="stylesheet" href="style.css" />
+    <!-- Caminho do CSS atualizado para a nova pasta -->
+    <link rel="stylesheet" href="-css/pages/style.css" />
   </head>
 
   <body>
@@ -164,7 +165,13 @@
             <!--       BOTÃO ENTRAR        -->
             <!-- ========================= -->
 
-            <button type="submit" class="botao-login">Entrar no Sistema</button>
+            <button
+              type="button"
+              class="botao-login"
+              onclick="window.location.href = '_pages/dashboard.html'"
+            >
+              Entrar no Sistema
+            </button>
           </form>
         </div>
       </div>
