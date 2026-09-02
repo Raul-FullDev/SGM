@@ -1,0 +1,358 @@
+-- papel
+CREATE TABLE papel (
+  id BIGSERIAL NOT NULL,
+  funcao VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT papel_pkey PRIMARY KEY (id)
+);
+
+COMMENT ON TABLE papel IS 'Papeis = Roles';
+
+--***********************************************************************
+-- status_atividade
+CREATE TABLE status_atividade (
+  id BIGSERIAL NOT NULL,
+  codigo VARCHAR(20) NOT NULL UNIQUE,
+  descricao VARCHAR(50) NOT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT status_atividade_pkey PRIMARY KEY (id)
+);
+
+COMMENT ON TABLE status_atividade IS 'Catálogo dos estados possíveis de uma atividade: EM_ANDAMENTO, PAUSADA, CONCLUIDA, CANCELADA.';
+
+--***********************************************************************
+-- tipo_manutencao
+CREATE TABLE tipo_manutencao (
+  id BIGSERIAL NOT NULL,
+  descricao VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT tipo_manutencao_pkey PRIMARY KEY (id)
+);
+
+-- status_ordem_servico
+CREATE TABLE status_ordem_servico (
+  id BIGSERIAL NOT NULL,
+  descricao VARCHAR(50) NOT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT status_ordem_servico_pkey PRIMARY KEY (id)
+);
+
+--***********************************************************************
+-- tipo_servico
+CREATE TABLE tipo_servico (
+  id BIGSERIAL NOT NULL,
+  tipo VARCHAR(255) NOT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT tipo_servico_pkey PRIMARY KEY (id)
+);
+
+--***********************************************************************
+-- peca
+CREATE TABLE peca (
+  id BIGSERIAL NOT NULL,
+  descricao VARCHAR(255) NOT NULL,
+  custo_unitario DECIMAL(10,2) NOT NULL CHECK (custo_unitario > 0),
+  qtde NUMERIC(10,2) NOT NULL CHECK (qtde > 0),
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT peca_pkey PRIMARY KEY (id)
+);
+
+
+-- periocidade
+CREATE TABLE periocidade (
+  id BIGSERIAL NOT NULL,
+  descricao VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT periocidade_pkey PRIMARY KEY (id)
+);
+
+COMMENT ON TABLE periocidade IS 'Descrição: diario, semanal, mensal, trimestral, semestral, anual';
+
+-- local
+CREATE TABLE local (
+  id BIGSERIAL NOT NULL,
+  setor VARCHAR(100) NOT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT local_pkey PRIMARY KEY (id)
+);
+
+--***********************************************************************
+-- usuario
+CREATE TABLE usuario (
+  id BIGSERIAL NOT NULL,
+  nome VARCHAR(255) NOT NULL,
+  matricula CHAR(10) NOT NULL,
+  id_papel BIGINT NOT NULL,  -- FK to nivel_usuario
+  senha VARCHAR(255) NOT NULL DEFAULT 'sgm123456',
+  funcao VARCHAR(255) NOT NULL,
+  contato VARCHAR(12) NOT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT usuario_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE usuario ADD CONSTRAINT fk_usuario_id_papel FOREIGN KEY (id_papel) REFERENCES papel (id);
+COMMENT ON COLUMN usuario.id_papel IS 'FK to nivel_usuario';
+
+--***********************************************************************
+-- equipamento
+CREATE TABLE equipamento (
+  id BIGSERIAL NOT NULL,
+  asset VARCHAR(255) NOT NULL UNIQUE,
+  descricao VARCHAR(255) NOT NULL,
+  manufaturado VARCHAR(255) NOT NULL,
+  modelo VARCHAR(255) NOT NULL,
+  numero_serie VARCHAR(255) NOT NULL UNIQUE,
+  data_aquisicao DATE NOT NULL,
+  status VARCHAR(255) NOT NULL DEFAULT 'ativo',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  id_local BIGINT NOT NULL,  -- FK to 9809a90a-bc22-4190-9edc-2de66e7c1ab0
+  CONSTRAINT equipamento_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE equipamento ADD CONSTRAINT fk_equipamento_id_local FOREIGN KEY (id_local) REFERENCES local (id);
+COMMENT ON COLUMN equipamento.id_local IS 'FK to 9809a90a-bc22-4190-9edc-2de66e7c1ab0';
+
+--***********************************************************************
+-- plano_manutencao
+CREATE TABLE plano_manutencao (
+  id BIGSERIAL NOT NULL,
+  descricao VARCHAR(255) NOT NULL,
+  periodo INTEGER NOT NULL,
+  data_inicio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  data_ultima_execucao DATE,
+  data_proxima_execucao DATE NOT NULL,
+  observacao TEXT,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  id_equipamento BIGINT NOT NULL,  -- FK to equipamento
+  id_tipo_manutencao BIGINT NOT NULL,  -- FK to tipo_manutencao
+  id_periocidade BIGINT NOT NULL,  -- FK to periocidade
+  CONSTRAINT plano_manutencao_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE plano_manutencao ADD CONSTRAINT fk_plano_manutencao_id_equipamento FOREIGN KEY (id_equipamento) REFERENCES equipamento (id);
+ALTER TABLE plano_manutencao ADD CONSTRAINT fk_plano_manutencao_id_tipo_manutencao FOREIGN KEY (id_tipo_manutencao) REFERENCES tipo_manutencao (id);
+ALTER TABLE plano_manutencao ADD CONSTRAINT fk_plano_manutencao_id_periocidade FOREIGN KEY (id_periocidade) REFERENCES periocidade (id);
+COMMENT ON COLUMN plano_manutencao.id_equipamento IS 'FK to equipamento';
+COMMENT ON COLUMN plano_manutencao.id_tipo_manutencao IS 'FK to tipo_manutencao';
+COMMENT ON COLUMN plano_manutencao.id_periocidade IS 'FK to periocidade';
+
+--***********************************************************************
+-- plano_atividade
+CREATE TABLE plano_atividade (
+  id BIGSERIAL NOT NULL,
+  descricao_atividade VARCHAR(255) NOT NULL,
+  sequencia INTEGER NOT NULL,
+  tempo_estimado INTEGER NOT NULL,
+  instrucao TEXT NOT NULL,
+  obrigatorio BOOLEAN NOT NULL,
+  observacao TEXT,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  id_plano_manutencao BIGINT NOT NULL,  -- FK to plano_manutencao
+  id_tipo_servico BIGINT NOT NULL,  -- FK to tipo_servico
+  CONSTRAINT plano_atividade_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE plano_atividade ADD CONSTRAINT fk_plano_atividade_id_plano_manutencao FOREIGN KEY (id_plano_manutencao) REFERENCES plano_manutencao (id);
+ALTER TABLE plano_atividade ADD CONSTRAINT fk_plano_atividade_id_tipo_servico FOREIGN KEY (id_tipo_servico) REFERENCES tipo_servico (id);
+COMMENT ON COLUMN plano_atividade.id_plano_manutencao IS 'FK to plano_manutencao';
+COMMENT ON COLUMN plano_atividade.id_tipo_servico IS 'FK to tipo_servico';
+
+--***********************************************************************
+-- ordem_servico
+CREATE TABLE ordem_servico (
+  id BIGSERIAL NOT NULL,
+  descricao_problema VARCHAR(255) NOT NULL,
+  id_usuario_solicitante BIGINT NOT NULL,
+  id_tipo_manutencao BIGINT NOT NULL,
+  id_equipamento BIGINT NOT NULL,
+  id_plano_manutencao BIGINT,  -- FK opcional para plano_manutencao: preenchido quando a OS foi gerada por um plano preventivo.
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT ordem_servico_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE ordem_servico ADD CONSTRAINT fk_ordem_servico_id_usuario_solicitante FOREIGN KEY (id_usuario_solicitante) REFERENCES usuario (id);
+ALTER TABLE ordem_servico ADD CONSTRAINT fk_ordem_servico_id_tipo_manutencao FOREIGN KEY (id_tipo_manutencao) REFERENCES tipo_manutencao (id);
+ALTER TABLE ordem_servico ADD CONSTRAINT fk_ordem_servico_id_equipamento FOREIGN KEY (id_equipamento) REFERENCES equipamento (id);
+ALTER TABLE ordem_servico ADD CONSTRAINT fk_ordem_servico_id_plano_manutencao FOREIGN KEY (id_plano_manutencao) REFERENCES plano_manutencao (id);
+COMMENT ON COLUMN ordem_servico.id_plano_manutencao IS 'FK opcional para plano_manutencao: preenchido quando a OS foi gerada por um plano preventivo.';
+CREATE INDEX idx_ordem_servico_id_usuario_solicitante ON ordem_servico USING btree (id_usuario_solicitante);
+CREATE INDEX idx_ordem_servico_id_tipo_manutencao ON ordem_servico USING btree (id_tipo_manutencao);
+CREATE INDEX idx_ordem_servico_id_equipamento ON ordem_servico USING btree (id_equipamento);
+CREATE INDEX idx_ordem_servico_id_plano_manutencao ON ordem_servico USING btree (id_plano_manutencao);
+
+--***********************************************************************
+-- abertura_ordem_servico
+CREATE TABLE abertura_ordem_servico (
+  id BIGSERIAL NOT NULL,
+  id_ordem_servico BIGINT NOT NULL,
+  id_status BIGINT NOT NULL,
+  id_usuario_responsavel BIGINT NOT NULL,
+  id_usuario_conclusao BIGINT,  -- Quem efetivamente encerrou a OS (pode divergir de id_usuario_responsavel).
+  id_usuario_ultima_atualizacao BIGINT NOT NULL,  -- Quem fez a última alteração nesta linha — preenchido pela aplicação a cada UPDATE, usado pelos gatilhos de auditoria.
+  data_abertura TIMESTAMP NOT NULL DEFAULT clock_timestamp(),
+  data_fechamento TIMESTAMP CHECK (data_fechamento > data_abertura),
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT abertura_ordem_servico_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE abertura_ordem_servico ADD CONSTRAINT fk_abertura_ordem_servico_id_ordem_servico FOREIGN KEY (id_ordem_servico) REFERENCES ordem_servico (id);
+ALTER TABLE abertura_ordem_servico ADD CONSTRAINT fk_abertura_ordem_servico_id_status FOREIGN KEY (id_status) REFERENCES status_ordem_servico (id);
+ALTER TABLE abertura_ordem_servico ADD CONSTRAINT fk_abertura_ordem_servico_id_usuario_responsavel FOREIGN KEY (id_usuario_responsavel) REFERENCES usuario (id);
+ALTER TABLE abertura_ordem_servico ADD CONSTRAINT fk_abertura_ordem_servico_id_usuario_conclusao FOREIGN KEY (id_usuario_conclusao) REFERENCES usuario (id);
+ALTER TABLE abertura_ordem_servico ADD CONSTRAINT fk_abertura_ordem_servico_id_usuario_ultima_atualizacao FOREIGN KEY (id_usuario_ultima_atualizacao) REFERENCES usuario (id);
+COMMENT ON COLUMN abertura_ordem_servico.id_usuario_conclusao IS 'Quem efetivamente encerrou a OS (pode divergir de id_usuario_responsavel).';
+COMMENT ON COLUMN abertura_ordem_servico.id_usuario_ultima_atualizacao IS 'Quem fez a última alteração nesta linha — preenchido pela aplicação a cada UPDATE, usado pelos gatilhos de auditoria.';
+CREATE INDEX idx_abertura_id_ordem_servico ON abertura_ordem_servico USING btree (id_ordem_servico);
+CREATE INDEX idx_abertura_id_status ON abertura_ordem_servico USING btree (id_status);
+CREATE INDEX idx_abertura_id_usuario_responsavel ON abertura_ordem_servico USING btree (id_usuario_responsavel);
+CREATE UNIQUE INDEX uq_abertura_os_ativa ON abertura_ordem_servico USING btree (id_ordem_servico);
+
+--***********************************************************************
+-- atividade
+CREATE TABLE atividade (
+  id BIGSERIAL NOT NULL,
+  servico VARCHAR(528) NOT NULL,
+  id_tipo_servico BIGINT NOT NULL,
+  id_abertura_ordem_servico BIGINT NOT NULL,
+  id_usuario_tecnico BIGINT NOT NULL,  -- Técnico originalmente designado para a atividade.
+  id_status BIGINT NOT NULL,
+  id_usuario_conclusao BIGINT,  -- Quem efetivamente concluiu a atividade (pode divergir de id_usuario_tecnico se houve troca de técnico).
+  id_usuario_ultima_atualizacao BIGINT NOT NULL,  -- Quem fez a última alteração nesta linha — preenchido pela aplicação a cada UPDATE, usado pelos gatilhos de auditoria.
+  data_inicio TIMESTAMP NOT NULL,
+  data_fechamento TIMESTAMP CHECK (data_fechamento > data_inicio),
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT atividade_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE atividade ADD CONSTRAINT fk_atividade_id_tipo_servico FOREIGN KEY (id_tipo_servico) REFERENCES tipo_servico (id);
+ALTER TABLE atividade ADD CONSTRAINT fk_atividade_id_abertura_ordem_servico FOREIGN KEY (id_abertura_ordem_servico) REFERENCES abertura_ordem_servico (id);
+ALTER TABLE atividade ADD CONSTRAINT fk_atividade_id_usuario_tecnico FOREIGN KEY (id_usuario_tecnico) REFERENCES usuario (id);
+ALTER TABLE atividade ADD CONSTRAINT fk_atividade_id_status FOREIGN KEY (id_status) REFERENCES status_atividade (id);
+ALTER TABLE atividade ADD CONSTRAINT fk_atividade_id_usuario_conclusao FOREIGN KEY (id_usuario_conclusao) REFERENCES usuario (id);
+ALTER TABLE atividade ADD CONSTRAINT fk_atividade_id_usuario_ultima_atualizacao FOREIGN KEY (id_usuario_ultima_atualizacao) REFERENCES usuario (id);
+COMMENT ON COLUMN atividade.id_usuario_tecnico IS 'Técnico originalmente designado para a atividade.';
+COMMENT ON COLUMN atividade.id_usuario_conclusao IS 'Quem efetivamente concluiu a atividade (pode divergir de id_usuario_tecnico se houve troca de técnico).';
+COMMENT ON COLUMN atividade.id_usuario_ultima_atualizacao IS 'Quem fez a última alteração nesta linha — preenchido pela aplicação a cada UPDATE, usado pelos gatilhos de auditoria.';
+CREATE INDEX idx_atividade_id_tipo_servico ON atividade USING btree (id_tipo_servico);
+CREATE INDEX idx_atividade_id_abertura_ordem_servico ON atividade USING btree (id_abertura_ordem_servico);
+CREATE INDEX idx_atividade_id_usuario_tecnico ON atividade USING btree (id_usuario_tecnico);
+CREATE INDEX idx_atividade_id_status ON atividade USING btree (id_status);
+
+--***********************************************************************
+-- troca_peca
+CREATE TABLE troca_peca (
+  id BIGSERIAL NOT NULL,
+  id_atividade BIGINT NOT NULL,
+  id_peca BIGINT NOT NULL,  -- FK to peca
+  quantidade NUMERIC(10,2) NOT NULL CHECK (quantidade > 0),
+  custo_unitario_na_troca DECIMAL(10,2) NOT NULL CHECK (custo_unitario_na_troca > 0),
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT troca_peca_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE troca_peca ADD CONSTRAINT fk_troca_peca_id_atividade FOREIGN KEY (id_atividade) REFERENCES atividade (id);
+ALTER TABLE troca_peca ADD CONSTRAINT fk_troca_peca_id_peca FOREIGN KEY (id_peca) REFERENCES peca (id);
+COMMENT ON COLUMN troca_peca.id_peca IS 'FK to peca';
+CREATE INDEX idx_troca_peca_id_atividade ON troca_peca USING btree (id_atividade);
+
+--***********************************************************************
+-- historico_status_ordem_servico
+CREATE TABLE historico_status_ordem_servico (
+  id BIGSERIAL NOT NULL,
+  id_abertura_ordem_servico BIGINT NOT NULL,
+  id_status_anterior BIGINT,
+  id_status_novo BIGINT NOT NULL,
+  id_usuario_responsavel BIGINT NOT NULL,
+  data_mudanca TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  observacao TEXT,
+  CONSTRAINT historico_status_ordem_servico_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE historico_status_ordem_servico ADD CONSTRAINT fk_historico_status_ordem_servico_id_abertura_ordem_servico FOREIGN KEY (id_abertura_ordem_servico) REFERENCES abertura_ordem_servico (id);
+ALTER TABLE historico_status_ordem_servico ADD CONSTRAINT fk_historico_status_ordem_servico_id_status_anterior FOREIGN KEY (id_status_anterior) REFERENCES status_ordem_servico (id);
+ALTER TABLE historico_status_ordem_servico ADD CONSTRAINT fk_historico_status_ordem_servico_id_status_novo FOREIGN KEY (id_status_novo) REFERENCES status_ordem_servico (id);
+ALTER TABLE historico_status_ordem_servico ADD CONSTRAINT fk_historico_status_ordem_servico_id_usuario_responsavel FOREIGN KEY (id_usuario_responsavel) REFERENCES usuario (id);
+COMMENT ON TABLE historico_status_ordem_servico IS 'Log imutável de toda mudança de status de uma abertura_ordem_servico: status anterior, status novo, quem mudou e quando.';
+CREATE INDEX idx_hist_status_os_id_abertura ON historico_status_ordem_servico USING btree (id_abertura_ordem_servico);
+
+--***********************************************************************
+-- historico_status_atividade
+CREATE TABLE historico_status_atividade (
+  id BIGSERIAL NOT NULL,
+  id_atividade BIGINT NOT NULL,
+  id_status_anterior BIGINT,
+  id_status_novo BIGINT NOT NULL,
+  id_usuario_responsavel BIGINT NOT NULL,
+  data_mudanca TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  observacao TEXT,
+  CONSTRAINT historico_status_atividade_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE historico_status_atividade ADD CONSTRAINT fk_historico_status_atividade_id_atividade FOREIGN KEY (id_atividade) REFERENCES atividade (id);
+ALTER TABLE historico_status_atividade ADD CONSTRAINT fk_historico_status_atividade_id_status_anterior FOREIGN KEY (id_status_anterior) REFERENCES status_atividade (id);
+ALTER TABLE historico_status_atividade ADD CONSTRAINT fk_historico_status_atividade_id_status_novo FOREIGN KEY (id_status_novo) REFERENCES status_atividade (id);
+ALTER TABLE historico_status_atividade ADD CONSTRAINT fk_historico_status_atividade_id_usuario_responsavel FOREIGN KEY (id_usuario_responsavel) REFERENCES usuario (id);
+COMMENT ON TABLE historico_status_atividade IS 'Log imutável de toda mudança de status de uma atividade: status anterior, status novo, quem mudou e quando.';
+CREATE INDEX idx_hist_status_ativ_id_atividade ON historico_status_atividade USING btree (id_atividade);
+
+--***********************************************************************
+-- sessao_atividade
+CREATE TABLE sessao_atividade (
+  id BIGSERIAL NOT NULL,
+  id_atividade BIGINT NOT NULL,
+  id_usuario_tecnico BIGINT NOT NULL,
+  data_inicio_sessao TIMESTAMP NOT NULL DEFAULT clock_timestamp(),
+  data_fim_sessao TIMESTAMP,
+  motivo_encerramento VARCHAR(20),
+  observacao TEXT,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  CONSTRAINT sessao_atividade_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE sessao_atividade ADD CONSTRAINT fk_sessao_atividade_id_atividade FOREIGN KEY (id_atividade) REFERENCES atividade (id);
+ALTER TABLE sessao_atividade ADD CONSTRAINT fk_sessao_atividade_id_usuario_tecnico FOREIGN KEY (id_usuario_tecnico) REFERENCES usuario (id);
+COMMENT ON TABLE sessao_atividade IS 'Cada linha é um intervalo contínuo de trabalho ("batida de ponto") de um técnico em uma atividade. A soma de (data_fim_sessao - data_inicio_sessao) por atividade é o total de horas de serviço, e cada troca de técnico (pausa + retomada por outra pessoa) fica registrada como sessões separadas.';
+CREATE INDEX idx_sessao_atividade_id_atividade ON sessao_atividade USING btree (id_atividade);
+CREATE INDEX idx_sessao_atividade_id_usuario_tecnico ON sessao_atividade USING btree (id_usuario_tecnico);
+CREATE UNIQUE INDEX uq_sessao_atividade_aberta ON sessao_atividade USING btree (id_atividade);
+
+
+
+
+
+
+
+
+
+
