@@ -1,0 +1,2 @@
+# SGM
+O SGM – Sistema de Gestão de Manutenção foi desenvolvido para organizar e facilitar todo o processo de manutenção, desde o registro da solicitação até a conclusão do serviço.  Por meio do sistema, o usuário pode registrar solicitações, acompanhar Ordens de Serviço, definir responsáveis, programar manutenções, registrar atividades realizadas e consultar o histórico dos equipamentos.  O SGM proporciona maior organização, agilidade, rastreabilidade e integração entre os profissionais, permitindo que cada etapa da manutenção seja acompanhada de forma clara e centralizada.
