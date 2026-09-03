@@ -2,11 +2,10 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>SGM - Ordens de Serviço</title>
 
+    <!-- Caminho do CSS mantido -->
     <link rel="stylesheet" href="../-css/pages/todas_os.css" />
   </head>
 
@@ -17,7 +16,6 @@
         <div class="cabecalho-barra">
           <div class="logo">
             <span class="icone-logo">S</span>
-
             <div class="texto-logo">
               <strong>SGM</strong>
               <span>Gestão de manutenção</span>
@@ -57,7 +55,6 @@
                 <li class="item-submenu ativo">
                   <a href="todas_os.html"> Todas as OS </a>
                 </li>
-
                 <li class="item-submenu">
                   <a href="abrir_os.html"> Abrir OS </a>
                 </li>
@@ -65,16 +62,70 @@
             </li>
 
             <li class="item-navegacao">
-              <button
-                class="link-navegacao"
-                type="button"
-                data-menu="equipamentos"
-              >
-                <span class="icone-navegacao">▢</span>
-                <span>Equipamentos</span>
-                <span class="seta-navegacao">⌄</span>
-              </button>
+              <a href="equipamentos.html">
+                <button
+                  class="link-navegacao"
+                  type="button"
+                  data-menu="equipamentos"
+                >
+                  <span class="icone-navegacao">▢</span>
+                  <span>Equipamentos</span>
+                  <span class="seta-navegacao">⌄</span>
+                </button>
+              </a>
             </li>
+
+            <!-- ========================================== -->
+            <!-- NOVOS MENUS ADICIONADOS PELO SEU COLEGA    -->
+            <!-- ========================================== -->
+            <li class="item-navegacao">
+              <a href="setor_adm.html">
+                <button class="link-navegacao" type="button" data-menu="setor">
+                  <span class="icone-navegacao">▣</span>
+                  <span>Setor</span>
+                </button>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="historico_adm.html">
+                <button
+                  class="link-navegacao"
+                  type="button"
+                  data-menu="historico"
+                >
+                  <span class="icone-navegacao">▣</span>
+                  <span>Histórico</span>
+                </button>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="indicadores_adm.html">
+                <button
+                  class="link-navegacao"
+                  type="button"
+                  data-menu="indicadores"
+                >
+                  <span class="icone-navegacao">▣</span>
+                  <span>Indicadores</span>
+                </button>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="relatorios_adm.html">
+                <button
+                  class="link-navegacao"
+                  type="button"
+                  data-menu="relatorios"
+                >
+                  <span class="icone-navegacao">⚒</span>
+                  <span>Relatórios</span>
+                </button>
+              </a>
+            </li>
+            <!-- ========================================== -->
 
             <li class="item-navegacao">
               <button
@@ -129,22 +180,40 @@
           </div>
 
           <div class="cabecalho-direito">
+            <!-- ========================================== -->
+            <!-- ÍCONE DO SINO ADICIONADO PELO COLEGA       -->
+            <!-- ========================================== -->
             <button
               class="botao-notificacao"
               id="botaoNotificacao"
               type="button"
               aria-label="Notificações"
-            ></button>
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-2.5 7-2.5 9h15c0-2-2.5-2-2.5-9"
+                ></path>
+                <path d="M10 21h4"></path>
+              </svg>
+            </button>
+            <!-- ========================================== -->
 
             <div class="perfil-usuario">
               <div class="avatar-usuario">AS</div>
-
               <div class="informacoes-usuario">
                 <strong>Admin Sistema</strong>
-
                 <span>Administrador</span>
               </div>
-
               <span class="seta-perfil"> ⌄ </span>
             </div>
           </div>
@@ -159,10 +228,8 @@
 
             <div class="titulo-com-botao">
               <h1>Ordens de Serviço</h1>
-
               <a href="abrir_os.html" class="botao-principal">
-                <span>+</span>
-                Nova Ordem de Serviço
+                <span>+</span> Nova Ordem de Serviço
               </a>
             </div>
           </div>
@@ -172,7 +239,6 @@
             <form class="formulario-filtros" id="formularioFiltros">
               <div class="campo-pesquisa-os">
                 <span class="icone-pesquisa">⌕</span>
-
                 <input
                   type="search"
                   id="pesquisaOS"
@@ -186,14 +252,10 @@
                 <label for="filtroStatus" class="sr-only">
                   Filtrar por status
                 </label>
-
                 <select id="filtroStatus" name="status">
                   <option value="todos">Todos os status</option>
-
                   <option value="aberta">Aberta</option>
-
                   <option value="andamento">Em andamento</option>
-
                   <option value="encerrada">Encerrada</option>
                 </select>
               </div>
@@ -202,17 +264,31 @@
                 <label for="filtroTipo" class="sr-only">
                   Filtrar por tipo
                 </label>
-
                 <select id="filtroTipo" name="tipo">
                   <option value="todos">Todos os tipos</option>
-
                   <option value="corretivo">Corretivo</option>
-
                   <option value="preventivo">Preventivo</option>
-
                   <option value="preditivo">Preditivo</option>
                 </select>
               </div>
+
+              <!-- ========================================== -->
+              <!-- NOVO FILTRO DE SETOR ADICIONADO PELO COLEGA-->
+              <!-- ========================================== -->
+              <div class="campo-filtro">
+                <label for="filtroSetor" class="sr-only">
+                  Filtrar por setor
+                </label>
+                <select id="filtroSetor" name="setor">
+                  <option value="todos">Todos os setores</option>
+                  <option value="producao">Produção</option>
+                  <option value="embalagem">Embalagem</option>
+                  <option value="logistica">Logística</option>
+                  <option value="utilidades">Utilidades</option>
+                  <option value="usinagem">Usinagem</option>
+                </select>
+              </div>
+              <!-- ========================================== -->
 
               <span class="quantidade-registros" id="quantidadeRegistros">
                 5 registros
@@ -227,49 +303,41 @@
                 <thead>
                   <tr>
                     <th scope="col">NÚMERO</th>
-
                     <th scope="col">EQUIPAMENTO</th>
-
+                    <!-- NOVA COLUNA SETOR -->
+                    <th scope="col">SETOR</th>
                     <th scope="col">TIPO</th>
-
                     <th scope="col">SOLICITANTE</th>
-
                     <th scope="col">ABERTURA</th>
-
                     <th scope="col">STATUS</th>
-
                     <th scope="col">AÇÕES</th>
                   </tr>
                 </thead>
 
                 <tbody id="corpoTabelaOrdens">
+                  <!-- OS 000125 -->
                   <tr data-os-id="000125">
                     <td>
                       <a href="#" class="numero-os"> #000125 </a>
                     </td>
-
                     <td>
                       <div class="informacao-equipamento">
                         <span> Compressor de Ar </span>
-
                         <small> EQP-00125 </small>
                       </div>
                     </td>
-
+                    <!-- NOVO DADO DE SETOR -->
+                    <td>Produção</td>
                     <td>
                       <span class="etiqueta-os etiqueta-corretivo">
                         Corretivo
                       </span>
                     </td>
-
                     <td>Christiano Custodio</td>
-
                     <td>27/08/2026</td>
-
                     <td>
                       <span class="status-os status-aberta"> Aberta </span>
                     </td>
-
                     <td>
                       <button
                         class="botao-visualizar"
@@ -298,35 +366,31 @@
                     </td>
                   </tr>
 
+                  <!-- OS 000126 -->
                   <tr data-os-id="000126">
                     <td>
                       <a href="#" class="numero-os"> #000126 </a>
                     </td>
-
                     <td>
                       <div class="informacao-equipamento">
                         <span> Esteira Transportadora </span>
-
                         <small> EQP-00126 </small>
                       </div>
                     </td>
-
+                    <!-- NOVO DADO DE SETOR -->
+                    <td>Embalagem</td>
                     <td>
                       <span class="etiqueta-os etiqueta-preventivo">
                         Preventivo
                       </span>
                     </td>
-
                     <td>Christiano Custodio</td>
-
                     <td>26/08/2026</td>
-
                     <td>
                       <span class="status-os status-andamento">
                         Em andamento
                       </span>
                     </td>
-
                     <td>
                       <button
                         class="botao-visualizar"
@@ -355,35 +419,31 @@
                     </td>
                   </tr>
 
+                  <!-- OS 000124 -->
                   <tr data-os-id="000124">
                     <td>
                       <a href="#" class="numero-os"> #000124 </a>
                     </td>
-
                     <td>
                       <div class="informacao-equipamento">
                         <span> Bomba Hidráulica </span>
-
                         <small> EQP-00127 </small>
                       </div>
                     </td>
-
+                    <!-- NOVO DADO DE SETOR -->
+                    <td>Logística</td>
                     <td>
                       <span class="etiqueta-os etiqueta-preditivo">
                         Preditivo
                       </span>
                     </td>
-
                     <td>Christiano Custodio</td>
-
                     <td>20/08/2026</td>
-
                     <td>
                       <span class="status-os status-encerrada">
                         Encerrada
                       </span>
                     </td>
-
                     <td>
                       <button
                         class="botao-visualizar"
@@ -412,35 +472,31 @@
                     </td>
                   </tr>
 
+                  <!-- OS 000123 -->
                   <tr data-os-id="000123">
                     <td>
                       <a href="#" class="numero-os"> #000123 </a>
                     </td>
-
                     <td>
                       <div class="informacao-equipamento">
                         <span> Motor Elétrico </span>
-
                         <small> EQP-00128 </small>
                       </div>
                     </td>
-
+                    <!-- NOVO DADO DE SETOR -->
+                    <td>Utilidades</td>
                     <td>
                       <span class="etiqueta-os etiqueta-corretivo">
                         Corretivo
                       </span>
                     </td>
-
                     <td>Admin Sistema</td>
-
                     <td>15/08/2026</td>
-
                     <td>
                       <span class="status-os status-encerrada">
                         Encerrada
                       </span>
                     </td>
-
                     <td>
                       <button
                         class="botao-visualizar"
@@ -469,35 +525,31 @@
                     </td>
                   </tr>
 
+                  <!-- OS 000127 -->
                   <tr data-os-id="000127">
                     <td>
                       <a href="#" class="numero-os"> #000127 </a>
                     </td>
-
                     <td>
                       <div class="informacao-equipamento">
                         <span> Compressor de Ar </span>
-
                         <small> EQP-00125 </small>
                       </div>
                     </td>
-
+                    <!-- NOVO DADO DE SETOR -->
+                    <td>Usinagem</td>
                     <td>
                       <span class="etiqueta-os etiqueta-preventivo">
                         Preventivo
                       </span>
                     </td>
-
                     <td>Christiano Custodio</td>
-
                     <td>27/08/2026</td>
-
                     <td>
                       <span class="status-os status-andamento">
                         Em andamento
                       </span>
                     </td>
-
                     <td>
                       <button
                         class="botao-visualizar"
@@ -533,6 +585,7 @@
       </div>
     </div>
 
+    <!-- Caminho do JS mantido -->
     <script src="../-js/global.js"></script>
   </body>
 </html>

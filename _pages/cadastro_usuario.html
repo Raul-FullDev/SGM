@@ -2,11 +2,10 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>SGM - Novo Usuário</title>
 
+    <!-- Caminho do CSS mantido -->
     <link rel="stylesheet" href="../-css/pages/cadastro_usuario.css" />
   </head>
 
@@ -17,7 +16,6 @@
         <div class="sidebar-header">
           <div class="logo">
             <span class="logo-icon">S</span>
-
             <div class="logo-text">
               <strong>SGM</strong>
               <span>Gestão de manutenção</span>
@@ -27,6 +25,9 @@
 
         <nav class="sidebar-nav" aria-label="Navegação principal">
           <ul class="nav-list">
+            <!-- ========================================== -->
+            <!-- MENUS ADICIONADOS PELO COLEGA              -->
+            <!-- ========================================== -->
             <li class="nav-item">
               <button class="nav-link" type="button" data-menu="dashboard">
                 <span class="nav-icon">▣</span>
@@ -66,6 +67,7 @@
                 <span class="nav-arrow">⌄</span>
               </button>
             </li>
+            <!-- ========================================== -->
 
             <li class="nav-item active">
               <button class="nav-link" type="button" data-menu="administracao">
@@ -78,7 +80,6 @@
                 <li class="submenu-item">
                   <a href="usuarios.html"> Usuários </a>
                 </li>
-
                 <li class="submenu-item">
                   <a href="niveis_acesso.html"> Níveis de acesso </a>
                 </li>
@@ -104,21 +105,38 @@
           </div>
 
           <div class="topbar-right">
+            <!-- ========================================== -->
+            <!-- ÍCONE DO SINO ADICIONADO PELO COLEGA       -->
+            <!-- ========================================== -->
             <button
               class="notification-button"
               id="notificationButton"
               type="button"
               aria-label="Notificações"
             >
-              ♧
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-2.5 7-2.5 9h15c0-2-2.5-2-2.5-9"
+                ></path>
+                <path d="M10 21h4"></path>
+              </svg>
             </button>
+            <!-- ========================================== -->
 
             <div class="user-profile">
               <div class="user-avatar">AS</div>
-
               <div class="user-info">
                 <strong>Admin Sistema</strong>
-
                 <span>Administrador</span>
               </div>
             </div>
@@ -137,7 +155,6 @@
               <form id="userForm">
                 <div class="form-group">
                   <label for="userName"> Nome completo </label>
-
                   <input
                     type="text"
                     id="userName"
@@ -151,7 +168,6 @@
                 <div class="form-row">
                   <div class="form-group">
                     <label for="userRegistration"> Matrícula </label>
-
                     <input
                       type="text"
                       id="userRegistration"
@@ -163,7 +179,6 @@
 
                   <div class="form-group">
                     <label for="userContact"> Contato </label>
-
                     <input
                       type="tel"
                       id="userContact"
@@ -176,7 +191,6 @@
 
                 <div class="form-group">
                   <label for="userFunction"> Função </label>
-
                   <input
                     type="text"
                     id="userFunction"
@@ -188,7 +202,6 @@
 
                 <div class="form-group">
                   <label for="userPassword"> Senha </label>
-
                   <input
                     type="password"
                     id="userPassword"
@@ -201,23 +214,22 @@
 
                 <div class="form-group">
                   <label for="userLevel"> Nível de acesso </label>
-
+                  <!-- ========================================== -->
+                  <!-- VALORES (VALUES) ALTERADOS PELO COLEGA     -->
+                  <!-- ========================================== -->
                   <select id="userLevel" name="level" required>
-                    <option value="usuario">Usuário - Abertura de OS</option>
-
-                    <option value="tecnico">Técnico</option>
-
-                    <option value="gerencia">Gerência</option>
-
-                    <option value="administrador">Administrador</option>
+                    <option value="1">Usuário - Abertura de OS</option>
+                    <option value="2">Técnico</option>
+                    <option value="3">Gerência</option>
+                    <option value="4">Administrador</option>
                   </select>
+                  <!-- ========================================== -->
                 </div>
 
                 <div class="form-actions">
                   <a href="usuarios.html" class="button button-secondary">
                     Cancelar
                   </a>
-
                   <button
                     type="submit"
                     class="button button-primary"
@@ -232,23 +244,14 @@
             <!-- Área para ilustração -->
             <aside class="form-illustration" aria-hidden="true">
               <div class="illustration-shape illustration-circle-large"></div>
-
               <div class="illustration-shape illustration-circle-small"></div>
-
               <div class="illustration-shape illustration-quarter"></div>
-
               <div class="illustration-shape illustration-arc"></div>
-
               <div class="illustration-shape illustration-square"></div>
-
               <div class="illustration-dot illustration-dot-one"></div>
-
               <div class="illustration-dot illustration-dot-two"></div>
-
               <div class="illustration-dot illustration-dot-three"></div>
-
               <div class="illustration-lines illustration-lines-one"></div>
-
               <div class="illustration-lines illustration-lines-two"></div>
             </aside>
           </div>
@@ -256,6 +259,7 @@
       </div>
     </div>
 
+    <!-- Caminho do JS mantido -->
     <script src="../-js/global.js"></script>
   </body>
 </html>

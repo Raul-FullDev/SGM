@@ -2,12 +2,11 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>SGM - Níveis de Acesso</title>
 
-    <link rel="stylesheet" href="../-css/pages/niveis_acesso.css" />
+    <!-- Caminho do CSS mantido -->
+    <link rel="stylesheet" href="../-css/pages/niveis.css" />
   </head>
 
   <body>
@@ -17,7 +16,6 @@
         <div class="cabecalho-barra">
           <div class="logo">
             <span class="icone-logo">S</span>
-
             <div class="texto-logo">
               <strong>SGM</strong>
               <span>Gestão de manutenção</span>
@@ -61,6 +59,38 @@
               </button>
             </li>
 
+            <!-- ========================================== -->
+            <!-- NOVOS MENUS ADICIONADOS PELO SEU COLEGA    -->
+            <!-- ========================================== -->
+            <li class="item-navegacao">
+              <a href="setor_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">▤</span>
+                <span>Setor</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="historico_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">▤</span>
+                <span>Histórico</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="indicadores_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">▤</span>
+                <span>Indicadores</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="relatorios_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">▤</span>
+                <span>Relatórios</span>
+              </a>
+            </li>
+            <!-- ========================================== -->
+
             <li class="item-navegacao">
               <button
                 class="link-navegacao"
@@ -96,7 +126,6 @@
                 <li class="item-submenu">
                   <a href="usuarios.html"> Usuários </a>
                 </li>
-
                 <li class="item-submenu ativo">
                   <a href="niveis_acesso.html"> Níveis de acesso </a>
                 </li>
@@ -122,21 +151,38 @@
           </div>
 
           <div class="cabecalho-direito">
-            <!-- temporarrio!! -->
-
+            <!-- ========================================== -->
+            <!-- ÍCONE DO SINO ADICIONADO PELO COLEGA       -->
+            <!-- ========================================== -->
             <button
               class="botao-notificacao"
               id="botaoNotificacao"
               type="button"
               aria-label="Notificações"
-            ></button>
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-2.5 7-2.5 9h15c0-2-2.5-2-2.5-9"
+                ></path>
+                <path d="M10 21h4"></path>
+              </svg>
+            </button>
+            <!-- ========================================== -->
 
             <div class="perfil-usuario">
               <div class="avatar-usuario">AS</div>
-
               <div class="informacoes-usuario">
                 <strong>Admin Sistema</strong>
-
                 <span>Administrador</span>
               </div>
             </div>
@@ -165,29 +211,20 @@
                   <span class="etiqueta etiqueta-administrador">
                     Administrador
                   </span>
-
                   <span class="numero-nivel"> Nível 0 </span>
                 </div>
               </header>
 
               <div class="corpo-cartao">
                 <h2>PERMISSÕES:</h2>
-
                 <ul class="lista-permissoes">
                   <li>Dashboard</li>
-
                   <li>Ordens de Serviço</li>
-
                   <li>Equipamentos</li>
-
                   <li>Manutenção</li>
-
                   <li>Peças</li>
-
                   <li>Relatórios</li>
-
                   <li>Usuários</li>
-
                   <li>Níveis de acesso</li>
                 </ul>
               </div>
@@ -202,19 +239,15 @@
               <header class="cabecalho-cartao">
                 <div class="titulo-cartao">
                   <span class="etiqueta etiqueta-usuario"> Usuário </span>
-
                   <span class="numero-nivel"> Nível 1 </span>
                 </div>
               </header>
 
               <div class="corpo-cartao">
                 <h2>PERMISSÕES:</h2>
-
                 <ul class="lista-permissoes">
                   <li>Dashboard</li>
-
                   <li>Abrir OS</li>
-
                   <li>Minhas OS</li>
                 </ul>
               </div>
@@ -229,25 +262,18 @@
               <header class="cabecalho-cartao">
                 <div class="titulo-cartao">
                   <span class="etiqueta etiqueta-tecnico"> Técnico </span>
-
                   <span class="numero-nivel"> Nível 2 </span>
                 </div>
               </header>
 
               <div class="corpo-cartao">
                 <h2>PERMISSÕES:</h2>
-
                 <ul class="lista-permissoes">
                   <li>Dashboard</li>
-
                   <li>Ordens de Serviço</li>
-
                   <li>Equipamentos</li>
-
                   <li>Atividades</li>
-
                   <li>Peças</li>
-
                   <li>Encerrar OS</li>
                 </ul>
               </div>
@@ -262,21 +288,16 @@
               <header class="cabecalho-cartao">
                 <div class="titulo-cartao">
                   <span class="etiqueta etiqueta-gerencia"> Gerência </span>
-
                   <span class="numero-nivel"> Nível 3 </span>
                 </div>
               </header>
 
               <div class="corpo-cartao">
                 <h2>PERMISSÕES:</h2>
-
                 <ul class="lista-permissoes">
                   <li>Dashboard</li>
-
                   <li>Ordens de Serviço (leitura)</li>
-
                   <li>Equipamentos (leitura)</li>
-
                   <li>Relatórios</li>
                 </ul>
               </div>
@@ -286,6 +307,7 @@
       </div>
     </div>
 
+    <!-- Caminho do JS mantido -->
     <script src="../-js/global.js"></script>
   </body>
 </html>

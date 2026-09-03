@@ -2,11 +2,10 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>SGM - Nova Ordem de Serviço</title>
 
+    <!-- Mantido o caminho correto da sua organização -->
     <link rel="stylesheet" href="../-css/pages/abrir_os.css" />
   </head>
 
@@ -17,10 +16,8 @@
         <div class="sidebar-header">
           <div class="logo">
             <span class="logo-icon">S</span>
-
             <div class="logo-text">
               <strong>SGM</strong>
-
               <span>Gestão de manutenção</span>
             </div>
           </div>
@@ -29,23 +26,18 @@
         <nav class="sidebar-nav" aria-label="Navegação principal">
           <ul class="nav-list">
             <!-- Dashboard -->
-
             <li class="nav-item">
               <a href="dashboard.html" class="nav-link">
                 <span class="nav-icon">▣</span>
-
                 <span>Dashboard</span>
               </a>
             </li>
 
             <!-- Ordens de Serviço -->
-
             <li class="nav-item active">
               <button class="nav-link" type="button" data-menu="ordens">
                 <span class="nav-icon">▤</span>
-
                 <span>Ordens de Serviço</span>
-
                 <span class="nav-arrow">⌃</span>
               </button>
 
@@ -53,7 +45,6 @@
                 <li class="submenu-item">
                   <a href="todas_os.html"> Todas as OS </a>
                 </li>
-
                 <li class="submenu-item active">
                   <a href="abrir_os.html"> Abrir OS </a>
                 </li>
@@ -61,49 +52,69 @@
             </li>
 
             <!-- Equipamentos -->
-
             <li class="nav-item">
               <button class="nav-link" type="button" data-menu="equipamentos">
                 <span class="nav-icon">▢</span>
-
                 <span>Equipamentos</span>
-
                 <span class="nav-arrow">⌄</span>
               </button>
             </li>
 
-            <!-- Manutenção -->
+            <!-- ========================================== -->
+            <!-- NOVOS MENUS ADICIONADOS PELO SEU COLEGA    -->
+            <!-- ========================================== -->
+            <li class="nav-item">
+              <a href="setor_adm.html" class="nav-link">
+                <span class="nav-icon">▣</span>
+                <span>Setor</span>
+              </a>
+            </li>
 
+            <li class="nav-item">
+              <a href="historico_adm.html" class="nav-link">
+                <span class="nav-icon">▣</span>
+                <span>Histórico</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="indicadores_adm.html" class="nav-link">
+                <span class="nav-icon">▣</span>
+                <span>Indicadores</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="relatorios_adm.html" class="nav-link">
+                <span class="nav-icon">▣</span>
+                <span>Relatórios</span>
+              </a>
+            </li>
+            <!-- ========================================== -->
+
+            <!-- Manutenção -->
             <li class="nav-item">
               <button class="nav-link" type="button" data-menu="manutencao">
                 <span class="nav-icon">⚒</span>
-
                 <span>Manutenção</span>
-
                 <span class="nav-arrow">⌄</span>
               </button>
             </li>
 
             <!-- Peças -->
-
             <li class="nav-item">
               <button class="nav-link" type="button" data-menu="pecas">
                 <span class="nav-icon">⬡</span>
-
                 <span>Peças</span>
-
                 <span class="nav-arrow">⌄</span>
               </button>
             </li>
 
             <!-- Administração -->
-
             <li class="nav-item">
               <button class="nav-link" type="button" data-menu="administracao">
                 <span class="nav-icon">♧</span>
-
                 <span>Administração</span>
-
                 <span class="nav-arrow">⌄</span>
               </button>
             </li>
@@ -120,22 +131,37 @@
           </div>
 
           <div class="topbar-right">
+            <!-- ÍCONE DO SINO ADICIONADO AQUI -->
             <button
               class="notification-button"
               id="notificationButton"
               type="button"
               aria-label="Notificações"
-            ></button>
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-2.5 7-2.5 9h15c0-2-2.5-2-2.5-9"
+                ></path>
+                <path d="M10 21h4"></path>
+              </svg>
+            </button>
 
             <div class="user-profile">
               <div class="user-avatar">AS</div>
-
               <div class="user-info">
                 <strong>Admin Sistema</strong>
-
                 <span>Administrador</span>
               </div>
-
               <span class="profile-arrow"> ⌄ </span>
             </div>
           </div>
@@ -145,14 +171,12 @@
         <main class="main-content">
           <div class="page-header">
             <div class="breadcrumb"></div>
-
             <h1>Nova Ordem de Serviço</h1>
           </div>
 
           <!-- Formulário -->
           <section class="service-order-card">
             <!-- Cabeçalho do formulário -->
-
             <div class="service-order-header">
               <div class="service-order-icon">
                 <svg
@@ -169,18 +193,14 @@
                   <path
                     d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
                   ></path>
-
                   <path d="M14 2v6h6"></path>
-
                   <path d="M8 13h8"></path>
-
                   <path d="M8 17h5"></path>
                 </svg>
               </div>
 
               <div class="service-order-title">
                 <h2>Detalhes da Ordem</h2>
-
                 <p>Preencha as informações para abrir uma nova OS</p>
               </div>
             </div>
@@ -189,48 +209,36 @@
 
             <form id="formularioOrdemServico" class="formulario-os">
               <!-- Equipamento -->
-
               <div class="campo-formulario">
                 <label for="equipamento"> Equipamento </label>
-
                 <select id="equipamento" name="equipamento" required>
                   <option value="">Selecione um equipamento...</option>
-
                   <option value="eqp-00125">
                     Compressor de Ar - EQP-00125
                   </option>
-
                   <option value="eqp-00126">
                     Esteira Transportadora - EQP-00126
                   </option>
-
                   <option value="eqp-00127">
                     Bomba Hidráulica - EQP-00127
                   </option>
-
                   <option value="eqp-00128">Motor Elétrico - EQP-00128</option>
                 </select>
               </div>
 
               <!-- Tipo de manutenção -->
-
               <div class="campo-formulario">
                 <label for="tipoManutencao"> Tipo de Manutenção </label>
-
                 <select id="tipoManutencao" name="tipoManutencao" required>
                   <option value="corretivo">Corretivo</option>
-
                   <option value="preventivo">Preventivo</option>
-
                   <option value="preditivo">Preditivo</option>
                 </select>
               </div>
 
               <!-- Descrição -->
-
               <div class="campo-formulario">
                 <label for="descricaoProblema"> Descrição do problema </label>
-
                 <textarea
                   id="descricaoProblema"
                   name="descricaoProblema"
@@ -240,20 +248,46 @@
                 ></textarea>
               </div>
 
-              <!-- Solicitante -->
+              <!-- ========================================== -->
+              <!-- BLOCO NOVO ADICIONADO: PRIORIDADE E TÉCNICO-->
+              <!-- ========================================== -->
+              <div class="linha-formulario">
+                <div class="campo-formulario">
+                  <label for="prioridade"> Prioridade </label>
+                  <select id="prioridade" name="prioridade" required>
+                    <option value="baixa">Baixa</option>
+                    <option value="media">Média</option>
+                    <option value="alta">Alta</option>
+                    <option value="urgente">Urgente</option>
+                  </select>
+                </div>
 
+                <div class="campo-formulario">
+                  <label for="tecnicoResponsavel"> Técnico Responsável </label>
+                  <select
+                    id="tecnicoResponsavel"
+                    name="tecnicoResponsavel"
+                    required
+                  >
+                    <option value="">Selecione um técnico...</option>
+                    <option value="tecnico-001">Ana Souza</option>
+                    <option value="tecnico-002">Carlos Oliveira</option>
+                    <option value="tecnico-003">João Santos</option>
+                    <option value="tecnico-004">Pedro Lima</option>
+                  </select>
+                </div>
+              </div>
+              <!-- ========================================== -->
+
+              <!-- Solicitante -->
               <div class="campo-formulario">
                 <label for="solicitante"> Solicitante </label>
-
                 <div class="solicitante">
                   <div class="solicitante-avatar">AS</div>
-
                   <div class="solicitante-info">
                     <strong> Admin Sistema </strong>
-
                     <span> Administrador do Sistema </span>
                   </div>
-
                   <span class="solicitante-status"> Automático </span>
                 </div>
               </div>
@@ -261,12 +295,10 @@
               <div class="formulario-divisor"></div>
 
               <!-- Ações -->
-
               <div class="formulario-acoes">
+                <!-- Mantido o caminho correto para 'todas_os.html' -->
                 <a href="todas_os.html" class="botao botao-secundario">
-                  <span>×</span>
-
-                  Cancelar
+                  <span>×</span> Cancelar
                 </a>
 
                 <button
@@ -274,9 +306,7 @@
                   class="botao botao-principal"
                   id="criarOrdemButton"
                 >
-                  <span>✓</span>
-
-                  Criar Ordem de Serviço
+                  <span>✓</span> Criar Ordem de Serviço
                 </button>
               </div>
             </form>
@@ -285,6 +315,7 @@
       </div>
     </div>
 
+    <!-- Mantido o script correto da sua organização -->
     <script src="../-js/global.js"></script>
   </body>
 </html>

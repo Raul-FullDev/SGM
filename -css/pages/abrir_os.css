@@ -230,6 +230,13 @@
   line-height: 1;
 }
 
+/* Nova estrutura de campos lado a lado */
+.linha-formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
 /* Responsividade Específica */
 @media (max-width: 850px) {
   .service-order-card {
@@ -246,5 +253,9 @@
   }
   .botao {
     width: 100%;
+  }
+  .linha-formulario {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }
