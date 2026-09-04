@@ -7,6 +7,7 @@
 
     <!-- Caminho do CSS mantido -->
     <link rel="stylesheet" href="../-css/pages/niveis_acesso.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   </head>
 
   <body>
@@ -26,37 +27,42 @@
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
             <li class="item-navegacao">
+              <a href="dashboard.html">
               <button
                 class="link-navegacao"
                 type="button"
                 data-menu="dashboard"
               >
-                <span class="icone-navegacao">▣</span>
+                <span class="icone-navegacao"><i class="bi bi-list-task"></i></span>
                 <span>Dashboard</span>
-                <span class="seta-navegacao"></span>
+                
+  
               </button>
+              </a>
             </li>
 
             <li class="item-navegacao">
               <a href="todas_os.html">
                 <button class="link-navegacao" type="button" data-menu="ordens">
-                  <span class="icone-navegacao">▤</span>
+                  <span class="icone-navegacao"><i class="bi bi-clipboard-data"></i></span>
                   <span> Ordens de Serviço </span>
-                  <span class="seta-navegacao">⌄</span>
+                  
                 </button>
               </a>
             </li>
 
             <li class="item-navegacao">
+              <a href="equipamentos.html">
               <button
                 class="link-navegacao"
                 type="button"
                 data-menu="equipamentos"
               >
-                <span class="icone-navegacao">▢</span>
+                <span class="icone-navegacao"><i class="bi bi-wrench-adjustable"></i></span>
                 <span>Equipamentos</span>
-                <span class="seta-navegacao">⌄</span>
+               
               </button>
+              </a>
             </li>
 
             <!-- ========================================== -->
@@ -64,51 +70,55 @@
             <!-- ========================================== -->
             <li class="item-navegacao">
               <a href="setor_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">▤</span>
+                <span class="icone-navegacao"><i class="bi bi-collection"></i></span>
                 <span>Setor</span>
               </a>
             </li>
 
             <li class="item-navegacao">
               <a href="historico_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">▤</span>
+                <span class="icone-navegacao"><i class="bi bi-clock-history"></i></span>
                 <span>Histórico</span>
               </a>
             </li>
 
             <li class="item-navegacao">
               <a href="indicadores_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">▤</span>
+                <span class="icone-navegacao"><i class="bi bi-bar-chart"></i></span>
                 <span>Indicadores</span>
               </a>
             </li>
 
             <li class="item-navegacao">
               <a href="relatorios_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">▤</span>
+                <span class="icone-navegacao"><i class="bi bi-file-earmark-text"></i></span>
                 <span>Relatórios</span>
               </a>
             </li>
             <!-- ========================================== -->
 
             <li class="item-navegacao">
+              <a href="manutencao_adm.html">
               <button
                 class="link-navegacao"
                 type="button"
                 data-menu="manutencao"
               >
-                <span class="icone-navegacao">⚒</span>
+                <span class="icone-navegacao"><i class="bi bi-tools"></i></span>
                 <span>Manutenção</span>
-                <span class="seta-navegacao">⌄</span>
+                
               </button>
+              </a>
             </li>
 
             <li class="item-navegacao">
+              <a href="pecas_adm.html">
               <button class="link-navegacao" type="button" data-menu="pecas">
-                <span class="icone-navegacao">⬡</span>
+                <span class="icone-navegacao"><i class="bi bi-nut"></i></span>
                 <span>Peças</span>
-                <span class="seta-navegacao">⌄</span>
+                
               </button>
+              </a>
             </li>
 
             <li class="item-navegacao ativo">
@@ -117,9 +127,9 @@
                 type="button"
                 data-menu="administracao"
               >
-                <span class="icone-navegacao">♧</span>
+                <span class="icone-navegacao"><i class="bi bi-people"></i></span>
                 <span>Administração</span>
-                <span class="seta-navegacao">⌃</span>
+                
               </button>
 
               <ul class="submenu">
@@ -160,22 +170,7 @@
               type="button"
               aria-label="Notificações"
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path
-                  d="M18 8a6 6 0 0 0-12 0c0 7-2.5 7-2.5 9h15c0-2-2.5-2-2.5-9"
-                ></path>
-                <path d="M10 21h4"></path>
-              </svg>
+              
             </button>
             <!-- ========================================== -->
 
