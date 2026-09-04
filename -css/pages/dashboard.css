@@ -2,129 +2,247 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
-.cabecalho-pagina p {
-  color: var(--cinza-500);
-  font-size: 11px;
+/* =========================================================
+   SGM — DASHBOARD
+   Renovação visual da página sem alterar HTML, links,
+   IDs, dados ou componentes compartilhados.
+========================================================= */
+
+/* ==============================
+   CABEÇALHO DO DASHBOARD
+============================== */
+.cabecalho-pagina {
+  position: relative;
+  margin-bottom: 24px;
 }
 
-/* Cards principais */
+.cabecalho-pagina h1 {
+  margin-bottom: 5px;
+  color: #18386e;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.cabecalho-pagina p {
+  color: var(--cinza-500);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* ==============================
+   DETALHE DECORATIVO
+============================== */
+.conteudo-principal {
+  position: relative;
+  overflow: hidden;
+}
+
+.conteudo-principal::before,
+.conteudo-principal::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.conteudo-principal::before {
+  width: 230px;
+  height: 230px;
+  right: -120px;
+  bottom: -105px;
+  border: 1px solid rgba(61, 112, 205, 0.18);
+  border-radius: 50%;
+}
+
+.conteudo-principal::after {
+  width: 58px;
+  height: 58px;
+  right: 70px;
+  bottom: 24px;
+  border-radius: 50%;
+  background: rgba(75, 126, 218, 0.12);
+}
+
+.conteudo-principal > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==============================
+   CARDS PRINCIPAIS
+============================== */
 .cards-dashboard {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 15px;
-  margin-bottom: 19px;
+  gap: 16px;
+  margin-bottom: 20px;
 }
+
 .card-dashboard {
-  min-height: 106px;
+  min-height: 112px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 17px 18px;
-  background: white;
-  border: 1px solid #e1e6ec;
-  border-radius: 9px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  padding: 18px 19px;
+  background: #ffffff;
+  border: 1px solid #dfe7f1;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(44, 72, 112, 0.055);
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-.card-dashboard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.07);
-}
-.card-dashboard p {
-  color: var(--cinza-500);
-  font-size: 11px;
-}
-.card-dashboard h2 {
-  color: #1d4b91;
-  font-size: 30px;
-  font-weight: 400;
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
 }
 
-/* Conteúdo inferior */
+.card-dashboard:hover {
+  transform: translateY(-2px);
+  border-color: #d5e0ef;
+  box-shadow: 0 7px 17px rgba(44, 72, 112, 0.09);
+}
+
+.card-dashboard p {
+  color: #71839e;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.card-dashboard h2 {
+  margin-top: 13px;
+  color: #2255a4;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Pequeno detalhe superior dos indicadores */
+.card-dashboard::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 3px;
+  margin-bottom: -1px;
+  border-radius: 999px;
+  background: rgba(32, 91, 234, 0.14);
+}
+
+/* ==============================
+   CONTEÚDO INFERIOR
+============================== */
 .conteudo-dashboard {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(285px, 0.8fr);
-  gap: 18px;
+  grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.8fr);
+  gap: 19px;
   align-items: start;
 }
+
 .dashboard-esquerda,
 .dashboard-direita {
   min-width: 0;
 }
+
+/* ==============================
+   CARDS GERAIS
+============================== */
 .card-principal,
 .card-lateral {
-  background: white;
-  border: 1px solid #e1e6ec;
-  border-radius: 9px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  border: 1px solid #dfe7f1;
+  border-radius: 13px;
+  box-shadow: 0 3px 10px rgba(44, 72, 112, 0.055);
 }
 
-/* Card principal */
+/* ==============================
+   CARD PRINCIPAL
+============================== */
 .card-principal {
   min-height: 286px;
-  padding: 19px 20px;
+  padding: 20px 21px;
 }
+
 .cabecalho-card {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 15px;
   padding-bottom: 14px;
-  border-bottom: 1px solid #ebeff3;
+  border-bottom: 1px solid #e8edf4;
 }
+
 .cabecalho-card h2 {
   margin-bottom: 4px;
-  color: #34445a;
+  color: #30435f;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.3;
 }
+
 .cabecalho-card p {
   color: var(--cinza-500);
   font-size: 10px;
+  line-height: 1.35;
 }
+
 .botao-ver-todas {
   padding: 5px 7px;
   border: none;
+  border-radius: 6px;
   background: transparent;
   color: var(--azul);
   font-size: 10px;
   white-space: nowrap;
-}
-.botao-ver-todas:hover {
-  text-decoration: underline;
+  transition: background 0.15s ease;
 }
 
-/* Lista de ordens */
+.botao-ver-todas:hover {
+  background: #f1f6ff;
+  text-decoration: none;
+}
+
+/* ==============================
+   LISTA DE ORDENS
+============================== */
 .lista-ordens {
   display: flex;
   flex-direction: column;
 }
+
 .ordem-item {
   min-height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 15px;
-  border-bottom: 1px solid #ebeff3;
+  padding: 2px 0;
+  border-bottom: 1px solid #edf1f5;
+  transition: background 0.15s ease;
 }
+
 .ordem-item:last-child {
   border-bottom: none;
 }
+
+.ordem-item:hover {
+  background: #fbfcff;
+}
+
 .ordem-item strong {
   display: block;
   margin-bottom: 4px;
-  color: #1454c8;
+  color: #2c64c2;
   font-size: 11px;
-  font-weight: 500;
-}
-.ordem-item p {
-  color: #52606f;
-  font-size: 10px;
+  font-weight: 600;
 }
 
-/* Status Base */
+.ordem-item p {
+  color: #596b82;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+/* ==============================
+   STATUS
+============================== */
 .status-pendente,
 .status-andamento,
 .status-concluida {
@@ -134,141 +252,191 @@
   min-height: 25px;
   padding: 2px 10px;
   border: 1px solid;
-  border-radius: 13px;
+  border-radius: 999px;
   font-size: 9px;
+  font-weight: 500;
   white-space: nowrap;
 }
+
 .status-pendente {
   color: var(--amarelo);
   background: var(--amarelo-claro);
   border-color: #f0d477;
 }
+
 .status-andamento {
   color: var(--azul-status);
   background: var(--azul-status-claro);
   border-color: #accfff;
 }
+
 .status-concluida {
   color: var(--verde);
   background: var(--verde-claro);
   border-color: #9ce0c1;
 }
 
-/* Coluna direita */
+/* ==============================
+   COLUNA DIREITA
+============================== */
 .dashboard-direita {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-}
-.card-lateral {
-  padding: 18px;
-}
-.card-lateral h2 {
-  margin-bottom: 14px;
-  color: #34445a;
-  font-size: 15px;
-  font-weight: 500;
+  gap: 19px;
 }
 
-/* Status dos equipamentos */
+.card-lateral {
+  padding: 18px 19px;
+}
+
+.card-lateral h2 {
+  margin-bottom: 14px;
+  color: #30435f;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* ==============================
+   STATUS DOS EQUIPAMENTOS
+============================== */
 .lista-status {
   display: flex;
   flex-direction: column;
 }
+
 .status-item {
   min-height: 46px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #ebeff3;
+  border-bottom: 1px solid #edf1f5;
 }
+
 .status-item:last-child {
   border-bottom: none;
 }
+
 .status-item span {
-  color: #5d6875;
+  color: #62748c;
   font-size: 11px;
 }
+
 .status-item strong {
-  font-size: 17px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 500;
 }
+
 .status-item:nth-child(1) strong {
   color: var(--verde);
 }
+
 .status-item:nth-child(2) strong {
   color: var(--amarelo);
 }
+
 .status-item:nth-child(3) strong {
   color: var(--vermelho);
 }
 
-/* Próximas manutenções */
+/* ==============================
+   PRÓXIMAS MANUTENÇÕES
+============================== */
 .lista-manutencoes {
   display: flex;
   flex-direction: column;
 }
+
 .manutencao-item {
   min-height: 62px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  border-bottom: 1px solid #ebeff3;
+  border-bottom: 1px solid #edf1f5;
 }
+
 .manutencao-item:last-child {
   border-bottom: none;
 }
+
 .manutencao-item strong {
   display: block;
   margin-bottom: 4px;
-  color: #3d4855;
+  color: #3c4d64;
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 600;
 }
+
 .manutencao-item p {
   color: var(--cinza-500);
   font-size: 9px;
+  line-height: 1.35;
 }
+
 .manutencao-item > span {
+  min-width: 42px;
   color: #3568bd;
   font-size: 10px;
+  font-weight: 600;
+  text-align: right;
   white-space: nowrap;
 }
 
-/* Responsividade Específica */
+/* ==============================
+   RESPONSIVIDADE ESPECÍFICA
+============================== */
 @media (max-width: 1100px) {
   .cards-dashboard {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .conteudo-dashboard {
     grid-template-columns: 1fr;
   }
+
   .dashboard-direita {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 }
+
 @media (max-width: 700px) {
   .dashboard-direita {
     grid-template-columns: 1fr;
   }
+
   .cabecalho-pagina h1 {
     font-size: 23px;
   }
 }
+
 @media (max-width: 650px) {
   .cards-dashboard {
     grid-template-columns: 1fr;
   }
+
   .conteudo-dashboard {
     grid-template-columns: 1fr;
   }
+
   .dashboard-direita {
     display: flex;
     flex-direction: column;
+    gap: 14px;
   }
+
   .cabecalho-pagina p {
     font-size: 10px;
+  }
+
+  .card-dashboard {
+    min-height: 104px;
+  }
+
+  .card-principal,
+  .card-lateral {
+    border-radius: 11px;
   }
 }
