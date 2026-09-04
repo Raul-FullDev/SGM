@@ -2,13 +2,59 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
+/* =========================================================
+   SGM — EQUIPAMENTOS
+========================================================= */
+
 /* ==============================
-   CONTEÚDO DA PÁGINA DE EQUIPAMENTOS
+   CONTEÚDO DA PÁGINA
 ============================== */
 .main-content {
   width: 100%;
   min-height: calc(100vh - var(--altura-cabecalho, 70px));
-  padding: 27px 25px 45px;
+  padding: 22px 32px 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fundo decorativo da tela */
+.main-content::before,
+.main-content::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main-content::before {
+  width: 270px;
+  height: 270px;
+  right: -20px;
+  bottom: -105px;
+  border-radius: 50%;
+  background: rgba(80, 128, 215, 0.14);
+}
+
+.main-content::after {
+  width: 250px;
+  height: 250px;
+  right: -5px;
+  top: 295px;
+  border: 1.5px solid rgba(80, 128, 215, 0.22);
+  border-radius: 50%;
+  box-shadow:
+    -135px 195px 0 -95px rgba(80, 128, 215, 0.18),
+    -180px 285px 0 -124px transparent;
+}
+
+/* Pequenos pontos decorativos */
+.main-content {
+  --decor-dot: rgba(91, 143, 226, 0.22);
+}
+
+.main-content > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* ==============================
@@ -25,15 +71,19 @@
 }
 
 .page-header h1 {
-  margin-bottom: 5px;
-  color: #27394f;
+  margin: 0 0 4px;
+  color: #102c63;
   font-size: 25px;
-  font-weight: 400;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.2px;
 }
 
 .page-header p {
-  color: var(--cinza-500, #7b8796);
-  font-size: 11px;
+  margin: 0;
+  color: #6f82a0;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 /* ==============================
@@ -55,16 +105,18 @@
 }
 
 .botao-principal {
-  background: var(--azul, #145bea);
-  color: white;
-  box-shadow: 0 2px 5px rgba(20, 91, 234, 0.15);
+  background: #2055d6;
+  color: #ffffff;
+  box-shadow: 0 5px 12px rgba(32, 85, 214, 0.14);
   transition:
     background 0.2s ease,
+    box-shadow 0.2s ease,
     transform 0.1s ease;
 }
 
 .botao-principal:hover {
-  background: var(--azul-hover, #0f4fd2);
+  background: #174bc7;
+  box-shadow: 0 7px 15px rgba(32, 85, 214, 0.18);
 }
 
 .botao-principal:active {
@@ -80,18 +132,20 @@
    PESQUISA DE EQUIPAMENTOS
 ============================== */
 .filtros-equipamentos {
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 14px;
-  background: white;
-  border: 1px solid #e1e6ec;
-  border-radius: 9px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: auto;
+  display: inline-flex;
+  vertical-align: top;
+  margin: 18px 14px 20px 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .campo-pesquisa-equipamentos {
   position: relative;
-  width: 330px;
+  width: 286px;
   max-width: 100%;
   display: flex;
   align-items: center;
@@ -99,39 +153,82 @@
 
 .campo-pesquisa-equipamentos .icone-pesquisa {
   position: absolute;
-  left: 12px;
-  color: #8ea3bd;
-  font-size: 18px;
+  left: 13px;
+  color: #8197b7;
+  font-size: 20px;
   line-height: 1;
   pointer-events: none;
 }
 
 .campo-pesquisa-equipamentos input {
   width: 100%;
-  height: 40px;
-  padding: 0 13px 0 38px;
-  border: 1px solid #d8e1eb;
-  border-radius: 8px;
+  height: 41px;
+  padding: 0 14px 0 37px;
+  border: 1px solid #e1e7ef;
+  border-radius: 11px;
   outline: none;
-  background: white;
+  background: #ffffff;
   color: #34445a;
   font-size: 12px;
+  box-shadow: 0 2px 7px rgba(36, 69, 115, 0.025);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
 .campo-pesquisa-equipamentos input::placeholder {
-  color: #9aadc2;
+  color: #91a4c0;
 }
 
 .campo-pesquisa-equipamentos input:hover {
-  border-color: #c8d5e5;
+  border-color: #cbd7e6;
 }
 
 .campo-pesquisa-equipamentos input:focus {
-  border-color: #6f98dc;
-  box-shadow: 0 0 0 2px rgba(20, 91, 234, 0.08);
+  border-color: #7ea0d7;
+  box-shadow: 0 0 0 3px rgba(32, 85, 214, 0.08);
+}
+
+/* ==============================
+   FILTROS EXISTENTES
+============================== */
+.main-content > section:not(.filtros-equipamentos):not(.tabela-equipamentos):not(.estado-vazio) {
+  display: inline-flex;
+  vertical-align: top;
+  align-items: flex-end;
+  gap: 14px;
+  width: auto;
+  margin: 0 0 20px 0;
+}
+
+.campo-filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo-filtro label {
+  color: #5f7595;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.campo-filtro select {
+  min-width: 180px;
+  height: 38px;
+  padding: 0 34px 0 12px;
+  border: 1px solid #dce5f0;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #435a78;
+  font-size: 11px;
+  outline: none;
+  cursor: pointer;
+}
+
+.campo-filtro select:focus {
+  border-color: #7ea0d7;
+  box-shadow: 0 0 0 3px rgba(32, 85, 214, 0.07);
 }
 
 /* ==============================
@@ -140,10 +237,10 @@
 .tabela-equipamentos {
   width: 100%;
   overflow: hidden;
-  background: white;
-  border: 1px solid #dfe5eb;
-  border-radius: 9px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  border: 1px solid #dbe4ef;
+  border-radius: 16px;
+  box-shadow: 0 3px 8px rgba(47, 77, 118, 0.07);
 }
 
 .tabela-container {
@@ -159,22 +256,23 @@
 }
 
 .tabela-equipamentos th {
-  height: 41px;
-  padding: 0 15px;
-  background: white;
-  color: #8297b2;
-  font-size: 10px;
-  font-weight: 600;
+  height: 40px;
+  padding: 0 24px;
+  background: #fbfcfe;
+  color: #617796;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15px;
   text-align: left;
-  border-bottom: 1px solid #e7ebef;
+  border-bottom: 1px solid #e6ebf1;
 }
 
 .tabela-equipamentos td {
-  height: 59px;
-  padding: 0 15px;
-  color: #394553;
-  font-size: 11px;
-  border-bottom: 1px solid #edf0f3;
+  height: 55px;
+  padding: 0 24px;
+  color: #42546d;
+  font-size: 12px;
+  border-bottom: 1px solid #edf1f5;
   vertical-align: middle;
 }
 
@@ -183,7 +281,7 @@
 }
 
 .tabela-equipamentos tbody tr:hover {
-  background: #f8faff;
+  background: #f8fbff;
 }
 
 .tabela-equipamentos tbody tr:last-child td {
@@ -195,26 +293,32 @@
 .tabela-equipamentos td:nth-child(1) {
   width: 10%;
 }
+
 .tabela-equipamentos th:nth-child(2),
 .tabela-equipamentos td:nth-child(2) {
   width: 20%;
 }
+
 .tabela-equipamentos th:nth-child(3),
 .tabela-equipamentos td:nth-child(3) {
   width: 21%;
 }
+
 .tabela-equipamentos th:nth-child(4),
 .tabela-equipamentos td:nth-child(4) {
   width: 13%;
 }
+
 .tabela-equipamentos th:nth-child(5),
 .tabela-equipamentos td:nth-child(5) {
   width: 13%;
 }
+
 .tabela-equipamentos th:nth-child(6),
 .tabela-equipamentos td:nth-child(6) {
   width: 12%;
 }
+
 .tabela-equipamentos th:nth-child(7),
 .tabela-equipamentos td:nth-child(7) {
   width: 11%;
@@ -222,20 +326,22 @@
 
 /* Cores de texto das colunas */
 .tabela-equipamentos td:nth-child(1) {
-  color: #163f7d;
+  color: #28456f;
   font-size: 10px;
+  font-weight: 500;
 }
 
 .tabela-equipamentos td:nth-child(2) {
-  color: #142c50;
+  color: #27354a;
   font-size: 12px;
+  font-weight: 600;
 }
 
 .tabela-equipamentos td:nth-child(3),
 .tabela-equipamentos td:nth-child(4),
 .tabela-equipamentos td:nth-child(5),
 .tabela-equipamentos td:nth-child(6) {
-  color: #687f9d;
+  color: #7085a2;
 }
 
 /* ==============================
@@ -248,21 +354,22 @@
   min-height: 23px;
   padding: 2px 10px;
   border: 1px solid;
-  border-radius: 5px;
+  border-radius: 999px;
   font-size: 10px;
+  font-weight: 500;
   white-space: nowrap;
 }
 
 .status-ativo {
-  background: var(--verde-claro, #dcf8ed);
-  border-color: #a7e3c1;
-  color: #169b60;
+  background: #dcf8ed;
+  border-color: #a5e6c6;
+  color: #159764;
 }
 
 .status-manutencao {
-  background: var(--amarelo-claro, #fff2cc);
-  border-color: #efd17a;
-  color: #c78900;
+  background: #fff2cc;
+  border-color: #efd37c;
+  color: #bd7b00;
 }
 
 .status-inativo {
@@ -281,11 +388,11 @@
   align-items: center;
   justify-content: center;
   padding: 55px 20px;
-  background: white;
-  border: 1px solid #e1e6ec;
-  border-radius: 9px;
+  background: #ffffff;
+  border: 1px solid #dbe4ef;
+  border-radius: 16px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 8px rgba(47, 77, 118, 0.07);
 }
 
 .ilustracao-vazia {
@@ -309,7 +416,7 @@
 }
 
 .estado-vazio p {
-  color: var(--cinza-500, #7b8796);
+  color: #7b8796;
   font-size: 10px;
 }
 
@@ -320,44 +427,72 @@
   .tabela-equipamentos table {
     min-width: 850px;
   }
+
+  .tabela-equipamentos th,
+  .tabela-equipamentos td {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
 }
 
 @media (max-width: 900px) {
+  .main-content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
   .page-header h1 {
     font-size: 23px;
   }
 }
 
 @media (max-width: 700px) {
+  .main-content {
+    padding: 20px 16px 30px;
+  }
+
   .page-header {
     flex-direction: column;
     gap: 12px;
   }
+
   .botao-principal {
     width: 100%;
   }
+
   .campo-pesquisa-equipamentos {
     width: 100%;
   }
+
+  .filtros-equipamentos {
+    margin-top: 0;
+  }
+
+  .main-content > section:not(.filtros-equipamentos):not(.tabela-equipamentos):not(.estado-vazio) {
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+  }
+
+  .campo-filtro select {
+    width: 100%;
+  }
+
   .tabela-equipamentos table {
     min-width: 800px;
   }
 }
 
 @media (max-width: 650px) {
-  .main-content {
-    padding: 20px 12px 30px;
-  }
   .page-header h1 {
     font-size: 22px;
   }
+
   .page-header p {
-    font-size: 10px;
+    font-size: 11px;
   }
-  .filtros-equipamentos {
-    padding: 11px;
-  }
+
   .tabela-equipamentos {
-    border-radius: 8px;
+    border-radius: 12px;
   }
 }
