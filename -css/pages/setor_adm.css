@@ -2,434 +2,249 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
-
-/* =========================================================
+/* ==============================
    CONTEÚDO PRINCIPAL
-   ========================================================= */
-
+============================== */
 .conteudo-principal {
-  position: relative;
-  overflow: hidden;
+    width: 100%;
+    min-height: calc(100vh - var(--altura-cabecalho, 70px));
+    padding: 27px 25px 45px;
 }
 
-
-/* =========================================================
+/* ==============================
    CABEÇALHO DA PÁGINA
-   ========================================================= */
-
+============================== */
 .cabecalho-pagina {
-  position: relative;
-  z-index: 2;
-  margin-bottom: 24px;
+    margin-bottom: 25px;
 }
 
 .cabecalho-setores {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .cabecalho-setores h1 {
-  margin-bottom: 5px;
-
-  color: #17275a;
-  font-size: 25px;
-  font-weight: 600;
+    color: #27394f;
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 5px;
 }
 
 .cabecalho-setores p {
-  color: #647a99;
-  font-size: 13px;
+    color: var(--cinza-500, #7b8796);
+    font-size: 12px;
 }
 
-
-/* =========================================================
+/* ==============================
    BOTÃO NOVO SETOR
-   ========================================================= */
-
+============================== */
 .botao-novo-setor {
-  height: 40px;
-  min-width: 140px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  padding: 0 18px;
-
-  border: none;
-  border-radius: 8px;
-
-  background: #2055dc;
-  color: white;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  box-shadow: 0 3px 6px rgba(32, 85, 220, 0.2);
-
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    min-height: 37px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 17px;
+    border-radius: 7px;
+    background: var(--azul, #145bea);
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    box-shadow: 0 2px 5px rgba(20, 91, 234, 0.15);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .botao-novo-setor:hover {
-  background: #1748c6;
-  box-shadow: 0 4px 9px rgba(32, 85, 220, 0.25);
+    background: var(--azul-hover, #0f4fd2);
 }
 
 .botao-novo-setor:active {
-  transform: translateY(1px);
+    transform: translateY(1px);
 }
 
 .icone-botao-novo {
-  font-size: 18px;
-  line-height: 1;
-  font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
 }
 
-
-/* =========================================================
-   LISTA DE SETORES
-   ========================================================= */
-
+/* ==============================
+   LISTA DE SETORES (GRID DE CARDS)
+============================== */
 .lista-setores {
-  position: relative;
-  z-index: 2;
-
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
 }
-
-
-/* =========================================================
-   CARD DE SETOR
-   ========================================================= */
 
 .card-setor {
-  min-height: 135px;
-
-  display: flex;
-  flex-direction: column;
-
-  background: white;
-  border: 1px solid #dce4ef;
-  border-radius: 14px;
-
-  box-shadow:
-    0 2px 4px rgba(44, 79, 130, 0.07),
-    0 6px 14px rgba(44, 79, 130, 0.035);
-
-  overflow: hidden;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    background: white;
+    border: 1px solid #dfe5eb;
+    border-radius: 9px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card-setor:hover {
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 4px 8px rgba(44, 79, 130, 0.09),
-    0 8px 18px rgba(44, 79, 130, 0.05);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
-
-/* =========================================================
-   CABEÇALHO DO CARD
-   ========================================================= */
 
 .cabecalho-card-setor {
-  min-height: 81px;
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-
-  gap: 15px;
-
-  padding: 20px 20px 15px;
-}
-
-
-/* =========================================================
-   INFORMAÇÕES
-   ========================================================= */
-
-.informacoes-setor {
-  min-width: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .informacoes-setor h2 {
-  margin-bottom: 6px;
-
-  color: #17275a;
-  font-size: 15px;
-  font-weight: 600;
+    color: #143967;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 
 .responsavel-setor {
-  color: #8298b6;
-  font-size: 11px;
+    color: #8a9cb4;
+    font-size: 11px;
 }
 
 .responsavel-setor span {
-  color: #8095b3;
+    color: #394553;
+    font-weight: 500;
 }
-
-
-/* =========================================================
-   ÍCONE
-   ========================================================= */
 
 .icone-setor {
-  width: 44px;
-  height: 44px;
-
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 11px;
-
-  background: #eef5ff;
-  color: #1761ef;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef2f8;
+    color: var(--azul, #145bea);
+    border-radius: 8px;
 }
 
-
-/* =========================================================
-   RODAPÉ DO CARD
-   ========================================================= */
-
-.rodape-card-setor {
-  margin: 0 20px;
-
-  padding: 12px 0 15px;
-
-  border-top: 1px solid #edf1f6;
+/* ==============================
+   MODAL DE CADASTRO (POP-UP)
+============================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 
-.equipamentos-setor {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  color: #53657e;
-  font-size: 12px;
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 24px;
 }
 
-.indicador-setor {
-  width: 8px;
-  height: 8px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-  background: #05bd68;
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-
-/* =========================================================
-   DECORAÇÕES
-   ========================================================= */
-
-.decoracao-setores {
-  position: absolute;
-  inset: 0;
-
-  z-index: 1;
-
-  pointer-events: none;
+.modal-header h2 {
+    font-size: 18px;
+    color: #143967;
 }
 
-
-/* Pontos superiores */
-
-.ponto-setor {
-  position: absolute;
-
-  width: 4px;
-  height: 4px;
-
-  border-radius: 50%;
-
-  background: #a5c7ff;
-  opacity: 0.8;
+.btn-fechar {
+    background: transparent;
+    border: none;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    color: #8a9cb4;
+    transition: color 0.2s ease;
 }
 
-.ponto-setor-1 {
-  top: 66px;
-  right: 30%;
+.btn-fechar:hover {
+    color: #d95353;
 }
 
-.ponto-setor-2 {
-  top: 66px;
-  right: 26.8%;
-}
-
-.ponto-setor-3 {
-  top: 66px;
-  right: 23.5%;
-}
-
-.ponto-setor-4 {
-  top: 66px;
-  right: 20.2%;
-}
-
-
-/* Círculo principal */
-
-.circulo-setor {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.circulo-setor-1 {
-  width: 195px;
-  height: 195px;
-
-  right: 28px;
-  top: 385px;
-
-  border: 1px solid #b5d0ff;
-}
-
-
-/* Círculo inferior direito */
-
-.circulo-setor-2 {
-  width: 195px;
-  height: 195px;
-
-  right: -5px;
-  bottom: -75px;
-
-  background: rgba(128, 165, 232, 0.2);
-}
-
-
-/* Círculo intermediário */
-
-.circulo-setor-3 {
-  width: 120px;
-  height: 120px;
-
-  right: 175px;
-  bottom: 90px;
-
-  background: rgba(120, 158, 224, 0.25);
-}
-
-
-/* Círculo menor */
-
-.circulo-setor-4 {
-  width: 180px;
-  height: 180px;
-
-  right: 250px;
-  bottom: -55px;
-
-  border: 1px solid #c0d8ff;
-}
-
-
-/* Linhas diagonais */
-
-.linhas-setor {
-  position: absolute;
-
-  width: 165px;
-  height: 1px;
-
-  right: 42px;
-  top: 505px;
-
-  transform: rotate(32deg);
-  transform-origin: right center;
-
-  background: #b8d2fc;
-  opacity: 0.8;
-}
-
-.linhas-setor::before,
-.linhas-setor::after {
-  content: "";
-
-  position: absolute;
-
-  width: 165px;
-  height: 1px;
-
-  right: 0;
-
-  background: #b8d2fc;
-}
-
-.linhas-setor::before {
-  top: 14px;
-}
-
-.linhas-setor::after {
-  top: 28px;
-}
-
-
-/* =========================================================
-   RESPONSIVIDADE
-   ========================================================= */
-
-@media (max-width: 1100px) {
-  .lista-setores {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 750px) {
-  .lista-setores {
-    grid-template-columns: 1fr;
-  }
-
-  .decoracao-setores {
-    display: none;
-  }
-}
-
-@media (max-width: 650px) {
-  .cabecalho-setores {
+.modal-body .campo-formulario {
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-  }
+    gap: 8px;
+    margin-bottom: 25px;
+}
 
-  .botao-novo-setor {
-    align-self: flex-start;
-  }
+.modal-body label {
+    color: #273b57;
+    font-size: 13px;
+    font-weight: 500;
+}
 
-  .cabecalho-setores h1 {
-    font-size: 22px;
-  }
+.modal-body input {
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #dce4ed;
+    border-radius: 7px;
+    outline: none;
+    color: #34445a;
+    font-size: 13px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
 
-  .cabecalho-setores p {
-    font-size: 11px;
-  }
+.modal-body input:focus {
+    border-color: #6f98dc;
+    box-shadow: 0 0 0 2px rgba(20, 91, 234, 0.08);
+}
 
-  .card-setor {
-    min-height: 130px;
-  }
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
 
-  .cabecalho-card-setor {
-    padding: 17px;
-  }
+.botao-secundario {
+    padding: 0 17px;
+    height: 37px;
+    background: white;
+    border: 1px solid #dce4ed;
+    border-radius: 7px;
+    color: #26374d;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
 
-  .rodape-card-setor {
-    margin: 0 17px;
-  }
+.botao-secundario:hover {
+    background: #f5f7f9;
+}
+
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+@media (max-width: 650px) {
+    .cabecalho-setores {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .botao-novo-setor {
+        width: 100%;
+    }
+
+    .lista-setores {
+        grid-template-columns: 1fr;
+    }
 }

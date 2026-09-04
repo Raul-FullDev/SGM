@@ -6,7 +6,7 @@
 
     <title>SGM - Setores</title>
 
-    <!-- Caminho do CSS mantido -->
+    <!-- Estilos -->
     <link rel="stylesheet" href="../-css/pages/setor_adm.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   </head>
@@ -19,7 +19,6 @@
         <div class="cabecalho-barra">
           <div class="logo">
             <span class="icone-logo">S</span>
-
             <div class="texto-logo">
               <strong>SGM</strong>
               <span>Gestão de manutenção</span>
@@ -29,7 +28,6 @@
 
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
-
             <!-- Dashboard -->
             <li class="item-navegacao">
               <a href="dashboard.html" class="link-navegacao">
@@ -43,7 +41,6 @@
               <a href="todas_os.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-clipboard-data"></i></span>
                 <span>Ordens de Serviço</span>
-             
               </a>
             </li>
 
@@ -52,11 +49,10 @@
               <a href="equipamentos.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-wrench-adjustable"></i></span>
                 <span>Equipamentos</span>
-              
               </a>
             </li>
 
-            <!-- Setor -->
+            <!-- Setor (ATIVO) -->
             <li class="item-navegacao ativo">
               <a href="setor_adm.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-collection"></i></span>
@@ -93,7 +89,6 @@
               <a href="manutencao_adm.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-tools"></i></span>
                 <span>Manutenção</span>
-              
               </a>
             </li>
 
@@ -102,7 +97,6 @@
               <a href="pecas_adm.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-nut"></i></span>
                 <span>Peças</span>
-            
               </a>
             </li>
 
@@ -111,369 +105,89 @@
               <a href="usuarios.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-people"></i></span>
                 <span>Administração</span>
-           
               </a>
             </li>
-
           </ul>
         </nav>
       </aside>
 
-
       <!-- Área principal -->
       <div class="area-principal">
-
-        <!-- Cabeçalho -->
+        
+        <!-- Cabeçalho Topo -->
         <header class="cabecalho">
           <div class="cabecalho-esquerdo">
-            <button
-              class="botao-menu"
-              id="botaoMenu"
-              type="button"
-              aria-label="Abrir menu"
-            >
+            <button class="botao-menu" id="botaoMenu" type="button" aria-label="Abrir menu">
               ☰
             </button>
           </div>
 
           <div class="cabecalho-direito">
-
-            <!-- Notificações -->
-            <button
-              class="botao-notificacao"
-              id="botaoNotificacao"
-              type="button"
-              aria-label="Notificações"
-            >
-             
+            <button class="botao-notificacao" id="botaoNotificacao" type="button" aria-label="Notificações">
+              <i class="bi bi-bell"></i>
             </button>
 
-            <!-- Perfil -->
             <div class="perfil-usuario">
               <div class="avatar-usuario">AS</div>
-
               <div class="informacoes-usuario">
                 <strong>Admin Sistema</strong>
                 <span>Administrador</span>
               </div>
-
             </div>
-
           </div>
         </header>
-
 
         <!-- Conteúdo principal -->
         <main class="conteudo-principal">
 
-          <!-- Decorações -->
-          <div class="decoracao-setores" aria-hidden="true">
-            <span class="ponto-setor ponto-setor-1"></span>
-            <span class="ponto-setor ponto-setor-2"></span>
-            <span class="ponto-setor ponto-setor-3"></span>
-            <span class="ponto-setor ponto-setor-4"></span>
-
-            <span class="circulo-setor circulo-setor-1"></span>
-            <span class="circulo-setor circulo-setor-2"></span>
-            <span class="circulo-setor circulo-setor-3"></span>
-            <span class="circulo-setor circulo-setor-4"></span>
-
-            <span class="linhas-setor"></span>
-          </div>
-
-
-          <!-- Cabeçalho da página -->
+          <!-- Cabeçalho da página (Título + Botão) -->
           <section class="cabecalho-pagina">
             <div class="cabecalho-setores">
-
               <div>
                 <h1>Setores</h1>
                 <p>Locais e áreas da empresa</p>
               </div>
 
-              <button
-                class="botao-novo-setor"
-                id="botaoNovoSetor"
-                type="button"
-              >
+              <!-- BOTÃO QUE ABRE O MODAL -->
+              <button class="botao-novo-setor" id="botaoNovoSetor" type="button">
                 <span class="icone-botao-novo">+</span>
                 Novo Setor
               </button>
-
             </div>
           </section>
 
-
-          <!-- Lista de setores -->
-          <section
-            class="lista-setores"
-            id="listaSetores"
-            aria-label="Setores cadastrados"
-          >
-
-            <!-- Produção -->
-            <article class="card-setor">
-              <div class="cabecalho-card-setor">
-
-                <div class="informacoes-setor">
-                  <h2>Produção</h2>
-
-                  <p class="responsavel-setor">
-                    Responsável:
-                    <span>Marcos Dias</span>
-                  </p>
-                </div>
-
-                <div class="icone-setor" aria-hidden="true">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M4 20V10l8-6 8 6v10"></path>
-                    <path d="M9 20v-6h6v6"></path>
-                    <path d="M8 10h.01"></path>
-                    <path d="M12 10h.01"></path>
-                    <path d="M16 10h.01"></path>
-                  </svg>
-                </div>
-
+          <!-- MODAL DE CADASTRO OCULTO POR PADRÃO -->
+          <div id="modalSetor" class="modal-overlay" style="display: none;">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2>Cadastrar Novo Setor</h2>
+                <button type="button" id="fecharModal" class="btn-fechar">&times;</button>
               </div>
-
-              <div class="rodape-card-setor">
-                <p class="equipamentos-setor">
-                  <span class="indicador-setor"></span>
-                  12 equipamentos cadastrados
-                </p>
-              </div>
-            </article>
-
-
-            <!-- Embalagem -->
-            <article class="card-setor">
-              <div class="cabecalho-card-setor">
-
-                <div class="informacoes-setor">
-                  <h2>Embalagem</h2>
-
-                  <p class="responsavel-setor">
-                    Responsável:
-                    <span>Lúcia Torres</span>
-                  </p>
+              <form id="formNovoSetor" class="modal-body">
+                <div class="campo-formulario">
+                  <label for="nomeSetor">Nome do Setor</label>
+                  <input type="text" id="nomeSetor" placeholder="Ex: Estamparia, Montagem..." required />
                 </div>
-
-                <div class="icone-setor" aria-hidden="true">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M4 20V10l8-6 8 6v10"></path>
-                    <path d="M9 20v-6h6v6"></path>
-                    <path d="M8 10h.01"></path>
-                    <path d="M12 10h.01"></path>
-                    <path d="M16 10h.01"></path>
-                  </svg>
+                <div class="modal-footer">
+                  <button type="button" id="cancelarModal" class="botao-secundario">Cancelar</button>
+                  <button type="submit" class="botao-novo-setor">Salvar Setor</button>
                 </div>
+              </form>
+            </div>
+          </div>
 
-              </div>
-
-              <div class="rodape-card-setor">
-                <p class="equipamentos-setor">
-                  <span class="indicador-setor"></span>
-                  7 equipamentos cadastrados
-                </p>
-              </div>
-            </article>
-
-
-            <!-- Logística -->
-            <article class="card-setor">
-              <div class="cabecalho-card-setor">
-
-                <div class="informacoes-setor">
-                  <h2>Logística</h2>
-
-                  <p class="responsavel-setor">
-                    Responsável:
-                    <span>Rafael Gomes</span>
-                  </p>
-                </div>
-
-                <div class="icone-setor" aria-hidden="true">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M4 20V10l8-6 8 6v10"></path>
-                    <path d="M9 20v-6h6v6"></path>
-                    <path d="M8 10h.01"></path>
-                    <path d="M12 10h.01"></path>
-                    <path d="M16 10h.01"></path>
-                  </svg>
-                </div>
-
-              </div>
-
-              <div class="rodape-card-setor">
-                <p class="equipamentos-setor">
-                  <span class="indicador-setor"></span>
-                  5 equipamentos cadastrados
-                </p>
-              </div>
-            </article>
-
-
-            <!-- Usinagem -->
-            <article class="card-setor">
-              <div class="cabecalho-card-setor">
-
-                <div class="informacoes-setor">
-                  <h2>Usinagem</h2>
-
-                  <p class="responsavel-setor">
-                    Responsável:
-                    <span>Carlos Mendes</span>
-                  </p>
-                </div>
-
-                <div class="icone-setor" aria-hidden="true">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M4 20V10l8-6 8 6v10"></path>
-                    <path d="M9 20v-6h6v6"></path>
-                    <path d="M8 10h.01"></path>
-                    <path d="M12 10h.01"></path>
-                    <path d="M16 10h.01"></path>
-                  </svg>
-                </div>
-
-              </div>
-
-              <div class="rodape-card-setor">
-                <p class="equipamentos-setor">
-                  <span class="indicador-setor"></span>
-                  9 equipamentos cadastrados
-                </p>
-              </div>
-            </article>
-
-
-            <!-- Utilidades -->
-            <article class="card-setor">
-              <div class="cabecalho-card-setor">
-
-                <div class="informacoes-setor">
-                  <h2>Utilidades</h2>
-
-                  <p class="responsavel-setor">
-                    Responsável:
-                    <span>Fábio Santos</span>
-                  </p>
-                </div>
-
-                <div class="icone-setor" aria-hidden="true">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M4 20V10l8-6 8 6v10"></path>
-                    <path d="M9 20v-6h6v6"></path>
-                    <path d="M8 10h.01"></path>
-                    <path d="M12 10h.01"></path>
-                    <path d="M16 10h.01"></path>
-                  </svg>
-                </div>
-
-              </div>
-
-              <div class="rodape-card-setor">
-                <p class="equipamentos-setor">
-                  <span class="indicador-setor"></span>
-                  4 equipamentos cadastrados
-                </p>
-              </div>
-            </article>
-
-
-            <!-- Manutenção -->
-            <article class="card-setor">
-              <div class="cabecalho-card-setor">
-
-                <div class="informacoes-setor">
-                  <h2>Manutenção</h2>
-
-                  <p class="responsavel-setor">
-                    Responsável:
-                    <span>Ana Souza</span>
-                  </p>
-                </div>
-
-                <div class="icone-setor" aria-hidden="true">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M4 20V10l8-6 8 6v10"></path>
-                    <path d="M9 20v-6h6v6"></path>
-                    <path d="M8 10h.01"></path>
-                    <path d="M12 10h.01"></path>
-                    <path d="M16 10h.01"></path>
-                  </svg>
-                </div>
-
-              </div>
-
-              <div class="rodape-card-setor">
-                <p class="equipamentos-setor">
-                  <span class="indicador-setor"></span>
-                  3 equipamentos cadastrados
-                </p>
-              </div>
-            </article>
-
+          <!-- LISTA DINÂMICA: O JS vai injetar os cards aqui dentro -->
+          <section class="lista-setores" id="listaSetores" aria-label="Setores cadastrados">
+             <!-- Os cards virão do banco via JavaScript -->
+             <p style="color: #7b8796;">Carregando setores...</p>
           </section>
+
         </main>
       </div>
     </div>
 
-    <!-- Caminho do JS mantido -->
+    <!-- Scripts globais e da página -->
     <script src="../-js/global.js"></script>
+    <script src="../-js/pages/setor_adm.js"></script>
   </body>
-</html>>
+</html>
