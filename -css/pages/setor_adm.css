@@ -4,10 +4,22 @@
 
 
 /* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+.conteudo-principal {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* =========================================================
    CABEÇALHO DA PÁGINA
    ========================================================= */
 
 .cabecalho-pagina {
+  position: relative;
+  z-index: 2;
   margin-bottom: 24px;
 }
 
@@ -19,14 +31,15 @@
 }
 
 .cabecalho-setores h1 {
-  color: #171b21;
-  font-size: 20px;
-  font-weight: 600;
   margin-bottom: 5px;
+
+  color: #17275a;
+  font-size: 25px;
+  font-weight: 600;
 }
 
 .cabecalho-setores p {
-  color: var(--cinza-600);
+  color: #647a99;
   font-size: 13px;
 }
 
@@ -36,30 +49,46 @@
    ========================================================= */
 
 .botao-novo-setor {
-  min-width: 120px;
-  height: 36px;
-  padding: 0 16px;
+  height: 40px;
+  min-width: 140px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 0 18px;
 
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
 
-  background: #145bea;
+  background: #2055dc;
   color: white;
 
   font-size: 12px;
   font-weight: 600;
 
+  box-shadow: 0 3px 6px rgba(32, 85, 220, 0.2);
+
   transition:
     background 0.2s ease,
-    transform 0.2s ease;
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .botao-novo-setor:hover {
-  background: #0f4dcc;
+  background: #1748c6;
+  box-shadow: 0 4px 9px rgba(32, 85, 220, 0.25);
 }
 
 .botao-novo-setor:active {
   transform: translateY(1px);
+}
+
+.icone-botao-novo {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 400;
 }
 
 
@@ -68,6 +97,9 @@
    ========================================================= */
 
 .lista-setores {
+  position: relative;
+  z-index: 2;
+
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
@@ -79,13 +111,20 @@
    ========================================================= */
 
 .card-setor {
-  min-height: 116px;
+  min-height: 135px;
+
+  display: flex;
+  flex-direction: column;
 
   background: white;
-  border: 1px solid #dce3eb;
-  border-radius: 8px;
+  border: 1px solid #dce4ef;
+  border-radius: 14px;
 
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  box-shadow:
+    0 2px 4px rgba(44, 79, 130, 0.07),
+    0 6px 14px rgba(44, 79, 130, 0.035);
+
+  overflow: hidden;
 
   transition:
     transform 0.2s ease,
@@ -93,29 +132,33 @@
 }
 
 .card-setor:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 4px 8px rgba(44, 79, 130, 0.09),
+    0 8px 18px rgba(44, 79, 130, 0.05);
 }
 
 
 /* =========================================================
-   CONTEÚDO DO CARD
+   CABEÇALHO DO CARD
    ========================================================= */
 
-.card-setor-conteudo {
-  min-height: 116px;
+.cabecalho-card-setor {
+  min-height: 81px;
 
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 
   gap: 15px;
-  padding: 20px;
+
+  padding: 20px 20px 15px;
 }
 
 
 /* =========================================================
-   INFORMAÇÕES DO SETOR
+   INFORMAÇÕES
    ========================================================= */
 
 .informacoes-setor {
@@ -123,35 +166,62 @@
 }
 
 .informacoes-setor h2 {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 
-  color: #171b21;
-  font-size: 16px;
+  color: #17275a;
+  font-size: 15px;
   font-weight: 600;
 }
 
 .responsavel-setor {
-  margin-bottom: 15px;
-
-  color: #8795a8;
+  color: #8298b6;
   font-size: 11px;
 }
 
 .responsavel-setor span {
-  color: #7890b5;
+  color: #8095b3;
 }
 
 
 /* =========================================================
-   EQUIPAMENTOS CADASTRADOS
+   ÍCONE
    ========================================================= */
+
+.icone-setor {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #eef5ff;
+  color: #1761ef;
+}
+
+
+/* =========================================================
+   RODAPÉ DO CARD
+   ========================================================= */
+
+.rodape-card-setor {
+  margin: 0 20px;
+
+  padding: 12px 0 15px;
+
+  border-top: 1px solid #edf1f6;
+}
 
 .equipamentos-setor {
   display: flex;
   align-items: center;
   gap: 8px;
 
-  color: #394c64;
+  color: #53657e;
   font-size: 12px;
 }
 
@@ -162,28 +232,154 @@
   flex-shrink: 0;
 
   border-radius: 50%;
-  background: #05be62;
+  background: #05bd68;
 }
 
 
 /* =========================================================
-   ÍCONE DO SETOR
+   DECORAÇÕES
    ========================================================= */
 
-.icone-setor {
-  width: 40px;
-  height: 40px;
+.decoracao-setores {
+  position: absolute;
+  inset: 0;
 
-  flex-shrink: 0;
+  z-index: 1;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  pointer-events: none;
+}
 
-  border-radius: 9px;
-  background: #eef5ff;
 
-  font-size: 20px;
+/* Pontos superiores */
+
+.ponto-setor {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #a5c7ff;
+  opacity: 0.8;
+}
+
+.ponto-setor-1 {
+  top: 66px;
+  right: 30%;
+}
+
+.ponto-setor-2 {
+  top: 66px;
+  right: 26.8%;
+}
+
+.ponto-setor-3 {
+  top: 66px;
+  right: 23.5%;
+}
+
+.ponto-setor-4 {
+  top: 66px;
+  right: 20.2%;
+}
+
+
+/* Círculo principal */
+
+.circulo-setor {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.circulo-setor-1 {
+  width: 195px;
+  height: 195px;
+
+  right: 28px;
+  top: 385px;
+
+  border: 1px solid #b5d0ff;
+}
+
+
+/* Círculo inferior direito */
+
+.circulo-setor-2 {
+  width: 195px;
+  height: 195px;
+
+  right: -5px;
+  bottom: -75px;
+
+  background: rgba(128, 165, 232, 0.2);
+}
+
+
+/* Círculo intermediário */
+
+.circulo-setor-3 {
+  width: 120px;
+  height: 120px;
+
+  right: 175px;
+  bottom: 90px;
+
+  background: rgba(120, 158, 224, 0.25);
+}
+
+
+/* Círculo menor */
+
+.circulo-setor-4 {
+  width: 180px;
+  height: 180px;
+
+  right: 250px;
+  bottom: -55px;
+
+  border: 1px solid #c0d8ff;
+}
+
+
+/* Linhas diagonais */
+
+.linhas-setor {
+  position: absolute;
+
+  width: 165px;
+  height: 1px;
+
+  right: 42px;
+  top: 505px;
+
+  transform: rotate(32deg);
+  transform-origin: right center;
+
+  background: #b8d2fc;
+  opacity: 0.8;
+}
+
+.linhas-setor::before,
+.linhas-setor::after {
+  content: "";
+
+  position: absolute;
+
+  width: 165px;
+  height: 1px;
+
+  right: 0;
+
+  background: #b8d2fc;
+}
+
+.linhas-setor::before {
+  top: 14px;
+}
+
+.linhas-setor::after {
+  top: 28px;
 }
 
 
@@ -197,7 +393,17 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
+  .lista-setores {
+    grid-template-columns: 1fr;
+  }
+
+  .decoracao-setores {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
   .cabecalho-setores {
     flex-direction: column;
     align-items: stretch;
@@ -207,21 +413,23 @@
     align-self: flex-start;
   }
 
-  .lista-setores {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 650px) {
   .cabecalho-setores h1 {
-    font-size: 19px;
+    font-size: 22px;
   }
 
   .cabecalho-setores p {
     font-size: 11px;
   }
 
-  .card-setor-conteudo {
+  .card-setor {
+    min-height: 130px;
+  }
+
+  .cabecalho-card-setor {
     padding: 17px;
+  }
+
+  .rodape-card-setor {
+    margin: 0 17px;
   }
 }

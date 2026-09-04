@@ -6,7 +6,7 @@
 
     <title>SGM - Setores</title>
 
-    <!-- CSS específico da página -->
+    <!-- Caminho do CSS mantido -->
     <link rel="stylesheet" href="../-css/pages/setor_adm.css" />
   </head>
 
@@ -26,10 +26,7 @@
           </div>
         </div>
 
-        <nav
-          class="navegacao-lateral"
-          aria-label="Navegação principal"
-        >
+        <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
 
             <!-- Dashboard -->
@@ -121,12 +118,12 @@
         </nav>
       </aside>
 
+
       <!-- Área principal -->
       <div class="area-principal">
 
         <!-- Cabeçalho -->
         <header class="cabecalho">
-
           <div class="cabecalho-esquerdo">
             <button
               class="botao-menu"
@@ -161,6 +158,7 @@
                 <path
                   d="M18 8a6 6 0 0 0-12 0c0 7-2.5 7-2.5 9h15c0-2-2.5-2-2.5-9"
                 ></path>
+
                 <path d="M10 21h4"></path>
               </svg>
             </button>
@@ -180,12 +178,30 @@
           </div>
         </header>
 
+
         <!-- Conteúdo principal -->
         <main class="conteudo-principal">
+
+          <!-- Decorações -->
+          <div class="decoracao-setores" aria-hidden="true">
+            <span class="ponto-setor ponto-setor-1"></span>
+            <span class="ponto-setor ponto-setor-2"></span>
+            <span class="ponto-setor ponto-setor-3"></span>
+            <span class="ponto-setor ponto-setor-4"></span>
+
+            <span class="circulo-setor circulo-setor-1"></span>
+            <span class="circulo-setor circulo-setor-2"></span>
+            <span class="circulo-setor circulo-setor-3"></span>
+            <span class="circulo-setor circulo-setor-4"></span>
+
+            <span class="linhas-setor"></span>
+          </div>
+
 
           <!-- Cabeçalho da página -->
           <section class="cabecalho-pagina">
             <div class="cabecalho-setores">
+
               <div>
                 <h1>Setores</h1>
                 <p>Locais e áreas da empresa</p>
@@ -196,10 +212,13 @@
                 id="botaoNovoSetor"
                 type="button"
               >
-                + Novo Setor
+                <span class="icone-botao-novo">+</span>
+                Novo Setor
               </button>
+
             </div>
           </section>
+
 
           <!-- Lista de setores -->
           <section
@@ -210,7 +229,8 @@
 
             <!-- Produção -->
             <article class="card-setor">
-              <div class="card-setor-conteudo">
+              <div class="cabecalho-card-setor">
+
                 <div class="informacoes-setor">
                   <h2>Produção</h2>
 
@@ -218,22 +238,42 @@
                     Responsável:
                     <span>Marcos Dias</span>
                   </p>
-
-                  <p class="equipamentos-setor">
-                    <span class="indicador-setor"></span>
-                    12 equipamentos cadastrados
-                  </p>
                 </div>
 
                 <div class="icone-setor" aria-hidden="true">
-                  🏭
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 20V10l8-6 8 6v10"></path>
+                    <path d="M9 20v-6h6v6"></path>
+                    <path d="M8 10h.01"></path>
+                    <path d="M12 10h.01"></path>
+                    <path d="M16 10h.01"></path>
+                  </svg>
                 </div>
+
+              </div>
+
+              <div class="rodape-card-setor">
+                <p class="equipamentos-setor">
+                  <span class="indicador-setor"></span>
+                  12 equipamentos cadastrados
+                </p>
               </div>
             </article>
 
+
             <!-- Embalagem -->
             <article class="card-setor">
-              <div class="card-setor-conteudo">
+              <div class="cabecalho-card-setor">
+
                 <div class="informacoes-setor">
                   <h2>Embalagem</h2>
 
@@ -241,22 +281,42 @@
                     Responsável:
                     <span>Lúcia Torres</span>
                   </p>
-
-                  <p class="equipamentos-setor">
-                    <span class="indicador-setor"></span>
-                    7 equipamentos cadastrados
-                  </p>
                 </div>
 
                 <div class="icone-setor" aria-hidden="true">
-                  🏭
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 20V10l8-6 8 6v10"></path>
+                    <path d="M9 20v-6h6v6"></path>
+                    <path d="M8 10h.01"></path>
+                    <path d="M12 10h.01"></path>
+                    <path d="M16 10h.01"></path>
+                  </svg>
                 </div>
+
+              </div>
+
+              <div class="rodape-card-setor">
+                <p class="equipamentos-setor">
+                  <span class="indicador-setor"></span>
+                  7 equipamentos cadastrados
+                </p>
               </div>
             </article>
 
+
             <!-- Logística -->
             <article class="card-setor">
-              <div class="card-setor-conteudo">
+              <div class="cabecalho-card-setor">
+
                 <div class="informacoes-setor">
                   <h2>Logística</h2>
 
@@ -264,22 +324,42 @@
                     Responsável:
                     <span>Rafael Gomes</span>
                   </p>
-
-                  <p class="equipamentos-setor">
-                    <span class="indicador-setor"></span>
-                    5 equipamentos cadastrados
-                  </p>
                 </div>
 
                 <div class="icone-setor" aria-hidden="true">
-                  🏭
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 20V10l8-6 8 6v10"></path>
+                    <path d="M9 20v-6h6v6"></path>
+                    <path d="M8 10h.01"></path>
+                    <path d="M12 10h.01"></path>
+                    <path d="M16 10h.01"></path>
+                  </svg>
                 </div>
+
+              </div>
+
+              <div class="rodape-card-setor">
+                <p class="equipamentos-setor">
+                  <span class="indicador-setor"></span>
+                  5 equipamentos cadastrados
+                </p>
               </div>
             </article>
 
+
             <!-- Usinagem -->
             <article class="card-setor">
-              <div class="card-setor-conteudo">
+              <div class="cabecalho-card-setor">
+
                 <div class="informacoes-setor">
                   <h2>Usinagem</h2>
 
@@ -287,22 +367,42 @@
                     Responsável:
                     <span>Carlos Mendes</span>
                   </p>
-
-                  <p class="equipamentos-setor">
-                    <span class="indicador-setor"></span>
-                    9 equipamentos cadastrados
-                  </p>
                 </div>
 
                 <div class="icone-setor" aria-hidden="true">
-                  🏭
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 20V10l8-6 8 6v10"></path>
+                    <path d="M9 20v-6h6v6"></path>
+                    <path d="M8 10h.01"></path>
+                    <path d="M12 10h.01"></path>
+                    <path d="M16 10h.01"></path>
+                  </svg>
                 </div>
+
+              </div>
+
+              <div class="rodape-card-setor">
+                <p class="equipamentos-setor">
+                  <span class="indicador-setor"></span>
+                  9 equipamentos cadastrados
+                </p>
               </div>
             </article>
 
+
             <!-- Utilidades -->
             <article class="card-setor">
-              <div class="card-setor-conteudo">
+              <div class="cabecalho-card-setor">
+
                 <div class="informacoes-setor">
                   <h2>Utilidades</h2>
 
@@ -310,22 +410,42 @@
                     Responsável:
                     <span>Fábio Santos</span>
                   </p>
-
-                  <p class="equipamentos-setor">
-                    <span class="indicador-setor"></span>
-                    4 equipamentos cadastrados
-                  </p>
                 </div>
 
                 <div class="icone-setor" aria-hidden="true">
-                  🏭
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 20V10l8-6 8 6v10"></path>
+                    <path d="M9 20v-6h6v6"></path>
+                    <path d="M8 10h.01"></path>
+                    <path d="M12 10h.01"></path>
+                    <path d="M16 10h.01"></path>
+                  </svg>
                 </div>
+
+              </div>
+
+              <div class="rodape-card-setor">
+                <p class="equipamentos-setor">
+                  <span class="indicador-setor"></span>
+                  4 equipamentos cadastrados
+                </p>
               </div>
             </article>
 
+
             <!-- Manutenção -->
             <article class="card-setor">
-              <div class="card-setor-conteudo">
+              <div class="cabecalho-card-setor">
+
                 <div class="informacoes-setor">
                   <h2>Manutenção</h2>
 
@@ -333,16 +453,34 @@
                     Responsável:
                     <span>Ana Souza</span>
                   </p>
-
-                  <p class="equipamentos-setor">
-                    <span class="indicador-setor"></span>
-                    3 equipamentos cadastrados
-                  </p>
                 </div>
 
                 <div class="icone-setor" aria-hidden="true">
-                  🏭
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 20V10l8-6 8 6v10"></path>
+                    <path d="M9 20v-6h6v6"></path>
+                    <path d="M8 10h.01"></path>
+                    <path d="M12 10h.01"></path>
+                    <path d="M16 10h.01"></path>
+                  </svg>
                 </div>
+
+              </div>
+
+              <div class="rodape-card-setor">
+                <p class="equipamentos-setor">
+                  <span class="indicador-setor"></span>
+                  3 equipamentos cadastrados
+                </p>
               </div>
             </article>
 
@@ -351,7 +489,7 @@
       </div>
     </div>
 
-    <!-- JavaScript global -->
+    <!-- Caminho do JS mantido -->
     <script src="../-js/global.js"></script>
   </body>
-</html>
+</html>>
