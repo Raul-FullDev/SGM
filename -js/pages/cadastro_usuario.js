@@ -1,6 +1,4 @@
-document
-  .getElementById("userForm")
-  .addEventListener("submit", function (event) {
+document.getElementById("userForm").addEventListener("submit", async function (event) {
     event.preventDefault();
 
     // 1. Capturando os elementos de forma segura
@@ -21,15 +19,47 @@ document
       id_papel: Number(nivel), // Corrigido de 'id_nivel_usuario' para 'id_papel'
     };
 
+    if (contato.length > 12){
+      alert("Seu número de telefone passa do limite de 12 caracteres");
+      return;
+    }
+
+    if (contato.length < 12){
+      alert("Digite um número valido")
+      return;
+    }
+
+    try {
+        const checkResponse = await fetch(`https://akbqnlvyfravlglouoqs.supabase.co/rest/v1/usuario?contato=eq.${encodeURIComponent(contato)}`, {
+            method: 'GET',
+            headers: {
+                "apikey": "sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK",
+                "Authorization": "Bearer sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK"
+                }
+            });
+
+            const checagemContanto = await checkResponse.json();
+
+            if (checagemContanto.length > 0){
+                alert("O número inserido já foi cadastrado");
+                return;
+            }
+
+            } catch (error) {
+            console.error("Erro na verificação de contato:", error);
+                alert("Erro ao verificar duplicidade de contato.");
+                return;
+            }
+
     console.log("Enviando usuário:", novoUsuario);
 
     // 3. Fazendo a requisição (POST) para o Supabase
-    fetch("https://akbqnlvyfravlglouoqs.supabase.co/rest/v1/usuario", {
+    fetch("https://umvtsquzpugempndwitx.supabase.co/rest/v1/usuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        apikey: "sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK",
-        Authorization: "Bearer sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK",
+        apikey: "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
+        Authorization: "Bearer sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
         Prefer: "return=representation", // Faz o Supabase devolver os dados inseridos na resposta
       },
       body: JSON.stringify(novoUsuario),
@@ -57,4 +87,4 @@ document
         console.error("Falha ao salvar no banco:", error);
         alert("Ocorreu um erro ao cadastrar. Verifique o console.");
       });
-  });
+});
