@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SGM - Relatórios</title>
+
+    <!-- CSS específico da página -->
+    <link rel="stylesheet" href="../-css/pages/relatorios_adm.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+
+      <!-- Menu lateral -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
+          <div class="logo">
+            <span class="icone-logo">S</span>
+
+            <div class="texto-logo">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav
+          class="navegacao-lateral"
+          aria-label="Navegação principal"
+        >
+          <ul class="lista-navegacao">
+
+            <!-- Dashboard -->
+            <li class="item-navegacao">
+              <a href="dashboard.html" class="link-navegacao">
+                <span class="icone-navegacao">▣</span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <!-- Ordens de Serviço -->
+            <li class="item-navegacao">
+              <a href="todas_os.html" class="link-navegacao">
+                <span class="icone-navegacao">▤</span>
+                <span>Ordens de Serviço</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Equipamentos -->
+            <li class="item-navegacao">
+              <a href="equipamentos.html" class="link-navegacao">
+                <span class="icone-navegacao">□</span>
+                <span>Equipamentos</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Setor -->
+            <li class="item-navegacao">
+              <a href="setor_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">□</span>
+                <span>Setor</span>
+              </a>
+            </li>
+
+            <!-- Histórico -->
+            <li class="item-navegacao">
+              <a href="historico_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">□</span>
+                <span>Histórico</span>
+              </a>
+            </li>
+
+            <!-- Indicadores -->
+            <li class="item-navegacao">
+              <a href="indicadores_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">□</span>
+                <span>Indicadores</span>
+              </a>
+            </li>
+
+            <!-- Relatórios -->
+            <li class="item-navegacao ativo">
+              <a href="relatorios_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">⚒</span>
+                <span>Relatórios</span>
+              </a>
+            </li>
+
+            <!-- Manutenção -->
+            <li class="item-navegacao">
+              <a href="#" class="link-navegacao">
+                <span class="icone-navegacao">⚒</span>
+                <span>Manutenção</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Peças -->
+            <li class="item-navegacao">
+              <a href="#" class="link-navegacao">
+                <span class="icone-navegacao">◇</span>
+                <span>Peças</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Administração -->
+            <li class="item-navegacao">
+              <a href="#" class="link-navegacao">
+                <span class="icone-navegacao">♧</span>
+                <span>Administração</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </aside>
+
+
+      <!-- Área principal -->
+      <div class="area-principal">
+
+        <!-- Cabeçalho -->
+        <header class="cabecalho">
+
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="cabecalho-direito">
+
+            <!-- Notificações -->
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-2.5 7-2.5 9h15c0-2-2.5-2-2.5-9"
+                ></path>
+                <path d="M10 21h4"></path>
+              </svg>
+            </button>
+
+            <!-- Perfil -->
+            <div class="perfil-usuario">
+              <div class="avatar-usuario">AS</div>
+
+              <div class="informacoes-usuario">
+                <strong>Admin Sistema</strong>
+                <span>Administrador</span>
+              </div>
+
+              <span class="seta-perfil">⌄</span>
+            </div>
+
+          </div>
+        </header>
+
+
+        <!-- Conteúdo principal -->
+        <main class="conteudo-principal">
+
+          <!-- Elementos decorativos -->
+          <div class="decoracao-relatorios" aria-hidden="true">
+            <span class="ponto ponto-1"></span>
+            <span class="ponto ponto-2"></span>
+            <span class="ponto ponto-3"></span>
+            <span class="ponto ponto-4"></span>
+
+            <span class="circulo circulo-1"></span>
+            <span class="circulo circulo-2"></span>
+            <span class="circulo circulo-3"></span>
+            <span class="circulo circulo-4"></span>
+          </div>
+
+
+          <!-- Cabeçalho da página -->
+          <section class="cabecalho-pagina">
+            <h1>Relatórios</h1>
+            <p>Geração de relatórios e exportação de dados</p>
+          </section>
+
+
+          <!-- Lista de relatórios -->
+          <section
+            class="lista-relatorios"
+            id="listaRelatorios"
+            aria-label="Relatórios disponíveis"
+          >
+
+            <!-- OS por período -->
+            <article class="card-relatorio">
+              <div class="icone-relatorio">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <path d="M14 2v6h6"></path>
+                  <path d="M8 13h8"></path>
+                  <path d="M8 17h5"></path>
+                </svg>
+              </div>
+
+              <div class="conteudo-relatorio">
+                <h2>OS por período</h2>
+                <p>Todas as ordens de serviço em um intervalo de datas</p>
+              </div>
+
+              <div class="acoes-relatorio">
+                <button
+                  class="botao-gerar-relatorio"
+                  type="button"
+                  data-relatorio="os-periodo"
+                >
+                  Gerar PDF
+                </button>
+
+                <button
+                  class="botao-csv"
+                  type="button"
+                  data-relatorio="os-periodo"
+                >
+                  CSV
+                </button>
+              </div>
+            </article>
+
+
+            <!-- Custo por equipamento -->
+            <article class="card-relatorio">
+              <div class="icone-relatorio">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M6 20V10"></path>
+                  <path d="M12 20V4"></path>
+                  <path d="M18 20v-7"></path>
+                </svg>
+              </div>
+
+              <div class="conteudo-relatorio">
+                <h2>Custo por equipamento</h2>
+                <p>Gastos com peças e mão de obra por ativo</p>
+              </div>
+
+              <div class="acoes-relatorio">
+                <button
+                  class="botao-gerar-relatorio"
+                  type="button"
+                  data-relatorio="custo-equipamento"
+                >
+                  Gerar PDF
+                </button>
+
+                <button
+                  class="botao-csv"
+                  type="button"
+                  data-relatorio="custo-equipamento"
+                >
+                  CSV
+                </button>
+              </div>
+            </article>
+
+
+            <!-- Disponibilidade -->
+            <article class="card-relatorio">
+              <div class="icone-relatorio">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M6 20V10"></path>
+                  <path d="M12 20V4"></path>
+                  <path d="M18 20v-7"></path>
+                </svg>
+              </div>
+
+              <div class="conteudo-relatorio">
+                <h2>Disponibilidade</h2>
+                <p>MTBF, MTTF e indisponibilidade por equipamento</p>
+              </div>
+
+              <div class="acoes-relatorio">
+                <button
+                  class="botao-gerar-relatorio"
+                  type="button"
+                  data-relatorio="disponibilidade"
+                >
+                  Gerar PDF
+                </button>
+
+                <button
+                  class="botao-csv"
+                  type="button"
+                  data-relatorio="disponibilidade"
+                >
+                  CSV
+                </button>
+              </div>
+            </article>
+
+
+            <!-- Histórico por técnico -->
+            <article class="card-relatorio">
+              <div class="icone-relatorio">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+
+              <div class="conteudo-relatorio">
+                <h2>Histórico por técnico</h2>
+                <p>Serviços executados por cada técnico</p>
+              </div>
+
+              <div class="acoes-relatorio">
+                <button
+                  class="botao-gerar-relatorio"
+                  type="button"
+                  data-relatorio="historico-tecnico"
+                >
+                  Gerar PDF
+                </button>
+
+                <button
+                  class="botao-csv"
+                  type="button"
+                  data-relatorio="historico-tecnico"
+                >
+                  CSV
+                </button>
+              </div>
+            </article>
+
+
+            <!-- Consumo de peças -->
+            <article class="card-relatorio">
+              <div class="icone-relatorio">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2 4.5 6.3v8.4L12 19l7.5-4.3V6.3z"></path>
+                  <path d="m4.5 6.3 7.5 4.4 7.5-4.4"></path>
+                  <path d="M12 10.7V19"></path>
+                </svg>
+              </div>
+
+              <div class="conteudo-relatorio">
+                <h2>Consumo de peças</h2>
+                <p>Movimentação e custo total de estoque</p>
+              </div>
+
+              <div class="acoes-relatorio">
+                <button
+                  class="botao-gerar-relatorio"
+                  type="button"
+                  data-relatorio="consumo-pecas"
+                >
+                  Gerar PDF
+                </button>
+
+                <button
+                  class="botao-csv"
+                  type="button"
+                  data-relatorio="consumo-pecas"
+                >
+                  CSV
+                </button>
+              </div>
+            </article>
+
+
+            <!-- Plano preventivo -->
+            <article class="card-relatorio">
+              <div class="icone-relatorio">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6l-2.4 2.4-3-3z"></path>
+                </svg>
+              </div>
+
+              <div class="conteudo-relatorio">
+                <h2>Plano preventivo</h2>
+                <p>Calendário de manutenções programadas</p>
+              </div>
+
+              <div class="acoes-relatorio">
+                <button
+                  class="botao-gerar-relatorio"
+                  type="button"
+                  data-relatorio="plano-preventivo"
+                >
+                  Gerar PDF
+                </button>
+
+                <button
+                  class="botao-csv"
+                  type="button"
+                  data-relatorio="plano-preventivo"
+                >
+                  CSV
+                </button>
+              </div>
+            </article>
+
+          </section>
+        </main>
+      </div>
+    </div>
+
+
+    <!-- JavaScript global -->
+    <script src="../-js/global.js"></script>
+  </body>
+</html>

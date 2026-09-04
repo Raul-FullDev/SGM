@@ -1,0 +1,332 @@
+@import url("../global.css");
+@import url("../layout/sidebar.css");
+@import url("../layout/header.css");
+
+
+/* =========================================================
+   CONTEÚDO DA PÁGINA
+   ========================================================= */
+
+.conteudo-principal {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   CABEÇALHO DA PÁGINA
+   ========================================================= */
+
+.cabecalho-pagina {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 25px;
+}
+
+.cabecalho-pagina h1 {
+  color: #172b5a;
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.cabecalho-pagina p {
+  color: #667a99;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   LISTA DE RELATÓRIOS
+   ========================================================= */
+
+.lista-relatorios {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+
+/* =========================================================
+   CARD DE RELATÓRIO
+   ========================================================= */
+
+.card-relatorio {
+  min-height: 191px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+
+  background: white;
+  border: 1px solid #dce5f0;
+  border-radius: 15px;
+
+  box-shadow:
+    0 2px 4px rgba(52, 92, 145, 0.08),
+    0 5px 12px rgba(52, 92, 145, 0.04);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card-relatorio:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 4px 9px rgba(52, 92, 145, 0.1),
+    0 8px 16px rgba(52, 92, 145, 0.06);
+}
+
+
+/* =========================================================
+   ÍCONE DO RELATÓRIO
+   ========================================================= */
+
+.icone-relatorio {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 17px;
+
+  border-radius: 10px;
+
+  background: #eef5ff;
+  color: #1661ed;
+}
+
+.card-relatorio:first-child .icone-relatorio {
+  background: #dceaff;
+}
+
+
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+
+.conteudo-relatorio {
+  flex: 1;
+}
+
+.conteudo-relatorio h2 {
+  margin-bottom: 7px;
+
+  color: #14255d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.conteudo-relatorio p {
+  color: #8ba0bf;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   AÇÕES
+   ========================================================= */
+
+.acoes-relatorio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 14px;
+}
+
+.botao-gerar-relatorio,
+.botao-csv {
+  height: 31px;
+
+  border-radius: 11px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.botao-gerar-relatorio {
+  padding: 0 13px;
+
+  border: none;
+
+  background: #2155dc;
+  color: white;
+
+  box-shadow: 0 2px 4px rgba(33, 85, 220, 0.2);
+}
+
+.botao-gerar-relatorio:hover {
+  background: #1748c6;
+}
+
+.botao-csv {
+  padding: 0 12px;
+
+  border: 1px solid #d7dfe9;
+
+  background: white;
+  color: #45566e;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.botao-csv:hover {
+  background: #f7f9fc;
+}
+
+.botao-gerar-relatorio:active,
+.botao-csv:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================================================
+   DECORAÇÕES DA PÁGINA
+   ========================================================= */
+
+.decoracao-relatorios {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+/* Pontos */
+
+.ponto {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #a8c9ff;
+  opacity: 0.7;
+}
+
+.ponto-1 {
+  top: 65px;
+  right: 31%;
+}
+
+.ponto-2 {
+  top: 65px;
+  right: 27.8%;
+}
+
+.ponto-3 {
+  top: 65px;
+  right: 24.4%;
+}
+
+.ponto-4 {
+  top: 65px;
+  right: 21%;
+}
+
+
+/* Círculos */
+
+.circulo {
+  position: absolute;
+
+  border-radius: 50%;
+}
+
+.circulo-1 {
+  width: 190px;
+  height: 190px;
+
+  right: -5px;
+  top: 385px;
+
+  border: 1px solid #b6d1ff;
+}
+
+.circulo-2 {
+  width: 180px;
+  height: 180px;
+
+  right: 95px;
+  bottom: -30px;
+
+  background: rgba(139, 176, 235, 0.19);
+}
+
+.circulo-3 {
+  width: 120px;
+  height: 120px;
+
+  right: 180px;
+  bottom: 82px;
+
+  background: rgba(126, 165, 231, 0.25);
+}
+
+.circulo-4 {
+  width: 180px;
+  height: 180px;
+
+  right: 250px;
+  bottom: -60px;
+
+  border: 1px solid #bdd5ff;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .lista-relatorios {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 750px) {
+  .lista-relatorios {
+    grid-template-columns: 1fr;
+  }
+
+  .card-relatorio {
+    min-height: 175px;
+  }
+
+  .decoracao-relatorios {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .cabecalho-pagina h1 {
+    font-size: 22px;
+  }
+
+  .cabecalho-pagina p {
+    font-size: 11px;
+  }
+
+  .card-relatorio {
+    padding: 17px;
+    border-radius: 11px;
+  }
+}
