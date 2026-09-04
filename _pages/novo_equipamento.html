@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SGM - Novo Equipamento</title>
+
+    <!-- Caminho do CSS mantido -->
+    <link rel="stylesheet" href="../-css/pages/novo_equipamento.css" />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="layout">
+
+      <!-- Menu lateral -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
+          <div class="logo">
+            <span class="icone-logo">S</span>
+
+            <div class="texto-logo">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="navegacao-lateral" aria-label="Navegação principal">
+          <ul class="lista-navegacao">
+
+            <!-- Dashboard -->
+            <li class="item-navegacao">
+              <a href="dashboard.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-list-task"></i>
+                </span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <!-- Ordens de Serviço -->
+            <li class="item-navegacao">
+              <a href="todas_os.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-clipboard-data"></i>
+                </span>
+                <span>Ordens de Serviço</span>
+              </a>
+            </li>
+
+            <!-- Equipamentos -->
+            <li class="item-navegacao ativo">
+              <a href="equipamentos.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-wrench-adjustable"></i>
+                </span>
+                <span>Equipamentos</span>
+              </a>
+            </li>
+
+            <!-- Setor -->
+            <li class="item-navegacao">
+              <a href="setor_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-collection"></i>
+                </span>
+                <span>Setor</span>
+              </a>
+            </li>
+
+            <!-- Histórico -->
+            <li class="item-navegacao">
+              <a href="historico_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-clock-history"></i>
+                </span>
+                <span>Histórico</span>
+              </a>
+            </li>
+
+            <!-- Indicadores -->
+            <li class="item-navegacao">
+              <a href="indicadores_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-bar-chart"></i>
+                </span>
+                <span>Indicadores</span>
+              </a>
+            </li>
+
+            <!-- Relatórios -->
+            <li class="item-navegacao">
+              <a href="relatorios_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-file-earmark-text"></i>
+                </span>
+                <span>Relatórios</span>
+              </a>
+            </li>
+
+            <!-- Manutenção -->
+            <li class="item-navegacao">
+              <a href="manutencao_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-tools"></i>
+                </span>
+                <span>Manutenção</span>
+              </a>
+            </li>
+
+            <!-- Peças -->
+            <li class="item-navegacao">
+              <a href="pecas_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-nut"></i>
+                </span>
+                <span>Peças</span>
+              </a>
+            </li>
+
+            <!-- Administração -->
+            <li class="item-navegacao">
+              <a href="usuarios.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-people"></i>
+                </span>
+                <span>Administração</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </aside>
+
+
+      <!-- Área principal -->
+      <div class="area-principal">
+
+        <!-- Cabeçalho -->
+        <header class="cabecalho">
+
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="cabecalho-direito">
+
+            <!-- Notificações -->
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            ></button>
+
+            <!-- Perfil -->
+            <div class="perfil-usuario">
+              <div class="avatar-usuario">AS</div>
+
+              <div class="informacoes-usuario">
+                <strong>Admin Sistema</strong>
+                <span>Administrador</span>
+              </div>
+            </div>
+
+          </div>
+        </header>
+
+
+        <!-- Conteúdo principal -->
+        <main class="conteudo-principal">
+
+          <!-- Decorações -->
+          <div class="decoracao-equipamento" aria-hidden="true">
+            <span class="ponto-equipamento ponto-equipamento-1"></span>
+            <span class="ponto-equipamento ponto-equipamento-2"></span>
+            <span class="ponto-equipamento ponto-equipamento-3"></span>
+            <span class="ponto-equipamento ponto-equipamento-4"></span>
+            <span class="ponto-equipamento ponto-equipamento-5"></span>
+
+            <span class="circulo-equipamento circulo-equipamento-1"></span>
+            <span class="circulo-equipamento circulo-equipamento-2"></span>
+            <span class="circulo-equipamento circulo-equipamento-3"></span>
+            <span class="circulo-equipamento circulo-equipamento-4"></span>
+
+            <span class="linhas-equipamento"></span>
+          </div>
+
+
+          <!-- Breadcrumb -->
+          <nav
+            class="breadcrumb-pagina"
+            aria-label="Navegação estrutural"
+          >
+            <a href="equipamentos.html">
+              <i class="bi bi-chevron-left"></i>
+              <span>Equipamentos</span>
+            </a>
+
+            <span class="breadcrumb-separador">
+              <i class="bi bi-chevron-right"></i>
+            </span>
+
+            <span class="breadcrumb-atual">
+              Novo Equipamento
+            </span>
+          </nav>
+
+
+          <!-- Cabeçalho da página -->
+          <section class="cabecalho-pagina">
+            <h1>Novo Equipamento</h1>
+            <p>
+              Preencha os dados do ativo para registrá-lo no sistema
+            </p>
+          </section>
+
+
+          <!-- Formulário -->
+          <form
+            class="formulario-equipamento"
+            id="formularioEquipamento"
+          >
+
+            <div class="campos-equipamento">
+
+              <!-- Código do ativo -->
+              <div class="campo-formulario">
+                <label for="codigoAtivo">
+                  Código do Ativo (Asset)
+                  <span class="campo-obrigatorio">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="codigoAtivo"
+                  name="codigoAtivo"
+                  placeholder="Ex: EQ007"
+                  required
+                />
+              </div>
+
+
+              <!-- Status -->
+              <div class="campo-formulario">
+                <label for="statusEquipamento">
+                  Status
+                  <span class="campo-obrigatorio">*</span>
+                </label>
+
+                <select
+                  id="statusEquipamento"
+                  name="statusEquipamento"
+                  required
+                >
+                  <option value="ativo">Ativo</option>
+                  <option value="manutencao">Em manutenção</option>
+                  <option value="inativo">Inativo</option>
+                </select>
+              </div>
+
+
+              <!-- Descrição -->
+              <div class="campo-formulario campo-largo">
+                <label for="descricaoEquipamento">
+                  Descrição / Nome do Equipamento
+                  <span class="campo-obrigatorio">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="descricaoEquipamento"
+                  name="descricaoEquipamento"
+                  placeholder="Ex: Compressor de Ar Industrial"
+                  required
+                />
+              </div>
+
+
+              <!-- Fabricante -->
+              <div class="campo-formulario">
+                <label for="fabricanteEquipamento">
+                  Fabricante
+                  <span class="campo-obrigatorio">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="fabricanteEquipamento"
+                  name="fabricanteEquipamento"
+                  placeholder="Ex: Atlas Copco"
+                  required
+                />
+              </div>
+
+
+              <!-- Modelo -->
+              <div class="campo-formulario">
+                <label for="modeloEquipamento">
+                  Modelo
+                  <span class="campo-obrigatorio">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="modeloEquipamento"
+                  name="modeloEquipamento"
+                  placeholder="Ex: GA30+"
+                  required
+                />
+              </div>
+
+
+              <!-- Número de série -->
+              <div class="campo-formulario">
+                <label for="numeroSerie">
+                  Número de Série
+                  <span class="campo-obrigatorio">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="numeroSerie"
+                  name="numeroSerie"
+                  placeholder="Ex: ATC-2024-0001"
+                  required
+                />
+              </div>
+
+
+              <!-- Data de aquisição -->
+              <div class="campo-formulario">
+                <label for="dataAquisicao">
+                  Data de Aquisição
+                  <span class="campo-obrigatorio">*</span>
+                </label>
+
+                <input
+                  type="date"
+                  id="dataAquisicao"
+                  name="dataAquisicao"
+                  required
+                />
+              </div>
+
+
+              <!-- Setor / Localização -->
+              <div class="campo-formulario campo-largo">
+                <label for="setorLocalizacao">
+                  Setor / Localização
+                  <span class="campo-obrigatorio">*</span>
+                </label>
+
+                <select
+                  id="setorLocalizacao"
+                  name="setorLocalizacao"
+                  required
+                >
+                  <option value="producao">Produção</option>
+                  <option value="embalagem">Embalagem</option>
+                  <option value="logistica">Logística</option>
+                  <option value="usinagem">Usinagem</option>
+                  <option value="utilidades">Utilidades</option>
+                  <option value="manutencao">Manutenção</option>
+                </select>
+              </div>
+
+            </div>
+
+
+            <!-- Aviso -->
+            <div class="aviso-formulario">
+              <i class="bi bi-info-circle"></i>
+
+              <span>
+                Asset e Número de Série devem ser únicos no sistema.
+              </span>
+            </div>
+
+          </form>
+
+
+          <!-- Ações -->
+          <div class="acoes-formulario">
+
+            <a
+              href="equipamentos.html"
+              class="botao-cancelar"
+            >
+              Cancelar
+            </a>
+
+            <button
+              type="submit"
+              class="botao-cadastrar"
+              form="formularioEquipamento"
+            >
+              <i class="bi bi-plus-lg"></i>
+              <span>Cadastrar</span>
+            </button>
+
+          </div>
+
+        </main>
+      </div>
+    </div>
+
+
+    <!-- Caminho do JS mantido -->
+    <script src="../-js/global.js"></script>
+  </body>
+</html>
