@@ -22,6 +22,8 @@
   transform: translateY(1px);
 }
 .button-primary {
+  margin-left: 1019px;
+  margin-top: -50px;
   background: var(--blue);
   color: white;
   box-shadow: 0 2px 5px rgba(20, 91, 234, 0.18);
