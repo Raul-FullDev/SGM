@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SGM - Setores</title>
+
+    <!-- CSS específico da página -->
+    <link rel="stylesheet" href="../-css/pages/setor_adm.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+
+      <!-- Menu lateral -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
+          <div class="logo">
+            <span class="icone-logo">S</span>
+
+            <div class="texto-logo">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav
+          class="navegacao-lateral"
+          aria-label="Navegação principal"
+        >
+          <ul class="lista-navegacao">
+
+            <!-- Dashboard -->
+            <li class="item-navegacao">
+              <a href="dashboard.html" class="link-navegacao">
+                <span class="icone-navegacao">▣</span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <!-- Ordens de Serviço -->
+            <li class="item-navegacao">
+              <a href="todas_os.html" class="link-navegacao">
+                <span class="icone-navegacao">▤</span>
+                <span>Ordens de Serviço</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Equipamentos -->
+            <li class="item-navegacao">
+              <a href="equipamentos.html" class="link-navegacao">
+                <span class="icone-navegacao">□</span>
+                <span>Equipamentos</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Setor -->
+            <li class="item-navegacao ativo">
+              <a href="setor_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">□</span>
+                <span>Setor</span>
+              </a>
+            </li>
+
+            <!-- Histórico -->
+            <li class="item-navegacao">
+              <a href="historico_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">□</span>
+                <span>Histórico</span>
+              </a>
+            </li>
+
+            <!-- Indicadores -->
+            <li class="item-navegacao">
+              <a href="indicadores_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">□</span>
+                <span>Indicadores</span>
+              </a>
+            </li>
+
+            <!-- Relatórios -->
+            <li class="item-navegacao">
+              <a href="relatorios_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">⚒</span>
+                <span>Relatórios</span>
+              </a>
+            </li>
+
+            <!-- Manutenção -->
+            <li class="item-navegacao">
+              <a href="#" class="link-navegacao">
+                <span class="icone-navegacao">⚒</span>
+                <span>Manutenção</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Peças -->
+            <li class="item-navegacao">
+              <a href="#" class="link-navegacao">
+                <span class="icone-navegacao">◇</span>
+                <span>Peças</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+            <!-- Administração -->
+            <li class="item-navegacao">
+              <a href="#" class="link-navegacao">
+                <span class="icone-navegacao">♧</span>
+                <span>Administração</span>
+                <span class="seta-navegacao">⌄</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Área principal -->
+      <div class="area-principal">
+
+        <!-- Cabeçalho -->
+        <header class="cabecalho">
+
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="cabecalho-direito">
+
+            <!-- Notificações -->
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-2.5 7-2.5 9h15c0-2-2.5-2-2.5-9"
+                ></path>
+                <path d="M10 21h4"></path>
+              </svg>
+            </button>
+
+            <!-- Perfil -->
+            <div class="perfil-usuario">
+              <div class="avatar-usuario">AS</div>
+
+              <div class="informacoes-usuario">
+                <strong>Admin Sistema</strong>
+                <span>Administrador</span>
+              </div>
+
+              <span class="seta-perfil">⌄</span>
+            </div>
+
+          </div>
+        </header>
+
+        <!-- Conteúdo principal -->
+        <main class="conteudo-principal">
+
+          <!-- Cabeçalho da página -->
+          <section class="cabecalho-pagina">
+            <div class="cabecalho-setores">
+              <div>
+                <h1>Setores</h1>
+                <p>Locais e áreas da empresa</p>
+              </div>
+
+              <button
+                class="botao-novo-setor"
+                id="botaoNovoSetor"
+                type="button"
+              >
+                + Novo Setor
+              </button>
+            </div>
+          </section>
+
+          <!-- Lista de setores -->
+          <section
+            class="lista-setores"
+            id="listaSetores"
+            aria-label="Setores cadastrados"
+          >
+
+            <!-- Produção -->
+            <article class="card-setor">
+              <div class="card-setor-conteudo">
+                <div class="informacoes-setor">
+                  <h2>Produção</h2>
+
+                  <p class="responsavel-setor">
+                    Responsável:
+                    <span>Marcos Dias</span>
+                  </p>
+
+                  <p class="equipamentos-setor">
+                    <span class="indicador-setor"></span>
+                    12 equipamentos cadastrados
+                  </p>
+                </div>
+
+                <div class="icone-setor" aria-hidden="true">
+                  🏭
+                </div>
+              </div>
+            </article>
+
+            <!-- Embalagem -->
+            <article class="card-setor">
+              <div class="card-setor-conteudo">
+                <div class="informacoes-setor">
+                  <h2>Embalagem</h2>
+
+                  <p class="responsavel-setor">
+                    Responsável:
+                    <span>Lúcia Torres</span>
+                  </p>
+
+                  <p class="equipamentos-setor">
+                    <span class="indicador-setor"></span>
+                    7 equipamentos cadastrados
+                  </p>
+                </div>
+
+                <div class="icone-setor" aria-hidden="true">
+                  🏭
+                </div>
+              </div>
+            </article>
+
+            <!-- Logística -->
+            <article class="card-setor">
+              <div class="card-setor-conteudo">
+                <div class="informacoes-setor">
+                  <h2>Logística</h2>
+
+                  <p class="responsavel-setor">
+                    Responsável:
+                    <span>Rafael Gomes</span>
+                  </p>
+
+                  <p class="equipamentos-setor">
+                    <span class="indicador-setor"></span>
+                    5 equipamentos cadastrados
+                  </p>
+                </div>
+
+                <div class="icone-setor" aria-hidden="true">
+                  🏭
+                </div>
+              </div>
+            </article>
+
+            <!-- Usinagem -->
+            <article class="card-setor">
+              <div class="card-setor-conteudo">
+                <div class="informacoes-setor">
+                  <h2>Usinagem</h2>
+
+                  <p class="responsavel-setor">
+                    Responsável:
+                    <span>Carlos Mendes</span>
+                  </p>
+
+                  <p class="equipamentos-setor">
+                    <span class="indicador-setor"></span>
+                    9 equipamentos cadastrados
+                  </p>
+                </div>
+
+                <div class="icone-setor" aria-hidden="true">
+                  🏭
+                </div>
+              </div>
+            </article>
+
+            <!-- Utilidades -->
+            <article class="card-setor">
+              <div class="card-setor-conteudo">
+                <div class="informacoes-setor">
+                  <h2>Utilidades</h2>
+
+                  <p class="responsavel-setor">
+                    Responsável:
+                    <span>Fábio Santos</span>
+                  </p>
+
+                  <p class="equipamentos-setor">
+                    <span class="indicador-setor"></span>
+                    4 equipamentos cadastrados
+                  </p>
+                </div>
+
+                <div class="icone-setor" aria-hidden="true">
+                  🏭
+                </div>
+              </div>
+            </article>
+
+            <!-- Manutenção -->
+            <article class="card-setor">
+              <div class="card-setor-conteudo">
+                <div class="informacoes-setor">
+                  <h2>Manutenção</h2>
+
+                  <p class="responsavel-setor">
+                    Responsável:
+                    <span>Ana Souza</span>
+                  </p>
+
+                  <p class="equipamentos-setor">
+                    <span class="indicador-setor"></span>
+                    3 equipamentos cadastrados
+                  </p>
+                </div>
+
+                <div class="icone-setor" aria-hidden="true">
+                  🏭
+                </div>
+              </div>
+            </article>
+
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- JavaScript global -->
+    <script src="../-js/global.js"></script>
+  </body>
+</html>
