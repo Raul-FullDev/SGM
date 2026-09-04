@@ -1,0 +1,227 @@
+@import url("../global.css");
+@import url("../layout/sidebar.css");
+@import url("../layout/header.css");
+
+
+/* =========================================================
+   CABEÇALHO DA PÁGINA
+   ========================================================= */
+
+.cabecalho-pagina {
+  margin-bottom: 24px;
+}
+
+.cabecalho-setores {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cabecalho-setores h1 {
+  color: #171b21;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.cabecalho-setores p {
+  color: var(--cinza-600);
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   BOTÃO NOVO SETOR
+   ========================================================= */
+
+.botao-novo-setor {
+  min-width: 120px;
+  height: 36px;
+  padding: 0 16px;
+
+  border: none;
+  border-radius: 5px;
+
+  background: #145bea;
+  color: white;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.botao-novo-setor:hover {
+  background: #0f4dcc;
+}
+
+.botao-novo-setor:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================================================
+   LISTA DE SETORES
+   ========================================================= */
+
+.lista-setores {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+
+/* =========================================================
+   CARD DE SETOR
+   ========================================================= */
+
+.card-setor {
+  min-height: 116px;
+
+  background: white;
+  border: 1px solid #dce3eb;
+  border-radius: 8px;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card-setor:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================================================
+   CONTEÚDO DO CARD
+   ========================================================= */
+
+.card-setor-conteudo {
+  min-height: 116px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 15px;
+  padding: 20px;
+}
+
+
+/* =========================================================
+   INFORMAÇÕES DO SETOR
+   ========================================================= */
+
+.informacoes-setor {
+  min-width: 0;
+}
+
+.informacoes-setor h2 {
+  margin-bottom: 4px;
+
+  color: #171b21;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.responsavel-setor {
+  margin-bottom: 15px;
+
+  color: #8795a8;
+  font-size: 11px;
+}
+
+.responsavel-setor span {
+  color: #7890b5;
+}
+
+
+/* =========================================================
+   EQUIPAMENTOS CADASTRADOS
+   ========================================================= */
+
+.equipamentos-setor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #394c64;
+  font-size: 12px;
+}
+
+.indicador-setor {
+  width: 8px;
+  height: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+  background: #05be62;
+}
+
+
+/* =========================================================
+   ÍCONE DO SETOR
+   ========================================================= */
+
+.icone-setor {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+  background: #eef5ff;
+
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .lista-setores {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .cabecalho-setores {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .botao-novo-setor {
+    align-self: flex-start;
+  }
+
+  .lista-setores {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .cabecalho-setores h1 {
+    font-size: 19px;
+  }
+
+  .cabecalho-setores p {
+    font-size: 11px;
+  }
+
+  .card-setor-conteudo {
+    padding: 17px;
+  }
+}

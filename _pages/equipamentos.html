@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SGM - Equipamentos</title>
+
+    <link rel="stylesheet" href="../-css/pages/equipamentos.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+      <!-- Menu lateral -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <span class="logo-icon">S</span>
+            <div class="logo-text">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Navegação principal">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="dashboard.html" class="nav-link">
+                <span class="nav-icon">▣</span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="ordens">
+                <span class="nav-icon">▤</span>
+                <span>Ordens de Serviço</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+
+              <ul class="submenu">
+                <li class="submenu-item">
+                  <a href="todas_os.html"> Todas as OS </a>
+                </li>
+                <li class="submenu-item">
+                  <a href="abrir_os.html"> Abrir OS </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item active">
+              <button class="nav-link" type="button" data-menu="equipamentos">
+                <span class="nav-icon">▢</span>
+                <span>Equipamentos</span>
+                <span class="nav-arrow">⌃</span>
+              </button>
+
+              <ul class="submenu">
+                <li class="submenu-item active">
+                  <a href="equipamentos.html"> Todos os equipamentos </a>
+                </li>
+                <li class="submenu-item">
+                  <a href="cadastrar_equipamento.html"> Cadastrar equipamento </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a href="setor_adm.html" class="nav-link">
+                <span class="nav-icon">▣</span>
+                <span>Setor</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="historico_adm.html" class="nav-link">
+                <span class="nav-icon">▣</span>
+                <span>Histórico</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="indicadores_adm.html" class="nav-link">
+                <span class="nav-icon">▣</span>
+                <span>Indicadores</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="relatorios_adm.html" class="nav-link">
+                <span class="nav-icon">▣</span>
+                <span>Relatórios</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="manutencao">
+                <span class="nav-icon">⚒</span>
+                <span>Manutenção</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="pecas">
+                <span class="nav-icon">⬡</span>
+                <span>Peças</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" type="button" data-menu="administracao">
+                <span class="nav-icon">♧</span>
+                <span>Administração</span>
+                <span class="nav-arrow">⌄</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Área principal -->
+      <div class="main-wrapper">
+        <header class="topbar">
+          <div class="topbar-left">
+            <div class="global-search"></div>
+          </div>
+
+          <div class="topbar-right">
+            <button
+              class="notification-button"
+              id="notificationButton"
+              type="button"
+              aria-label="Notificações"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-2.5 7-2.5 9h15c0-2-2.5-2-2.5-9"
+                ></path>
+                <path d="M10 21h4"></path>
+              </svg>
+            </button>
+
+            <div class="user-profile">
+              <div class="user-avatar">AS</div>
+              <div class="user-info">
+                <strong>Admin Sistema</strong>
+                <span>Administrador</span>
+              </div>
+              <span class="profile-arrow"> ⌄ </span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Conteúdo -->
+        <main class="main-content">
+          <!-- Cabeçalho da página alinhado com o botão à direita -->
+          <div class="page-header">
+            <div>
+              <h1>Equipamentos</h1>
+              <p>Cadastro de ativos e máquinas</p>
+            </div>
+
+            <a href="cadastrar_equipamento.html" class="botao botao-principal">
+              <span>+</span> Novo Equipamento
+            </a>
+          </div>
+
+          <!-- Pesquisa -->
+          <section class="filtros-equipamentos">
+            <div class="campo-pesquisa-equipamentos">
+              <span class="icone-pesquisa"> ⌕ </span>
+              <input
+                type="search"
+                id="pesquisaEquipamento"
+                placeholder="Buscar equipamento..."
+                autocomplete="off"
+              />
+            </div>
+          </section>
+
+          <!-- Tabela -->
+          <section class="tabela-equipamentos">
+            <div class="tabela-container">
+              <table id="tabelaEquipamentos">
+                <thead>
+                  <tr>
+                    <th scope="col">ASSET</th>
+                    <th scope="col">EQUIPAMENTO</th>
+                    <th scope="col">FABRICANTE / MODELO</th>
+                    <th scope="col">SETOR</th>
+                    <th scope="col">Nº SÉRIE</th>
+                    <th scope="col">AQUISIÇÃO</th>
+                    <th scope="col">STATUS</th>
+                  </tr>
+                </thead>
+                <tbody id="corpoTabelaEquipamentos">
+                  <tr data-equipamento-id="1">
+                    <td>EQ001</td>
+                    <td>Compressor de Ar</td>
+                    <td>Atlas Copco · GA30+</td>
+                    <td>Produção</td>
+                    <td>ATC-2019-3847</td>
+                    <td>2019-03-15</td>
+                    <td>
+                      <span class="status status-ativo"> Ativo </span>
+                    </td>
+                  </tr>
+                  <tr data-equipamento-id="2">
+                    <td>EQ002</td>
+                    <td>Esteira Transportadora</td>
+                    <td>Intralox · Series 900</td>
+                    <td>Embalagem</td>
+                    <td>INX-2020-1122</td>
+                    <td>2020-06-10</td>
+                    <td>
+                      <span class="status status-ativo"> Ativo </span>
+                    </td>
+                  </tr>
+                  <tr data-equipamento-id="3">
+                    <td>EQ003</td>
+                    <td>Empilhadeira</td>
+                    <td>Toyota · 8FBN25</td>
+                    <td>Logística</td>
+                    <td>TYT-2021-5509</td>
+                    <td>2021-01-22</td>
+                    <td>
+                      <span class="status status-manutencao"> Manutenção </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Estado vazio -->
+          <section class="estado-vazio" id="estadoVazio">
+            <div class="ilustracao-vazia">⌕</div>
+            <h2>Nenhum equipamento encontrado</h2>
+            <p>Nenhum equipamento encontrado com este termo.</p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../-js/global.js"></script>
+    <script src="../-js/pages/equipamentos.js"></script>
+  </body>
+</html>
