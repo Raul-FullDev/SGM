@@ -1,0 +1,652 @@
+@import url("../global.css");
+@import url("../layout/sidebar.css");
+@import url("../layout/header.css");
+
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+.conteudo-principal {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   CABEÇALHO DA PÁGINA
+   ========================================================= */
+
+.cabecalho-pagina {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 25px;
+}
+
+.cabecalho-pecas {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cabecalho-pecas h1 {
+  margin-bottom: 4px;
+
+  color: #17275a;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.cabecalho-pecas p {
+  color: #647a99;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   BOTÃO NOVA PEÇA
+   ========================================================= */
+
+.botao-nova-peca {
+  height: 40px;
+  min-width: 136px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 0 17px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #2055dc;
+  color: white;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  box-shadow: 0 3px 6px rgba(32, 85, 220, 0.18);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.botao-nova-peca:hover {
+  background: #1748c6;
+
+  box-shadow: 0 4px 9px rgba(32, 85, 220, 0.23);
+}
+
+.botao-nova-peca:active {
+  transform: translateY(1px);
+}
+
+.botao-nova-peca i {
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   CARDS DE RESUMO
+   ========================================================= */
+
+.cards-pecas {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 23px;
+}
+
+.card-resumo-peca {
+  min-height: 166px;
+
+  padding: 20px;
+
+  background: white;
+
+  border: 1px solid #dce5ef;
+  border-radius: 15px;
+
+  box-shadow:
+    0 2px 4px rgba(47, 82, 130, 0.07),
+    0 6px 14px rgba(47, 82, 130, 0.035);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card-resumo-peca:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 4px 8px rgba(47, 82, 130, 0.09),
+    0 8px 16px rgba(47, 82, 130, 0.05);
+}
+
+
+/* =========================================================
+   ÍCONES DOS CARDS
+   ========================================================= */
+
+.icone-resumo-peca {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 13px;
+
+  border-radius: 10px;
+
+  color: white;
+
+  font-size: 19px;
+}
+
+.icone-estoque {
+  background: #2f80ed;
+}
+
+.icone-valor {
+  background: #05bd80;
+}
+
+.icone-critico {
+  background: #ff3038;
+}
+
+
+/* =========================================================
+   CONTEÚDO DOS CARDS
+   ========================================================= */
+
+.conteudo-resumo-peca h2 {
+  margin-bottom: 5px;
+
+  color: #17275a;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.conteudo-resumo-peca p {
+  color: #42546d;
+  font-size: 12px;
+}
+
+.conteudo-resumo-peca span {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #8ca0bd;
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   TABELA
+   ========================================================= */
+
+.tabela-pecas-container {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: white;
+
+  border: 1px solid #dce4ef;
+  border-radius: 15px;
+
+  box-shadow:
+    0 2px 4px rgba(47, 82, 130, 0.07),
+    0 6px 14px rgba(47, 82, 130, 0.035);
+}
+
+.tabela-pecas {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+
+/* Cabeçalho */
+
+.tabela-pecas thead {
+  background: #f8fafc;
+}
+
+.tabela-pecas th {
+  height: 40px;
+
+  padding: 0 24px;
+
+  border-bottom: 1px solid #e5ebf2;
+
+  color: #6c819f;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.tabela-pecas th:nth-child(1) {
+  width: 11%;
+}
+
+.tabela-pecas th:nth-child(2) {
+  width: 44%;
+}
+
+.tabela-pecas th:nth-child(3) {
+  width: 14%;
+
+  text-align: center;
+}
+
+.tabela-pecas th:nth-child(4) {
+  width: 14%;
+
+  text-align: right;
+}
+
+.tabela-pecas th:nth-child(5) {
+  width: 17%;
+
+  text-align: right;
+}
+
+
+/* Linhas */
+
+.tabela-pecas tbody tr {
+  min-height: 52px;
+
+  border-bottom: 1px solid #edf1f5;
+
+  transition: background 0.2s ease;
+}
+
+.tabela-pecas tbody tr:last-child {
+  border-bottom: none;
+}
+
+.tabela-pecas tbody tr:hover {
+  background: #fbfcfe;
+}
+
+.tabela-pecas td {
+  height: 52px;
+
+  padding: 0 24px;
+
+  color: #293950;
+
+  font-size: 12px;
+}
+
+.tabela-pecas td:nth-child(3) {
+  text-align: center;
+}
+
+.tabela-pecas td:nth-child(4),
+.tabela-pecas td:nth-child(5) {
+  text-align: right;
+}
+
+
+/* =========================================================
+   DADOS DA TABELA
+   ========================================================= */
+
+.codigo-peca {
+  color: #526b91 !important;
+
+  font-family: "Courier New", monospace;
+  font-size: 10px !important;
+  font-weight: 600;
+}
+
+.descricao-peca {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.descricao-peca > span:first-child {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quantidade-peca {
+  color: #344862 !important;
+  font-weight: 600;
+}
+
+.custo-peca {
+  color: #7387a3 !important;
+}
+
+.total-peca {
+  color: #243650 !important;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   ALERTA DE ESTOQUE
+   ========================================================= */
+
+.peca-estoque-baixo {
+  background: #fffafb;
+}
+
+.peca-estoque-baixo:hover {
+  background: #fff7f8 !important;
+}
+
+.alerta-estoque {
+  flex-shrink: 0;
+
+  padding: 3px 8px;
+
+  border: 1px solid #ffc3c8;
+  border-radius: 10px;
+
+  background: #ffe8ea;
+  color: #ed4148;
+
+  font-size: 9px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   DECORAÇÕES
+   ========================================================= */
+
+.decoracao-pecas {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+/* Pontos */
+
+.ponto-peca {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #a5c8ff;
+}
+
+.ponto-peca-1 {
+  top: 61px;
+  right: 30%;
+}
+
+.ponto-peca-2 {
+  top: 61px;
+  right: 26.7%;
+}
+
+.ponto-peca-3 {
+  top: 61px;
+  right: 23.4%;
+}
+
+.ponto-peca-4 {
+  top: 61px;
+  right: 20.1%;
+}
+
+
+/* Círculos */
+
+.circulo-peca {
+  position: absolute;
+
+  border-radius: 50%;
+}
+
+.circulo-peca-1 {
+  width: 250px;
+  height: 250px;
+
+  right: 20px;
+  top: 385px;
+
+  border: 1px solid #b5d0fc;
+}
+
+.circulo-peca-2 {
+  width: 250px;
+  height: 250px;
+
+  right: -10px;
+  bottom: -100px;
+
+  background: rgba(130, 166, 232, 0.2);
+}
+
+.circulo-peca-3 {
+  width: 120px;
+  height: 120px;
+
+  right: 215px;
+  bottom: 85px;
+
+  background: rgba(125, 160, 226, 0.24);
+}
+
+.circulo-peca-4 {
+  width: 180px;
+  height: 180px;
+
+  right: 250px;
+  bottom: -55px;
+
+  border: 1px solid #bed6fc;
+}
+
+
+/* Linhas diagonais */
+
+.linhas-peca {
+  position: absolute;
+
+  width: 165px;
+  height: 1px;
+
+  right: 42px;
+  top: 500px;
+
+  transform: rotate(32deg);
+  transform-origin: right center;
+
+  background: #b8d1fa;
+}
+
+.linhas-peca::before,
+.linhas-peca::after {
+  content: "";
+
+  position: absolute;
+
+  width: 165px;
+  height: 1px;
+
+  right: 0;
+
+  background: #b8d1fa;
+}
+
+.linhas-peca::before {
+  top: 14px;
+}
+
+.linhas-peca::after {
+  top: 28px;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .cards-pecas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card-resumo-peca:last-child {
+    grid-column: span 2;
+  }
+
+  .tabela-pecas-container {
+    overflow-x: auto;
+  }
+
+  .tabela-pecas {
+    min-width: 760px;
+  }
+}
+
+@media (max-width: 750px) {
+  .cards-pecas {
+    grid-template-columns: 1fr;
+  }
+
+  .card-resumo-peca:last-child {
+    grid-column: auto;
+  }
+
+  .decoracao-pecas {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+.cabecalho-pecas {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.acoes-cabecalho-pecas {
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.botao-quantidade-minima,
+.botao-nova-peca {
+  flex: 1;
+}
+  
+  .cabecalho-pecas h1 {
+    font-size: 22px;
+  }
+
+  .cabecalho-pecas p {
+    font-size: 11px;
+  }
+
+  .card-resumo-peca {
+    min-height: 145px;
+  }
+
+  .tabela-pecas {
+    min-width: 700px;
+  }
+}
+
+/* =========================================================
+   AÇÕES DO CABEÇALHO
+   ========================================================= */
+
+.acoes-cabecalho-pecas {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* =========================================================
+   BOTÃO QUANTIDADE MÍNIMA
+   ========================================================= */
+
+.botao-quantidade-minima {
+  height: 40px;
+  min-width: 165px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 0 17px;
+
+  border: 1px solid #cfdbea;
+  border-radius: 9px;
+
+  background: white;
+  color: #40536d;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  box-shadow: 0 2px 4px rgba(47, 82, 130, 0.05);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.botao-quantidade-minima:hover {
+  background: #f6f9fd;
+  border-color: #b9c9dd;
+  color: #2055dc;
+}
+
+.botao-quantidade-minima:active {
+  transform: translateY(1px);
+}
+
+.botao-quantidade-minima i {
+  font-size: 13px;
+}

@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SGM - Peças e Materiais</title>
+
+    <!-- Caminho do CSS mantido -->
+    <link rel="stylesheet" href="../-css/pages/pecas_adm.css" />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="layout">
+
+      <!-- Menu lateral -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
+          <div class="logo">
+            <span class="icone-logo">S</span>
+
+            <div class="texto-logo">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="navegacao-lateral" aria-label="Navegação principal">
+          <ul class="lista-navegacao">
+
+            <!-- Dashboard -->
+            <li class="item-navegacao">
+              <a href="dashboard.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-list-task"></i>
+                </span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <!-- Ordens de Serviço -->
+            <li class="item-navegacao">
+              <a href="todas_os.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-clipboard-data"></i>
+                </span>
+                <span>Ordens de Serviço</span>
+              </a>
+            </li>
+
+            <!-- Equipamentos -->
+            <li class="item-navegacao">
+              <a href="equipamentos.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-wrench-adjustable"></i>
+                </span>
+                <span>Equipamentos</span>
+              </a>
+            </li>
+
+            <!-- Setor -->
+            <li class="item-navegacao">
+              <a href="setor_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-collection"></i>
+                </span>
+                <span>Setor</span>
+              </a>
+            </li>
+
+            <!-- Histórico -->
+            <li class="item-navegacao">
+              <a href="historico_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-clock-history"></i>
+                </span>
+                <span>Histórico</span>
+              </a>
+            </li>
+
+            <!-- Indicadores -->
+            <li class="item-navegacao">
+              <a href="indicadores_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-bar-chart"></i>
+                </span>
+                <span>Indicadores</span>
+              </a>
+            </li>
+
+            <!-- Relatórios -->
+            <li class="item-navegacao">
+              <a href="relatorios_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-file-earmark-text"></i>
+                </span>
+                <span>Relatórios</span>
+              </a>
+            </li>
+
+            <!-- Manutenção -->
+            <li class="item-navegacao">
+              <a href="manutencao_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-tools"></i>
+                </span>
+                <span>Manutenção</span>
+              </a>
+            </li>
+
+            <!-- Peças -->
+            <li class="item-navegacao ativo">
+              <a href="pecas_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-nut"></i>
+                </span>
+                <span>Peças</span>
+              </a>
+            </li>
+
+            <!-- Administração -->
+            <li class="item-navegacao">
+              <a href="usuarios.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-people"></i>
+                </span>
+                <span>Administração</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </aside>
+
+
+      <!-- Área principal -->
+      <div class="area-principal">
+
+        <!-- Cabeçalho -->
+        <header class="cabecalho">
+
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="cabecalho-direito">
+
+            <!-- Notificações -->
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            ></button>
+
+            <!-- Perfil -->
+            <div class="perfil-usuario">
+              <div class="avatar-usuario">AS</div>
+
+              <div class="informacoes-usuario">
+                <strong>Admin Sistema</strong>
+                <span>Administrador</span>
+              </div>
+            </div>
+
+          </div>
+        </header>
+
+
+        <!-- Conteúdo principal -->
+        <main class="conteudo-principal">
+
+          <!-- Elementos decorativos -->
+          <div class="decoracao-pecas" aria-hidden="true">
+            <span class="ponto-peca ponto-peca-1"></span>
+            <span class="ponto-peca ponto-peca-2"></span>
+            <span class="ponto-peca ponto-peca-3"></span>
+            <span class="ponto-peca ponto-peca-4"></span>
+
+            <span class="circulo-peca circulo-peca-1"></span>
+            <span class="circulo-peca circulo-peca-2"></span>
+            <span class="circulo-peca circulo-peca-3"></span>
+            <span class="circulo-peca circulo-peca-4"></span>
+
+            <span class="linhas-peca"></span>
+          </div>
+
+
+          <!-- Cabeçalho da página -->
+        <section class="cabecalho-pagina">
+        <div class="cabecalho-pecas">
+
+            <div>
+            <h1>Peças e Materiais</h1>
+            <p>Controle de estoque do almoxarifado</p>
+            </div>
+
+            <div class="acoes-cabecalho-pecas">
+
+            <button
+                class="botao-quantidade-minima"
+                id="botaoQuantidadeMinima"
+                type="button"
+            >
+                <i class="bi bi-sliders"></i>
+                <span>Estoque mínimo</span>
+            </button>
+
+            <button
+                class="botao-nova-peca"
+                id="botaoNovaPeca"
+                type="button"
+            >
+                <i class="bi bi-plus-lg"></i>
+                <span>Nova Peça</span>
+            </button>
+
+            </div>
+
+        </div>
+        </section>
+
+
+          <!-- Cards de resumo -->
+          <section
+            class="cards-pecas"
+            id="cardsPecas"
+            aria-label="Resumo do estoque"
+          >
+
+            <!-- Itens em estoque -->
+            <article class="card-resumo-peca">
+              <div class="icone-resumo-peca icone-estoque">
+                <i class="bi bi-box"></i>
+              </div>
+
+              <div class="conteudo-resumo-peca">
+                <h2>8</h2>
+                <p>Itens em estoque</p>
+              </div>
+            </article>
+
+
+            <!-- Valor total -->
+            <article class="card-resumo-peca">
+              <div class="icone-resumo-peca icone-valor">
+                <i class="bi bi-cash-stack"></i>
+              </div>
+
+              <div class="conteudo-resumo-peca">
+                <h2>R$ 9.074,50</h2>
+                <p>Valor total</p>
+              </div>
+            </article>
+
+
+            <!-- Estoque crítico -->
+            <article class="card-resumo-peca">
+              <div class="icone-resumo-peca icone-critico">
+                <i class="bi bi-exclamation-lg"></i>
+              </div>
+
+              <div class="conteudo-resumo-peca">
+                <h2>2</h2>
+                <p>Estoque crítico</p>
+                <span>≤ 5 unidades</span>
+              </div>
+            </article>
+
+          </section>
+
+
+          <!-- Tabela de peças -->
+          <section
+            class="tabela-pecas-container"
+            id="tabelaPecasContainer"
+          >
+
+            <table class="tabela-pecas">
+
+              <thead>
+                <tr>
+                  <th scope="col">Código</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Quantidade</th>
+                  <th scope="col">Custo Unit.</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+
+              <tbody id="listaPecas">
+
+                <!-- Peça 01 -->
+                <tr>
+                  <td class="codigo-peca">PC0001</td>
+
+                  <td>
+                    <div class="descricao-peca">
+                      <span>Válvula de segurança 1/2"</span>
+                    </div>
+                  </td>
+
+                  <td class="quantidade-peca">
+                    8 un
+                  </td>
+
+                  <td class="custo-peca">
+                    R$ 185.90
+                  </td>
+
+                  <td class="total-peca">
+                    R$ 1487.20
+                  </td>
+                </tr>
+
+
+                <!-- Peça 02 -->
+                <tr>
+                  <td class="codigo-peca">PC0002</td>
+
+                  <td>
+                    <div class="descricao-peca">
+                      <span>Correia dentada 5M-750</span>
+                    </div>
+                  </td>
+
+                  <td class="quantidade-peca">
+                    24 un
+                  </td>
+
+                  <td class="custo-peca">
+                    R$ 42.50
+                  </td>
+
+                  <td class="total-peca">
+                    R$ 1020.00
+                  </td>
+                </tr>
+
+
+                <!-- Peça 03 -->
+                <tr>
+                  <td class="codigo-peca">PC0003</td>
+
+                  <td>
+                    <div class="descricao-peca">
+                      <span>Óleo hidráulico ISO 46 (20L)</span>
+                    </div>
+                  </td>
+
+                  <td class="quantidade-peca">
+                    6 lata
+                  </td>
+
+                  <td class="custo-peca">
+                    R$ 320.00
+                  </td>
+
+                  <td class="total-peca">
+                    R$ 1920.00
+                  </td>
+                </tr>
+
+
+                <!-- Peça 04 -->
+                <tr>
+                  <td class="codigo-peca">PC0004</td>
+
+                  <td>
+                    <div class="descricao-peca">
+                      <span>Rolamento SKF 6205-2RS</span>
+                    </div>
+                  </td>
+
+                  <td class="quantidade-peca">
+                    30 un
+                  </td>
+
+                  <td class="custo-peca">
+                    R$ 38.75
+                  </td>
+
+                  <td class="total-peca">
+                    R$ 1162.50
+                  </td>
+                </tr>
+
+
+                <!-- Peça 05 -->
+                <tr>
+                  <td class="codigo-peca">PC0005</td>
+
+                  <td>
+                    <div class="descricao-peca">
+                      <span>Filtro de ar comprimido</span>
+                    </div>
+                  </td>
+
+                  <td class="quantidade-peca">
+                    12 un
+                  </td>
+
+                  <td class="custo-peca">
+                    R$ 95.00
+                  </td>
+
+                  <td class="total-peca">
+                    R$ 1140.00
+                  </td>
+                </tr>
+
+
+                <!-- Peça 06 - Estoque baixo -->
+                <tr class="peca-estoque-baixo">
+                  <td class="codigo-peca">PC0006</td>
+
+                  <td>
+                    <div class="descricao-peca">
+                      <span>Sensor de temperatura PT100</span>
+
+                      <span class="alerta-estoque">
+                        estoque baixo
+                      </span>
+                    </div>
+                  </td>
+
+                  <td class="quantidade-peca">
+                    5 un
+                  </td>
+
+                  <td class="custo-peca">
+                    R$ 210.00
+                  </td>
+
+                  <td class="total-peca">
+                    R$ 1050.00
+                  </td>
+                </tr>
+
+
+                <!-- Peça 07 - Estoque baixo -->
+                <tr class="peca-estoque-baixo">
+                  <td class="codigo-peca">PC0007</td>
+
+                  <td>
+                    <div class="descricao-peca">
+                      <span>Parafuso M8×30 inox (caixa)</span>
+
+                      <span class="alerta-estoque">
+                        estoque baixo
+                      </span>
+                    </div>
+                  </td>
+
+                  <td class="quantidade-peca">
+                    3 cx
+                  </td>
+
+                  <td class="custo-peca">
+                    R$ 28.40
+                  </td>
+
+                  <td class="total-peca">
+                    R$ 85.20
+                  </td>
+                </tr>
+
+
+                <!-- Peça 08 -->
+                <tr>
+                  <td class="codigo-peca">PC0008</td>
+
+                  <td>
+                    <div class="descricao-peca">
+                      <span>Lubrificante Mobil Extra 2L</span>
+                    </div>
+                  </td>
+
+                  <td class="quantidade-peca">
+                    18 un
+                  </td>
+
+                  <td class="custo-peca">
+                    R$ 67.20
+                  </td>
+
+                  <td class="total-peca">
+                    R$ 1209.60
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
+          </section>
+
+        </main>
+      </div>
+    </div>
+
+
+    <!-- Caminho do JS mantido -->
+    <script src="../-js/global.js"></script>
+  </body>
+</html>
