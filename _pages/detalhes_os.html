@@ -18,10 +18,8 @@
         rel="stylesheet"
         href="../-css/pages/detalhes_os.css"
     >
-    <link
-        rel="stylesheet"
-        href="todas_os.html"
-    >
+
+
     <!-- Bootstrap Icons -->
     <link
         rel="stylesheet"
@@ -122,9 +120,7 @@
                     >
 
                         <span class="icone-navegacao">
-
                             <i class="bi bi-clipboard-data"></i>
-
                         </span>
 
                         <span>
@@ -672,14 +668,12 @@
 
                         </div>
 
-
                         <div class="divisor"></div>
-
 
                         <div class="lista-atividades">
 
 
-                            <!-- ATIVIDADE CONCLUÍDA -->
+                            <!-- ATIVIDADE FINALIZADA -->
 
                             <div class="atividade concluida">
 
@@ -687,14 +681,22 @@
                                     <i class="bi bi-check"></i>
                                 </span>
 
-                                <span class="atividade-texto">
-                                    Inspeção visual do equipamento
-                                </span>
+                                <div class="atividade-info">
+
+                                    <span class="atividade-texto">
+                                        Inspeção visual do equipamento
+                                    </span>
+
+                                    <span class="atividade-status">
+                                        Finalizado
+                                    </span>
+
+                                </div>
 
                             </div>
 
 
-                            <!-- ATIVIDADE CONCLUÍDA -->
+                            <!-- ATIVIDADE FINALIZADA -->
 
                             <div class="atividade concluida">
 
@@ -702,14 +704,22 @@
                                     <i class="bi bi-check"></i>
                                 </span>
 
-                                <span class="atividade-texto">
-                                    Desmontagem do componente afetado
-                                </span>
+                                <div class="atividade-info">
+
+                                    <span class="atividade-texto">
+                                        Desmontagem do componente afetado
+                                    </span>
+
+                                    <span class="atividade-status">
+                                        Finalizado
+                                    </span>
+
+                                </div>
 
                             </div>
 
 
-                            <!-- ATIVIDADE PENDENTE -->
+                            <!-- ATIVIDADE EM ANDAMENTO -->
 
                             <div class="atividade">
 
@@ -717,14 +727,22 @@
                                     3
                                 </span>
 
-                                <span class="atividade-texto">
-                                    Substituição de peças danificadas
-                                </span>
+                                <div class="atividade-info">
+
+                                    <span class="atividade-texto">
+                                        Substituição de peças danificadas
+                                    </span>
+
+                                    <span class="atividade-status">
+                                        Em andamento
+                                    </span>
+
+                                </div>
 
                             </div>
 
 
-                            <!-- ATIVIDADE PENDENTE -->
+                            <!-- ATIVIDADE EM ANDAMENTO -->
 
                             <div class="atividade">
 
@@ -732,9 +750,17 @@
                                     4
                                 </span>
 
-                                <span class="atividade-texto">
-                                    Remontagem e testes de funcionamento
-                                </span>
+                                <div class="atividade-info">
+
+                                    <span class="atividade-texto">
+                                        Remontagem e testes de funcionamento
+                                    </span>
+
+                                    <span class="atividade-status">
+                                        Em andamento
+                                    </span>
+
+                                </div>
 
                             </div>
 
@@ -908,9 +934,7 @@
                                 class="opcao-status"
                                 data-status="aberta"
                             >
-
                                 Aberta
-
                             </button>
 
 
@@ -921,9 +945,7 @@
                                 class="opcao-status selecionado"
                                 data-status="andamento"
                             >
-
                                 Em Andamento
-
                             </button>
 
 
@@ -932,11 +954,10 @@
                             <button
                                 type="button"
                                 class="opcao-status"
+                                id="opcaoConcluida"
                                 data-status="concluida"
                             >
-
                                 Concluída
-
                             </button>
 
 
@@ -950,9 +971,7 @@
                             class="botao-cancelar-os"
                             id="cancelarOS"
                         >
-
                             Cancelar OS
-
                         </button>
 
                     </section>
@@ -1034,6 +1053,63 @@
             </div>
 
         </main>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- MODAL DE CONFIRMAÇÃO DE ENCERRAMENTO -->
+<!-- ================================================= -->
+
+<div
+    class="modal-confirmacao"
+    id="modalEncerrarOS"
+    aria-hidden="true"
+>
+
+    <div class="modal-conteudo">
+
+        <div class="modal-icone">
+
+            <i class="bi bi-exclamation-circle"></i>
+
+        </div>
+
+
+        <h2>
+            Encerrar Ordem de Serviço?
+        </h2>
+
+
+        <p>
+            Tem certeza que deseja encerrar esta Ordem de Serviço?
+            Essa ação indicará que todas as atividades foram finalizadas.
+        </p>
+
+
+        <div class="modal-acoes">
+
+            <button
+                type="button"
+                class="botao-modal-cancelar"
+                id="cancelarModal"
+            >
+                Cancelar
+            </button>
+
+
+            <button
+                type="button"
+                class="botao-modal-confirmar"
+                id="confirmarEncerramento"
+            >
+                Confirmar encerramento
+            </button>
+
+        </div>
 
     </div>
 
