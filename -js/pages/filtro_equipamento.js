@@ -21,9 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
   async function carregarFiltrosIniciais() {
     try {
       // Busca a lista de setores cadastrados na tabela 'local'
-      const resSetores = await fetch(`${baseUrl}/local?select=id,setor&order=setor.asc`, {
-        headers: headersConfig,
-      });
+      const resSetores = await fetch(
+        `${baseUrl}/local?select=id,setor&order=setor.asc`,
+        {
+          headers: headersConfig,
+        },
+      );
       if (resSetores.ok) {
         const setores = await resSetores.json();
         if (filtroSetor) {
@@ -35,12 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Busca fabricantes únicos cadastrados na tabela 'equipamento'
-      const resEquip = await fetch(`${baseUrl}/equipamento?select=manufaturado`, {
-        headers: headersConfig,
-      });
+      const resEquip = await fetch(
+        `${baseUrl}/equipamento?select=manufaturado`,
+        {
+          headers: headersConfig,
+        },
+      );
       if (resEquip.ok) {
         const dados = await resEquip.json();
-        const fabricantesUnicos = [...new Set(dados.map((e) => e.manufaturado).filter(Boolean))];
+        const fabricantesUnicos = [
+          ...new Set(dados.map((e) => e.manufaturado).filter(Boolean)),
+        ];
         if (filtroFabricante) {
           filtroFabricante.innerHTML = `<option value="">Todos os fabricantes</option>`;
           fabricantesUnicos.forEach((fab) => {
@@ -61,25 +69,26 @@ document.addEventListener("DOMContentLoaded", () => {
       // Começa com a Query Base
       let urlQuery = `${baseUrl}/equipamento?select=*,local(id,setor)&order=id.asc`;
 
-      // 1. Injeta filtro de Setor usando id_local se selecionado
+      // 1. Filtro de Setor
       const idLocal = filtroSetor ? filtroSetor.value : "";
-      if (idLocal) {
+      // Só aplica se existir e não contiver a palavra "todos"
+      if (idLocal && !idLocal.toLowerCase().includes("todos")) {
         urlQuery += `&id_local=eq.${idLocal}`;
       }
 
-      // 2. Injeta filtro de Fabricante se selecionado
+      // 2. Filtro de Fabricante
       const fabricante = filtroFabricante ? filtroFabricante.value : "";
-      if (fabricante) {
+      if (fabricante && !fabricante.toLowerCase().includes("todos")) {
         urlQuery += `&manufaturado=eq.${encodeURIComponent(fabricante)}`;
       }
 
-      // 3. Injeta filtro de Status se selecionado
+      // 3. Filtro de Status
       const status = filtroStatus ? filtroStatus.value : "";
-      if (status && status !== "todos") {
-        urlQuery += `&status=ilike.${status}`;
+      if (status && !status.toLowerCase().includes("todos")) {
+        urlQuery += `&status=ilike.${encodeURIComponent(status)}`;
       }
 
-      // 4. Injeta filtro de Pesquisa por Texto (Busca na descrição)
+      // 4. Filtro de Pesquisa por Texto (Busca na descrição)
       const termo = inputPesquisa ? inputPesquisa.value.trim() : "";
       if (termo) {
         urlQuery += `&descricao=ilike.*${encodeURIComponent(termo)}*`;
@@ -107,6 +116,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!corpoTabela) return;
     corpoTabela.innerHTML = "";
 
+    if (dados.length === 0) {
+      corpoTabela.innerHTML = `<tr><td colspan="7" style="text-align: center;">Nenhum equipamento encontrado com estes filtros.</td></tr>`;
+      return;
+    }
+
     dados.forEach((eqp) => {
       let classeStatus = "status-inativo";
       let textoStatus = eqp.status || "Ativo";
@@ -114,7 +128,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const statusLower = textoStatus.toLowerCase();
       if (statusLower === "ativo") {
         classeStatus = "status-ativo";
-      } else if (statusLower.includes("manutencao") || statusLower.includes("manutenção")) {
+      } else if (
+        statusLower.includes("manutencao") ||
+        statusLower.includes("manutenção")
+      ) {
         classeStatus = "status-manutencao";
       }
 
@@ -139,13 +156,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   // 4. EVENT LISTENERS PARA REQUISITAR A API
   // ==========================================
-  if (inputPesquisa) inputPesquisa.addEventListener("input", carregarEquipamentosFiltrados);
-  if (filtroFabricante) filtroFabricante.addEventListener("change", carregarEquipamentosFiltrados);
-  if (filtroSetor) filtroSetor.addEventListener("change", carregarEquipamentosFiltrados);
-  if (filtroStatus) filtroStatus.addEventListener("change", carregarEquipamentosFiltrados);
+  if (inputPesquisa)
+    inputPesquisa.addEventListener("input", carregarEquipamentosFiltrados);
+  if (filtroFabricante)
+    filtroFabricante.addEventListener("change", carregarEquipamentosFiltrados);
+  if (filtroSetor)
+    filtroSetor.addEventListener("change", carregarEquipamentosFiltrados);
+  if (filtroStatus)
+    filtroStatus.addEventListener("change", carregarEquipamentosFiltrados);
 
   // Inicializa os selects e traz a primeira busca sem filtros
   carregarFiltrosIniciais();
-  carregarEquipamentosFiltrados()
-
+  carregarEquipamentosFiltrados();
 });
