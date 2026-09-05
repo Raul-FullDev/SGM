@@ -143,13 +143,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${dataFormatada}</td>
                 <td><span class="status-os ${classeStatus}">${statusLabel}</span></td>
                 <td>
-                    <button class="botao-visualizar" type="button" aria-label="Visualizar ordem ${numeroFormatado}">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"></path>
-                            <circle cx="12" cy="12" r="2.5"></circle>
-                        </svg>
-                    </button>
-                </td>
+    <a href="detalhes_os.html"
+       class="botao-visualizar"
+       title="Ver detalhes da ordem de serviço">
+
+        <svg width="18" height="18"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.5"
+             stroke-linecap="round"
+             stroke-linejoin="round">
+
+            <path d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"></path>
+
+            <circle cx="12" cy="12" r="2.5"></circle>
+
+        </svg>
+
+    </a>
+</td>
             `;
             corpoTabelaOrdens.appendChild(tr);
         });

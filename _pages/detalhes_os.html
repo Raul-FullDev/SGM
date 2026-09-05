@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SGM - Detalhes da Ordem de Serviço</title>
+
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="../-css/pages/detalhes_os.css"
+    >
+    <link
+        rel="stylesheet"
+        href="todas_os.html"
+    >
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="layout">
+
+
+    <!-- ================================================= -->
+    <!-- MENU LATERAL -->
+    <!-- ================================================= -->
+
+    <aside
+        class="barra-lateral"
+        id="barraLateral"
+    >
+
+        <!-- LOGO -->
+
+        <div class="cabecalho-barra">
+
+            <div class="logo">
+
+                <span class="icone-logo">
+                    S
+                </span>
+
+                <div class="texto-logo">
+
+                    <strong>
+                        SGM
+                    </strong>
+
+                    <span>
+                        Gestão de manutenção
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav
+            class="navegacao-lateral"
+            aria-label="Navegação principal"
+        >
+
+            <ul class="lista-navegacao">
+
+
+                <!-- DASHBOARD -->
+
+                <li class="item-navegacao">
+
+                    <a href="dashboard.html">
+
+                        <button
+                            class="link-navegacao"
+                            type="button"
+                            data-menu="dashboard"
+                        >
+
+                            <span class="icone-navegacao">
+                                <i class="bi bi-list-task"></i>
+                            </span>
+
+                            <span>
+                                Dashboard
+                            </span>
+
+                            <span class="seta-navegacao"></span>
+
+                        </button>
+
+                    </a>
+
+                </li>
+
+
+                <!-- ORDENS DE SERVIÇO -->
+
+                <li class="item-navegacao ativo">
+
+                    <button
+                        class="link-navegacao"
+                        type="button"
+                        data-menu="ordens-servico"
+                    >
+
+                        <span class="icone-navegacao">
+
+                            <i class="bi bi-clipboard-data"></i>
+
+                        </span>
+
+                        <span>
+                            Ordens de Serviço
+                        </span>
+
+                    </button>
+
+                </li>
+
+
+                <!-- EQUIPAMENTOS -->
+
+                <li class="item-navegacao">
+
+                    <a href="equipamentos.html">
+
+                        <button
+                            class="link-navegacao"
+                            type="button"
+                            data-menu="equipamentos"
+                        >
+
+                            <span class="icone-navegacao">
+                                <i class="bi bi-wrench-adjustable"></i>
+                            </span>
+
+                            <span>
+                                Equipamentos
+                            </span>
+
+                        </button>
+
+                    </a>
+
+                </li>
+
+
+                <!-- SETOR -->
+
+                <li class="item-navegacao">
+
+                    <a href="setor_adm.html">
+
+                        <button
+                            class="link-navegacao"
+                            type="button"
+                            data-menu="setor"
+                        >
+
+                            <span class="icone-navegacao">
+                                <i class="bi bi-collection"></i>
+                            </span>
+
+                            <span>
+                                Setor
+                            </span>
+
+                        </button>
+
+                    </a>
+
+                </li>
+
+
+                <!-- HISTÓRICO -->
+
+                <li class="item-navegacao">
+
+                    <a href="historico_adm.html">
+
+                        <button
+                            class="link-navegacao"
+                            type="button"
+                            data-menu="historico"
+                        >
+
+                            <span class="icone-navegacao">
+                                <i class="bi bi-clock-history"></i>
+                            </span>
+
+                            <span>
+                                Histórico
+                            </span>
+
+                        </button>
+
+                    </a>
+
+                </li>
+
+
+                <!-- INDICADORES -->
+
+                <li class="item-navegacao">
+
+                    <a href="indicadores_adm.html">
+
+                        <button
+                            class="link-navegacao"
+                            type="button"
+                            data-menu="indicadores"
+                        >
+
+                            <span class="icone-navegacao">
+                                <i class="bi bi-bar-chart"></i>
+                            </span>
+
+                            <span>
+                                Indicadores
+                            </span>
+
+                        </button>
+
+                    </a>
+
+                </li>
+
+
+                <!-- RELATÓRIOS -->
+
+                <li class="item-navegacao">
+
+                    <a href="relatorios_adm.html">
+
+                        <button
+                            class="link-navegacao"
+                            type="button"
+                            data-menu="relatorios"
+                        >
+
+                            <span class="icone-navegacao">
+                                <i class="bi bi-file-earmark-text"></i>
+                            </span>
+
+                            <span>
+                                Relatórios
+                            </span>
+
+                        </button>
+
+                    </a>
+
+                </li>
+
+
+                <!-- MANUTENÇÃO -->
+
+                <li class="item-navegacao">
+
+                    <a href="manutencao_adm.html">
+
+                        <button
+                            class="link-navegacao"
+                            type="button"
+                            data-menu="manutencao"
+                        >
+
+                            <span class="icone-navegacao">
+                                <i class="bi bi-tools"></i>
+                            </span>
+
+                            <span>
+                                Manutenção
+                            </span>
+
+                        </button>
+
+                    </a>
+
+                </li>
+
+
+                <!-- PEÇAS -->
+
+                <li class="item-navegacao">
+
+                    <a href="pecas_adm.html">
+
+                        <button
+                            class="link-navegacao"
+                            type="button"
+                            data-menu="pecas"
+                        >
+
+                            <span class="icone-navegacao">
+                                <i class="bi bi-nut"></i>
+                            </span>
+
+                            <span>
+                                Peças
+                            </span>
+
+                        </button>
+
+                    </a>
+
+                </li>
+
+
+                <!-- ADMINISTRAÇÃO -->
+
+                <li class="item-navegacao">
+
+                    <a href="usuarios.html">
+
+                        <button
+                            class="link-navegacao"
+                            type="button"
+                            data-menu="administracao"
+                        >
+
+                            <span class="icone-navegacao">
+                                <i class="bi bi-people"></i>
+                            </span>
+
+                            <span>
+                                Administração
+                            </span>
+
+                        </button>
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- ================================================= -->
+    <!-- ÁREA PRINCIPAL -->
+    <!-- ================================================= -->
+
+    <div class="area-principal">
+
+
+        <!-- ================================================= -->
+        <!-- CABEÇALHO -->
+        <!-- ================================================= -->
+
+        <header class="cabecalho">
+
+
+            <div class="cabecalho-esquerdo">
+
+                <button
+                    class="botao-menu"
+                    id="botaoMenu"
+                    type="button"
+                    aria-label="Abrir menu"
+                >
+
+                    ☰
+
+                </button>
+
+            </div>
+
+
+            <div class="cabecalho-direito">
+
+
+                <button
+                    class="botao-notificacao"
+                    id="botaoNotificacao"
+                    type="button"
+                    aria-label="Notificações"
+                >
+
+                    <i class="bi bi-bell"></i>
+
+                </button>
+
+
+                <div class="perfil-usuario">
+
+                    <div class="avatar-usuario">
+                        AS
+                    </div>
+
+                    <div class="informacoes-usuario">
+
+                        <strong>
+                            Admin Sistema
+                        </strong>
+
+                        <span>
+                            Administrador
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================================================= -->
+        <!-- CONTEÚDO -->
+        <!-- ================================================= -->
+
+        <main class="conteudo-principal">
+
+
+            <!-- VOLTAR -->
+
+            <div class="caminho-pagina">
+
+                <a href="todas_os.html">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Voltar para Ordens de Serviço
+
+                </a>
+
+            </div>
+
+
+
+            <!-- ================================================= -->
+            <!-- CABEÇALHO DA OS -->
+            <!-- ================================================= -->
+
+            <div class="cabecalho-detalhes-os">
+
+                <div>
+
+                    <span class="numero-os">
+                        OS #1033
+                    </span>
+
+                    <h1>
+                        Detalhes da Ordem de Serviço
+                    </h1>
+
+                </div>
+
+
+                <span class="status-badge status-em-andamento">
+                    Em Andamento
+                </span>
+
+            </div>
+
+
+
+            <!-- ================================================= -->
+            <!-- GRID PRINCIPAL -->
+            <!-- ================================================= -->
+
+            <div class="grid-detalhes-os">
+
+
+                <!-- ================================================= -->
+                <!-- COLUNA ESQUERDA -->
+                <!-- ================================================= -->
+
+                <div class="coluna-esquerda">
+
+
+                    <!-- ================================================= -->
+                    <!-- INFORMAÇÕES DA OS -->
+                    <!-- ================================================= -->
+
+                    <section class="card-detalhes">
+
+                        <div class="card-titulo">
+
+                            <h2>
+                                Informações da OS
+                            </h2>
+
+                        </div>
+
+
+                        <div class="divisor"></div>
+
+
+                        <div class="informacoes-grid">
+
+
+                            <!-- EQUIPAMENTO -->
+
+                            <div class="informacao">
+
+                                <span class="informacao-label">
+                                    EQUIPAMENTO
+                                </span>
+
+                                <strong>
+                                    Compressor de Ar
+                                </strong>
+
+                            </div>
+
+
+                            <!-- ASSET -->
+
+                            <div class="informacao">
+
+                                <span class="informacao-label">
+                                    ASSET
+                                </span>
+
+                                <strong>
+                                    EQ001
+                                </strong>
+
+                            </div>
+
+
+                            <!-- SETOR -->
+
+                            <div class="informacao">
+
+                                <span class="informacao-label">
+                                    SETOR
+                                </span>
+
+                                <strong>
+                                    Produção
+                                </strong>
+
+                            </div>
+
+
+                            <!-- TIPO -->
+
+                            <div class="informacao">
+
+                                <span class="informacao-label">
+                                    TIPO
+                                </span>
+
+                                <strong>
+                                    Corretiva
+                                </strong>
+
+                            </div>
+
+
+                            <!-- SOLICITANTE -->
+
+                            <div class="informacao">
+
+                                <span class="informacao-label">
+                                    SOLICITANTE
+                                </span>
+
+                                <strong>
+                                    Pedro Oliveira
+                                </strong>
+
+                            </div>
+
+
+                            <!-- TÉCNICO -->
+
+                            <div class="informacao">
+
+                                <span class="informacao-label">
+                                    TÉCNICO
+                                </span>
+
+                                <strong>
+                                    Ana Souza
+                                </strong>
+
+                            </div>
+
+
+                            <!-- ABERTURA -->
+
+                            <div class="informacao">
+
+                                <span class="informacao-label">
+                                    ABERTURA
+                                </span>
+
+                                <strong>
+                                    2024-08-01
+                                </strong>
+
+                            </div>
+
+
+                            <!-- FECHAMENTO -->
+
+                            <div class="informacao">
+
+                                <span class="informacao-label">
+                                    FECHAMENTO
+                                </span>
+
+                                <strong>
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- DESCRIÇÃO -->
+
+                        <div class="descricao-problema">
+
+                            <span class="informacao-label">
+                                DESCRIÇÃO DO PROBLEMA
+                            </span>
+
+                            <p>
+                                Motor apresentou superaquecimento
+                                durante operação
+                            </p>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- ================================================= -->
+                    <!-- ATIVIDADES -->
+                    <!-- ================================================= -->
+
+                    <section class="card-detalhes">
+
+                        <div class="card-titulo">
+
+                            <h2>
+                                Atividades
+                            </h2>
+
+                        </div>
+
+
+                        <div class="divisor"></div>
+
+
+                        <div class="lista-atividades">
+
+
+                            <!-- ATIVIDADE CONCLUÍDA -->
+
+                            <div class="atividade concluida">
+
+                                <span class="atividade-numero">
+                                    <i class="bi bi-check"></i>
+                                </span>
+
+                                <span class="atividade-texto">
+                                    Inspeção visual do equipamento
+                                </span>
+
+                            </div>
+
+
+                            <!-- ATIVIDADE CONCLUÍDA -->
+
+                            <div class="atividade concluida">
+
+                                <span class="atividade-numero">
+                                    <i class="bi bi-check"></i>
+                                </span>
+
+                                <span class="atividade-texto">
+                                    Desmontagem do componente afetado
+                                </span>
+
+                            </div>
+
+
+                            <!-- ATIVIDADE PENDENTE -->
+
+                            <div class="atividade">
+
+                                <span class="atividade-numero">
+                                    3
+                                </span>
+
+                                <span class="atividade-texto">
+                                    Substituição de peças danificadas
+                                </span>
+
+                            </div>
+
+
+                            <!-- ATIVIDADE PENDENTE -->
+
+                            <div class="atividade">
+
+                                <span class="atividade-numero">
+                                    4
+                                </span>
+
+                                <span class="atividade-texto">
+                                    Remontagem e testes de funcionamento
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- ================================================= -->
+                    <!-- PEÇAS UTILIZADAS -->
+                    <!-- ================================================= -->
+
+                    <section class="card-detalhes">
+
+                        <div class="card-titulo">
+
+                            <h2>
+                                Peças Utilizadas
+                            </h2>
+
+                        </div>
+
+
+                        <div class="divisor"></div>
+
+
+                        <div class="tabela-pecas">
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+                                            PEÇA
+                                        </th>
+
+                                        <th>
+                                            QTD
+                                        </th>
+
+                                        <th>
+                                            CUSTO UNIT.
+                                        </th>
+
+                                        <th>
+                                            TOTAL
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody>
+
+
+                                    <!-- PEÇA 1 -->
+
+                                    <tr>
+
+                                        <td>
+                                            Válvula de segurança 1/2"
+                                        </td>
+
+                                        <td>
+                                            1
+                                        </td>
+
+                                        <td>
+                                            R$ 185.90
+                                        </td>
+
+                                        <td>
+                                            <strong>
+                                                R$ 185.90
+                                            </strong>
+                                        </td>
+
+                                    </tr>
+
+
+                                    <!-- PEÇA 2 -->
+
+                                    <tr>
+
+                                        <td>
+                                            Filtro de ar comprimido
+                                        </td>
+
+                                        <td>
+                                            2
+                                        </td>
+
+                                        <td>
+                                            R$ 95.00
+                                        </td>
+
+                                        <td>
+                                            <strong>
+                                                R$ 190.00
+                                            </strong>
+                                        </td>
+
+                                    </tr>
+
+
+                                </tbody>
+
+
+                                <tfoot>
+
+                                    <tr>
+
+                                        <td
+                                            colspan="3"
+                                            class="total-label"
+                                        >
+                                            TOTAL DA OS
+                                        </td>
+
+                                        <td>
+                                            <strong>
+                                                R$ 1850.00
+                                            </strong>
+                                        </td>
+
+                                    </tr>
+
+                                </tfoot>
+
+                            </table>
+
+                        </div>
+
+                    </section>
+
+
+                </div>
+
+
+
+                <!-- ================================================= -->
+                <!-- COLUNA DIREITA -->
+                <!-- ================================================= -->
+
+                <div class="coluna-direita">
+
+
+                    <!-- ================================================= -->
+                    <!-- ALTERAR STATUS -->
+                    <!-- ================================================= -->
+
+                    <section class="card-status">
+
+                        <h2>
+                            Alterar Status
+                        </h2>
+
+
+                        <div class="lista-status">
+
+
+                            <!-- ABERTA -->
+
+                            <button
+                                type="button"
+                                class="opcao-status"
+                                data-status="aberta"
+                            >
+
+                                Aberta
+
+                            </button>
+
+
+                            <!-- EM ANDAMENTO -->
+
+                            <button
+                                type="button"
+                                class="opcao-status selecionado"
+                                data-status="andamento"
+                            >
+
+                                Em Andamento
+
+                            </button>
+
+
+                            <!-- CONCLUÍDA -->
+
+                            <button
+                                type="button"
+                                class="opcao-status"
+                                data-status="concluida"
+                            >
+
+                                Concluída
+
+                            </button>
+
+
+                        </div>
+
+
+                        <!-- CANCELAR OS -->
+
+                        <button
+                            type="button"
+                            class="botao-cancelar-os"
+                            id="cancelarOS"
+                        >
+
+                            Cancelar OS
+
+                        </button>
+
+                    </section>
+
+
+
+                    <!-- ================================================= -->
+                    <!-- HISTÓRICO DE STATUS -->
+                    <!-- ================================================= -->
+
+                    <section class="card-historico">
+
+                        <h2>
+                            Histórico de Status
+                        </h2>
+
+
+                        <div class="historico-status">
+
+
+                            <!-- STATUS ABERTA -->
+
+                            <div class="historico-item">
+
+                                <div class="historico-linha"></div>
+
+                                <div class="historico-conteudo">
+
+                                    <strong>
+                                        Aberta
+                                    </strong>
+
+                                    <span>
+                                        2024-08-01 08:30 - Pedro Oliveira
+                                    </span>
+
+                                    <p>
+                                        OS criada pelo solicitante.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- STATUS EM ANDAMENTO -->
+
+                            <div class="historico-item">
+
+                                <div class="historico-linha"></div>
+
+                                <div class="historico-conteudo">
+
+                                    <strong>
+                                        Em Andamento
+                                    </strong>
+
+                                    <span>
+                                        2024-08-01 09:15 - Carlos Mendes
+                                    </span>
+
+                                    <p>
+                                        Aprovada e atribuída ao técnico.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </section>
+
+
+                </div>
+
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================================= -->
+
+<script src="../-js/global.js"></script>
+
+<script src="../-js/pages/detalhes_os.js"></script>
+
+
+</body>
+
+</html>
