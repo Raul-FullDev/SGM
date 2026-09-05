@@ -51,6 +51,59 @@ document.getElementById("userForm").addEventListener("submit", async function (e
                 return;
             }
 
+
+// async function carregarSetores() {
+//         try {
+//             // Faz o GET na tabela 'local'
+//             const resposta = await fetch(`${baseUrl}/local?select=*`, {
+//                 method: 'GET',
+//                 headers: headersConfig
+//             });
+
+//             if (!resposta.ok) throw new Error("Erro ao buscar setores");
+
+//             const setores = await resposta.json();
+            
+//             // Limpa o HTML atual
+//             listaSetores.innerHTML = '';
+
+//             // Se não tiver setor, mostra mensagem vazia
+//             if (setores.length === 0) {
+//                 listaSetores.innerHTML = '<p>Nenhum setor cadastrado ainda.</p>';
+//                 return;
+//             }
+
+//             // Injeta o HTML para cada setor encontrado
+//             setores.forEach(setor => {
+//                 const cardHtml = `
+//                     <article class="card-setor">
+//                       <div class="cabecalho-card-setor">
+//                         <div class="informacoes-setor">
+//                           <h2>${setor.setor}</h2>
+//                           <p class="responsavel-setor">
+//                             ID do Banco: <span>#${setor.id}</span>
+//                           </p>
+//                         </div>
+//                         <div class="icone-setor" aria-hidden="true">
+//                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+//                             <path d="M4 20V10l8-6 8 6v10"></path>
+//                             <path d="M9 20v-6h6v6"></path>
+//                             <path d="M8 10h.01"></path>
+//                             <path d="M12 10h.01"></path>
+//                             <path d="M16 10h.01"></path>
+//                           </svg>
+//                         </div>
+//                       </div>
+//                     </article>
+//                 `;
+//                 listaSetores.innerHTML += cardHtml;
+//             });
+
+//         } catch (erro) {
+//             console.error("Falha ao carregar setores:", erro);
+//         }
+//     }
+
     console.log("Enviando usuário:", novoUsuario);
 
     // 3. Fazendo a requisição (POST) para o Supabase
