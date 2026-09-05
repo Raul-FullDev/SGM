@@ -1,0 +1,524 @@
+@import url("../global.css");
+@import url("../layout/sidebar.css");
+@import url("../layout/header.css");
+
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+.conteudo-principal {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+.breadcrumb-pagina {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-bottom: 25px;
+
+  font-size: 12px;
+}
+
+.breadcrumb-pagina a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #8da0bc;
+
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-pagina a:hover {
+  color: var(--azul);
+}
+
+.breadcrumb-pagina a i {
+  font-size: 10px;
+}
+
+.breadcrumb-separador {
+  color: #c2cfdf;
+  font-size: 9px;
+}
+
+.breadcrumb-atual {
+  color: #17275a;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   CABEÇALHO DA PÁGINA
+   ========================================================= */
+
+.cabecalho-pagina {
+  position: relative;
+  z-index: 2;
+
+  margin-bottom: 25px;
+}
+
+.cabecalho-pagina h1 {
+  margin-bottom: 5px;
+
+  color: #17275a;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.cabecalho-pagina p {
+  color: #657b99;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+   ========================================================= */
+
+.formulario-peca {
+  position: relative;
+  z-index: 2;
+
+  width: 673px;
+  max-width: 100%;
+
+  padding: 33px;
+
+  background: white;
+
+  border: 1px solid #dce5ef;
+  border-radius: 15px;
+
+  box-shadow:
+    0 2px 5px rgba(45, 81, 130, 0.07),
+    0 8px 18px rgba(45, 81, 130, 0.04);
+}
+
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
+.campos-peca {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  column-gap: 20px;
+  row-gap: 21px;
+}
+
+.campo-formulario {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.campo-largo {
+  grid-column: 1 / -1;
+}
+
+.campo-formulario label {
+  margin-bottom: 8px;
+
+  color: #50647f;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.campo-obrigatorio {
+  color: #e33434;
+}
+
+
+/* =========================================================
+   INPUTS E SELECT
+   ========================================================= */
+
+.campo-formulario input,
+.campo-formulario select {
+  width: 100%;
+  height: 42px;
+
+  padding: 0 15px;
+
+  border: 1px solid #d7e0eb;
+  border-radius: 11px;
+
+  background: white;
+  color: #293a54;
+
+  outline: none;
+
+  font-size: 12px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.campo-formulario input::placeholder {
+  color: #96a8c2;
+}
+
+.campo-formulario input:focus,
+.campo-formulario select:focus {
+  border-color: #8db4f4;
+
+  box-shadow:
+    0 0 0 3px rgba(38, 99, 226, 0.08);
+}
+
+.campo-formulario select {
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   TEXTO DE AJUDA
+   ========================================================= */
+
+.texto-ajuda {
+  margin-top: 5px;
+
+  color: #8ca1bf;
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   AVISO
+   ========================================================= */
+
+.aviso-formulario {
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-top: 20px;
+  padding: 0 15px;
+
+  border: 1px solid #c5efd9;
+  border-radius: 10px;
+
+  background: #edfcf5;
+  color: #139360;
+
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.aviso-formulario i {
+  flex-shrink: 0;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   AÇÕES
+   ========================================================= */
+
+.acoes-formulario {
+  position: relative;
+  z-index: 2;
+
+  width: 673px;
+  max-width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 20px;
+}
+
+.botao-cancelar,
+.botao-cadastrar {
+  height: 42px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.botao-cancelar {
+  min-width: 103px;
+
+  padding: 0 18px;
+
+  border: 1px solid #d8e0ea;
+
+  background: white;
+  color: #43546b;
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.botao-cancelar:hover {
+  background: #f7f9fc;
+}
+
+.botao-cadastrar {
+  min-width: 132px;
+
+  padding: 0 18px;
+
+  border: none;
+
+  background: #2155dc;
+  color: white;
+
+  box-shadow:
+    0 3px 6px rgba(33, 85, 220, 0.2);
+}
+
+.botao-cadastrar:hover {
+  background: #1748c6;
+}
+
+.botao-cancelar:active,
+.botao-cadastrar:active {
+  transform: translateY(1px);
+}
+
+.botao-cadastrar i {
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   DECORAÇÕES
+   ========================================================= */
+
+.decoracao-peca {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+/* Pontos */
+
+.ponto-peca {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #a8caff;
+  opacity: 0.85;
+}
+
+.ponto-peca-1 {
+  top: 65px;
+  right: 31%;
+}
+
+.ponto-peca-2 {
+  top: 65px;
+  right: 27.8%;
+}
+
+.ponto-peca-3 {
+  top: 65px;
+  right: 24.5%;
+}
+
+.ponto-peca-4 {
+  top: 65px;
+  right: 21.2%;
+}
+
+.ponto-peca-5 {
+  top: 65px;
+  right: 18%;
+}
+
+
+/* Círculo principal */
+
+.circulo-peca {
+  position: absolute;
+
+  border-radius: 50%;
+}
+
+.circulo-peca-1 {
+  width: 260px;
+  height: 260px;
+
+  right: 25px;
+  top: 385px;
+
+  border: 1px solid #b6d0fb;
+}
+
+
+/* Círculo maior */
+
+.circulo-peca-2 {
+  width: 230px;
+  height: 230px;
+
+  right: -5px;
+  bottom: -70px;
+
+  background: rgba(130, 166, 232, 0.22);
+}
+
+
+/* Círculo intermediário */
+
+.circulo-peca-3 {
+  width: 120px;
+  height: 120px;
+
+  right: 210px;
+  bottom: 92px;
+
+  background: rgba(120, 159, 226, 0.25);
+}
+
+
+/* Círculo menor */
+
+.circulo-peca-4 {
+  width: 180px;
+  height: 180px;
+
+  right: 250px;
+  bottom: -65px;
+
+  border: 1px solid #bdd6fc;
+}
+
+
+/* Linhas diagonais */
+
+.linhas-peca {
+  position: absolute;
+
+  width: 170px;
+  height: 1px;
+
+  right: 43px;
+  top: 505px;
+
+  transform: rotate(32deg);
+  transform-origin: right center;
+
+  background: #b8d1f9;
+}
+
+.linhas-peca::before,
+.linhas-peca::after {
+  content: "";
+
+  position: absolute;
+
+  width: 170px;
+  height: 1px;
+
+  right: 0;
+
+  background: #b8d1f9;
+}
+
+.linhas-peca::before {
+  top: 14px;
+}
+
+.linhas-peca::after {
+  top: 28px;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .formulario-peca,
+  .acoes-formulario {
+    width: 100%;
+    max-width: 673px;
+  }
+}
+
+@media (max-width: 750px) {
+  .campos-peca {
+    grid-template-columns: 1fr;
+  }
+
+  .campo-largo {
+    grid-column: auto;
+  }
+
+  .decoracao-peca {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .breadcrumb-pagina {
+    font-size: 11px;
+  }
+
+  .cabecalho-pagina h1 {
+    font-size: 22px;
+  }
+
+  .cabecalho-pagina p {
+    font-size: 11px;
+  }
+
+  .formulario-peca {
+    padding: 20px;
+    border-radius: 11px;
+  }
+
+  .acoes-formulario {
+    gap: 12px;
+  }
+
+  .botao-cancelar,
+  .botao-cadastrar {
+    min-width: 0;
+    flex: 1;
+  }
+}

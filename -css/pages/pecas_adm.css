@@ -561,21 +561,15 @@
 }
 
 @media (max-width: 650px) {
-.cabecalho-pecas {
-  flex-direction: column;
-  align-items: stretch;
-}
+  .cabecalho-pecas {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-.acoes-cabecalho-pecas {
-  width: 100%;
-  flex-wrap: wrap;
-}
+  .botao-nova-peca {
+    align-self: flex-start;
+  }
 
-.botao-quantidade-minima,
-.botao-nova-peca {
-  flex: 1;
-}
-  
   .cabecalho-pecas h1 {
     font-size: 22px;
   }
@@ -591,62 +585,4 @@
   .tabela-pecas {
     min-width: 700px;
   }
-}
-
-/* =========================================================
-   AÇÕES DO CABEÇALHO
-   ========================================================= */
-
-.acoes-cabecalho-pecas {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-
-/* =========================================================
-   BOTÃO QUANTIDADE MÍNIMA
-   ========================================================= */
-
-.botao-quantidade-minima {
-  height: 40px;
-  min-width: 165px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  padding: 0 17px;
-
-  border: 1px solid #cfdbea;
-  border-radius: 9px;
-
-  background: white;
-  color: #40536d;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  box-shadow: 0 2px 4px rgba(47, 82, 130, 0.05);
-
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.botao-quantidade-minima:hover {
-  background: #f6f9fd;
-  border-color: #b9c9dd;
-  color: #2055dc;
-}
-
-.botao-quantidade-minima:active {
-  transform: translateY(1px);
-}
-
-.botao-quantidade-minima i {
-  font-size: 13px;
 }
