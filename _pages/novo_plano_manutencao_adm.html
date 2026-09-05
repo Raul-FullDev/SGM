@@ -2,465 +2,421 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Novo Plano de Manutenção</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="../-css/pages/novo_plano_manutencao.css">
-<div class="layout">
-    
-      <!-- Menu lateral -->
-      <aside class="barra-lateral" id="barraLateral">
-        <div class="cabecalho-barra">
-          <div class="logo">
-            <span class="icone-logo">S</span>
-            <div class="texto-logo">
-              <strong>SGM</strong>
-              <span>Gestão de manutenção</span>
-            </div>
-          </div>
-        </div>
-
-        <nav class="navegacao-lateral" aria-label="Navegação principal">
-          <ul class="lista-navegacao">
-            <!-- Dashboard -->
-            <li class="item-navegacao ativo">
-              <a href="dashboard.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-list-task"></i></span>
-                <span>Dashboard</span>
-              </a>
-            </li>
-
-            <!-- Ordens de Serviço -->
-            <li class="item-navegacao">
-              <a href="todas_os.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-clipboard-data"></i></span>
-                <span>Ordens de Serviço</span>
-              </a>
-            </li>
-
-            <!-- Equipamentos -->
-            <li class="item-navegacao">
-              <a href="equipamentos.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-wrench-adjustable"></i></span>
-                <span>Equipamentos</span>
-
-              </a>
-            </li>
-
-            <!-- ========================================== -->
-            <!-- NOVOS MENUS ADICIONADOS PELO SEU COLEGA    -->
-            <!-- ========================================== -->
-            <li class="item-navegacao">
-              <a href="setor_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-collection"></i></span>
-                <span>Setor</span>
-              </a>
-            </li>
-
-            <li class="item-navegacao">
-              <a href="historico_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-clock-history"></i></span>
-                <span>Histórico</span>
-              </a>
-            </li>
-
-            <li class="item-navegacao">
-              <a href="indicadores_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-bar-chart"></i></span>
-                <span>Indicadores</span>
-              </a>
-            </li>
-
-            <li class="item-navegacao">
-              <a href="relatorios_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-file-earmark-text"></i></span>
-                <span>Relatórios</span>
-              </a>
-            </li>
-            <!-- ========================================== -->
-
-            <!-- Manutenção -->
-            <li class="item-navegacao">
-              <a href="manutencao_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-tools"></i></span>
-                <span>Manutenção</span>
-               
-              </a>
-            </li>
-
-            <!-- Peças -->
-            <li class="item-navegacao">
-              <a href="pecas_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-nut"></i></span>
-                <span>Peças</span>
-                
-              </a>
-            </li>
-
-            <!-- Administração -->
-            <li class="item-navegacao">
-              <a href="usuarios.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-people"></i></span>
-                <span> Administração </span>
-               
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-
-      <!-- Área principal -->
-      <div class="area-principal">
-        <!-- Cabeçalho -->
-        <header class="cabecalho">
-          <div class="cabecalho-esquerdo">
-            <button
-              class="botao-menu"
-              id="botaoMenu"
-              type="button"
-              aria-label="Abrir menu"
-            >
-              ☰
-            </button>
-          </div>
-
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
-            <!-- ================================= -->
-            <!-- TÍTULO -->
-            <!-- ================================= -->
+<body>
 
-            <div class="page-title">
+    <div class="layout">
 
-                <h1>
-                    Novo Plano de Manutenção
-                </h1>
+        <!-- MENU LATERAL -->
+        <aside class="barra-lateral" id="barraLateral">
 
-                <p>
-                    Configure um plano preventivo ou preditivo para um equipamento
-                </p>
+            <div class="cabecalho-barra">
+                <div class="logo">
+                    <span class="icone-logo">S</span>
 
+                    <div class="texto-logo">
+                        <strong>SGM</strong>
+                        <span>Gestão de manutenção</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- ================================= -->
-            <!-- FORMULÁRIO -->
-            <!-- ================================= -->
+            <nav class="navegacao-lateral" aria-label="Navegação principal">
+                <ul class="lista-navegacao">
 
-            <form class="maintenance-form">
+                    <li class="item-navegacao">
+                        <a href="dashboard.html" class="link-navegacao">
+                            <span class="icone-navegacao">
+                                <i class="bi bi-list-task"></i>
+                            </span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
 
+                    <li class="item-navegacao">
+                        <a href="todas_os.html" class="link-navegacao">
+                            <span class="icone-navegacao">
+                                <i class="bi bi-clipboard-data"></i>
+                            </span>
+                            <span>Ordens de Serviço</span>
+                        </a>
+                    </li>
 
-                <!-- ================================= -->
-                <!-- DESCRIÇÃO DO PLANO -->
-                <!-- ================================= -->
+                    <li class="item-navegacao">
+                        <a href="equipamentos.html" class="link-navegacao">
+                            <span class="icone-navegacao">
+                                <i class="bi bi-wrench-adjustable"></i>
+                            </span>
+                            <span>Equipamentos</span>
+                        </a>
+                    </li>
 
-                <div class="form-group full-width">
+                    <li class="item-navegacao">
+                        <a href="setor_adm.html" class="link-navegacao">
+                            <span class="icone-navegacao">
+                                <i class="bi bi-collection"></i>
+                            </span>
+                            <span>Setor</span>
+                        </a>
+                    </li>
 
-                    <label for="descricao">
-                        Descrição do Plano
-                        <span>*</span>
-                    </label>
+                    <li class="item-navegacao">
+                        <a href="historico_adm.html" class="link-navegacao">
+                            <span class="icone-navegacao">
+                                <i class="bi bi-clock-history"></i>
+                            </span>
+                            <span>Histórico</span>
+                        </a>
+                    </li>
 
-                    <input
-                        type="text"
-                        id="descricao"
-                        name="descricao"
-                        placeholder="Ex: Troca de óleo e filtros"
-                        required
-                    >
+                    <li class="item-navegacao">
+                        <a href="indicadores_adm.html" class="link-navegacao">
+                            <span class="icone-navegacao">
+                                <i class="bi bi-bar-chart"></i>
+                            </span>
+                            <span>Indicadores</span>
+                        </a>
+                    </li>
 
+                    <li class="item-navegacao">
+                        <a href="relatorios_adm.html" class="link-navegacao">
+                            <span class="icone-navegacao">
+                                <i class="bi bi-file-earmark-text"></i>
+                            </span>
+                            <span>Relatórios</span>
+                        </a>
+                    </li>
+
+                    <li class="item-navegacao ativo">
+                        <a href="manutencao_adm.html" class="link-navegacao">
+                            <span class="icone-navegacao">
+                                <i class="bi bi-tools"></i>
+                            </span>
+                            <span>Manutenção</span>
+                        </a>
+                    </li>
+
+                    <li class="item-navegacao">
+                        <a href="pecas_adm.html" class="link-navegacao">
+                            <span class="icone-navegacao">
+                                <i class="bi bi-nut"></i>
+                            </span>
+                            <span>Peças</span>
+                        </a>
+                    </li>
+
+                    <li class="item-navegacao">
+                        <a href="usuarios.html" class="link-navegacao">
+                            <span class="icone-navegacao">
+                                <i class="bi bi-people"></i>
+                            </span>
+                            <span>Administração</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </aside>
+
+        <!-- ÁREA PRINCIPAL -->
+        <div class="area-principal">
+
+            <!-- CABEÇALHO SUPERIOR -->
+            <header class="cabecalho">
+
+                <div class="cabecalho-esquerdo">
+                    <button
+                        class="botao-menu"
+                        id="botaoMenu"
+                        type="button"
+                        aria-label="Abrir menu">
+                        ☰
+                    </button>
                 </div>
 
-
-
-                <!-- ================================= -->
-                <!-- EQUIPAMENTO -->
-                <!-- ================================= -->
-
-                <div class="form-group full-width">
-
-                    <label for="equipamento">
-                        Equipamento
-                        <span>*</span>
-                    </label>
-
-                    <select
-                        id="equipamento"
-                        name="equipamento"
-                        required
-                    >
-
-                        <option value="">
-                            Selecione o equipamento...
-                        </option>
-
-                        <option value="compressor">
-                            Compressor de Ar
-                        </option>
-
-                        <option value="torno">
-                            Torno CNC
-                        </option>
-
-                        <option value="gerador">
-                            Gerador
-                        </option>
-
-                        <option value="esteira">
-                            Esteira Transportadora
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-
-                <!-- ================================= -->
-                <!-- TIPO DE MANUTENÇÃO -->
-                <!-- ================================= -->
-
-                <div class="form-group">
-
-                    <label for="tipo-manutencao">
-                        Tipo de Manutenção
-                        <span>*</span>
-                    </label>
-
-                    <select
-                        id="tipo-manutencao"
-                        name="tipo-manutencao"
-                        required
-                    >
-
-                        <option value="preventiva">
-                            Preventiva
-                        </option>
-
-                        <option value="preditiva">
-                            Preditiva
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-
-                <!-- ================================= -->
-                <!-- PERIODICIDADE -->
-                <!-- ================================= -->
-
-                <div class="form-group">
-
-                    <label for="periodicidade">
-                        Periodicidade
-                        <span>*</span>
-                    </label>
-
-                    <select
-                        id="periodicidade"
-                        name="periodicidade"
-                        required
-                    >
-
-                        <option value="mensal">
-                            Mensal
-                        </option>
-
-                        <option value="bimestral">
-                            Bimestral
-                        </option>
-
-                        <option value="trimestral">
-                            Trimestral
-                        </option>
-
-                        <option value="semestral">
-                            Semestral
-                        </option>
-
-                        <option value="anual">
-                            Anual
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-
-                <!-- ================================= -->
-                <!-- PERÍODO -->
-                <!-- ================================= -->
-
-                <div class="form-group">
-
-                    <label for="periodo">
-                        Período (dias)
-                        <span>*</span>
-                    </label>
-
-                    <input
-                        type="number"
-                        id="periodo"
-                        name="periodo"
-                        placeholder="Ex: 90"
-                        required
-                    >
-
-                    <small>
-                        Intervalo entre execuções em dias
-                    </small>
-
-                </div>
-
-
-
-                <!-- ================================= -->
-                <!-- DATA DE INÍCIO -->
-                <!-- ================================= -->
-
-                <div class="form-group">
-
-                    <label for="data-inicio">
-                        Data de Início do Plano
-                        <span>*</span>
-                    </label>
-
-                    <input
-                        type="date"
-                        id="data-inicio"
-                        name="data-inicio"
-                        required
-                    >
-
-                </div>
-
-
-
-                <!-- ================================= -->
-                <!-- PRÓXIMA EXECUÇÃO -->
-                <!-- ================================= -->
-
-                <div class="form-group">
-
-                    <label for="proxima-execucao">
-                        Próxima Execução
-                        <span>*</span>
-                    </label>
-
-                    <input
-                        type="date"
-                        id="proxima-execucao"
-                        name="proxima-execucao"
-                        required
-                    >
-
-                </div>
-
-
-
-                <!-- ================================= -->
-                <!-- ÚLTIMA EXECUÇÃO -->
-                <!-- ================================= -->
-
-                <div class="form-group">
-
-                    <label for="ultima-execucao">
-                        Última Execução
-                    </label>
-
-                    <input
-                        type="date"
-                        id="ultima-execucao"
-                        name="ultima-execucao"
-                    >
-
-                    <small>
-                        Deixe vazio se o plano for novo
-                    </small>
-
-                </div>
-
-
-
-                <!-- ================================= -->
-                <!-- OBSERVAÇÕES -->
-                <!-- ================================= -->
-
-                <div class="form-group full-width">
-
-                    <label for="observacoes">
-                        Observações
-                    </label>
-
-                    <textarea
-                        id="observacoes"
-                        name="observacoes"
-                        rows="5"
-                        placeholder="Instruções, referências técnicas, requisitos de segurança..."
-                    ></textarea>
-
-                </div>
-
-
-
-                <!-- ================================= -->
-                <!-- AVISO -->
-                <!-- ================================= -->
-
-                <div class="form-info">
-
-                    <p>
-                        Quando a próxima execução estiver próxima,
-                        o sistema exibirá alertas no Dashboard.
-                    </p>
-
-                </div>
-
-
-
-                <!-- ================================= -->
-                <!-- BOTÕES -->
-                <!-- ================================= -->
-
-                <div class="form-actions">
-
-                    <a
-                        href="planos.html"
-                        class="btn-cancel">
-                        Cancelar
-                    </a>
-
+                <div class="cabecalho-direito">
 
                     <button
-                        type="submit"
-                        class="btn-register">
-
-                        + Cadastrar
-
+                        class="botao-notificacao"
+                        id="botaoNotificacao"
+                        type="button"
+                        aria-label="Notificações">
+                        <i class="bi bi-bell"></i>
                     </button>
+
+                    <div class="perfil-usuario">
+                        <div class="avatar-usuario">AS</div>
+
+                        <div class="informacoes-usuario">
+                            <strong>Admin Sistema</strong>
+                            <span>Administrador</span>
+                        </div>
+                    </div>
 
                 </div>
 
+            </header>
 
-            </form>
+            <!-- CONTEÚDO -->
+            <main class="conteudo-principal novo-plano">
 
-        </section>
+                <nav class="breadcrumb" aria-label="Navegação estrutural">
 
-    </main>
+                    <a href="manutencao_adm.html">
+                        <i class="bi bi-chevron-left"></i>
+                        Manutenção
+                    </a>
 
+                    <span>
+                        <i class="bi bi-chevron-right"></i>
+                    </span>
 
+                    <strong>Novo Plano de Manutenção</strong>
 
-    <!-- ================================= -->
-    <!-- JAVASCRIPT -->
-    <!-- ================================= -->
+                </nav>
 
+                <section class="page-title">
+
+                    <h1>Novo Plano de Manutenção</h1>
+
+                    <p>
+                        Configure um plano preventivo ou preditivo para um equipamento
+                    </p>
+
+                </section>
+
+                <form class="maintenance-form">
+
+                    <div class="form-group full-width">
+
+                        <label for="descricao">
+                            Descrição do Plano
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="descricao"
+                            name="descricao"
+                            placeholder="Ex: Troca de óleo e filtros"
+                            required>
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="equipamento">
+                            Equipamento
+                            <span>*</span>
+                        </label>
+
+                        <select
+                            id="equipamento"
+                            name="equipamento"
+                            required>
+
+                            <option value="">
+                                Selecione o equipamento...
+                            </option>
+
+                            <option value="compressor">
+                                Compressor de Ar
+                            </option>
+
+                            <option value="torno">
+                                Torno CNC
+                            </option>
+
+                            <option value="gerador">
+                                Gerador
+                            </option>
+
+                            <option value="esteira">
+                                Esteira Transportadora
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="tipo-manutencao">
+                            Tipo de Manutenção
+                            <span>*</span>
+                        </label>
+
+                        <select
+                            id="tipo-manutencao"
+                            name="tipo-manutencao"
+                            required>
+
+                            <option value="preventiva">
+                                Preventiva
+                            </option>
+
+                            <option value="preditiva">
+                                Preditiva
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="periodicidade">
+                            Periodicidade
+                            <span>*</span>
+                        </label>
+
+                        <select
+                            id="periodicidade"
+                            name="periodicidade"
+                            required>
+
+                            <option value="mensal">
+                                Mensal
+                            </option>
+
+                            <option value="bimestral">
+                                Bimestral
+                            </option>
+
+                            <option value="trimestral">
+                                Trimestral
+                            </option>
+
+                            <option value="semestral">
+                                Semestral
+                            </option>
+
+                            <option value="anual">
+                                Anual
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="periodo">
+                            Período (dias)
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="periodo"
+                            name="periodo"
+                            placeholder="Ex: 90"
+                            required>
+
+                        <small>
+                            Intervalo entre execuções em dias
+                        </small>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="data-inicio">
+                            Data de Início do Plano
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="data-inicio"
+                            name="data-inicio"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="proxima-execucao">
+                            Próxima Execução
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="proxima-execucao"
+                            name="proxima-execucao"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="ultima-execucao">
+                            Última Execução
+                        </label>
+
+                        <input
+                            type="date"
+                            id="ultima-execucao"
+                            name="ultima-execucao">
+
+                        <small>
+                            Deixe vazio se o plano for novo
+                        </small>
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="observacoes">
+                            Observações
+                        </label>
+
+                        <textarea
+                            id="observacoes"
+                            name="observacoes"
+                            rows="5"
+                            placeholder="Instruções, referências técnicas, requisitos de segurança..."></textarea>
+
+                    </div>
+
+                    
+
+                    <div class="form-actions">
+
+                        <a
+                            href="manutencao_adm.html"
+                            class="btn-cancel">
+                            Cancelar
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="btn-register">
+                            + Cadastrar
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <script src="../-js/global.js"></script>
     <script src="novo-plano.js"></script>
 
 </body>
