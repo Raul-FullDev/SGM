@@ -2,6 +2,7 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
+
 /* =========================================================
    DETALHES DA ORDEM DE SERVIÇO
    Visual seguindo o padrão atual do SGM
@@ -309,6 +310,38 @@
 
 
 /* =========================================================
+   STATUS DAS ATIVIDADES
+========================================================= */
+
+.atividade-info {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.atividade-status {
+    flex: 0 0 auto;
+    padding: 4px 9px;
+    border: 1px solid #accfff;
+    border-radius: 999px;
+    background: #e0ecff;
+    color: #3476d6;
+    font-size: 8px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.atividade.concluida .atividade-status {
+    border-color: #9bdcc3;
+    background: #e4f8ef;
+    color: #159b72;
+}
+
+
+/* =========================================================
    PEÇAS
 ========================================================= */
 
@@ -420,6 +453,11 @@
     font-weight: 600;
 }
 
+
+/* =========================================================
+   CANCELAR OS
+========================================================= */
+
 .botao-cancelar-os {
     width: 100%;
     min-height: 35px;
@@ -439,6 +477,34 @@
 .botao-cancelar-os:hover {
     background: #ffebeb;
     border-color: #e79a9a;
+}
+
+
+/* =========================================================
+   FINALIZAR OS
+========================================================= */
+
+.botao-finalizar-os {
+    width: 100%;
+    min-height: 35px;
+    margin-top: 8px;
+    border: 1px solid #9bdcc3;
+    border-radius: 8px;
+    background: #eaf8f1;
+    color: #159b72;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+.botao-finalizar-os:hover {
+    background: #ddf3e9;
+    border-color: #82d0b0;
+    color: #118761;
 }
 
 
@@ -516,6 +582,19 @@
 
 
 /* =========================================================
+   MODAL
+========================================================= */
+
+.modal-confirmacao {
+    display: none;
+}
+
+.modal-confirmacao[aria-hidden="false"] {
+    display: flex;
+}
+
+
+/* =========================================================
    RESPONSIVIDADE
 ========================================================= */
 
@@ -549,6 +628,12 @@
     .coluna-direita {
         display: flex;
         flex-direction: column;
+    }
+
+    .atividade-info {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
     }
 }
 
