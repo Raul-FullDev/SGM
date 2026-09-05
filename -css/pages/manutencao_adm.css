@@ -1,0 +1,361 @@
+@import url("../global.css");
+@import url("../layout/sidebar.css");
+@import url("../layout/header.css");
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+========================================================= */
+
+.conteudo-principal.main-content {
+    position: relative;
+    min-height: calc(100vh - var(--altura-cabecalho));
+    padding: 27px 25px 45px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   DECORAÇÃO DO FUNDO
+========================================================= */
+
+.conteudo-principal.main-content::before,
+.conteudo-principal.main-content::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.conteudo-principal.main-content::before {
+    width: 230px;
+    height: 230px;
+    right: -120px;
+    bottom: -105px;
+    border: 1px solid rgba(61, 112, 205, 0.18);
+    border-radius: 50%;
+}
+
+.conteudo-principal.main-content::after {
+    width: 58px;
+    height: 58px;
+    right: 70px;
+    bottom: 24px;
+    border-radius: 50%;
+    background: rgba(75, 126, 218, 0.12);
+    box-shadow:
+        150px 15px 0 80px rgba(75, 126, 218, 0.08),
+        150px -275px 0 -27px rgba(75, 126, 218, 0.08);
+}
+
+.conteudo-principal.main-content > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================================
+   CABEÇALHO DA PÁGINA
+========================================================= */
+
+.page-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.page-title {
+    min-width: 0;
+}
+
+.page-title h1 {
+    margin-bottom: 5px;
+    color: #18386e;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+}
+
+.page-title p {
+    color: var(--cinza-500);
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+/* =========================================================
+   BOTÃO NOVO PLANO
+========================================================= */
+
+.btn-new-plan {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border: none;
+    border-radius: 9px;
+    background: var(--azul);
+    box-shadow: 0 3px 7px rgba(32, 91, 234, 0.16);
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        transform 0.12s ease;
+}
+
+.btn-new-plan a {
+    display: inline-flex;
+    align-items: center;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn-new-plan:hover {
+    background: #0f4fd2;
+}
+
+.btn-new-plan:active {
+    transform: translateY(1px);
+}
+
+/* =========================================================
+   LISTA DE PLANOS
+========================================================= */
+
+.plans-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.plan-card {
+    min-height: 84px;
+    display: grid;
+    grid-template-columns:
+        minmax(260px, 1fr)
+        95px
+        95px
+        70px
+        auto;
+
+    align-items: center;
+    gap: 18px;
+
+    padding: 16px 20px;
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border: 1px solid #5436ff;
+    border-radius: 15px;
+
+    box-shadow: 0 3px 9px rgba(44, 72, 112, 0.055);
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-2px);
+    border-color: #238aff;
+    box-shadow: 0 6px 15px rgba(44, 72, 112, 0.08);
+}
+
+/* =========================================================
+   INFORMAÇÕES
+========================================================= */
+
+.plan-info {
+    min-width: 0;
+}
+
+.plan-info h2 {
+    margin-bottom: 4px;
+    color: #19386c;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.plan-info p {
+    color: #8a9db8;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+/* =========================================================
+   DATAS
+========================================================= */
+
+.plan-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3px;
+    min-width: 0;
+}
+
+.plan-column span {
+    color: #9aa8bc;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.plan-column strong {
+    color: #43556f;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.plan-column strong.next,
+.plan-column strong.remaining {
+    color: #6459ff;
+}
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.plan-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.btn-edit,
+.btn-os {
+    height: 31px;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.1s ease;
+}
+
+.btn-edit {
+    background: #ffffff;
+    border: 1px solid #dbe3ed;
+    color: #43536a;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.035);
+}
+
+.btn-edit:hover {
+    background: #f7f9fc;
+    border-color: #cbd6e3;
+}
+
+.btn-os {
+    background: var(--azul);
+    border: 1px solid var(--azul);
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(32, 91, 234, 0.14);
+}
+
+.btn-os:hover {
+    background: #0f4fd2;
+    border-color: #0f4fd2;
+}
+
+.btn-edit:active,
+.btn-os:active {
+    transform: translateY(1px);
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .plan-card {
+        grid-template-columns:
+            minmax(220px, 1fr)
+            90px
+            90px
+            65px;
+    }
+
+    .plan-actions {
+        grid-column: 1 / -1;
+        justify-content: flex-end;
+        padding-top: 2px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .conteudo-principal.main-content {
+        padding: 22px 18px 35px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 20px;
+    }
+
+    .btn-new-plan {
+        align-self: flex-start;
+    }
+
+    .plan-card {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+        padding: 17px;
+        border-radius: 13px;
+    }
+
+    .plan-info {
+        grid-column: 1 / -1;
+    }
+
+    .plan-actions {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .page-title h1 {
+        font-size: 22px;
+    }
+
+    .plan-card {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .plan-column strong {
+        font-size: 12px;
+    }
+
+    .plan-actions {
+        flex-wrap: wrap;
+    }
+
+    .btn-edit,
+    .btn-os {
+        flex: 1;
+        min-width: 100px;
+    }
+}
