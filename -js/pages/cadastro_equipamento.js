@@ -1,4 +1,4 @@
-document.getElementById('formularioEquipamento').addEventListener('submit', function(event){
+document.getElementById('formularioEquipamento').addEventListener('submit', async function(event){
     event.preventDefault();
 
     const asset = document.getElementById('codigoAtivo').value; 
@@ -22,6 +22,28 @@ document.getElementById('formularioEquipamento').addEventListener('submit', func
     };
 
     console.log("Enviando equipamento:", novoEquipamento);
+
+    try {
+        const checkResponse = await fetch(`https://akbqnlvyfravlglouoqs.supabase.co/rest/v1/equipamento?asset=eq.${encodeURIComponent(asset)}`, {
+            method: 'GET',
+            headers: {
+                "apikey": "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
+                "Authorization": "Bearer sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb"
+                }
+            });
+
+            const checagemAsset = await checkResponse.json();
+
+            if (checagemAsset.length > 0){
+                alert("O Asset inserido já foi cadastrado");
+                return;
+            }
+
+            } catch (error) {
+            console.error("Erro na verificação de Asset:", error);
+                alert("Erro ao verificar duplicidade de Asset.");
+                return;
+            }
 
 
     fetch(`https://umvtsquzpugempndwitx.supabase.co/rest/v1/equipamento`, {
