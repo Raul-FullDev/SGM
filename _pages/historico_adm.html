@@ -267,6 +267,24 @@
               </select>
             </div>
 
+
+            <!-- Filtro de status -->
+            <div class="campo-filtro-historico">
+              <label for="filtroStatusHistorico">
+                Status
+              </label>
+
+              <select
+                id="filtroStatusHistorico"
+                name="filtroStatusHistorico"
+              >
+                <option value="todos">Todos os status</option>
+                <option value="andamento">Em andamento</option>
+                <option value="concluida">Concluída</option>
+                <option value="cancelada">Cancelada</option>
+              </select>
+            </div>
+
           </section>
 
 
@@ -286,6 +304,7 @@
                   <th scope="col">Técnico</th>
                   <th scope="col">Data</th>
                   <th scope="col">Duração</th>
+                  <th scope="col">Status</th>
                   <th scope="col">Custo</th>
                 </tr>
               </thead>
@@ -317,6 +336,10 @@
 
                   <td class="duracao-historico">
                     6h 30min
+                  </td>
+
+                  <td class="status-historico status-concluida">
+                    Concluída
                   </td>
 
                   <td class="custo-historico">
@@ -351,6 +374,10 @@
                     4h 15min
                   </td>
 
+                  <td class="status-historico status-concluida">
+                    Concluída
+                  </td>
+
                   <td class="custo-historico">
                     R$ 340.00
                   </td>
@@ -381,6 +408,10 @@
 
                   <td class="duracao-historico">
                     3h 00min
+                  </td>
+
+                  <td class="status-historico status-andamento">
+                    Em andamento
                   </td>
 
                   <td class="custo-historico">
@@ -415,6 +446,10 @@
                     2h 45min
                   </td>
 
+                  <td class="status-historico status-cancelada">
+                    Cancelada
+                  </td>
+
                   <td class="custo-historico">
                     R$ 280.00
                   </td>
@@ -445,6 +480,10 @@
 
                   <td class="duracao-historico">
                     5h 20min
+                  </td>
+
+                  <td class="status-historico status-concluida">
+                    Concluída
                   </td>
 
                   <td class="custo-historico">

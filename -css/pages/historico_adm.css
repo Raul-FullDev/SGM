@@ -47,7 +47,7 @@
   z-index: 2;
 
   display: grid;
-  grid-template-columns: minmax(320px, 1fr) 180px 180px;
+  grid-template-columns: minmax(300px, 1fr) 155px 155px 155px;
 
   gap: 12px;
 
@@ -215,11 +215,11 @@
 /* Larguras */
 
 .tabela-historico th:nth-child(1) {
-  width: 12%;
+  width: 11%;
 }
 
 .tabela-historico th:nth-child(2) {
-  width: 21%;
+  width: 19%;
 }
 
 .tabela-historico th:nth-child(3) {
@@ -227,19 +227,23 @@
 }
 
 .tabela-historico th:nth-child(4) {
-  width: 15%;
+  width: 14%;
 }
 
 .tabela-historico th:nth-child(5) {
-  width: 14%;
+  width: 12%;
 }
 
 .tabela-historico th:nth-child(6) {
-  width: 13%;
+  width: 11%;
 }
 
 .tabela-historico th:nth-child(7) {
-  width: 14%;
+  width: 10%;
+}
+
+.tabela-historico th:nth-child(8) {
+  width: 12%;
 }
 
 
@@ -314,6 +318,29 @@
 
   font-weight: 600;
   text-align: nowrap;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status-historico {
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.status-historico.status-andamento {
+  color: #3476d6 !important;
+}
+
+.status-historico.status-concluida {
+  color: #159b72 !important;
+}
+
+.status-historico.status-cancelada {
+  color: #d95353 !important;
 }
 
 
@@ -461,7 +488,7 @@
 
 @media (max-width: 1050px) {
   .filtros-historico {
-    grid-template-columns: minmax(250px, 1fr) 165px 165px;
+    grid-template-columns: minmax(220px, 1fr) 145px 145px 145px;
   }
 
   .tabela-historico-container {
@@ -512,5 +539,15 @@
   .tabela-historico td {
     padding-left: 17px;
     padding-right: 17px;
+  }
+}
+
+/* =========================================================
+   AJUSTES DO NOVO FILTRO
+========================================================= */
+
+@media (max-width: 1050px) {
+  .filtros-historico {
+    grid-template-columns: minmax(220px, 1fr) 145px 145px 145px;
   }
 }
