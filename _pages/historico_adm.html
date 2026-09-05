@@ -1,82 +1,469 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Histórico de Manutenção - SGM</title>
+    <title>SGM - Histórico de Manutenções</title>
 
-    <link  rel="stylesheet" href="../css/pages/historico.css">
-</head>
-<body>
+    <!-- Caminho do CSS mantido -->
+    <link rel="stylesheet" href="../-css/pages/historico_adm.css" />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+
+  <body>
     <div class="layout">
 
-        <aside class = "menu-lateral">
-            <nav>
-                <a href="#">Dashboard</a>
-                <a href="#">Ordens De Serviço</a>
-                <a href="#">Equipamentos</a>
-                <a href="#">Setor</a>
-                <a href="#">Manutencao</a>
-                <a href="#">Peças</a>   
-                <a href="#" class="active">Histórico</a>
-                <a href="#">Indicadores</a>
-                <a href="#">Relatórios</a>
-                <a href="#">Administração</a>
-            </nav>
+      <!-- Menu lateral -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
+          <div class="logo">
+            <span class="icone-logo">S</span>
 
-        </aside>
-        <main class="conteudo">
-            <header class="cabecalho">
-                <h1>Histórico de Manutenção</h1>
+            <div class="texto-logo">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
 
-                <p> Registro completo de serviços executados</p>
-            </header>
+        <nav class="navegacao-lateral" aria-label="Navegação principal">
+          <ul class="lista-navegacao">
 
-            <table cellpadding="15">
-                <thead>
-                    <tr>
-                        <th>OS</th>
-                        <th>Equipamentos</th>
-                        <th>Tipo</th>
-                        <th>Técnico</th>
-                        <th>Data</th>
-                        <th>Duração</th>
-                        <th>Custo</th>
-                    </tr>
+            <!-- Dashboard -->
+            <li class="item-navegacao">
+              <a href="dashboard.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-list-task"></i>
+                </span>
+                <span>Dashboard</span>
+              </a>
+            </li>
 
-                </thead>
+            <!-- Ordens de Serviço -->
+            <li class="item-navegacao">
+              <a href="todas_os.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-clipboard-data"></i>
+                </span>
+                <span>Ordens de Serviço</span>
+              </a>
+            </li>
 
-                <tbody>
-                    <tbody>
+            <!-- Equipamentos -->
+            <li class="item-navegacao">
+              <a href="equipamentos.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-wrench-adjustable"></i>
+                </span>
+                <span>Equipamentos</span>
+              </a>
+            </li>
 
-            <tr>
+            <!-- Setor -->
+            <li class="item-navegacao">
+              <a href="setor_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-collection"></i>
+                </span>
+                <span>Setor</span>
+              </a>
+            </li>
 
-                <td>OS-2024-0122</td>
-                <td>Esteira Transportadora</td>
-                <td>Preventiva</td>
-                <td>João Ferreira</td>
-                <td>2024-07-29</td>
-                <td>6h 30min</td>
-                <td>R$ 620.00</td>
+            <!-- Histórico -->
+            <li class="item-navegacao ativo">
+              <a href="historico_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-clock-history"></i>
+                </span>
+                <span>Histórico</span>
+              </a>
+            </li>
 
-            </tr>
-            <tr>
+            <!-- Indicadores -->
+            <li class="item-navegacao">
+              <a href="indicadores_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-bar-chart"></i>
+                </span>
+                <span>Indicadores</span>
+              </a>
+            </li>
 
-                <td>OS-2024-0121</td>
-                <td>Torno CNC</td>
-                <td>Preventiva</td>
-                <td>João Ferreira</td>
-                <td>2024-07-16</td>
-                <td>4h 15min</td>
-                <td>R$ 340.00</td>
+            <!-- Relatórios -->
+            <li class="item-navegacao">
+              <a href="relatorios_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-file-earmark-text"></i>
+                </span>
+                <span>Relatórios</span>
+              </a>
+            </li>
 
-            </tr>
+            <!-- Manutenção -->
+            <li class="item-navegacao">
+              <a href="manutencao_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-tools"></i>
+                </span>
+                <span>Manutenção</span>
+              </a>
+            </li>
 
-                </tbody>
+            <!-- Peças -->
+            <li class="item-navegacao">
+              <a href="pecas_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-nut"></i>
+                </span>
+                <span>Peças</span>
+              </a>
+            </li>
+
+            <!-- Administração -->
+            <li class="item-navegacao">
+              <a href="usuarios.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-people"></i>
+                </span>
+                <span>Administração</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </aside>
+
+
+      <!-- Área principal -->
+      <div class="area-principal">
+
+        <!-- Cabeçalho -->
+        <header class="cabecalho">
+
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="cabecalho-direito">
+
+            <!-- Notificações -->
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            ></button>
+
+            <!-- Perfil -->
+            <div class="perfil-usuario">
+              <div class="avatar-usuario">AS</div>
+
+              <div class="informacoes-usuario">
+                <strong>Admin Sistema</strong>
+                <span>Administrador</span>
+              </div>
+            </div>
+
+          </div>
+        </header>
+
+
+        <!-- Conteúdo principal -->
+        <main class="conteudo-principal">
+
+          <!-- Decorações -->
+          <div class="decoracao-historico" aria-hidden="true">
+            <span class="ponto-historico ponto-historico-1"></span>
+            <span class="ponto-historico ponto-historico-2"></span>
+            <span class="ponto-historico ponto-historico-3"></span>
+            <span class="ponto-historico ponto-historico-4"></span>
+
+            <span class="circulo-historico circulo-historico-1"></span>
+            <span class="circulo-historico circulo-historico-2"></span>
+            <span class="circulo-historico circulo-historico-3"></span>
+            <span class="circulo-historico circulo-historico-4"></span>
+
+            <span class="linhas-historico"></span>
+          </div>
+
+
+          <!-- Cabeçalho da página -->
+          <section class="cabecalho-pagina">
+            <h1>Histórico de Manutenções</h1>
+
+            <p>
+              Registro completo de serviços executados
+            </p>
+          </section>
+
+
+          <!-- Pesquisa e filtros -->
+          <section
+            class="filtros-historico"
+            id="filtrosHistorico"
+            aria-label="Pesquisar e filtrar histórico"
+          >
+
+            <!-- Pesquisa -->
+            <div class="campo-pesquisa-historico">
+              <i class="bi bi-search"></i>
+
+              <input
+                type="search"
+                id="pesquisaHistorico"
+                name="pesquisaHistorico"
+                placeholder="Pesquisar por OS, equipamento ou técnico..."
+                autocomplete="off"
+              />
+            </div>
+
+
+            <!-- Filtro de data -->
+            <div class="campo-filtro-historico">
+              <label for="filtroDataHistorico">
+                Data
+              </label>
+
+              <select
+                id="filtroDataHistorico"
+                name="filtroDataHistorico"
+              >
+                <option value="todas">Todas as datas</option>
+                <option value="hoje">Hoje</option>
+                <option value="7dias">Últimos 7 dias</option>
+                <option value="30dias">Últimos 30 dias</option>
+                <option value="90dias">Últimos 90 dias</option>
+              </select>
+            </div>
+
+
+            <!-- Filtro de tipo -->
+            <div class="campo-filtro-historico">
+              <label for="filtroTipoHistorico">
+                Tipo
+              </label>
+
+              <select
+                id="filtroTipoHistorico"
+                name="filtroTipoHistorico"
+              >
+                <option value="todos">Todos os tipos</option>
+                <option value="preventiva">Preventiva</option>
+                <option value="corretiva">Corretiva</option>
+                <option value="preditiva">Preditiva</option>
+              </select>
+            </div>
+
+          </section>
+
+
+          <!-- Tabela de histórico -->
+          <section
+            class="tabela-historico-container"
+            id="tabelaHistoricoContainer"
+          >
+
+            <table class="tabela-historico">
+
+              <thead>
+                <tr>
+                  <th scope="col">OS</th>
+                  <th scope="col">Equipamento</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Técnico</th>
+                  <th scope="col">Data</th>
+                  <th scope="col">Duração</th>
+                  <th scope="col">Custo</th>
+                </tr>
+              </thead>
+
+
+              <tbody id="listaHistorico">
+
+                <!-- Registro 01 -->
+                <tr>
+                  <td class="os-historico">
+                    OS-2024-0122
+                  </td>
+
+                  <td class="equipamento-historico">
+                    Esteira Transportadora
+                  </td>
+
+                  <td class="tipo-historico tipo-preventiva">
+                    Preventiva
+                  </td>
+
+                  <td class="tecnico-historico">
+                    João Ferreira
+                  </td>
+
+                  <td class="data-historico">
+                    2024-07-29
+                  </td>
+
+                  <td class="duracao-historico">
+                    6h 30min
+                  </td>
+
+                  <td class="custo-historico">
+                    R$ 620.00
+                  </td>
+                </tr>
+
+
+                <!-- Registro 02 -->
+                <tr>
+                  <td class="os-historico">
+                    OS-2024-0121
+                  </td>
+
+                  <td class="equipamento-historico">
+                    Torno CNC
+                  </td>
+
+                  <td class="tipo-historico tipo-preventiva">
+                    Preventiva
+                  </td>
+
+                  <td class="tecnico-historico">
+                    João Ferreira
+                  </td>
+
+                  <td class="data-historico">
+                    2024-07-16
+                  </td>
+
+                  <td class="duracao-historico">
+                    4h 15min
+                  </td>
+
+                  <td class="custo-historico">
+                    R$ 340.00
+                  </td>
+                </tr>
+
+
+                <!-- Registro 03 -->
+                <tr>
+                  <td class="os-historico">
+                    OS-2024-0118
+                  </td>
+
+                  <td class="equipamento-historico">
+                    Compressor de Ar
+                  </td>
+
+                  <td class="tipo-historico tipo-corretiva">
+                    Corretiva
+                  </td>
+
+                  <td class="tecnico-historico">
+                    Ana Souza
+                  </td>
+
+                  <td class="data-historico">
+                    2024-07-05
+                  </td>
+
+                  <td class="duracao-historico">
+                    3h 00min
+                  </td>
+
+                  <td class="custo-historico">
+                    R$ 510.00
+                  </td>
+                </tr>
+
+
+                <!-- Registro 04 -->
+                <tr>
+                  <td class="os-historico">
+                    OS-2024-0115
+                  </td>
+
+                  <td class="equipamento-historico">
+                    Gerador
+                  </td>
+
+                  <td class="tipo-historico tipo-preditiva">
+                    Preditiva
+                  </td>
+
+                  <td class="tecnico-historico">
+                    Ricardo Nunes
+                  </td>
+
+                  <td class="data-historico">
+                    2024-06-22
+                  </td>
+
+                  <td class="duracao-historico">
+                    2h 45min
+                  </td>
+
+                  <td class="custo-historico">
+                    R$ 280.00
+                  </td>
+                </tr>
+
+
+                <!-- Registro 05 -->
+                <tr>
+                  <td class="os-historico">
+                    OS-2024-0110
+                  </td>
+
+                  <td class="equipamento-historico">
+                    Empilhadeira
+                  </td>
+
+                  <td class="tipo-historico tipo-corretiva">
+                    Corretiva
+                  </td>
+
+                  <td class="tecnico-historico">
+                    Ana Souza
+                  </td>
+
+                  <td class="data-historico">
+                    2024-06-10
+                  </td>
+
+                  <td class="duracao-historico">
+                    5h 20min
+                  </td>
+
+                  <td class="custo-historico">
+                    R$ 1240.00
+                  </td>
+                </tr>
+
+              </tbody>
 
             </table>
+
+          </section>
+
         </main>
+      </div>
     </div>
-</body>
+
+
+    <!-- Caminho do JS mantido -->
+    <script src="../-js/global.js"></script>
+  </body>
 </html>

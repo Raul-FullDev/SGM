@@ -1,0 +1,516 @@
+@import url("../global.css");
+@import url("../layout/sidebar.css");
+@import url("../layout/header.css");
+
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+.conteudo-principal {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   CABEÇALHO DA PÁGINA
+   ========================================================= */
+
+.cabecalho-pagina {
+  position: relative;
+  z-index: 2;
+
+  margin-bottom: 20px;
+}
+
+.cabecalho-pagina h1 {
+  margin-bottom: 5px;
+
+  color: #17275a;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.cabecalho-pagina p {
+  color: #657b99;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   PESQUISA E FILTROS
+   ========================================================= */
+
+.filtros-historico {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) 180px 180px;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+}
+
+
+/* Pesquisa */
+
+.campo-pesquisa-historico {
+  height: 42px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.campo-pesquisa-historico i {
+  position: absolute;
+  left: 14px;
+
+  color: #8ca1bd;
+  font-size: 14px;
+
+  pointer-events: none;
+}
+
+.campo-pesquisa-historico input {
+  width: 100%;
+  height: 42px;
+
+  padding: 0 15px 0 39px;
+
+  border: 1px solid #d5dfeb;
+  border-radius: 10px;
+
+  background: white;
+  color: #344760;
+
+  outline: none;
+
+  font-size: 12px;
+
+  box-shadow: 0 1px 3px rgba(44, 78, 125, 0.03);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.campo-pesquisa-historico input::placeholder {
+  color: #97a9c0;
+}
+
+.campo-pesquisa-historico input:focus {
+  border-color: #8db4f4;
+
+  box-shadow:
+    0 0 0 3px rgba(38, 99, 226, 0.08);
+}
+
+
+/* Filtros */
+
+.campo-filtro-historico {
+  display: flex;
+  align-items: center;
+}
+
+.campo-filtro-historico label {
+  display: none;
+}
+
+.campo-filtro-historico select {
+  width: 100%;
+  height: 42px;
+
+  padding: 0 12px;
+
+  border: 1px solid #d5dfeb;
+  border-radius: 10px;
+
+  background: white;
+  color: #4d607b;
+
+  outline: none;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  box-shadow: 0 1px 3px rgba(44, 78, 125, 0.03);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.campo-filtro-historico select:focus {
+  border-color: #8db4f4;
+
+  box-shadow:
+    0 0 0 3px rgba(38, 99, 226, 0.08);
+}
+
+
+/* =========================================================
+   TABELA
+   ========================================================= */
+
+.tabela-historico-container {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: white;
+
+  border: 1px solid #dce5ef;
+  border-radius: 15px;
+
+  box-shadow:
+    0 2px 4px rgba(45, 81, 130, 0.07),
+    0 6px 14px rgba(45, 81, 130, 0.035);
+}
+
+.tabela-historico {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+
+/* =========================================================
+   CABEÇALHO DA TABELA
+   ========================================================= */
+
+.tabela-historico thead {
+  background: #f8fafc;
+}
+
+.tabela-historico th {
+  height: 41px;
+
+  padding: 0 24px;
+
+  border-bottom: 1px solid #e5ebf2;
+
+  color: #69809f;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+}
+
+
+/* Larguras */
+
+.tabela-historico th:nth-child(1) {
+  width: 12%;
+}
+
+.tabela-historico th:nth-child(2) {
+  width: 21%;
+}
+
+.tabela-historico th:nth-child(3) {
+  width: 11%;
+}
+
+.tabela-historico th:nth-child(4) {
+  width: 15%;
+}
+
+.tabela-historico th:nth-child(5) {
+  width: 14%;
+}
+
+.tabela-historico th:nth-child(6) {
+  width: 13%;
+}
+
+.tabela-historico th:nth-child(7) {
+  width: 14%;
+}
+
+
+/* =========================================================
+   LINHAS
+   ========================================================= */
+
+.tabela-historico tbody tr {
+  border-bottom: 1px solid #edf1f5;
+
+  transition: background 0.2s ease;
+}
+
+.tabela-historico tbody tr:last-child {
+  border-bottom: none;
+}
+
+.tabela-historico tbody tr:hover {
+  background: #fbfcfe;
+}
+
+.tabela-historico td {
+  height: 53px;
+
+  padding: 0 24px;
+
+  color: #293950;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   DADOS
+   ========================================================= */
+
+.os-historico {
+  color: #1556dc !important;
+
+  font-size: 10px !important;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.equipamento-historico {
+  color: #26364e !important;
+}
+
+.tipo-historico {
+  color: #6c809e !important;
+}
+
+.tecnico-historico {
+  color: #647894 !important;
+}
+
+.data-historico {
+  color: #607590 !important;
+
+  white-space: nowrap;
+}
+
+.duracao-historico {
+  color: #667c9b !important;
+
+  white-space: nowrap;
+}
+
+.custo-historico {
+  color: #273750 !important;
+
+  font-weight: 600;
+  text-align: nowrap;
+}
+
+
+/* =========================================================
+   DECORAÇÕES
+   ========================================================= */
+
+.decoracao-historico {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+/* Pontos */
+
+.ponto-historico {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #a7c9ff;
+  opacity: 0.8;
+}
+
+.ponto-historico-1 {
+  top: 64px;
+  right: 30%;
+}
+
+.ponto-historico-2 {
+  top: 64px;
+  right: 26.7%;
+}
+
+.ponto-historico-3 {
+  top: 64px;
+  right: 23.4%;
+}
+
+.ponto-historico-4 {
+  top: 64px;
+  right: 20.1%;
+}
+
+
+/* Círculos */
+
+.circulo-historico {
+  position: absolute;
+
+  border-radius: 50%;
+}
+
+.circulo-historico-1 {
+  width: 260px;
+  height: 260px;
+
+  right: 25px;
+  top: 390px;
+
+  border: 1px solid #b6d0fb;
+}
+
+.circulo-historico-2 {
+  width: 230px;
+  height: 230px;
+
+  right: -5px;
+  bottom: -70px;
+
+  background: rgba(130, 166, 232, 0.21);
+}
+
+.circulo-historico-3 {
+  width: 120px;
+  height: 120px;
+
+  right: 210px;
+  bottom: 90px;
+
+  background: rgba(120, 159, 226, 0.24);
+}
+
+.circulo-historico-4 {
+  width: 180px;
+  height: 180px;
+
+  right: 250px;
+  bottom: -65px;
+
+  border: 1px solid #bdd6fc;
+}
+
+
+/* Linhas diagonais */
+
+.linhas-historico {
+  position: absolute;
+
+  width: 170px;
+  height: 1px;
+
+  right: 43px;
+  top: 505px;
+
+  transform: rotate(32deg);
+  transform-origin: right center;
+
+  background: #b8d1f9;
+}
+
+.linhas-historico::before,
+.linhas-historico::after {
+  content: "";
+
+  position: absolute;
+
+  width: 170px;
+  height: 1px;
+
+  right: 0;
+
+  background: #b8d1f9;
+}
+
+.linhas-historico::before {
+  top: 14px;
+}
+
+.linhas-historico::after {
+  top: 28px;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .filtros-historico {
+    grid-template-columns: minmax(250px, 1fr) 165px 165px;
+  }
+
+  .tabela-historico-container {
+    overflow-x: auto;
+  }
+
+  .tabela-historico {
+    min-width: 920px;
+  }
+}
+
+@media (max-width: 750px) {
+  .filtros-historico {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .campo-pesquisa-historico {
+    grid-column: 1 / -1;
+  }
+
+  .decoracao-historico {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .cabecalho-pagina h1 {
+    font-size: 22px;
+  }
+
+  .cabecalho-pagina p {
+    font-size: 11px;
+  }
+
+  .filtros-historico {
+    grid-template-columns: 1fr;
+  }
+
+  .campo-pesquisa-historico {
+    grid-column: auto;
+  }
+
+  .tabela-historico {
+    min-width: 850px;
+  }
+
+  .tabela-historico th,
+  .tabela-historico td {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+}
