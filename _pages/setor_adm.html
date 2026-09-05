@@ -3,18 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>SGM - Setores</title>
-
-    <!-- Estilos -->
     <link rel="stylesheet" href="../-css/pages/setor_adm.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
   </head>
-
   <body>
     <div class="layout">
-
-      <!-- Menu lateral -->
       <aside class="barra-lateral" id="barraLateral">
         <div class="cabecalho-barra">
           <div class="logo">
@@ -25,108 +22,108 @@
             </div>
           </div>
         </div>
-
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
-            <!-- Dashboard -->
             <li class="item-navegacao">
               <a href="dashboard.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-list-task"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-list-task"></i
+                ></span>
                 <span>Dashboard</span>
               </a>
             </li>
-
-            <!-- Ordens de Serviço -->
             <li class="item-navegacao">
               <a href="todas_os.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-clipboard-data"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clipboard-data"></i
+                ></span>
                 <span>Ordens de Serviço</span>
               </a>
             </li>
-
-            <!-- Equipamentos -->
             <li class="item-navegacao">
               <a href="equipamentos.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-wrench-adjustable"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-wrench-adjustable"></i
+                ></span>
                 <span>Equipamentos</span>
               </a>
             </li>
-
-            <!-- Setor (ATIVO) -->
             <li class="item-navegacao ativo">
               <a href="setor_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-collection"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-collection"></i
+                ></span>
                 <span>Setor</span>
               </a>
             </li>
-
-            <!-- Histórico -->
             <li class="item-navegacao">
               <a href="historico_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-clock-history"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clock-history"></i
+                ></span>
                 <span>Histórico</span>
               </a>
             </li>
-
-            <!-- Indicadores -->
             <li class="item-navegacao">
               <a href="indicadores_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-bar-chart"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-bar-chart"></i
+                ></span>
                 <span>Indicadores</span>
               </a>
             </li>
-
-            <!-- Relatórios -->
             <li class="item-navegacao">
               <a href="relatorios_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-file-earmark-text"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-file-earmark-text"></i
+                ></span>
                 <span>Relatórios</span>
               </a>
             </li>
-
-            <!-- Manutenção -->
             <li class="item-navegacao">
               <a href="manutencao_adm.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-tools"></i></span>
                 <span>Manutenção</span>
               </a>
             </li>
-
-            <!-- Peças -->
             <li class="item-navegacao">
               <a href="pecas_adm.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-nut"></i></span>
                 <span>Peças</span>
               </a>
             </li>
-
-            <!-- Administração -->
             <li class="item-navegacao">
               <a href="usuarios.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-people"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-people"></i
+                ></span>
                 <span>Administração</span>
               </a>
             </li>
           </ul>
         </nav>
       </aside>
-
-      <!-- Área principal -->
       <div class="area-principal">
-        
-        <!-- Cabeçalho Topo -->
         <header class="cabecalho">
           <div class="cabecalho-esquerdo">
-            <button class="botao-menu" id="botaoMenu" type="button" aria-label="Abrir menu">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
               ☰
             </button>
           </div>
-
           <div class="cabecalho-direito">
-            <button class="botao-notificacao" id="botaoNotificacao" type="button" aria-label="Notificações">
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            >
               <i class="bi bi-bell"></i>
             </button>
-
             <div class="perfil-usuario">
               <div class="avatar-usuario">AS</div>
               <div class="informacoes-usuario">
@@ -136,57 +133,68 @@
             </div>
           </div>
         </header>
-
-        <!-- Conteúdo principal -->
         <main class="conteudo-principal">
-
-          <!-- Cabeçalho da página (Título + Botão) -->
           <section class="cabecalho-pagina">
             <div class="cabecalho-setores">
               <div>
                 <h1>Setores</h1>
                 <p>Locais e áreas da empresa</p>
               </div>
-
-              <!-- BOTÃO QUE ABRE O MODAL -->
-              <button class="botao-novo-setor" id="botaoNovoSetor" type="button">
+              <button
+                class="botao-novo-setor"
+                id="botaoNovoSetor"
+                type="button"
+              >
                 <span class="icone-botao-novo">+</span>
                 Novo Setor
               </button>
             </div>
           </section>
 
-          <!-- MODAL DE CADASTRO OCULTO POR PADRÃO -->
-          <div id="modalSetor" class="modal-overlay" style="display: none;">
+          <div id="modalSetor" class="modal-overlay" style="display: none">
             <div class="modal-content">
               <div class="modal-header">
                 <h2>Cadastrar Novo Setor</h2>
-                <button type="button" id="fecharModal" class="btn-fechar">&times;</button>
+                <button type="button" id="fecharModal" class="btn-fechar">
+                  &times;
+                </button>
               </div>
               <form id="formNovoSetor" class="modal-body">
                 <div class="campo-formulario">
                   <label for="nomeSetor">Nome do Setor</label>
-                  <input type="text" id="nomeSetor" placeholder="Ex: Estamparia, Montagem..." required />
+                  <input
+                    type="text"
+                    id="nomeSetor"
+                    placeholder="Ex: Estamparia, Montagem..."
+                    required
+                  />
                 </div>
                 <div class="modal-footer">
-                  <button type="button" id="cancelarModal" class="botao-secundario">Cancelar</button>
-                  <button type="submit" class="botao-novo-setor">Salvar Setor</button>
+                  <button
+                    type="button"
+                    id="cancelarModal"
+                    class="botao-secundario"
+                  >
+                    Cancelar
+                  </button>
+                  <button type="submit" class="botao-novo-setor">
+                    Salvar Setor
+                  </button>
                 </div>
               </form>
             </div>
           </div>
 
-          <!-- LISTA DINÂMICA: O JS vai injetar os cards aqui dentro -->
-          <section class="lista-setores" id="listaSetores" aria-label="Setores cadastrados">
-             <!-- Os cards virão do banco via JavaScript -->
-             <p style="color: #7b8796;">Carregando setores...</p>
+          <section
+            class="lista-setores"
+            id="listaSetores"
+            aria-label="Setores cadastrados"
+          >
+            <p style="color: #7b8796">Carregando setores...</p>
           </section>
-
         </main>
       </div>
     </div>
-
-    <!-- Scripts globais e da página -->
     <script src="../-js/global.js"></script>
     <script src="../-js/pages/setor_adm.js"></script>
   </body>

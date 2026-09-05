@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SGM - Equipamentos</title>
-
     <link rel="stylesheet" href="../-css/pages/equipamentos.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
   </head>
-
   <body>
     <div class="layout">
-      <!-- Menu lateral -->
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
           <div class="logo">
@@ -22,7 +22,6 @@
             </div>
           </div>
         </div>
-
         <nav class="sidebar-nav" aria-label="Navegação principal">
           <ul class="nav-list">
             <li class="nav-item">
@@ -31,26 +30,21 @@
                 <span>Dashboard</span>
               </a>
             </li>
-
-            
             <li class="item-navegacao">
               <a href="todas_os.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-clipboard-data"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clipboard-data"></i
+                ></span>
                 <span>Ordens de Serviço</span>
-              
               </a>
             </li>
-
-              
-
             <li class="nav-item active">
-                                        
               <button class="nav-link" type="button" data-menu="equipamentos">
-                <span class="nav-icon"><i class="bi bi-wrench-adjustable"></i></span>
+                <span class="nav-icon"
+                  ><i class="bi bi-wrench-adjustable"></i
+                ></span>
                 <span>Equipamentos</span>
-                
               </button>
-
               <ul class="submenu">
                 <li class="submenu-item active">
                   <a href="equipamentos.html"> Todos os equipamentos </a>
@@ -60,111 +54,96 @@
                 </li>
               </ul>
             </li>
-
             <li class="nav-item">
               <a href="setor_adm.html" class="nav-link">
                 <span class="nav-icon"><i class="bi bi-collection"></i></span>
                 <span>Setor</span>
               </a>
             </li>
-
             <li class="nav-item">
               <a href="historico_adm.html" class="nav-link">
-                <span class="nav-icon"><i class="bi bi-clock-history"></i></span>
+                <span class="nav-icon"
+                  ><i class="bi bi-clock-history"></i
+                ></span>
                 <span>Histórico</span>
               </a>
             </li>
-
             <li class="nav-item">
               <a href="indicadores_adm.html" class="nav-link">
                 <span class="nav-icon"><i class="bi bi-bar-chart"></i></span>
                 <span>Indicadores</span>
               </a>
             </li>
-
             <li class="nav-item">
               <a href="relatorios_adm.html" class="nav-link">
-                <span class="nav-icon"><i class="bi bi-file-earmark-text"></i></span>
+                <span class="nav-icon"
+                  ><i class="bi bi-file-earmark-text"></i
+                ></span>
                 <span>Relatórios</span>
               </a>
             </li>
-
             <li class="nav-item">
               <a href="manutencao_adm.html">
-              <button class="nav-link" type="button" data-menu="manutencao">
-                <span class="nav-icon"><i class="bi bi-tools"></i></span>
-                <span>Manutenção</span>
-               
-              </button>
+                <button class="nav-link" type="button" data-menu="manutencao">
+                  <span class="nav-icon"><i class="bi bi-tools"></i></span>
+                  <span>Manutenção</span>
+                </button>
               </a>
             </li>
-
             <li class="nav-item">
               <a href="peca_adm.html">
-              <button class="nav-link" type="button" data-menu="pecas">
-                <span class="nav-icon"><i class="bi bi-nut"></i></span>
-                <span>Peças</span>
-                
-              </button>
+                <button class="nav-link" type="button" data-menu="pecas">
+                  <span class="nav-icon"><i class="bi bi-nut"></i></span>
+                  <span>Peças</span>
+                </button>
               </a>
             </li>
-
             <li class="nav-item">
               <a href="usuarios.html">
-              <button class="nav-link" type="button" data-menu="administracao">
-                <span class="nav-icon"><i class="bi bi-people"></i></span>
-                <span>Administração</span>
-               
-              </button>
+                <button
+                  class="nav-link"
+                  type="button"
+                  data-menu="administracao"
+                >
+                  <span class="nav-icon"><i class="bi bi-people"></i></span>
+                  <span>Administração</span>
+                </button>
               </a>
             </li>
           </ul>
         </nav>
       </aside>
-
-      <!-- Área principal -->
       <div class="main-wrapper">
         <header class="topbar">
           <div class="topbar-left">
             <div class="global-search"></div>
           </div>
-
           <div class="topbar-right">
             <button
               class="notification-button"
               id="notificationButton"
               type="button"
               aria-label="Notificações"
-            >
-              
-            </button>
-
+            ></button>
             <div class="user-profile">
               <div class="user-avatar">AS</div>
               <div class="user-info">
                 <strong>Admin Sistema</strong>
                 <span>Administrador</span>
               </div>
-              
             </div>
           </div>
         </header>
-
-        <!-- Conteúdo -->
         <main class="main-content">
-          <!-- Cabeçalho da página alinhado com o botão à direita -->
           <div class="page-header">
             <div>
               <h1>Equipamentos</h1>
               <p>Cadastro de ativos e máquinas</p>
             </div>
-
             <a href="novo_equipamento.html" class="botao botao-principal">
               <span>+</span> Novo Equipamento
             </a>
           </div>
-
-          <!-- Pesquisa -->
           <section class="filtros-equipamentos">
             <div class="campo-pesquisa-equipamentos">
               <span class="icone-pesquisa"> ⌕ </span>
@@ -176,34 +155,6 @@
               />
             </div>
           </section>
-          <section>
-            <!-- Filtro por Setor -->
-            <div class="campo-filtro">
-              <label for="filtroSetor">Setor</label>
-
-              <select id="filtroSetor">
-                <option value="">Todos os setores</option>
-                <option value="Produção">Produção</option>
-                <option value="Embalagem">Embalagem</option>
-                <option value="Logística">Logística</option>
-              </select>
-            </div>
-
-
-            <!-- Filtro por Status -->
-            <div class="campo-filtro">
-              <label for="filtroStatus">Status</label>
-
-              <select id="filtroStatus">
-                <option value="">Todos os status</option>
-                <option value="Ativo">Ativo</option>
-                <option value="Manutenção">Manutenção</option>
-                <option value="Inativo">Inativo</option>
-              </select>
-            </div>
-
-          </section>
-          <!-- Tabela -->
           <section class="tabela-equipamentos">
             <div class="tabela-container">
               <table id="tabelaEquipamentos">
@@ -219,45 +170,16 @@
                   </tr>
                 </thead>
                 <tbody id="corpoTabelaEquipamentos">
-                  <tr data-equipamento-id="1">
-                    <td>EQ001</td>
-                    <td>Compressor de Ar</td>
-                    <td>Atlas Copco · GA30+</td>
-                    <td>Produção</td>
-                    <td>ATC-2019-3847</td>
-                    <td>2019-03-15</td>
-                    <td>
-                      <span class="status status-ativo"> Ativo </span>
-                    </td>
-                  </tr>
-                  <tr data-equipamento-id="2">
-                    <td>EQ002</td>
-                    <td>Esteira Transportadora</td>
-                    <td>Intralox · Series 900</td>
-                    <td>Embalagem</td>
-                    <td>INX-2020-1122</td>
-                    <td>2020-06-10</td>
-                    <td>
-                      <span class="status status-ativo"> Ativo </span>
-                    </td>
-                  </tr>
-                  <tr data-equipamento-id="3">
-                    <td>EQ003</td>
-                    <td>Empilhadeira</td>
-                    <td>Toyota · 8FBN25</td>
-                    <td>Logística</td>
-                    <td>TYT-2021-5509</td>
-                    <td>2021-01-22</td>
-                    <td>
-                      <span class="status status-manutencao"> Manutenção </span>
+                  <!-- Preenchido via JS -->
+                  <tr>
+                    <td colspan="7" style="text-align: center">
+                      Carregando equipamentos...
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </section>
-
-          <!-- Estado vazio -->
           <section class="estado-vazio" id="estadoVazio">
             <div class="ilustracao-vazia">⌕</div>
             <h2>Nenhum equipamento encontrado</h2>
@@ -266,7 +188,6 @@
         </main>
       </div>
     </div>
-
     <script src="../-js/global.js"></script>
     <script src="../-js/pages/equipamentos.js"></script>
   </body>

@@ -2,18 +2,12 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
-/* ==============================
-   CONTEÚDO PRINCIPAL
-============================== */
 .conteudo-principal {
     width: 100%;
     min-height: calc(100vh - var(--altura-cabecalho, 70px));
     padding: 27px 25px 45px;
 }
 
-/* ==============================
-   CABEÇALHO DA PÁGINA
-============================== */
 .cabecalho-pagina {
     margin-bottom: 25px;
 }
@@ -37,9 +31,6 @@
     font-size: 12px;
 }
 
-/* ==============================
-   BOTÃO NOVO SETOR
-============================== */
 .botao-novo-setor {
     min-height: 37px;
     display: inline-flex;
@@ -71,9 +62,6 @@
     line-height: 1;
 }
 
-/* ==============================
-   LISTA DE SETORES (GRID DE CARDS)
-============================== */
 .lista-setores {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -128,9 +116,6 @@
     border-radius: 8px;
 }
 
-/* ==============================
-   MODAL DE CADASTRO (POP-UP)
-============================== */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -231,9 +216,6 @@
     background: #f5f7f9;
 }
 
-/* ==============================
-   RESPONSIVIDADE
-============================== */
 @media (max-width: 650px) {
     .cabecalho-setores {
         flex-direction: column;

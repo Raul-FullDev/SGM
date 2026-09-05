@@ -18,7 +18,6 @@
 
   <body>
     <div class="layout">
-
       <!-- Menu lateral -->
       <aside class="barra-lateral" id="barraLateral">
         <div class="cabecalho-barra">
@@ -34,7 +33,6 @@
 
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
-
             <!-- Dashboard -->
             <li class="item-navegacao">
               <a href="dashboard.html" class="link-navegacao">
@@ -134,18 +132,14 @@
                 <span>Administração</span>
               </a>
             </li>
-
           </ul>
         </nav>
       </aside>
 
-
       <!-- Área principal -->
       <div class="area-principal">
-
         <!-- Cabeçalho -->
         <header class="cabecalho">
-
           <div class="cabecalho-esquerdo">
             <button
               class="botao-menu"
@@ -158,7 +152,6 @@
           </div>
 
           <div class="cabecalho-direito">
-
             <!-- Notificações -->
             <button
               class="botao-notificacao"
@@ -176,14 +169,11 @@
                 <span>Administrador</span>
               </div>
             </div>
-
           </div>
         </header>
 
-
         <!-- Conteúdo principal -->
         <main class="conteudo-principal">
-
           <!-- Decorações -->
           <div class="decoracao-equipamento" aria-hidden="true">
             <span class="ponto-equipamento ponto-equipamento-1"></span>
@@ -200,12 +190,8 @@
             <span class="linhas-equipamento"></span>
           </div>
 
-
           <!-- Breadcrumb -->
-          <nav
-            class="breadcrumb-pagina"
-            aria-label="Navegação estrutural"
-          >
+          <nav class="breadcrumb-pagina" aria-label="Navegação estrutural">
             <a href="equipamentos.html">
               <i class="bi bi-chevron-left"></i>
               <span>Equipamentos</span>
@@ -215,29 +201,18 @@
               <i class="bi bi-chevron-right"></i>
             </span>
 
-            <span class="breadcrumb-atual">
-              Novo Equipamento
-            </span>
+            <span class="breadcrumb-atual"> Novo Equipamento </span>
           </nav>
-
 
           <!-- Cabeçalho da página -->
           <section class="cabecalho-pagina">
             <h1>Novo Equipamento</h1>
-            <p>
-              Preencha os dados do ativo para registrá-lo no sistema
-            </p>
+            <p>Preencha os dados do ativo para registrá-lo no sistema</p>
           </section>
 
-
           <!-- Formulário -->
-          <form
-            class="formulario-equipamento"
-            id="formularioEquipamento"
-          >
-
+          <form class="formulario-equipamento" id="formularioEquipamento">
             <div class="campos-equipamento">
-
               <!-- Código do ativo -->
               <div class="campo-formulario">
                 <label for="codigoAtivo">
@@ -253,7 +228,6 @@
                   required
                 />
               </div>
-
 
               <!-- Status -->
               <div class="campo-formulario">
@@ -273,7 +247,6 @@
                 </select>
               </div>
 
-
               <!-- Descrição -->
               <div class="campo-formulario campo-largo">
                 <label for="descricaoEquipamento">
@@ -289,7 +262,6 @@
                   required
                 />
               </div>
-
 
               <!-- Fabricante -->
               <div class="campo-formulario">
@@ -307,7 +279,6 @@
                 />
               </div>
 
-
               <!-- Modelo -->
               <div class="campo-formulario">
                 <label for="modeloEquipamento">
@@ -323,7 +294,6 @@
                   required
                 />
               </div>
-
 
               <!-- Número de série -->
               <div class="campo-formulario">
@@ -341,7 +311,6 @@
                 />
               </div>
 
-
               <!-- Data de aquisição -->
               <div class="campo-formulario">
                 <label for="dataAquisicao">
@@ -357,7 +326,6 @@
                 />
               </div>
 
-
               <!-- Setor / Localização -->
               <div class="campo-formulario campo-largo">
                 <label for="setorLocalizacao">
@@ -365,11 +333,7 @@
                   <span class="campo-obrigatorio">*</span>
                 </label>
 
-                <select
-                  id="setorLocalizacao"
-                  name="setorLocalizacao"
-                  required
-                >
+                <select id="setorLocalizacao" name="setorLocalizacao" required>
                   <option value="">Escolha um setor:</option>
                   <option value="1">Produção</option>
                   <option value="2">Embalagem</option>
@@ -379,9 +343,7 @@
                   <option value="6">Manutenção</option>
                 </select>
               </div>
-
             </div>
-
 
             <!-- Aviso -->
             <div class="aviso-formulario">
@@ -391,19 +353,11 @@
                 Asset e Número de Série devem ser únicos no sistema.
               </span>
             </div>
-
           </form>
-
 
           <!-- Ações -->
           <div class="acoes-formulario">
-
-            <a
-              href="equipamentos.html"
-              class="botao-cancelar"
-            >
-              Cancelar
-            </a>
+            <a href="equipamentos.html" class="botao-cancelar"> Cancelar </a>
 
             <button
               type="submit"
@@ -413,13 +367,10 @@
               <i class="bi bi-plus-lg"></i>
               <span>Cadastrar</span>
             </button>
-
           </div>
-
         </main>
       </div>
     </div>
-
 
     <!-- Caminho do JS mantido -->
     <script src="../-js/global.js"></script>
