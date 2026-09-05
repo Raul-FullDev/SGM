@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SGM - Indicadores de Manutenção</title>
+
+    <!-- Caminho do CSS mantido -->
+    <link rel="stylesheet" href="../-css/pages/indicadores_adm.css" />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="layout">
+
+      <!-- Menu lateral -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
+          <div class="logo">
+            <span class="icone-logo">S</span>
+
+            <div class="texto-logo">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="navegacao-lateral" aria-label="Navegação principal">
+          <ul class="lista-navegacao">
+
+            <!-- Dashboard -->
+            <li class="item-navegacao">
+              <a href="dashboard.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-list-task"></i>
+                </span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <!-- Ordens de Serviço -->
+            <li class="item-navegacao">
+              <a href="todas_os.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-clipboard-data"></i>
+                </span>
+                <span>Ordens de Serviço</span>
+              </a>
+            </li>
+
+            <!-- Equipamentos -->
+            <li class="item-navegacao">
+              <a href="equipamentos.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-wrench-adjustable"></i>
+                </span>
+                <span>Equipamentos</span>
+              </a>
+            </li>
+
+            <!-- Setor -->
+            <li class="item-navegacao">
+              <a href="setor_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-collection"></i>
+                </span>
+                <span>Setor</span>
+              </a>
+            </li>
+
+            <!-- Histórico -->
+            <li class="item-navegacao">
+              <a href="historico_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-clock-history"></i>
+                </span>
+                <span>Histórico</span>
+              </a>
+            </li>
+
+            <!-- Indicadores -->
+            <li class="item-navegacao ativo">
+              <a href="indicadores_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-bar-chart"></i>
+                </span>
+                <span>Indicadores</span>
+              </a>
+            </li>
+
+            <!-- Relatórios -->
+            <li class="item-navegacao">
+              <a href="relatorios_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-file-earmark-text"></i>
+                </span>
+                <span>Relatórios</span>
+              </a>
+            </li>
+
+            <!-- Manutenção -->
+            <li class="item-navegacao">
+              <a href="manutencao_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-tools"></i>
+                </span>
+                <span>Manutenção</span>
+              </a>
+            </li>
+
+            <!-- Peças -->
+            <li class="item-navegacao">
+              <a href="pecas_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-nut"></i>
+                </span>
+                <span>Peças</span>
+              </a>
+            </li>
+
+            <!-- Administração -->
+            <li class="item-navegacao">
+              <a href="usuarios.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-people"></i>
+                </span>
+                <span>Administração</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </aside>
+
+
+      <!-- Área principal -->
+      <div class="area-principal">
+
+        <!-- Cabeçalho -->
+        <header class="cabecalho">
+
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="cabecalho-direito">
+
+            <!-- Notificações -->
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            ></button>
+
+            <!-- Perfil -->
+            <div class="perfil-usuario">
+              <div class="avatar-usuario">AS</div>
+
+              <div class="informacoes-usuario">
+                <strong>Admin Sistema</strong>
+                <span>Administrador</span>
+              </div>
+            </div>
+
+          </div>
+        </header>
+
+
+        <!-- Conteúdo principal -->
+        <main class="conteudo-principal">
+
+          <!-- Decorações -->
+          <div class="decoracao-indicadores" aria-hidden="true">
+            <span class="ponto-indicador ponto-indicador-1"></span>
+            <span class="ponto-indicador ponto-indicador-2"></span>
+            <span class="ponto-indicador ponto-indicador-3"></span>
+            <span class="ponto-indicador ponto-indicador-4"></span>
+
+            <span class="circulo-indicador circulo-indicador-1"></span>
+            <span class="circulo-indicador circulo-indicador-2"></span>
+            <span class="circulo-indicador circulo-indicador-3"></span>
+            <span class="circulo-indicador circulo-indicador-4"></span>
+
+            <span class="linhas-indicador"></span>
+          </div>
+
+
+          <!-- Cabeçalho da página -->
+          <section class="cabecalho-pagina">
+            <h1>Indicadores de Manutenção</h1>
+            <p>KPI's e métricas operacionais</p>
+          </section>
+
+
+          <!-- Indicadores principais -->
+          <section
+            class="cards-indicadores"
+            id="cardsIndicadores"
+            aria-label="Indicadores principais"
+          >
+
+            <!-- MTBF -->
+            <article class="card-indicador indicador-mtbf">
+              <div class="valor-indicador">
+                312<span>h</span>
+              </div>
+
+              <h2>MTBF</h2>
+
+              <p>Tempo médio entre falhas</p>
+
+              <div class="barra-indicador">
+                <span style="width: 78%;"></span>
+              </div>
+            </article>
+
+
+            <!-- MTTR -->
+            <article class="card-indicador indicador-mttr">
+              <div class="valor-indicador">
+                4,2<span>h</span>
+              </div>
+
+              <h2>MTTR</h2>
+
+              <p>Tempo médio para reparo</p>
+
+              <div class="barra-indicador">
+                <span style="width: 42%;"></span>
+              </div>
+            </article>
+
+
+            <!-- DISP -->
+            <article class="card-indicador indicador-disp">
+              <div class="valor-indicador">
+                94<span>%</span>
+              </div>
+
+              <h2>DISP</h2>
+
+              <p>Disponibilidade geral</p>
+
+              <div class="barra-indicador">
+                <span style="width: 94%;"></span>
+              </div>
+            </article>
+
+
+            <!-- CONF -->
+            <article class="card-indicador indicador-conf">
+              <div class="valor-indicador">
+                87<span>%</span>
+              </div>
+
+              <h2>CONF</h2>
+
+              <p>Confiabilidade (meta 90%)</p>
+
+              <div class="barra-indicador">
+                <span style="width: 87%;"></span>
+              </div>
+            </article>
+
+
+            <!-- FALHA -->
+            <article class="card-indicador indicador-falha">
+              <div class="valor-indicador">
+                50<span>%</span>
+              </div>
+
+              <h2>FALHA</h2>
+
+              <p>
+                Taxa de falha (OS corretivas
+                + canceladas)
+              </p>
+
+              <div class="barra-indicador">
+                <span style="width: 50%;"></span>
+              </div>
+            </article>
+
+          </section>
+
+
+          <!-- Área dos gráficos -->
+          <section class="area-indicadores">
+
+            <!-- Custo de manutenção -->
+            <article class="card-grafico card-custo-mensal">
+
+              <h2>Custo de Manutenção por Mês (R$)</h2>
+
+              <div
+                class="grafico-custo"
+                id="graficoCustoMensal"
+                aria-label="Gráfico de custo de manutenção por mês"
+              >
+
+                <div class="barra-grafico">
+                  <span class="valor-barra">8.2k</span>
+                  <div class="barra">
+                    <span style="height: 82%;"></span>
+                  </div>
+                  <strong>Mar</strong>
+                </div>
+
+                <div class="barra-grafico">
+                  <span class="valor-barra">5.4k</span>
+                  <div class="barra">
+                    <span style="height: 54%;"></span>
+                  </div>
+                  <strong>Abr</strong>
+                </div>
+
+                <div class="barra-grafico">
+                  <span class="valor-barra">9.8k</span>
+                  <div class="barra">
+                    <span style="height: 98%;"></span>
+                  </div>
+                  <strong>Mai</strong>
+                </div>
+
+                <div class="barra-grafico">
+                  <span class="valor-barra">6.7k</span>
+                  <div class="barra">
+                    <span style="height: 67%;"></span>
+                  </div>
+                  <strong>Jun</strong>
+                </div>
+
+                <div class="barra-grafico">
+                  <span class="valor-barra">7.3k</span>
+                  <div class="barra">
+                    <span style="height: 73%;"></span>
+                  </div>
+                  <strong>Jul</strong>
+                </div>
+
+                <div class="barra-grafico">
+                  <span class="valor-barra">4.2k</span>
+                  <div class="barra">
+                    <span style="height: 42%;"></span>
+                  </div>
+                  <strong>Ago</strong>
+                </div>
+
+              </div>
+
+            </article>
+
+
+            <!-- OS por tipo -->
+            <article class="card-grafico card-tipos-manutencao">
+
+              <h2>OS por Tipo de Manutenção</h2>
+
+              <div
+                class="lista-tipos-manutencao"
+                id="listaTiposManutencao"
+              >
+
+                <!-- Corretiva -->
+                <div class="linha-tipo">
+                  <span class="nome-tipo">Corretiva</span>
+
+                  <div class="barra-tipo">
+                    <span
+                      class="barra-corretiva"
+                      style="width: 48%;"
+                    ></span>
+                  </div>
+
+                  <strong>18</strong>
+                </div>
+
+
+                <!-- Preventiva -->
+                <div class="linha-tipo">
+                  <span class="nome-tipo">Preventiva</span>
+
+                  <div class="barra-tipo">
+                    <span
+                      class="barra-preventiva"
+                      style="width: 40%;"
+                    ></span>
+                  </div>
+
+                  <strong>15</strong>
+                </div>
+
+
+                <!-- Preditiva -->
+                <div class="linha-tipo">
+                  <span class="nome-tipo">Preditiva</span>
+
+                  <div class="barra-tipo">
+                    <span
+                      class="barra-preditiva"
+                      style="width: 13%;"
+                    ></span>
+                  </div>
+
+                  <strong>5</strong>
+                </div>
+
+
+                <!-- Inspeção -->
+                <div class="linha-tipo">
+                  <span class="nome-tipo">Inspeção</span>
+
+                  <div class="barra-tipo">
+                    <span
+                      class="barra-inspecao"
+                      style="width: 5%;"
+                    ></span>
+                  </div>
+
+                  <strong>2</strong>
+                </div>
+
+              </div>
+
+
+              <!-- Top equipamentos -->
+              <div class="top-equipamentos">
+
+                <h3>TOP EQUIPAMENTOS COM FALHAS</h3>
+
+                <div class="item-top-equipamento">
+                  <span>Compressor de Ar (EQ001)</span>
+                  <strong>8 falhas</strong>
+                </div>
+
+                <div class="item-top-equipamento">
+                  <span>Gerador (EQ004)</span>
+                  <strong>5 falhas</strong>
+                </div>
+
+                <div class="item-top-equipamento">
+                  <span>Empilhadeira (EQ003)</span>
+                  <strong>3 falhas</strong>
+                </div>
+
+              </div>
+
+            </article>
+
+          </section>
+
+        </main>
+      </div>
+    </div>
+
+
+    <!-- Caminho do JS mantido -->
+    <script src="../-js/global.js"></script>
+  </body>
+</html>
