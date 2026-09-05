@@ -2,13 +2,10 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
-/* =========================================================
-   SGM — EQUIPAMENTOS
-========================================================= */
-
 /* ==============================
    CONTEÚDO DA PÁGINA
 ============================== */
+
 .main-content {
   width: 100%;
   min-height: calc(100vh - var(--altura-cabecalho, 70px));
@@ -18,6 +15,7 @@
 }
 
 /* Fundo decorativo da tela */
+
 .main-content::before,
 .main-content::after {
   content: "";
@@ -47,7 +45,6 @@
     -180px 285px 0 -124px transparent;
 }
 
-/* Pequenos pontos decorativos */
 .main-content {
   --decor-dot: rgba(91, 143, 226, 0.22);
 }
@@ -60,6 +57,7 @@
 /* ==============================
    CABEÇALHO DA PÁGINA
 ============================== */
+
 .page-header {
   display: flex;
   flex-direction: row;
@@ -89,6 +87,7 @@
 /* ==============================
    BOTÃO PRINCIPAL
 ============================== */
+
 .botao {
   min-height: 37px;
   display: inline-flex;
@@ -129,13 +128,15 @@
 }
 
 /* ==============================
-   PESQUISA DE EQUIPAMENTOS
+   PESQUISA E FILTROS
 ============================== */
+
 .filtros-equipamentos {
-  width: auto;
-  display: inline-flex;
-  vertical-align: top;
-  margin: 18px 14px 20px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 20px;
   padding: 0;
   background: transparent;
   border: none;
@@ -145,8 +146,8 @@
 
 .campo-pesquisa-equipamentos {
   position: relative;
-  width: 286px;
-  max-width: 100%;
+  flex: 1 1 auto;
+  min-width: 260px;
   display: flex;
   align-items: center;
 }
@@ -190,50 +191,45 @@
 }
 
 /* ==============================
-   FILTROS EXISTENTES
+   NOVOS FILTROS
 ============================== */
-.main-content > section:not(.filtros-equipamentos):not(.tabela-equipamentos):not(.estado-vazio) {
-  display: inline-flex;
-  vertical-align: top;
-  align-items: flex-end;
-  gap: 14px;
-  width: auto;
-  margin: 0 0 20px 0;
-}
 
-.campo-filtro {
+.campo-filtro-equipamentos {
+  flex: 0 0 170px;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
 }
 
-.campo-filtro label {
-  color: #5f7595;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-.campo-filtro select {
-  min-width: 180px;
-  height: 38px;
-  padding: 0 34px 0 12px;
-  border: 1px solid #dce5f0;
-  border-radius: 9px;
+.campo-filtro-equipamentos select {
+  width: 100%;
+  height: 41px;
+  padding: 0 12px;
+  border: 1px solid #e1e7ef;
+  border-radius: 11px;
   background: #ffffff;
-  color: #435a78;
+  color: #4d607b;
   font-size: 11px;
   outline: none;
   cursor: pointer;
+  box-shadow: 0 2px 7px rgba(36, 69, 115, 0.025);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.campo-filtro select:focus {
+.campo-filtro-equipamentos select:hover {
+  border-color: #cbd7e6;
+}
+
+.campo-filtro-equipamentos select:focus {
   border-color: #7ea0d7;
-  box-shadow: 0 0 0 3px rgba(32, 85, 214, 0.07);
+  box-shadow: 0 0 0 3px rgba(32, 85, 214, 0.08);
 }
 
 /* ==============================
    TABELA DE EQUIPAMENTOS
 ============================== */
+
 .tabela-equipamentos {
   width: 100%;
   overflow: hidden;
@@ -289,6 +285,7 @@
 }
 
 /* Largura das colunas */
+
 .tabela-equipamentos th:nth-child(1),
 .tabela-equipamentos td:nth-child(1) {
   width: 10%;
@@ -325,6 +322,7 @@
 }
 
 /* Cores de texto das colunas */
+
 .tabela-equipamentos td:nth-child(1) {
   color: #28456f;
   font-size: 10px;
@@ -347,6 +345,7 @@
 /* ==============================
    STATUS
 ============================== */
+
 .status {
   display: inline-flex;
   align-items: center;
@@ -381,6 +380,7 @@
 /* ==============================
    ESTADO VAZIO
 ============================== */
+
 .estado-vazio {
   width: 100%;
   display: none;
@@ -423,6 +423,7 @@
 /* ==============================
    RESPONSIVIDADE
 ============================== */
+
 @media (max-width: 1100px) {
   .tabela-equipamentos table {
     min-width: 850px;
@@ -460,22 +461,16 @@
     width: 100%;
   }
 
-  .campo-pesquisa-equipamentos {
-    width: 100%;
-  }
-
   .filtros-equipamentos {
-    margin-top: 0;
-  }
-
-  .main-content > section:not(.filtros-equipamentos):not(.tabela-equipamentos):not(.estado-vazio) {
     flex-direction: column;
-    display: flex;
-    width: 100%;
+    align-items: stretch;
   }
 
-  .campo-filtro select {
+  .campo-pesquisa-equipamentos,
+  .campo-filtro-equipamentos {
     width: 100%;
+    min-width: 0;
+    flex: 0 0 auto;
   }
 
   .tabela-equipamentos table {

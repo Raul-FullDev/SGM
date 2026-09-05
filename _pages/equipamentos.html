@@ -22,82 +22,93 @@
             </div>
           </div>
         </div>
+
         <nav class="sidebar-nav" aria-label="Navegação principal">
           <ul class="nav-list">
+
             <li class="nav-item">
               <a href="dashboard.html" class="nav-link">
                 <span class="nav-icon"><i class="bi bi-list-task"></i></span>
                 <span>Dashboard</span>
               </a>
             </li>
+
             <li class="item-navegacao">
               <a href="todas_os.html" class="link-navegacao">
-                <span class="icone-navegacao"
-                  ><i class="bi bi-clipboard-data"></i
-                ></span>
+                <span class="icone-navegacao">
+                  <i class="bi bi-clipboard-data"></i>
+                </span>
                 <span>Ordens de Serviço</span>
               </a>
             </li>
+
             <li class="nav-item active">
               <button class="nav-link" type="button" data-menu="equipamentos">
-                <span class="nav-icon"
-                  ><i class="bi bi-wrench-adjustable"></i
-                ></span>
+                <span class="nav-icon">
+                  <i class="bi bi-wrench-adjustable"></i>
+                </span>
                 <span>Equipamentos</span>
               </button>
-              <!-- <ul class="submenu">
-                <li class="submenu-item active">
-                  <a href="equipamentos.html"> Todos os equipamentos </a>
-                </li>
-                <li class="submenu-item">
-                  <a href="novo_equipamento.html"> Cadastrar equipamento </a>
-                </li>
-              </ul> -->
             </li>
+
             <li class="nav-item">
               <a href="setor_adm.html" class="nav-link">
-                <span class="nav-icon"><i class="bi bi-collection"></i></span>
+                <span class="nav-icon">
+                  <i class="bi bi-collection"></i>
+                </span>
                 <span>Setor</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="historico_adm.html" class="nav-link">
-                <span class="nav-icon"
-                  ><i class="bi bi-clock-history"></i
-                ></span>
+                <span class="nav-icon">
+                  <i class="bi bi-clock-history"></i>
+                </span>
                 <span>Histórico</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="indicadores_adm.html" class="nav-link">
-                <span class="nav-icon"><i class="bi bi-bar-chart"></i></span>
+                <span class="nav-icon">
+                  <i class="bi bi-bar-chart"></i>
+                </span>
                 <span>Indicadores</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="relatorios_adm.html" class="nav-link">
-                <span class="nav-icon"
-                  ><i class="bi bi-file-earmark-text"></i
-                ></span>
+                <span class="nav-icon">
+                  <i class="bi bi-file-earmark-text"></i>
+                </span>
                 <span>Relatórios</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="manutencao_adm.html">
                 <button class="nav-link" type="button" data-menu="manutencao">
-                  <span class="nav-icon"><i class="bi bi-tools"></i></span>
+                  <span class="nav-icon">
+                    <i class="bi bi-tools"></i>
+                  </span>
                   <span>Manutenção</span>
                 </button>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="peca_adm.html">
                 <button class="nav-link" type="button" data-menu="pecas">
-                  <span class="nav-icon"><i class="bi bi-nut"></i></span>
+                  <span class="nav-icon">
+                    <i class="bi bi-nut"></i>
+                  </span>
                   <span>Peças</span>
                 </button>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="usuarios.html">
                 <button
@@ -105,19 +116,25 @@
                   type="button"
                   data-menu="administracao"
                 >
-                  <span class="nav-icon"><i class="bi bi-people"></i></span>
+                  <span class="nav-icon">
+                    <i class="bi bi-people"></i>
+                  </span>
                   <span>Administração</span>
                 </button>
               </a>
             </li>
+
           </ul>
         </nav>
       </aside>
+
       <div class="main-wrapper">
+
         <header class="topbar">
           <div class="topbar-left">
             <div class="global-search"></div>
           </div>
+
           <div class="topbar-right">
             <button
               class="notification-button"
@@ -125,8 +142,10 @@
               type="button"
               aria-label="Notificações"
             ></button>
+
             <div class="user-profile">
               <div class="user-avatar">AS</div>
+
               <div class="user-info">
                 <strong>Admin Sistema</strong>
                 <span>Administrador</span>
@@ -134,19 +153,25 @@
             </div>
           </div>
         </header>
+
         <main class="main-content">
+
           <div class="page-header">
             <div>
               <h1>Equipamentos</h1>
               <p>Cadastro de ativos e máquinas</p>
             </div>
+
             <a href="novo_equipamento.html" class="botao botao-principal">
               <span>+</span> Novo Equipamento
             </a>
           </div>
+
           <section class="filtros-equipamentos">
+
             <div class="campo-pesquisa-equipamentos">
               <span class="icone-pesquisa"> ⌕ </span>
+
               <input
                 type="search"
                 id="pesquisaEquipamento"
@@ -154,7 +179,36 @@
                 autocomplete="off"
               />
             </div>
+
+            <div class="campo-filtro-equipamentos">
+              <select id="filtroFabricante" name="filtroFabricante">
+                <option value="todos">Todos os fabricantes</option>
+                <option value="weg">WEG</option>
+                <option value="siemens">Siemens</option>
+                <option value="schneider">Schneider</option>
+              </select>
+            </div>
+
+            <div class="campo-filtro-equipamentos">
+              <select id="filtroSetor" name="filtroSetor">
+                <option value="todos">Todos os setores</option>
+                <option value="producao">Produção</option>
+                <option value="manutencao">Manutenção</option>
+                <option value="utilidades">Utilidades</option>
+              </select>
+            </div>
+
+            <div class="campo-filtro-equipamentos">
+              <select id="filtroStatus" name="filtroStatus">
+                <option value="todos">Todos os status</option>
+                <option value="ativo">Ativo</option>
+                <option value="manutencao">Em manutenção</option>
+                <option value="inativo">Inativo</option>
+              </select>
+            </div>
+
           </section>
+
           <section class="tabela-equipamentos">
             <div class="tabela-container">
               <table id="tabelaEquipamentos">
@@ -169,8 +223,8 @@
                     <th scope="col">STATUS</th>
                   </tr>
                 </thead>
+
                 <tbody id="corpoTabelaEquipamentos">
-                  <!-- Preenchido via JS -->
                   <tr>
                     <td colspan="7" style="text-align: center">
                       Carregando equipamentos...
@@ -180,14 +234,17 @@
               </table>
             </div>
           </section>
+
           <section class="estado-vazio" id="estadoVazio">
             <div class="ilustracao-vazia">⌕</div>
             <h2>Nenhum equipamento encontrado</h2>
             <p>Nenhum equipamento encontrado com este termo.</p>
           </section>
+
         </main>
       </div>
     </div>
+
     <script src="../-js/global.js"></script>
     <script src="../-js/pages/equipamentos.js"></script>
   </body>
