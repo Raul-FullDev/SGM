@@ -12,13 +12,11 @@
 
     <title>SGM - Detalhes da Ordem de Serviço</title>
 
-
     <!-- CSS -->
     <link
         rel="stylesheet"
         href="../-css/pages/detalhes_os.css"
     >
-
 
     <!-- Bootstrap Icons -->
     <link
@@ -120,9 +118,7 @@
                     >
 
                         <span class="icone-navegacao">
-
                             <i class="bi bi-clipboard-data"></i>
-
                         </span>
 
                         <span>
@@ -452,9 +448,7 @@
 
 
 
-            <!-- ================================================= -->
             <!-- CABEÇALHO DA OS -->
-            <!-- ================================================= -->
 
             <div class="cabecalho-detalhes-os">
 
@@ -479,9 +473,7 @@
 
 
 
-            <!-- ================================================= -->
             <!-- GRID PRINCIPAL -->
-            <!-- ================================================= -->
 
             <div class="grid-detalhes-os">
 
@@ -493,9 +485,7 @@
                 <div class="coluna-esquerda">
 
 
-                    <!-- ================================================= -->
                     <!-- INFORMAÇÕES DA OS -->
-                    <!-- ================================================= -->
 
                     <section class="card-detalhes">
 
@@ -513,9 +503,6 @@
 
                         <div class="informacoes-grid">
 
-
-                            <!-- EQUIPAMENTO -->
-
                             <div class="informacao">
 
                                 <span class="informacao-label">
@@ -528,8 +515,6 @@
 
                             </div>
 
-
-                            <!-- ASSET -->
 
                             <div class="informacao">
 
@@ -544,8 +529,6 @@
                             </div>
 
 
-                            <!-- SETOR -->
-
                             <div class="informacao">
 
                                 <span class="informacao-label">
@@ -558,8 +541,6 @@
 
                             </div>
 
-
-                            <!-- TIPO -->
 
                             <div class="informacao">
 
@@ -574,8 +555,6 @@
                             </div>
 
 
-                            <!-- SOLICITANTE -->
-
                             <div class="informacao">
 
                                 <span class="informacao-label">
@@ -588,8 +567,6 @@
 
                             </div>
 
-
-                            <!-- TÉCNICO -->
 
                             <div class="informacao">
 
@@ -604,8 +581,6 @@
                             </div>
 
 
-                            <!-- ABERTURA -->
-
                             <div class="informacao">
 
                                 <span class="informacao-label">
@@ -619,8 +594,6 @@
                             </div>
 
 
-                            <!-- FECHAMENTO -->
-
                             <div class="informacao">
 
                                 <span class="informacao-label">
@@ -633,11 +606,8 @@
 
                             </div>
 
-
                         </div>
 
-
-                        <!-- DESCRIÇÃO -->
 
                         <div class="descricao-problema">
 
@@ -662,105 +632,257 @@
 
                     <section class="card-detalhes">
 
-                        <div class="card-titulo">
+                        <div class="card-titulo atividades-cabecalho">
 
                             <h2>
                                 Atividades
                             </h2>
 
+
+                            <div class="atividades-controles">
+
+                                <select
+                                    class="filtro-tipo-atividade"
+                                    id="filtroTipoAtividade"
+                                    name="filtroTipoAtividade"
+                                >
+
+                                    <option value="todos">
+                                        Todos os tipos
+                                    </option>
+
+                                    <option value="inspecao">
+                                        Inspeção
+                                    </option>
+
+                                    <option value="desmontagem">
+                                        Desmontagem
+                                    </option>
+
+                                    <option value="substituicao">
+                                        Substituição
+                                    </option>
+
+                                    <option value="limpeza">
+                                        Limpeza
+                                    </option>
+
+                                    <option value="teste">
+                                        Teste
+                                    </option>
+
+                                </select>
+
+
+                                <button
+                                    type="button"
+                                    class="botao-adicionar-atividade"
+                                    id="adicionarAtividade"
+                                >
+
+                                    <i class="bi bi-plus"></i>
+
+                                    Nova tarefa
+
+                                </button>
+
+                            </div>
+
                         </div>
 
+
                         <div class="divisor"></div>
+
 
                         <div class="lista-atividades">
 
 
-                            <!-- ATIVIDADE FINALIZADA -->
+                            <!-- ATIVIDADE 1 -->
 
-                            <div class="atividade concluida">
+                            <div
+                                class="atividade concluida"
+                                data-tipo="inspecao"
+                            >
 
                                 <span class="atividade-numero">
+
                                     <i class="bi bi-check"></i>
+
                                 </span>
+
 
                                 <div class="atividade-info">
 
-                                    <span class="atividade-texto">
-                                        Inspeção visual do equipamento
-                                    </span>
+                                    <div class="atividade-conteudo">
+
+                                        <span class="atividade-texto">
+                                            Inspeção visual do equipamento
+                                        </span>
+
+                                        <span class="atividade-tipo">
+                                            Tipo: Inspeção
+                                        </span>
+
+                                    </div>
+
 
                                     <span class="atividade-status">
                                         Finalizado
                                     </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="botao-editar-atividade"
+                                        aria-label="Editar atividade"
+                                    >
+
+                                        <i class="bi bi-pencil"></i>
+
+                                    </button>
 
                                 </div>
 
                             </div>
 
 
-                            <!-- ATIVIDADE FINALIZADA -->
+                            <!-- ATIVIDADE 2 -->
 
-                            <div class="atividade concluida">
+                            <div
+                                class="atividade concluida"
+                                data-tipo="desmontagem"
+                            >
 
                                 <span class="atividade-numero">
+
                                     <i class="bi bi-check"></i>
+
                                 </span>
+
 
                                 <div class="atividade-info">
 
-                                    <span class="atividade-texto">
-                                        Desmontagem do componente afetado
-                                    </span>
+                                    <div class="atividade-conteudo">
+
+                                        <span class="atividade-texto">
+                                            Desmontagem do componente afetado
+                                        </span>
+
+                                        <span class="atividade-tipo">
+                                            Tipo: Desmontagem
+                                        </span>
+
+                                    </div>
+
 
                                     <span class="atividade-status">
                                         Finalizado
                                     </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="botao-editar-atividade"
+                                        aria-label="Editar atividade"
+                                    >
+
+                                        <i class="bi bi-pencil"></i>
+
+                                    </button>
 
                                 </div>
 
                             </div>
 
 
-                            <!-- ATIVIDADE EM ANDAMENTO -->
+                            <!-- ATIVIDADE 3 -->
 
-                            <div class="atividade">
+                            <div
+                                class="atividade"
+                                data-tipo="substituicao"
+                            >
 
                                 <span class="atividade-numero">
                                     3
                                 </span>
 
+
                                 <div class="atividade-info">
 
-                                    <span class="atividade-texto">
-                                        Substituição de peças danificadas
-                                    </span>
+                                    <div class="atividade-conteudo">
+
+                                        <span class="atividade-texto">
+                                            Substituição de peças danificadas
+                                        </span>
+
+                                        <span class="atividade-tipo">
+                                            Tipo: Substituição
+                                        </span>
+
+                                    </div>
+
 
                                     <span class="atividade-status">
                                         Em andamento
                                     </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="botao-editar-atividade"
+                                        aria-label="Editar atividade"
+                                    >
+
+                                        <i class="bi bi-pencil"></i>
+
+                                    </button>
 
                                 </div>
 
                             </div>
 
 
-                            <!-- ATIVIDADE EM ANDAMENTO -->
+                            <!-- ATIVIDADE 4 -->
 
-                            <div class="atividade">
+                            <div
+                                class="atividade"
+                                data-tipo="teste"
+                            >
 
                                 <span class="atividade-numero">
                                     4
                                 </span>
 
+
                                 <div class="atividade-info">
 
-                                    <span class="atividade-texto">
-                                        Remontagem e testes de funcionamento
-                                    </span>
+                                    <div class="atividade-conteudo">
+
+                                        <span class="atividade-texto">
+                                            Remontagem e testes de funcionamento
+                                        </span>
+
+                                        <span class="atividade-tipo">
+                                            Tipo: Teste
+                                        </span>
+
+                                    </div>
+
 
                                     <span class="atividade-status">
                                         Em andamento
                                     </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="botao-editar-atividade"
+                                        aria-label="Editar atividade"
+                                    >
+
+                                        <i class="bi bi-pencil"></i>
+
+                                    </button>
 
                                 </div>
 
@@ -784,6 +906,19 @@
                             <h2>
                                 Peças Utilizadas
                             </h2>
+
+
+                            <button
+                                type="button"
+                                class="botao-adicionar-peca"
+                                id="adicionarPeca"
+                            >
+
+                                <i class="bi bi-plus"></i>
+
+                                Nova peça
+
+                            </button>
 
                         </div>
 
@@ -815,6 +950,10 @@
                                             TOTAL
                                         </th>
 
+                                        <th>
+                                            AÇÃO
+                                        </th>
+
                                     </tr>
 
                                 </thead>
@@ -840,9 +979,25 @@
                                         </td>
 
                                         <td>
+
                                             <strong>
                                                 R$ 185.90
                                             </strong>
+
+                                        </td>
+
+                                        <td class="acao-peca">
+
+                                            <button
+                                                type="button"
+                                                class="botao-editar-peca"
+                                                aria-label="Editar peça"
+                                            >
+
+                                                <i class="bi bi-pencil"></i>
+
+                                            </button>
+
                                         </td>
 
                                     </tr>
@@ -865,9 +1020,25 @@
                                         </td>
 
                                         <td>
+
                                             <strong>
                                                 R$ 190.00
                                             </strong>
+
+                                        </td>
+
+                                        <td class="acao-peca">
+
+                                            <button
+                                                type="button"
+                                                class="botao-editar-peca"
+                                                aria-label="Editar peça"
+                                            >
+
+                                                <i class="bi bi-pencil"></i>
+
+                                            </button>
+
                                         </td>
 
                                     </tr>
@@ -881,7 +1052,7 @@
                                     <tr>
 
                                         <td
-                                            colspan="3"
+                                            colspan="4"
                                             class="total-label"
                                         >
 
@@ -919,9 +1090,7 @@
                 <div class="coluna-direita">
 
 
-                    <!-- ================================================= -->
                     <!-- ALTERAR STATUS -->
-                    <!-- ================================================= -->
 
                     <section class="card-status">
 
@@ -932,8 +1101,6 @@
 
                         <div class="lista-status">
 
-
-                            <!-- ABERTA -->
 
                             <button
                                 type="button"
@@ -946,8 +1113,6 @@
                             </button>
 
 
-                            <!-- EM ANDAMENTO -->
-
                             <button
                                 type="button"
                                 class="opcao-status selecionado"
@@ -958,8 +1123,6 @@
 
                             </button>
 
-
-                            <!-- CONCLUÍDA -->
 
                             <button
                                 type="button"
@@ -976,8 +1139,6 @@
                         </div>
 
 
-                        <!-- CANCELAR OS -->
-
                         <button
                             type="button"
                             class="botao-cancelar-os"
@@ -988,8 +1149,6 @@
 
                         </button>
 
-
-                        <!-- FINALIZAR OS -->
 
                         <button
                             type="button"
@@ -1005,9 +1164,7 @@
 
 
 
-                    <!-- ================================================= -->
-                    <!-- HISTÓRICO DE STATUS -->
-                    <!-- ================================================= -->
+                    <!-- HISTÓRICO -->
 
                     <section class="card-historico">
 
@@ -1018,8 +1175,6 @@
 
                         <div class="historico-status">
 
-
-                            <!-- STATUS ABERTA -->
 
                             <div class="historico-item">
 
@@ -1043,8 +1198,6 @@
 
                             </div>
 
-
-                            <!-- STATUS EM ANDAMENTO -->
 
                             <div class="historico-item">
 
@@ -1089,7 +1242,7 @@
 
 
 <!-- ================================================= -->
-<!-- MODAL DE CONFIRMAÇÃO DE ENCERRAMENTO -->
+<!-- MODAL DE CONFIRMAÇÃO -->
 <!-- ================================================= -->
 
 <div
@@ -1125,9 +1278,7 @@
                 class="botao-modal-cancelar"
                 id="cancelarModal"
             >
-
                 Cancelar
-
             </button>
 
 
@@ -1136,9 +1287,7 @@
                 class="botao-modal-confirmar"
                 id="confirmarEncerramento"
             >
-
                 Confirmar encerramento
-
             </button>
 
         </div>
@@ -1148,10 +1297,6 @@
 </div>
 
 
-
-<!-- ================================================= -->
-<!-- JAVASCRIPT -->
-<!-- ================================================= -->
 
 <script src="../-js/global.js"></script>
 
