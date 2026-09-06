@@ -208,15 +208,16 @@
                 <h1>Peças e Materiais</h1>
                 <p>Controle de estoque do almoxarifado</p>
               </div>
+
               <a href="nova_peca_adm.html">
-              <button
-                class="botao-nova-peca"
-                id="botaoNovaPeca"
-                type="button"
-              >
-                <i class="bi bi-plus-lg"></i>
-                <span>Nova Peça</span>
-              </button>
+                <button
+                  class="botao-nova-peca"
+                  id="botaoNovaPeca"
+                  type="button"
+                >
+                  <i class="bi bi-plus-lg"></i>
+                  <span>Nova Peça</span>
+                </button>
               </a>
 
             </div>
@@ -287,6 +288,7 @@
                   <th scope="col">Quantidade</th>
                   <th scope="col">Custo Unit.</th>
                   <th scope="col">Total</th>
+                  <th scope="col">Ações</th>
                 </tr>
               </thead>
 
@@ -313,6 +315,16 @@
                   <td class="total-peca">
                     R$ 1487.20
                   </td>
+
+                  <td class="acoes-peca">
+                    <a
+                      href="#editar-PC0001"
+                      class="botao-acoes"
+                      aria-label="Ações da peça PC0001"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </a>
+                  </td>
                 </tr>
 
 
@@ -336,6 +348,16 @@
 
                   <td class="total-peca">
                     R$ 1020.00
+                  </td>
+
+                  <td class="acoes-peca">
+                    <a
+                      href="#editar-PC0002"
+                      class="botao-acoes"
+                      aria-label="Ações da peça PC0002"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </a>
                   </td>
                 </tr>
 
@@ -361,6 +383,16 @@
                   <td class="total-peca">
                     R$ 1920.00
                   </td>
+
+                  <td class="acoes-peca">
+                    <a
+                      href="#editar-PC0003"
+                      class="botao-acoes"
+                      aria-label="Ações da peça PC0003"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </a>
+                  </td>
                 </tr>
 
 
@@ -385,6 +417,16 @@
                   <td class="total-peca">
                     R$ 1162.50
                   </td>
+
+                  <td class="acoes-peca">
+                    <a
+                      href="#editar-PC0004"
+                      class="botao-acoes"
+                      aria-label="Ações da peça PC0004"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </a>
+                  </td>
                 </tr>
 
 
@@ -408,6 +450,16 @@
 
                   <td class="total-peca">
                     R$ 1140.00
+                  </td>
+
+                  <td class="acoes-peca">
+                    <a
+                      href="#editar-PC0005"
+                      class="botao-acoes"
+                      aria-label="Ações da peça PC0005"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </a>
                   </td>
                 </tr>
 
@@ -437,6 +489,16 @@
                   <td class="total-peca">
                     R$ 1050.00
                   </td>
+
+                  <td class="acoes-peca">
+                    <a
+                      href="#editar-PC0006"
+                      class="botao-acoes"
+                      aria-label="Ações da peça PC0006"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </a>
+                  </td>
                 </tr>
 
 
@@ -465,6 +527,16 @@
                   <td class="total-peca">
                     R$ 85.20
                   </td>
+
+                  <td class="acoes-peca">
+                    <a
+                      href="#editar-PC0007"
+                      class="botao-acoes"
+                      aria-label="Ações da peça PC0007"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </a>
+                  </td>
                 </tr>
 
 
@@ -489,12 +561,668 @@
                   <td class="total-peca">
                     R$ 1209.60
                   </td>
+
+                  <td class="acoes-peca">
+                    <a
+                      href="#editar-PC0008"
+                      class="botao-acoes"
+                      aria-label="Ações da peça PC0008"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </a>
+                  </td>
                 </tr>
 
               </tbody>
-
             </table>
           </section>
+
+
+          <!-- =====================================================
+               POP-UPS DE EDIÇÃO
+               ===================================================== -->
+
+          <!-- PC0001 -->
+          <div class="popup-edicao" id="editar-PC0001">
+            <div class="popup-overlay"></div>
+
+            <div class="popup-conteudo">
+              <a href="#" class="popup-fechar" aria-label="Fechar">
+                <i class="bi bi-x-lg"></i>
+              </a>
+
+              <div class="popup-cabecalho">
+                <div class="popup-icone">
+                  <i class="bi bi-nut"></i>
+                </div>
+
+                <div>
+                  <h2>Editar peça</h2>
+                  <p>Atualize as informações do estoque.</p>
+                </div>
+              </div>
+
+              <form class="form-edicao-peca" id="form-PC0001">
+
+                <div class="campo-formulario">
+                  <label>Código da peça</label>
+                  <input type="text" value="PC0001" readonly>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Descrição</label>
+                  <input
+                    type="text"
+                    value='Válvula de segurança 1/2"'
+                    readonly
+                  >
+                </div>
+
+                <div class="linha-formulario">
+                  <div class="campo-formulario">
+                    <label for="quantidade-PC0001">Quantidade</label>
+                    <input
+                      type="number"
+                      id="quantidade-PC0001"
+                      value="8"
+                      min="0"
+                    >
+                  </div>
+
+                  <div class="campo-formulario">
+                    <label for="custo-PC0001">Custo unitário</label>
+                    <input
+                      type="number"
+                      id="custo-PC0001"
+                      value="185.90"
+                      min="0"
+                      step="0.01"
+                    >
+                  </div>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Total atual</label>
+                  <input type="text" value="R$ 1487.20" readonly>
+                </div>
+
+                <div class="acoes-popup">
+                  <button
+                    type="button"
+                    class="botao-excluir"
+                    id="excluir-PC0001"
+                  >
+                    <i class="bi bi-trash3"></i>
+                    Excluir peça
+                  </button>
+
+                  <button
+                    type="button"
+                    class="botao-salvar"
+                    id="salvar-PC0001"
+                  >
+                    <i class="bi bi-check-lg"></i>
+                    Salvar alterações
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+
+          <!-- PC0002 -->
+          <div class="popup-edicao" id="editar-PC0002">
+            <div class="popup-overlay"></div>
+
+            <div class="popup-conteudo">
+              <a href="#" class="popup-fechar" aria-label="Fechar">
+                <i class="bi bi-x-lg"></i>
+              </a>
+
+              <div class="popup-cabecalho">
+                <div class="popup-icone">
+                  <i class="bi bi-nut"></i>
+                </div>
+
+                <div>
+                  <h2>Editar peça</h2>
+                  <p>Atualize as informações do estoque.</p>
+                </div>
+              </div>
+
+              <form class="form-edicao-peca" id="form-PC0002">
+
+                <div class="campo-formulario">
+                  <label>Código da peça</label>
+                  <input type="text" value="PC0002" readonly>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Descrição</label>
+                  <input type="text" value="Correia dentada 5M-750" readonly>
+                </div>
+
+                <div class="linha-formulario">
+                  <div class="campo-formulario">
+                    <label for="quantidade-PC0002">Quantidade</label>
+                    <input
+                      type="number"
+                      id="quantidade-PC0002"
+                      value="24"
+                      min="0"
+                    >
+                  </div>
+
+                  <div class="campo-formulario">
+                    <label for="custo-PC0002">Custo unitário</label>
+                    <input
+                      type="number"
+                      id="custo-PC0002"
+                      value="42.50"
+                      min="0"
+                      step="0.01"
+                    >
+                  </div>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Total atual</label>
+                  <input type="text" value="R$ 1020.00" readonly>
+                </div>
+
+                <div class="acoes-popup">
+                  <button type="button" class="botao-excluir" id="excluir-PC0002">
+                    <i class="bi bi-trash3"></i>
+                    Excluir peça
+                  </button>
+
+                  <button type="button" class="botao-salvar" id="salvar-PC0002">
+                    <i class="bi bi-check-lg"></i>
+                    Salvar alterações
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+
+          <!-- PC0003 -->
+          <div class="popup-edicao" id="editar-PC0003">
+            <div class="popup-overlay"></div>
+
+            <div class="popup-conteudo">
+              <a href="#" class="popup-fechar" aria-label="Fechar">
+                <i class="bi bi-x-lg"></i>
+              </a>
+
+              <div class="popup-cabecalho">
+                <div class="popup-icone">
+                  <i class="bi bi-nut"></i>
+                </div>
+
+                <div>
+                  <h2>Editar peça</h2>
+                  <p>Atualize as informações do estoque.</p>
+                </div>
+              </div>
+
+              <form class="form-edicao-peca" id="form-PC0003">
+
+                <div class="campo-formulario">
+                  <label>Código da peça</label>
+                  <input type="text" value="PC0003" readonly>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Descrição</label>
+                  <input
+                    type="text"
+                    value="Óleo hidráulico ISO 46 (20L)"
+                    readonly
+                  >
+                </div>
+
+                <div class="linha-formulario">
+                  <div class="campo-formulario">
+                    <label for="quantidade-PC0003">Quantidade</label>
+                    <input
+                      type="number"
+                      id="quantidade-PC0003"
+                      value="6"
+                      min="0"
+                    >
+                  </div>
+
+                  <div class="campo-formulario">
+                    <label for="custo-PC0003">Custo unitário</label>
+                    <input
+                      type="number"
+                      id="custo-PC0003"
+                      value="320.00"
+                      min="0"
+                      step="0.01"
+                    >
+                  </div>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Total atual</label>
+                  <input type="text" value="R$ 1920.00" readonly>
+                </div>
+
+                <div class="acoes-popup">
+                  <button type="button" class="botao-excluir" id="excluir-PC0003">
+                    <i class="bi bi-trash3"></i>
+                    Excluir peça
+                  </button>
+
+                  <button type="button" class="botao-salvar" id="salvar-PC0003">
+                    <i class="bi bi-check-lg"></i>
+                    Salvar alterações
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+
+          <!-- PC0004 -->
+          <div class="popup-edicao" id="editar-PC0004">
+            <div class="popup-overlay"></div>
+
+            <div class="popup-conteudo">
+              <a href="#" class="popup-fechar" aria-label="Fechar">
+                <i class="bi bi-x-lg"></i>
+              </a>
+
+              <div class="popup-cabecalho">
+                <div class="popup-icone">
+                  <i class="bi bi-nut"></i>
+                </div>
+
+                <div>
+                  <h2>Editar peça</h2>
+                  <p>Atualize as informações do estoque.</p>
+                </div>
+              </div>
+
+              <form class="form-edicao-peca" id="form-PC0004">
+
+                <div class="campo-formulario">
+                  <label>Código da peça</label>
+                  <input type="text" value="PC0004" readonly>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Descrição</label>
+                  <input type="text" value="Rolamento SKF 6205-2RS" readonly>
+                </div>
+
+                <div class="linha-formulario">
+                  <div class="campo-formulario">
+                    <label for="quantidade-PC0004">Quantidade</label>
+                    <input
+                      type="number"
+                      id="quantidade-PC0004"
+                      value="30"
+                      min="0"
+                    >
+                  </div>
+
+                  <div class="campo-formulario">
+                    <label for="custo-PC0004">Custo unitário</label>
+                    <input
+                      type="number"
+                      id="custo-PC0004"
+                      value="38.75"
+                      min="0"
+                      step="0.01"
+                    >
+                  </div>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Total atual</label>
+                  <input type="text" value="R$ 1162.50" readonly>
+                </div>
+
+                <div class="acoes-popup">
+                  <button type="button" class="botao-excluir" id="excluir-PC0004">
+                    <i class="bi bi-trash3"></i>
+                    Excluir peça
+                  </button>
+
+                  <button type="button" class="botao-salvar" id="salvar-PC0004">
+                    <i class="bi bi-check-lg"></i>
+                    Salvar alterações
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+
+          <!-- PC0005 -->
+          <div class="popup-edicao" id="editar-PC0005">
+            <div class="popup-overlay"></div>
+
+            <div class="popup-conteudo">
+              <a href="#" class="popup-fechar" aria-label="Fechar">
+                <i class="bi bi-x-lg"></i>
+              </a>
+
+              <div class="popup-cabecalho">
+                <div class="popup-icone">
+                  <i class="bi bi-nut"></i>
+                </div>
+
+                <div>
+                  <h2>Editar peça</h2>
+                  <p>Atualize as informações do estoque.</p>
+                </div>
+              </div>
+
+              <form class="form-edicao-peca" id="form-PC0005">
+
+                <div class="campo-formulario">
+                  <label>Código da peça</label>
+                  <input type="text" value="PC0005" readonly>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Descrição</label>
+                  <input type="text" value="Filtro de ar comprimido" readonly>
+                </div>
+
+                <div class="linha-formulario">
+                  <div class="campo-formulario">
+                    <label for="quantidade-PC0005">Quantidade</label>
+                    <input
+                      type="number"
+                      id="quantidade-PC0005"
+                      value="12"
+                      min="0"
+                    >
+                  </div>
+
+                  <div class="campo-formulario">
+                    <label for="custo-PC0005">Custo unitário</label>
+                    <input
+                      type="number"
+                      id="custo-PC0005"
+                      value="95.00"
+                      min="0"
+                      step="0.01"
+                    >
+                  </div>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Total atual</label>
+                  <input type="text" value="R$ 1140.00" readonly>
+                </div>
+
+                <div class="acoes-popup">
+                  <button type="button" class="botao-excluir" id="excluir-PC0005">
+                    <i class="bi bi-trash3"></i>
+                    Excluir peça
+                  </button>
+
+                  <button type="button" class="botao-salvar" id="salvar-PC0005">
+                    <i class="bi bi-check-lg"></i>
+                    Salvar alterações
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+
+          <!-- PC0006 -->
+          <div class="popup-edicao" id="editar-PC0006">
+            <div class="popup-overlay"></div>
+
+            <div class="popup-conteudo">
+              <a href="#" class="popup-fechar" aria-label="Fechar">
+                <i class="bi bi-x-lg"></i>
+              </a>
+
+              <div class="popup-cabecalho">
+                <div class="popup-icone">
+                  <i class="bi bi-nut"></i>
+                </div>
+
+                <div>
+                  <h2>Editar peça</h2>
+                  <p>Atualize as informações do estoque.</p>
+                </div>
+              </div>
+
+              <form class="form-edicao-peca" id="form-PC0006">
+
+                <div class="campo-formulario">
+                  <label>Código da peça</label>
+                  <input type="text" value="PC0006" readonly>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Descrição</label>
+                  <input
+                    type="text"
+                    value="Sensor de temperatura PT100"
+                    readonly
+                  >
+                </div>
+
+                <div class="linha-formulario">
+                  <div class="campo-formulario">
+                    <label for="quantidade-PC0006">Quantidade</label>
+                    <input
+                      type="number"
+                      id="quantidade-PC0006"
+                      value="5"
+                      min="0"
+                    >
+                  </div>
+
+                  <div class="campo-formulario">
+                    <label for="custo-PC0006">Custo unitário</label>
+                    <input
+                      type="number"
+                      id="custo-PC0006"
+                      value="210.00"
+                      min="0"
+                      step="0.01"
+                    >
+                  </div>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Total atual</label>
+                  <input type="text" value="R$ 1050.00" readonly>
+                </div>
+
+                <div class="acoes-popup">
+                  <button type="button" class="botao-excluir" id="excluir-PC0006">
+                    <i class="bi bi-trash3"></i>
+                    Excluir peça
+                  </button>
+
+                  <button type="button" class="botao-salvar" id="salvar-PC0006">
+                    <i class="bi bi-check-lg"></i>
+                    Salvar alterações
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+
+          <!-- PC0007 -->
+          <div class="popup-edicao" id="editar-PC0007">
+            <div class="popup-overlay"></div>
+
+            <div class="popup-conteudo">
+              <a href="#" class="popup-fechar" aria-label="Fechar">
+                <i class="bi bi-x-lg"></i>
+              </a>
+
+              <div class="popup-cabecalho">
+                <div class="popup-icone">
+                  <i class="bi bi-nut"></i>
+                </div>
+
+                <div>
+                  <h2>Editar peça</h2>
+                  <p>Atualize as informações do estoque.</p>
+                </div>
+              </div>
+
+              <form class="form-edicao-peca" id="form-PC0007">
+
+                <div class="campo-formulario">
+                  <label>Código da peça</label>
+                  <input type="text" value="PC0007" readonly>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Descrição</label>
+                  <input
+                    type="text"
+                    value="Parafuso M8×30 inox (caixa)"
+                    readonly
+                  >
+                </div>
+
+                <div class="linha-formulario">
+                  <div class="campo-formulario">
+                    <label for="quantidade-PC0007">Quantidade</label>
+                    <input
+                      type="number"
+                      id="quantidade-PC0007"
+                      value="3"
+                      min="0"
+                    >
+                  </div>
+
+                  <div class="campo-formulario">
+                    <label for="custo-PC0007">Custo unitário</label>
+                    <input
+                      type="number"
+                      id="custo-PC0007"
+                      value="28.40"
+                      min="0"
+                      step="0.01"
+                    >
+                  </div>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Total atual</label>
+                  <input type="text" value="R$ 85.20" readonly>
+                </div>
+
+                <div class="acoes-popup">
+                  <button type="button" class="botao-excluir" id="excluir-PC0007">
+                    <i class="bi bi-trash3"></i>
+                    Excluir peça
+                  </button>
+
+                  <button type="button" class="botao-salvar" id="salvar-PC0007">
+                    <i class="bi bi-check-lg"></i>
+                    Salvar alterações
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+
+          <!-- PC0008 -->
+          <div class="popup-edicao" id="editar-PC0008">
+            <div class="popup-conteudo">
+
+              <a href="#" class="popup-fechar" aria-label="Fechar">
+                <i class="bi bi-x-lg"></i>
+              </a>
+
+              <div class="popup-cabecalho">
+                <div class="popup-icone">
+                  <i class="bi bi-nut"></i>
+                </div>
+
+                <div>
+                  <h2>Editar peça</h2>
+                  <p>Atualize as informações do estoque.</p>
+                </div>
+              </div>
+
+              <form class="form-edicao-peca" id="form-PC0008">
+
+                <div class="campo-formulario">
+                  <label>Código da peça</label>
+                  <input type="text" value="PC0008" readonly>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Descrição</label>
+                  <input
+                    type="text"
+                    value="Lubrificante Mobil Extra 2L"
+                    readonly
+                  >
+                </div>
+
+                <div class="linha-formulario">
+                  <div class="campo-formulario">
+                    <label for="quantidade-PC0008">Quantidade</label>
+                    <input
+                      type="number"
+                      id="quantidade-PC0008"
+                      value="18"
+                      min="0"
+                    >
+                  </div>
+
+                  <div class="campo-formulario">
+                    <label for="custo-PC0008">Custo unitário</label>
+                    <input
+                      type="number"
+                      id="custo-PC0008"
+                      value="67.20"
+                      min="0"
+                      step="0.01"
+                    >
+                  </div>
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Total atual</label>
+                  <input type="text" value="R$ 1209.60" readonly>
+                </div>
+
+                <div class="acoes-popup">
+                  <button type="button" class="botao-excluir" id="excluir-PC0008">
+                    <i class="bi bi-trash3"></i>
+                    Excluir peça
+                  </button>
+
+                  <button type="button" class="botao-salvar" id="salvar-PC0008">
+                    <i class="bi bi-check-lg"></i>
+                    Salvar alterações
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
 
         </main>
       </div>
@@ -503,5 +1231,6 @@
 
     <!-- Caminho do JS mantido -->
     <script src="../-js/global.js"></script>
+
   </body>
 </html>
