@@ -284,41 +284,61 @@
   border-bottom: none;
 }
 
-/* Largura das colunas */
-
+/* Largura das colunas ajustada para 8 colunas */
 .tabela-equipamentos th:nth-child(1),
 .tabela-equipamentos td:nth-child(1) {
-  width: 10%;
+  width: 9%;
 }
-
 .tabela-equipamentos th:nth-child(2),
 .tabela-equipamentos td:nth-child(2) {
-  width: 20%;
+  width: 17%;
 }
-
 .tabela-equipamentos th:nth-child(3),
 .tabela-equipamentos td:nth-child(3) {
-  width: 21%;
+  width: 18%;
 }
-
 .tabela-equipamentos th:nth-child(4),
 .tabela-equipamentos td:nth-child(4) {
   width: 13%;
 }
-
 .tabela-equipamentos th:nth-child(5),
 .tabela-equipamentos td:nth-child(5) {
-  width: 13%;
-}
-
-.tabela-equipamentos th:nth-child(6),
-.tabela-equipamentos td:nth-child(6) {
   width: 12%;
 }
-
+.tabela-equipamentos th:nth-child(6),
+.tabela-equipamentos td:nth-child(6) {
+  width: 11%;
+}
 .tabela-equipamentos th:nth-child(7),
 .tabela-equipamentos td:nth-child(7) {
-  width: 11%;
+  width: 10%;
+}
+.tabela-equipamentos th:nth-child(8),
+.tabela-equipamentos td:nth-child(8) {
+  width: 10%;
+  text-align: center;
+}
+
+/* Botão de Histórico (Ações) */
+.btn-ver-historico {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
+  color: #91a6c2;
+  font-size: 15px;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.btn-ver-historico:hover {
+  background: #eef4fb;
+  color: #356bbd;
 }
 
 /* Cores de texto das colunas */
@@ -418,6 +438,92 @@
 .estado-vazio p {
   color: #7b8796;
   font-size: 10px;
+}
+
+/* ==============================
+   MODAL DE HISTÓRICO
+============================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content.modal-historico {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e1e6ec;
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  color: #143967;
+}
+
+.btn-fechar {
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  color: #8a9cb4;
+}
+
+.btn-fechar:hover {
+  color: #d95353;
+}
+
+.tabela-historico-modal {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela-historico-modal th {
+  padding: 12px 24px;
+  background: #fbfcfe;
+  color: #617796;
+  font-size: 11px;
+  text-align: left;
+  border-bottom: 1px solid #e1e6ec;
+}
+
+.tabela-historico-modal td {
+  padding: 14px 24px;
+  font-size: 12px;
+  color: #42546d;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.btn-ver-historico {
+  background: transparent;
+  border: none;
+  color: #6f82a0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-ver-historico:hover {
+  color: #145bea;
 }
 
 /* ==============================
