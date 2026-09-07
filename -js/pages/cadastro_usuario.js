@@ -1,6 +1,7 @@
 document.getElementById("userForm").addEventListener("submit", async function (event) {
     event.preventDefault();
-
+    
+    //TROCAR O BANCO DO CADASTRO E DO "USUARIOS" ANTES DE TESTAR
     // 1. Capturando os elementos de forma segura
     const nome = document.getElementById("userName").value;
     const matricula = document.getElementById("userRegistration").value;
@@ -30,11 +31,11 @@ document.getElementById("userForm").addEventListener("submit", async function (e
     }
 
     try {
-        const checkResponse = await fetch(`https://umvtsquzpugempndwitx.supabase.co/rest/v1/usuario?contato=eq.${encodeURIComponent(contato)}`, {
+        const checkResponse = await fetch(`https://akbqnlvyfravlglouoqs.supabase.co/rest/v1/usuario?contato=eq.${encodeURIComponent(contato)}`, {
             method: 'GET',
             headers: {
-                "apikey": "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
-                "Authorization": "Bearer sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb"
+                "apikey": "sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK",
+                "Authorization": "Bearer sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK"
                 }
             });
 
@@ -51,68 +52,15 @@ document.getElementById("userForm").addEventListener("submit", async function (e
                 return;
             }
 
-
-// async function carregarSetores() {
-//         try {
-//             // Faz o GET na tabela 'local'
-//             const resposta = await fetch(`${baseUrl}/local?select=*`, {
-//                 method: 'GET',
-//                 headers: headersConfig
-//             });
-
-//             if (!resposta.ok) throw new Error("Erro ao buscar setores");
-
-//             const setores = await resposta.json();
-            
-//             // Limpa o HTML atual
-//             listaSetores.innerHTML = '';
-
-//             // Se não tiver setor, mostra mensagem vazia
-//             if (setores.length === 0) {
-//                 listaSetores.innerHTML = '<p>Nenhum setor cadastrado ainda.</p>';
-//                 return;
-//             }
-
-//             // Injeta o HTML para cada setor encontrado
-//             setores.forEach(setor => {
-//                 const cardHtml = `
-//                     <article class="card-setor">
-//                       <div class="cabecalho-card-setor">
-//                         <div class="informacoes-setor">
-//                           <h2>${setor.setor}</h2>
-//                           <p class="responsavel-setor">
-//                             ID do Banco: <span>#${setor.id}</span>
-//                           </p>
-//                         </div>
-//                         <div class="icone-setor" aria-hidden="true">
-//                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-//                             <path d="M4 20V10l8-6 8 6v10"></path>
-//                             <path d="M9 20v-6h6v6"></path>
-//                             <path d="M8 10h.01"></path>
-//                             <path d="M12 10h.01"></path>
-//                             <path d="M16 10h.01"></path>
-//                           </svg>
-//                         </div>
-//                       </div>
-//                     </article>
-//                 `;
-//                 listaSetores.innerHTML += cardHtml;
-//             });
-
-//         } catch (erro) {
-//             console.error("Falha ao carregar setores:", erro);
-//         }
-//     }
-
     console.log("Enviando usuário:", novoUsuario);
 
     // 3. Fazendo a requisição (POST) para o Supabase
-    fetch("https://umvtsquzpugempndwitx.supabase.co/rest/v1/usuario", {
+    fetch("https://akbqnlvyfravlglouoqs.supabase.co/rest/v1/usuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        apikey: "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
-        Authorization: "Bearer sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
+        apikey: "sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK",
+        Authorization: "Bearer sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK",
         Prefer: "return=representation", // Faz o Supabase devolver os dados inseridos na resposta
       },
       body: JSON.stringify(novoUsuario),
