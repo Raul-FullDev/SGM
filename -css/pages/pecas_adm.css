@@ -44,6 +44,14 @@
 }
 
 
+.botoes-cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
 /* =========================================================
    BOTÃO NOVA PEÇA
    ========================================================= */
