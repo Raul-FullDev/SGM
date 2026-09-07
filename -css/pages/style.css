@@ -1,204 +1,816 @@
-/* Base */
+/* ==========================================
+   BASE
+========================================== */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html,
 body {
-  font-family: Arial, sans-serif;
+  width: 100%;
+  min-height: 100%;
 }
 
-/* Estrutura Principal */
+body {
+  font-family: Arial, sans-serif;
+  background: #eef4ff;
+  color: #17233f;
+}
+
+
+/* ==========================================
+   ESTRUTURA PRINCIPAL
+========================================== */
+
 .login-container {
   width: 100%;
   min-height: 100vh;
   display: flex;
+  overflow: hidden;
 }
 
-/* Lado Esquerdo (Logo) */
+
+/* ==========================================
+   LADO ESQUERDO
+========================================== */
+
 .lado-esquerdo {
-  width: 48%;
+  position: relative;
+  width: 46%;
   min-height: 100vh;
-  background: linear-gradient(#02215c, #00389f);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #06275f 0%,
+      #063e93 48%,
+      #0758bd 100%
+    );
 }
+
+
+/* Camada azul adicional */
+
+.lado-esquerdo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(0, 174, 255, 0.12),
+      transparent 45%
+    );
+
+  pointer-events: none;
+}
+
+
+/* ==========================================
+   FORMAS DECORATIVAS
+========================================== */
+
+.forma-decorativa {
+  position: absolute;
+  pointer-events: none;
+}
+
+.forma-superior {
+  top: -120px;
+  left: -80px;
+
+  width: 350px;
+  height: 230px;
+
+  border-radius: 0 0 90px 0;
+
+  background: rgba(25, 139, 245, 0.55);
+
+  transform: rotate(-8deg);
+}
+
+.forma-lateral {
+  left: -120px;
+  bottom: 100px;
+
+  width: 310px;
+  height: 90px;
+
+  border-radius: 0 50px 50px 0;
+
+  background: rgba(0, 169, 255, 0.25);
+
+  transform: rotate(-35deg);
+}
+
+/* ==========================================
+   EFEITO INDUSTRIAL ABSTRATO
+========================================== */
+
+.lado-esquerdo::after {
+  content: "";
+
+  position: absolute;
+
+  right: -80px;
+  bottom: -100px;
+
+  width: 560px;
+  height: 360px;
+
+  opacity: 0.2;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 28px,
+      rgba(255, 255, 255, 0.16) 29px,
+      transparent 31px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 28px,
+      rgba(255, 255, 255, 0.12) 29px,
+      transparent 31px
+    );
+
+  transform: perspective(500px) rotateX(55deg) rotateZ(-15deg);
+
+  pointer-events: none;
+}
+
+
+/* ==========================================
+   CONTEÚDO DA MARCA
+========================================== */
+
 .conteudo-logo {
-  text-align: center;
+  position: relative;
+  z-index: 3;
+
+  width: 80%;
+  max-width: 500px;
+
+  color: white;
+  text-align: left;
 }
+
 .logo-sgm {
   color: white;
-  font-size: 88px;
-  font-weight: 300;
-  letter-spacing: 2px;
+
+  font-size: clamp(72px, 7vw, 112px);
+  line-height: 0.9;
+
+  font-weight: 700;
+  letter-spacing: -4px;
 }
+
 .linha-logo {
-  width: 145px;
-  height: 1px;
-  background-color: white;
-  margin: 0 auto 18px;
+  width: 118px;
+  height: 4px;
+
+  margin-top: 22px;
+  margin-bottom: 20px;
+
+  background: #19c5ff;
+  border-radius: 10px;
 }
+
 .descricao-logo {
-  color: #d0d8e8;
-  font-size: 14px;
+  color: #ffffff;
+
+  font-size: 13px;
   font-weight: 400;
+
+  letter-spacing: 3px;
+}
+
+.slogan-logo {
+  margin-top: 46px;
+
+  color: #b9d8ff;
+
+  font-size: 19px;
+  line-height: 1.7;
+
+  font-style: italic;
   letter-spacing: 0.3px;
 }
 
-/* Lado Direito (Formulário) */
-.lado-direito {
-  width: 52%;
-  min-height: 100vh;
-  background: linear-gradient(#fafafa, #b3ceff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.card-login {
-  width: 500px;
-  min-height: 520px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 7px;
-  padding: 40px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+
+/* ==========================================
+   RODAPÉ ESQUERDO
+========================================== */
+
+.rodape-esquerdo {
+  position: absolute;
+
+  left: 7%;
+  bottom: 7%;
+
+  z-index: 3;
+
+  color: rgba(255, 255, 255, 0.7);
 }
 
-/* Ícone de Usuário no Topo */
-.icone-usuario {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto;
-  border-radius: 50%;
-  background-color: #e2ebff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.icone-usuario svg {
-  width: 32px;
-  height: 32px;
-  stroke: #0046c7;
-  stroke-width: 1.5px;
+.rodape-esquerdo span {
+  display: block;
+
+  width: 52px;
+  height: 2px;
+
+  margin-bottom: 16px;
+
+  background: #38bdf8;
 }
 
-/* Textos e Inputs */
-.titulo-login {
-  margin-top: 12px;
-  margin-bottom: 22px;
-  text-align: center;
-  font-size: 20px;
+.rodape-esquerdo p {
+  font-size: 10px;
+  line-height: 2;
+
+  letter-spacing: 3px;
+}
+
+.rodape-esquerdo strong {
   font-weight: 400;
-  color: #333;
 }
+
+
+/* ==========================================
+   LADO DIREITO
+========================================== */
+
+.lado-direito {
+  position: relative;
+
+  width: 54%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f8fbff 0%,
+      #eef5ff 50%,
+      #dceaff 100%
+    );
+}
+
+
+/* ==========================================
+   DECORAÇÕES DO LADO DIREITO
+========================================== */
+
+.forma-direita {
+  position: absolute;
+
+  border: 1px solid rgba(83, 137, 214, 0.12);
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.forma-direita-topo {
+  width: 300px;
+  height: 300px;
+
+  top: -150px;
+  right: -100px;
+}
+
+.forma-direita-baixo {
+  width: 300px;
+  height: 300px;
+
+  bottom: -190px;
+  left: -150px;
+}
+
+
+/* ==========================================
+   CARD
+========================================== */
+
+.card-login {
+  position: relative;
+  z-index: 5;
+
+  width: min(100%, 585px);
+
+  padding: 42px 44px 46px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid rgba(210, 220, 235, 0.9);
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 20px 45px rgba(25, 67, 125, 0.12),
+    0 4px 12px rgba(25, 67, 125, 0.07);
+}
+
+
+/* ==========================================
+   ÍCONE DO USUÁRIO
+========================================== */
+
+.area-icone {
+  display: flex;
+  justify-content: center;
+}
+
+.icone-usuario {
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e5efff;
+
+  color: #0758c9;
+}
+
+.icone-usuario svg {
+  width: 39px;
+  height: 39px;
+}
+
+
+/* ==========================================
+   CABEÇALHO DO LOGIN
+========================================== */
+
+.cabecalho-login {
+  margin-top: 18px;
+
+  text-align: center;
+}
+
+.titulo-login {
+  color: #12203d;
+
+  font-size: 31px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+.subtitulo-login {
+  margin-top: 8px;
+
+  color: #627494;
+
+  font-size: 16px;
+}
+
+
+/* ==========================================
+   FORMULÁRIO
+========================================== */
+
 .formulario-login {
   width: 100%;
-}
-.campo-formulario label {
-  display: block;
-  margin-bottom: 7px;
-  font-size: 13px;
-  color: #333;
-}
-.input-container {
-  height: 42px;
-  display: flex;
-  align-items: center;
-  border: 1px solid #d5d5d5;
-  border-radius: 7px;
-  background-color: #f7f7f7;
-}
-.icone-input {
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.icone-input svg {
-  width: 18px;
-  height: 18px;
-  stroke: #5f5f5f;
-  stroke-width: 1.2px;
-}
-.input-container input {
-  flex: 1;
-  height: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 13px;
-}
-.input-container input::placeholder {
-  color: #999;
-}
-.icone-olho {
-  padding: 0 14px;
-  font-size: 16px;
-  cursor: pointer;
+  margin-top: 34px;
 }
 
-/* Opções e Botão de Login */
+.campo-formulario {
+  margin-bottom: 25px;
+}
+
+.campo-formulario label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #17233f;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+.input-container {
+  height: 62px;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #b9cae5;
+  border-radius: 8px;
+
+  background: #f8fbff;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.input-container:focus-within {
+  border-color: #2c73df;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px rgba(44, 115, 223, 0.12);
+}
+
+.icone-input {
+  width: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #607392;
+}
+
+.icone-input svg {
+  width: 22px;
+  height: 22px;
+}
+
+.input-container input {
+  flex: 1;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0 12px 0 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #1a2945;
+
+  font-size: 15px;
+}
+
+.input-container input::placeholder {
+  color: #8b9ab1;
+}
+
+
+/* ==========================================
+   BOTÃO MOSTRAR SENHA
+========================================== */
+
+.icone-olho {
+  width: 50px;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  background: transparent;
+
+  color: #526987;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.icone-olho:hover {
+  color: #0758c9;
+}
+
+.icone-olho svg {
+  width: 22px;
+  height: 22px;
+}
+
+
+/* ==========================================
+   OPÇÕES
+========================================== */
+
 .opcoes-login {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 14px;
-  margin-bottom: 23px;
+
+  margin-top: -3px;
+  margin-bottom: 28px;
 }
+
 .lembrar-dados {
   display: flex;
   align-items: center;
-}
-.lembrar-dados input {
-  width: 21px;
-  height: 21px;
-  margin-right: 7px;
-}
-.lembrar-dados label {
-  font-size: 13px;
-  color: #333;
-}
-.link-senha {
-  color: #0754d6;
-  text-decoration: none;
-  font-size: 13px;
-}
-.botao-login {
-  width: 100%;
-  height: 44px;
-  border: none;
-  border-radius: 7px;
-  background-color: #064dc4;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-.botao-login:hover {
-  background-color: #023586;
+  gap: 9px;
 }
 
-/* Responsividade */
+.lembrar-dados input {
+  width: 18px;
+  height: 18px;
+
+  margin: 0;
+
+  accent-color: #075dcc;
+
+  cursor: pointer;
+}
+
+.lembrar-dados label {
+  color: #344562;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.link-senha {
+  color: #075dcc;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  text-decoration: none;
+}
+
+.link-senha:hover {
+  text-decoration: underline;
+}
+
+
+/* ==========================================
+   BOTÃO LOGIN
+========================================== */
+
+.botao-login {
+  width: 100%;
+  min-height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  border: none;
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0758cf,
+      #086de4
+    );
+
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 18px rgba(7, 88, 207, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.botao-login svg {
+  width: 22px;
+  height: 22px;
+
+  transition: transform 0.2s ease;
+}
+
+.botao-login:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #064db7,
+      #075dcc
+    );
+
+  box-shadow:
+    0 10px 22px rgba(7, 88, 207, 0.28);
+
+  transform: translateY(-1px);
+}
+
+.botao-login:hover svg {
+  transform: translateX(4px);
+}
+
+.botao-login:active {
+  transform: translateY(0);
+}
+
+
+/* ==========================================
+   RODAPÉ DIREITO
+========================================== */
+
+.rodape-direito {
+  position: absolute;
+
+  right: 7%;
+  bottom: 7%;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  color: #8ca2c3;
+}
+
+.rodape-direito span {
+  width: 40px;
+  height: 1px;
+
+  background: #9cb6da;
+}
+
+.rodape-direito p {
+  font-size: 10px;
+
+  letter-spacing: 3px;
+}
+
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+@media (max-width: 1000px) {
+
+  .lado-esquerdo {
+    width: 42%;
+  }
+
+  .lado-direito {
+    width: 58%;
+    padding: 35px;
+  }
+
+  .card-login {
+    padding: 38px 35px 40px;
+  }
+
+  .titulo-login {
+    font-size: 27px;
+  }
+
+  .slogan-logo {
+    font-size: 17px;
+  }
+
+}
+
+
 @media (max-width: 768px) {
+
   .login-container {
     flex-direction: column;
+    min-height: 100vh;
   }
+
   .lado-esquerdo {
     width: 100%;
-    min-height: 35vh;
+    min-height: 300px;
+
+    padding: 50px 30px;
   }
+
+  .conteudo-logo {
+    width: auto;
+
+    text-align: center;
+  }
+
+  .logo-sgm {
+    font-size: 72px;
+  }
+
+  .linha-logo {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .descricao-logo {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .slogan-logo {
+    display: none;
+  }
+
+  .rodape-esquerdo {
+    display: none;
+  }
+
   .lado-direito {
     width: 100%;
-    min-height: 65vh;
-    padding: 20px;
+    min-height: calc(100vh - 300px);
+
+    padding: 35px 20px;
   }
-  .logo-sgm {
-    font-size: 60px;
-  }
+
   .card-login {
     width: 100%;
-    max-width: 385px;
+    max-width: 520px;
   }
+
+  .rodape-direito {
+    display: none;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .lado-esquerdo {
+    min-height: 240px;
+  }
+
+  .lado-direito {
+    padding: 25px 15px;
+  }
+
+  .card-login {
+    padding: 30px 22px 32px;
+    border-radius: 12px;
+  }
+
+  .icone-usuario {
+    width: 62px;
+    height: 62px;
+  }
+
+  .icone-usuario svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .titulo-login {
+    font-size: 24px;
+  }
+
+  .subtitulo-login {
+    font-size: 14px;
+  }
+
+  .formulario-login {
+    margin-top: 28px;
+  }
+
+  .input-container {
+    height: 56px;
+  }
+
+  .opcoes-login {
+    gap: 12px;
+  }
+
+  .lembrar-dados label,
+  .link-senha {
+    font-size: 12px;
+  }
+
+  .botao-login {
+    min-height: 54px;
+    font-size: 15px;
+  }
+
 }
