@@ -209,16 +209,31 @@
                 <p>Controle de estoque do almoxarifado</p>
               </div>
 
-              <a href="nova_peca_adm.html">
-                <button
-                  class="botao-nova-peca"
-                  id="botaoNovaPeca"
-                  type="button"
-                >
-                  <i class="bi bi-plus-lg"></i>
-                  <span>Nova Peça</span>
-                </button>
-              </a>
+              <div class="botoes-cabecalho">
+
+                
+                  <button
+                    class="botao-nova-peca"
+                    id="botaoNovaCategoria"
+                    type="button"
+                  >
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Nova Categoria</span>
+                  </button>
+                
+
+                <a href="nova_peca_adm.html">
+                  <button
+                    class="botao-nova-peca"
+                    id="botaoNovaPeca"
+                    type="button"
+                  >
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Nova Peça</span>
+                  </button>
+                </a>
+
+              </div>
 
             </div>
           </section>
@@ -576,8 +591,147 @@
               </tbody>
             </table>
           </section>
+          <!-- =====================================================
+     FORMULÁRIO - NOVA CATEGORIA
+     ===================================================== -->
 
+<div class="popup-categoria" id="popupNovaCategoria">
 
+    <div class="popup-overlay"></div>
+
+    <div class="popup-conteudo">
+
+        <!-- Cabeçalho do formulário -->
+        <div class="popup-cabecalho">
+
+            <div class="popup-icone">
+                <i class="bi bi-folder-plus"></i>
+            </div>
+
+            <div>
+                <h2>Nova categoria</h2>
+                <p>Cadastre uma nova categoria de peça.</p>
+            </div>
+
+        </div>
+
+        <!-- Formulário -->
+        <form class="form-categoria" id="formNovaCategoria">
+
+            <!-- Nome da categoria -->
+            <div class="campo-formulario">
+
+                <label for="nomeCategoria">
+                    Nome da categoria
+                </label>
+
+                <input
+                    type="text"
+                    id="nomeCategoria"
+                    name="nomeCategoria"
+                    placeholder="Digite o nome da categoria"
+                    required
+                >
+
+            </div>
+
+            <!-- Botões -->
+            <div class="acoes-popup">
+
+                <button
+                    type="button"
+                    class="botao-cancelar"
+                    id="cancelarCategoria"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="botao-salvar"
+                    id="salvarCategoria"
+                >
+                    <i class="bi bi-check-lg"></i>
+                    Criar categoria
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div><!-- =====================================================
+     FORMULÁRIO - NOVA CATEGORIA
+     ===================================================== -->
+
+<div class="popup-categoria" id="popupNovaCategoria">
+
+    <div class="popup-overlay"></div>
+
+    <div class="popup-conteudo">
+
+        <!-- Cabeçalho do formulário -->
+        <div class="popup-cabecalho">
+
+            <div class="popup-icone">
+                <i class="bi bi-folder-plus"></i>
+            </div>
+
+            <div>
+                <h2>Nova categoria</h2>
+                <p>Cadastre uma nova categoria de peça.</p>
+            </div>
+
+        </div>
+
+        <!-- Formulário -->
+        <form class="form-categoria" id="formNovaCategoria">
+
+            <!-- Nome da categoria -->
+            <div class="campo-formulario">
+
+                <label for="nomeCategoria">
+                    Nome da categoria
+                </label>
+
+                <input
+                    type="text"
+                    id="nomeCategoria"
+                    name="nomeCategoria"
+                    placeholder="Digite o nome da categoria"
+                    required
+                >
+
+            </div>
+
+            <!-- Botões -->
+            <div class="acoes-popup">
+
+                <button
+                    type="button"
+                    class="botao-cancelar"
+                    id="cancelarCategoria"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="botao-salvar"
+                    id="salvarCategoria"
+                >
+                    <i class="bi bi-check-lg"></i>
+                    Criar categoria
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
           <!-- =====================================================
                POP-UPS DE EDIÇÃO
                ===================================================== -->
