@@ -8,14 +8,12 @@
 
     <!-- CSS específico da página -->
     <link rel="stylesheet" href="../-css/pages/relatorios_adm.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   </head>
 
   <body>
     <div class="layout">
+
       <!-- Menu lateral -->
       <aside class="barra-lateral" id="barraLateral">
         <div class="cabecalho-barra">
@@ -29,14 +27,16 @@
           </div>
         </div>
 
-        <nav class="navegacao-lateral" aria-label="Navegação principal">
+        <nav
+          class="navegacao-lateral"
+          aria-label="Navegação principal"
+        >
           <ul class="lista-navegacao">
+
             <!-- Dashboard -->
             <li class="item-navegacao">
               <a href="dashboard.html" class="link-navegacao">
-                <span class="icone-navegacao"
-                  ><i class="bi bi-list-task"></i
-                ></span>
+                <span class="icone-navegacao"><i class="bi bi-list-task"></i></span>
                 <span>Dashboard</span>
               </a>
             </li>
@@ -44,29 +44,25 @@
             <!-- Ordens de Serviço -->
             <li class="item-navegacao">
               <a href="todas_os.html" class="link-navegacao">
-                <span class="icone-navegacao"
-                  ><i class="bi bi-clipboard-data"></i
-                ></span>
+                <span class="icone-navegacao"><i class="bi bi-clipboard-data"></i></span>
                 <span>Ordens de Serviço</span>
+        
               </a>
             </li>
 
             <!-- Equipamentos -->
             <li class="item-navegacao">
               <a href="equipamentos.html" class="link-navegacao">
-                <span class="icone-navegacao"
-                  ><i class="bi bi-wrench-adjustable"></i
-                ></span>
+                <span class="icone-navegacao"><i class="bi bi-wrench-adjustable"></i></span>
                 <span>Equipamentos</span>
+           
               </a>
             </li>
 
             <!-- Setor -->
             <li class="item-navegacao">
               <a href="setor_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"
-                  ><i class="bi bi-collection"></i
-                ></span>
+                <span class="icone-navegacao"><i class="bi bi-collection"></i></span>
                 <span>Setor</span>
               </a>
             </li>
@@ -74,9 +70,7 @@
             <!-- Histórico -->
             <li class="item-navegacao">
               <a href="historico_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"
-                  ><i class="bi bi-clock-history"></i
-                ></span>
+                <span class="icone-navegacao"><i class="bi bi-clock-history"></i></span>
                 <span>Histórico</span>
               </a>
             </li>
@@ -84,9 +78,7 @@
             <!-- Indicadores -->
             <li class="item-navegacao">
               <a href="indicadores_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"
-                  ><i class="bi bi-bar-chart"></i
-                ></span>
+                <span class="icone-navegacao"><i class="bi bi-bar-chart"></i></span>
                 <span>Indicadores</span>
               </a>
             </li>
@@ -94,9 +86,7 @@
             <!-- Relatórios -->
             <li class="item-navegacao ativo">
               <a href="relatorios_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"
-                  ><i class="bi bi-file-earmark-text"></i
-                ></span>
+                <span class="icone-navegacao"><i class="bi bi-file-earmark-text"></i></span>
                 <span>Relatórios</span>
               </a>
             </li>
@@ -106,6 +96,7 @@
               <a href="manutencao_adm.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-tools"></i></span>
                 <span>Manutenção</span>
+          
               </a>
             </li>
 
@@ -114,26 +105,30 @@
               <a href="pecas_adm.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-nut"></i></span>
                 <span>Peças</span>
+         
               </a>
             </li>
 
             <!-- Administração -->
             <li class="item-navegacao">
               <a href="usuarios.html" class="link-navegacao">
-                <span class="icone-navegacao"
-                  ><i class="bi bi-people"></i
-                ></span>
+                <span class="icone-navegacao"><i class="bi bi-people"></i></span>
                 <span>Administração</span>
+          
               </a>
             </li>
+
           </ul>
         </nav>
       </aside>
 
+
       <!-- Área principal -->
       <div class="area-principal">
+
         <!-- Cabeçalho -->
         <header class="cabecalho">
+
           <div class="cabecalho-esquerdo">
             <button
               class="botao-menu"
@@ -146,13 +141,16 @@
           </div>
 
           <div class="cabecalho-direito">
+
             <!-- Notificações -->
             <button
               class="botao-notificacao"
               id="botaoNotificacao"
               type="button"
               aria-label="Notificações"
-            ></button>
+            >
+             
+            </button>
 
             <!-- Perfil -->
             <div class="perfil-usuario">
@@ -162,12 +160,17 @@
                 <strong>Admin Sistema</strong>
                 <span>Administrador</span>
               </div>
+
+             
             </div>
+
           </div>
         </header>
 
+
         <!-- Conteúdo principal -->
         <main class="conteudo-principal">
+
           <!-- Elementos decorativos -->
           <div class="decoracao-relatorios" aria-hidden="true">
             <span class="ponto ponto-1"></span>
@@ -181,11 +184,13 @@
             <span class="circulo circulo-4"></span>
           </div>
 
+
           <!-- Cabeçalho da página -->
           <section class="cabecalho-pagina">
             <h1>Relatórios</h1>
             <p>Geração de relatórios e exportação de dados</p>
           </section>
+
 
           <!-- Lista de relatórios -->
           <section
@@ -193,6 +198,7 @@
             id="listaRelatorios"
             aria-label="Relatórios disponíveis"
           >
+
             <!-- OS por período -->
             <article class="card-relatorio">
               <div class="icone-relatorio">
@@ -207,9 +213,7 @@
                   stroke-linejoin="round"
                   aria-hidden="true"
                 >
-                  <path
-                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                  ></path>
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <path d="M14 2v6h6"></path>
                   <path d="M8 13h8"></path>
                   <path d="M8 17h5"></path>
@@ -239,6 +243,7 @@
                 </button>
               </div>
             </article>
+
 
             <!-- Custo por equipamento -->
             <article class="card-relatorio">
@@ -284,6 +289,7 @@
               </div>
             </article>
 
+
             <!-- Disponibilidade -->
             <article class="card-relatorio">
               <div class="icone-relatorio">
@@ -327,6 +333,7 @@
                 </button>
               </div>
             </article>
+
 
             <!-- Histórico por técnico -->
             <article class="card-relatorio">
@@ -373,6 +380,7 @@
               </div>
             </article>
 
+
             <!-- Consumo de peças -->
             <article class="card-relatorio">
               <div class="icone-relatorio">
@@ -417,6 +425,7 @@
               </div>
             </article>
 
+
             <!-- Plano preventivo -->
             <article class="card-relatorio">
               <div class="icone-relatorio">
@@ -431,9 +440,7 @@
                   stroke-linejoin="round"
                   aria-hidden="true"
                 >
-                  <path
-                    d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6l-2.4 2.4-3-3z"
-                  ></path>
+                  <path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6l-2.4 2.4-3-3z"></path>
                 </svg>
               </div>
 
@@ -460,15 +467,14 @@
                 </button>
               </div>
             </article>
+
           </section>
         </main>
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
 
-    <script src="../-js/pages/relatorios_adm.js"></script>
+    <!-- JavaScript global -->
     <script src="../-js/global.js"></script>
   </body>
 </html>
