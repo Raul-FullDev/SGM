@@ -3,13 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>SGM - Peças e Materiais</title>
-
-    <!-- Caminho do CSS mantido -->
     <link rel="stylesheet" href="../-css/pages/pecas_adm.css" />
-
-    <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -18,13 +13,11 @@
 
   <body>
     <div class="layout">
-
       <!-- Menu lateral -->
       <aside class="barra-lateral" id="barraLateral">
         <div class="cabecalho-barra">
           <div class="logo">
             <span class="icone-logo">S</span>
-
             <div class="texto-logo">
               <strong>SGM</strong>
               <span>Gestão de manutenção</span>
@@ -34,118 +27,89 @@
 
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
-
-            <!-- Dashboard -->
             <li class="item-navegacao">
               <a href="dashboard.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-list-task"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-list-task"></i
+                ></span>
                 <span>Dashboard</span>
               </a>
             </li>
-
-            <!-- Ordens de Serviço -->
             <li class="item-navegacao">
               <a href="todas_os.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-clipboard-data"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clipboard-data"></i
+                ></span>
                 <span>Ordens de Serviço</span>
               </a>
             </li>
-
-            <!-- Equipamentos -->
             <li class="item-navegacao">
               <a href="equipamentos.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-wrench-adjustable"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-wrench-adjustable"></i
+                ></span>
                 <span>Equipamentos</span>
               </a>
             </li>
-
-            <!-- Setor -->
             <li class="item-navegacao">
               <a href="setor_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-collection"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-collection"></i
+                ></span>
                 <span>Setor</span>
               </a>
             </li>
-
-            <!-- Histórico -->
             <li class="item-navegacao">
               <a href="historico_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-clock-history"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clock-history"></i
+                ></span>
                 <span>Histórico</span>
               </a>
             </li>
-
-            <!-- Indicadores -->
             <li class="item-navegacao">
               <a href="indicadores_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-bar-chart"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-bar-chart"></i
+                ></span>
                 <span>Indicadores</span>
               </a>
             </li>
-
-            <!-- Relatórios -->
             <li class="item-navegacao">
               <a href="relatorios_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-file-earmark-text"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-file-earmark-text"></i
+                ></span>
                 <span>Relatórios</span>
               </a>
             </li>
-
-            <!-- Manutenção -->
             <li class="item-navegacao">
               <a href="manutencao_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-tools"></i>
-                </span>
+                <span class="icone-navegacao"><i class="bi bi-tools"></i></span>
                 <span>Manutenção</span>
               </a>
             </li>
-
-            <!-- Peças -->
             <li class="item-navegacao ativo">
               <a href="pecas_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-nut"></i>
-                </span>
+                <span class="icone-navegacao"><i class="bi bi-nut"></i></span>
                 <span>Peças</span>
               </a>
             </li>
-
-            <!-- Administração -->
             <li class="item-navegacao">
               <a href="usuarios.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-people"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-people"></i
+                ></span>
                 <span>Administração</span>
               </a>
             </li>
-
           </ul>
         </nav>
       </aside>
 
-
       <!-- Área principal -->
       <div class="area-principal">
-
-        <!-- Cabeçalho -->
         <header class="cabecalho">
-
           <div class="cabecalho-esquerdo">
             <button
               class="botao-menu"
@@ -156,72 +120,52 @@
               ☰
             </button>
           </div>
-
           <div class="cabecalho-direito">
-
-            <!-- Notificações -->
             <button
               class="botao-notificacao"
               id="botaoNotificacao"
               type="button"
               aria-label="Notificações"
             ></button>
-
-            <!-- Perfil -->
             <div class="perfil-usuario">
               <div class="avatar-usuario">AS</div>
-
               <div class="informacoes-usuario">
                 <strong>Admin Sistema</strong>
                 <span>Administrador</span>
               </div>
             </div>
-
           </div>
         </header>
 
-
-        <!-- Conteúdo principal -->
         <main class="conteudo-principal">
-
           <!-- Elementos decorativos -->
           <div class="decoracao-pecas" aria-hidden="true">
             <span class="ponto-peca ponto-peca-1"></span>
             <span class="ponto-peca ponto-peca-2"></span>
             <span class="ponto-peca ponto-peca-3"></span>
             <span class="ponto-peca ponto-peca-4"></span>
-
             <span class="circulo-peca circulo-peca-1"></span>
             <span class="circulo-peca circulo-peca-2"></span>
             <span class="circulo-peca circulo-peca-3"></span>
             <span class="circulo-peca circulo-peca-4"></span>
-
             <span class="linhas-peca"></span>
           </div>
 
-
-          <!-- Cabeçalho da página -->
           <section class="cabecalho-pagina">
             <div class="cabecalho-pecas">
-
               <div>
                 <h1>Peças e Materiais</h1>
                 <p>Controle de estoque do almoxarifado</p>
               </div>
-
               <div class="botoes-cabecalho">
-
-                
-                  <button
-                    class="botao-nova-peca"
-                    id="botaoNovaCategoria"
-                    type="button"
-                  >
-                    <i class="bi bi-plus-lg"></i>
-                    <span>Nova Categoria</span>
-                  </button>
-                
-
+                <button
+                  class="botao-nova-peca"
+                  id="botaoNovaCategoria"
+                  type="button"
+                >
+                  <i class="bi bi-folder-plus"></i>
+                  <span>Nova Categoria</span>
+                </button>
                 <a href="nova_peca_adm.html">
                   <button
                     class="botao-nova-peca"
@@ -232,1159 +176,202 @@
                     <span>Nova Peça</span>
                   </button>
                 </a>
-
               </div>
-
             </div>
           </section>
 
-
-          <!-- Cards de resumo -->
           <section
             class="cards-pecas"
             id="cardsPecas"
             aria-label="Resumo do estoque"
           >
-
-            <!-- Itens em estoque -->
             <article class="card-resumo-peca">
               <div class="icone-resumo-peca icone-estoque">
                 <i class="bi bi-box"></i>
               </div>
-
               <div class="conteudo-resumo-peca">
                 <h2>8</h2>
                 <p>Itens em estoque</p>
               </div>
             </article>
-
-
-            <!-- Valor total -->
             <article class="card-resumo-peca">
               <div class="icone-resumo-peca icone-valor">
                 <i class="bi bi-cash-stack"></i>
               </div>
-
               <div class="conteudo-resumo-peca">
                 <h2>R$ 9.074,50</h2>
                 <p>Valor total</p>
               </div>
             </article>
-
-
-            <!-- Estoque crítico -->
             <article class="card-resumo-peca">
               <div class="icone-resumo-peca icone-critico">
                 <i class="bi bi-exclamation-lg"></i>
               </div>
-
               <div class="conteudo-resumo-peca">
                 <h2>2</h2>
                 <p>Estoque crítico</p>
                 <span>≤ 5 unidades</span>
               </div>
             </article>
-
           </section>
 
-
           <!-- Tabela de peças -->
-          <section
-            class="tabela-pecas-container"
-            id="tabelaPecasContainer"
-          >
-
+          <section class="tabela-pecas-container" id="tabelaPecasContainer">
             <table class="tabela-pecas">
-
               <thead>
                 <tr>
                   <th scope="col">Código</th>
                   <th scope="col">Descrição</th>
+                  <th scope="col">Categoria</th>
+                  <!-- NOVA COLUNA -->
                   <th scope="col">Quantidade</th>
                   <th scope="col">Custo Unit.</th>
                   <th scope="col">Total</th>
                   <th scope="col">Ações</th>
                 </tr>
               </thead>
-
               <tbody id="listaPecas">
-
-                <!-- Peça 01 -->
                 <tr>
-                  <td class="codigo-peca">PC0001</td>
-
-                  <td>
-                    <div class="descricao-peca">
-                      <span>Válvula de segurança 1/2"</span>
-                    </div>
-                  </td>
-
-                  <td class="quantidade-peca">
-                    8 un
-                  </td>
-
-                  <td class="custo-peca">
-                    R$ 185.90
-                  </td>
-
-                  <td class="total-peca">
-                    R$ 1487.20
-                  </td>
-
-                  <td class="acoes-peca">
-                    <a
-                      href="#editar-PC0001"
-                      class="botao-acoes"
-                      aria-label="Ações da peça PC0001"
-                    >
-                      <i class="bi bi-three-dots-vertical"></i>
-                    </a>
+                  <td
+                    colspan="7"
+                    style="text-align: center; padding: 30px; color: #69809f"
+                  >
+                    Carregando estoque...
                   </td>
                 </tr>
-
-
-                <!-- Peça 02 -->
-                <tr>
-                  <td class="codigo-peca">PC0002</td>
-
-                  <td>
-                    <div class="descricao-peca">
-                      <span>Correia dentada 5M-750</span>
-                    </div>
-                  </td>
-
-                  <td class="quantidade-peca">
-                    24 un
-                  </td>
-
-                  <td class="custo-peca">
-                    R$ 42.50
-                  </td>
-
-                  <td class="total-peca">
-                    R$ 1020.00
-                  </td>
-
-                  <td class="acoes-peca">
-                    <a
-                      href="#editar-PC0002"
-                      class="botao-acoes"
-                      aria-label="Ações da peça PC0002"
-                    >
-                      <i class="bi bi-three-dots-vertical"></i>
-                    </a>
-                  </td>
-                </tr>
-
-
-                <!-- Peça 03 -->
-                <tr>
-                  <td class="codigo-peca">PC0003</td>
-
-                  <td>
-                    <div class="descricao-peca">
-                      <span>Óleo hidráulico ISO 46 (20L)</span>
-                    </div>
-                  </td>
-
-                  <td class="quantidade-peca">
-                    6 lata
-                  </td>
-
-                  <td class="custo-peca">
-                    R$ 320.00
-                  </td>
-
-                  <td class="total-peca">
-                    R$ 1920.00
-                  </td>
-
-                  <td class="acoes-peca">
-                    <a
-                      href="#editar-PC0003"
-                      class="botao-acoes"
-                      aria-label="Ações da peça PC0003"
-                    >
-                      <i class="bi bi-three-dots-vertical"></i>
-                    </a>
-                  </td>
-                </tr>
-
-
-                <!-- Peça 04 -->
-                <tr>
-                  <td class="codigo-peca">PC0004</td>
-
-                  <td>
-                    <div class="descricao-peca">
-                      <span>Rolamento SKF 6205-2RS</span>
-                    </div>
-                  </td>
-
-                  <td class="quantidade-peca">
-                    30 un
-                  </td>
-
-                  <td class="custo-peca">
-                    R$ 38.75
-                  </td>
-
-                  <td class="total-peca">
-                    R$ 1162.50
-                  </td>
-
-                  <td class="acoes-peca">
-                    <a
-                      href="#editar-PC0004"
-                      class="botao-acoes"
-                      aria-label="Ações da peça PC0004"
-                    >
-                      <i class="bi bi-three-dots-vertical"></i>
-                    </a>
-                  </td>
-                </tr>
-
-
-                <!-- Peça 05 -->
-                <tr>
-                  <td class="codigo-peca">PC0005</td>
-
-                  <td>
-                    <div class="descricao-peca">
-                      <span>Filtro de ar comprimido</span>
-                    </div>
-                  </td>
-
-                  <td class="quantidade-peca">
-                    12 un
-                  </td>
-
-                  <td class="custo-peca">
-                    R$ 95.00
-                  </td>
-
-                  <td class="total-peca">
-                    R$ 1140.00
-                  </td>
-
-                  <td class="acoes-peca">
-                    <a
-                      href="#editar-PC0005"
-                      class="botao-acoes"
-                      aria-label="Ações da peça PC0005"
-                    >
-                      <i class="bi bi-three-dots-vertical"></i>
-                    </a>
-                  </td>
-                </tr>
-
-
-                <!-- Peça 06 - Estoque baixo -->
-                <tr class="peca-estoque-baixo">
-                  <td class="codigo-peca">PC0006</td>
-
-                  <td>
-                    <div class="descricao-peca">
-                      <span>Sensor de temperatura PT100</span>
-
-                      <span class="alerta-estoque">
-                        estoque baixo
-                      </span>
-                    </div>
-                  </td>
-
-                  <td class="quantidade-peca">
-                    5 un
-                  </td>
-
-                  <td class="custo-peca">
-                    R$ 210.00
-                  </td>
-
-                  <td class="total-peca">
-                    R$ 1050.00
-                  </td>
-
-                  <td class="acoes-peca">
-                    <a
-                      href="#editar-PC0006"
-                      class="botao-acoes"
-                      aria-label="Ações da peça PC0006"
-                    >
-                      <i class="bi bi-three-dots-vertical"></i>
-                    </a>
-                  </td>
-                </tr>
-
-
-                <!-- Peça 07 - Estoque baixo -->
-                <tr class="peca-estoque-baixo">
-                  <td class="codigo-peca">PC0007</td>
-
-                  <td>
-                    <div class="descricao-peca">
-                      <span>Parafuso M8×30 inox (caixa)</span>
-
-                      <span class="alerta-estoque">
-                        estoque baixo
-                      </span>
-                    </div>
-                  </td>
-
-                  <td class="quantidade-peca">
-                    3 cx
-                  </td>
-
-                  <td class="custo-peca">
-                    R$ 28.40
-                  </td>
-
-                  <td class="total-peca">
-                    R$ 85.20
-                  </td>
-
-                  <td class="acoes-peca">
-                    <a
-                      href="#editar-PC0007"
-                      class="botao-acoes"
-                      aria-label="Ações da peça PC0007"
-                    >
-                      <i class="bi bi-three-dots-vertical"></i>
-                    </a>
-                  </td>
-                </tr>
-
-
-                <!-- Peça 08 -->
-                <tr>
-                  <td class="codigo-peca">PC0008</td>
-
-                  <td>
-                    <div class="descricao-peca">
-                      <span>Lubrificante Mobil Extra 2L</span>
-                    </div>
-                  </td>
-
-                  <td class="quantidade-peca">
-                    18 un
-                  </td>
-
-                  <td class="custo-peca">
-                    R$ 67.20
-                  </td>
-
-                  <td class="total-peca">
-                    R$ 1209.60
-                  </td>
-
-                  <td class="acoes-peca">
-                    <a
-                      href="#editar-PC0008"
-                      class="botao-acoes"
-                      aria-label="Ações da peça PC0008"
-                    >
-                      <i class="bi bi-three-dots-vertical"></i>
-                    </a>
-                  </td>
-                </tr>
-
               </tbody>
             </table>
           </section>
+
           <!-- =====================================================
-     FORMULÁRIO - NOVA CATEGORIA
-     ===================================================== -->
-
-<div class="popup-categoria" id="popupNovaCategoria">
-
-    <div class="popup-overlay"></div>
-
-    <div class="popup-conteudo">
-
-        <!-- Cabeçalho do formulário -->
-        <div class="popup-cabecalho">
-
-            <div class="popup-icone">
-                <i class="bi bi-folder-plus"></i>
-            </div>
-
-            <div>
-                <h2>Nova categoria</h2>
-                <p>Cadastre uma nova categoria de peça.</p>
-            </div>
-
-        </div>
-
-        <!-- Formulário -->
-        <form class="form-categoria" id="formNovaCategoria">
-
-            <!-- Nome da categoria -->
-            <div class="campo-formulario">
-
-                <label for="nomeCategoria">
-                    Nome da categoria
-                </label>
-
-                <input
-                    type="text"
-                    id="nomeCategoria"
-                    name="nomeCategoria"
-                    placeholder="Digite o nome da categoria"
-                    required
-                >
-
-            </div>
-
-            <!-- Botões -->
-            <div class="acoes-popup">
-
-                <button
-                    type="button"
-                    class="botao-cancelar"
-                    id="cancelarCategoria"
-                >
-                    Cancelar
-                </button>
-
-                <button
-                    type="submit"
-                    class="botao-salvar"
-                    id="salvarCategoria"
-                >
-                    <i class="bi bi-check-lg"></i>
-                    Criar categoria
-                </button>
-
-            </div>
-
-        </form>
-
-    </div>
-
-</div><!-- =====================================================
-     FORMULÁRIO - NOVA CATEGORIA
-     ===================================================== -->
-
-<div class="popup-categoria" id="popupNovaCategoria">
-
-    <div class="popup-overlay"></div>
-
-    <div class="popup-conteudo">
-
-        <!-- Cabeçalho do formulário -->
-        <div class="popup-cabecalho">
-
-            <div class="popup-icone">
-                <i class="bi bi-folder-plus"></i>
-            </div>
-
-            <div>
-                <h2>Nova categoria</h2>
-                <p>Cadastre uma nova categoria de peça.</p>
-            </div>
-
-        </div>
-
-        <!-- Formulário -->
-        <form class="form-categoria" id="formNovaCategoria">
-
-            <!-- Nome da categoria -->
-            <div class="campo-formulario">
-
-                <label for="nomeCategoria">
-                    Nome da categoria
-                </label>
-
-                <input
-                    type="text"
-                    id="nomeCategoria"
-                    name="nomeCategoria"
-                    placeholder="Digite o nome da categoria"
-                    required
-                >
-
-            </div>
-
-            <!-- Botões -->
-            <div class="acoes-popup">
-
-                <button
-                    type="button"
-                    class="botao-cancelar"
-                    id="cancelarCategoria"
-                >
-                    Cancelar
-                </button>
-
-                <button
-                    type="submit"
-                    class="botao-salvar"
-                    id="salvarCategoria"
-                >
-                    <i class="bi bi-check-lg"></i>
-                    Criar categoria
-                </button>
-
-            </div>
-
-        </form>
-
-    </div>
-
-</div>
-          <!-- =====================================================
-               POP-UPS DE EDIÇÃO
+               POP-UP NOVA CATEGORIA (MANTIDO)
                ===================================================== -->
-
-          <!-- PC0001 -->
-          <div class="popup-edicao" id="editar-PC0001">
-            <div class="popup-overlay"></div>
-
+          <div class="popup-edicao" id="popupNovaCategoria">
+            <div class="popup-overlay" id="fecharOverlayCategoria"></div>
             <div class="popup-conteudo">
-              <a href="#" class="popup-fechar" aria-label="Fechar">
-                <i class="bi bi-x-lg"></i>
-              </a>
-
+              <a href="#" class="popup-fechar" id="fecharNovaCategoriaX"
+                ><i class="bi bi-x-lg"></i
+              ></a>
               <div class="popup-cabecalho">
-                <div class="popup-icone">
-                  <i class="bi bi-nut"></i>
-                </div>
-
+                <div class="popup-icone"><i class="bi bi-folder-plus"></i></div>
                 <div>
-                  <h2>Editar peça</h2>
-                  <p>Atualize as informações do estoque.</p>
+                  <h2>Nova categoria</h2>
+                  <p>Cadastre uma nova categoria de peça.</p>
                 </div>
               </div>
-
-              <form class="form-edicao-peca" id="form-PC0001">
-
+              <form class="form-edicao-peca" id="formNovaCategoria">
                 <div class="campo-formulario">
-                  <label>Código da peça</label>
-                  <input type="text" value="PC0001" readonly>
+                  <label for="nomeCategoria">Nome da categoria</label>
+                  <input
+                    type="text"
+                    id="nomeCategoria"
+                    placeholder="Ex: Elétrica, Hidráulica..."
+                    required
+                  />
                 </div>
+                <div class="acoes-popup">
+                  <button
+                    type="button"
+                    class="botao-excluir"
+                    id="cancelarCategoria"
+                    style="
+                      color: #43546b;
+                      background: white;
+                      border-color: #d8e0ea;
+                    "
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    class="botao-salvar"
+                    id="salvarCategoria"
+                  >
+                    <i class="bi bi-check-lg"></i> Criar categoria
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- =====================================================
+               POP-UP DE EDIÇÃO ÚNICO E DINÂMICO
+               ===================================================== -->
+          <div class="popup-edicao" id="modalEditarPeca">
+            <div class="popup-overlay" id="overlayEditarPeca"></div>
+            <div class="popup-conteudo">
+              <a href="#" class="popup-fechar" id="fecharEditarPecaX"
+                ><i class="bi bi-x-lg"></i
+              ></a>
+              <div class="popup-cabecalho">
+                <div class="popup-icone"><i class="bi bi-nut"></i></div>
+                <div>
+                  <h2>Editar peça</h2>
+                  <p>Atualize as informações e a categoria.</p>
+                </div>
+              </div>
+              <form class="form-edicao-peca" id="formEditarPeca">
+                <input type="hidden" id="editPecaId" />
 
                 <div class="campo-formulario">
                   <label>Descrição</label>
-                  <input
-                    type="text"
-                    value='Válvula de segurança 1/2"'
-                    readonly
-                  >
+                  <input type="text" id="editPecaDescricao" required />
+                </div>
+
+                <div class="campo-formulario">
+                  <label>Categoria</label>
+                  <select id="editPecaCategoria" required>
+                    <option value="">Carregando...</option>
+                  </select>
                 </div>
 
                 <div class="linha-formulario">
                   <div class="campo-formulario">
-                    <label for="quantidade-PC0001">Quantidade</label>
+                    <label>Quantidade</label>
                     <input
                       type="number"
-                      id="quantidade-PC0001"
-                      value="8"
+                      id="editPecaQuantidade"
                       min="0"
-                    >
+                      required
+                    />
                   </div>
-
                   <div class="campo-formulario">
-                    <label for="custo-PC0001">Custo unitário</label>
+                    <label>Custo unitário</label>
                     <input
                       type="number"
-                      id="custo-PC0001"
-                      value="185.90"
-                      min="0"
+                      id="editPecaCusto"
                       step="0.01"
-                    >
+                      min="0"
+                      required
+                    />
                   </div>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Total atual</label>
-                  <input type="text" value="R$ 1487.20" readonly>
                 </div>
 
                 <div class="acoes-popup">
                   <button
                     type="button"
                     class="botao-excluir"
-                    id="excluir-PC0001"
+                    id="btnExcluirPeca"
                   >
-                    <i class="bi bi-trash3"></i>
-                    Excluir peça
+                    <i class="bi bi-trash3"></i> Excluir peça
                   </button>
-
                   <button
-                    type="button"
+                    type="submit"
                     class="botao-salvar"
-                    id="salvar-PC0001"
+                    id="btnSalvarPecaEdit"
                   >
-                    <i class="bi bi-check-lg"></i>
-                    Salvar alterações
+                    <i class="bi bi-check-lg"></i> Salvar alterações
                   </button>
                 </div>
-
               </form>
             </div>
           </div>
-
-
-          <!-- PC0002 -->
-          <div class="popup-edicao" id="editar-PC0002">
-            <div class="popup-overlay"></div>
-
-            <div class="popup-conteudo">
-              <a href="#" class="popup-fechar" aria-label="Fechar">
-                <i class="bi bi-x-lg"></i>
-              </a>
-
-              <div class="popup-cabecalho">
-                <div class="popup-icone">
-                  <i class="bi bi-nut"></i>
-                </div>
-
-                <div>
-                  <h2>Editar peça</h2>
-                  <p>Atualize as informações do estoque.</p>
-                </div>
-              </div>
-
-              <form class="form-edicao-peca" id="form-PC0002">
-
-                <div class="campo-formulario">
-                  <label>Código da peça</label>
-                  <input type="text" value="PC0002" readonly>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Descrição</label>
-                  <input type="text" value="Correia dentada 5M-750" readonly>
-                </div>
-
-                <div class="linha-formulario">
-                  <div class="campo-formulario">
-                    <label for="quantidade-PC0002">Quantidade</label>
-                    <input
-                      type="number"
-                      id="quantidade-PC0002"
-                      value="24"
-                      min="0"
-                    >
-                  </div>
-
-                  <div class="campo-formulario">
-                    <label for="custo-PC0002">Custo unitário</label>
-                    <input
-                      type="number"
-                      id="custo-PC0002"
-                      value="42.50"
-                      min="0"
-                      step="0.01"
-                    >
-                  </div>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Total atual</label>
-                  <input type="text" value="R$ 1020.00" readonly>
-                </div>
-
-                <div class="acoes-popup">
-                  <button type="button" class="botao-excluir" id="excluir-PC0002">
-                    <i class="bi bi-trash3"></i>
-                    Excluir peça
-                  </button>
-
-                  <button type="button" class="botao-salvar" id="salvar-PC0002">
-                    <i class="bi bi-check-lg"></i>
-                    Salvar alterações
-                  </button>
-                </div>
-
-              </form>
-            </div>
-          </div>
-
-
-          <!-- PC0003 -->
-          <div class="popup-edicao" id="editar-PC0003">
-            <div class="popup-overlay"></div>
-
-            <div class="popup-conteudo">
-              <a href="#" class="popup-fechar" aria-label="Fechar">
-                <i class="bi bi-x-lg"></i>
-              </a>
-
-              <div class="popup-cabecalho">
-                <div class="popup-icone">
-                  <i class="bi bi-nut"></i>
-                </div>
-
-                <div>
-                  <h2>Editar peça</h2>
-                  <p>Atualize as informações do estoque.</p>
-                </div>
-              </div>
-
-              <form class="form-edicao-peca" id="form-PC0003">
-
-                <div class="campo-formulario">
-                  <label>Código da peça</label>
-                  <input type="text" value="PC0003" readonly>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Descrição</label>
-                  <input
-                    type="text"
-                    value="Óleo hidráulico ISO 46 (20L)"
-                    readonly
-                  >
-                </div>
-
-                <div class="linha-formulario">
-                  <div class="campo-formulario">
-                    <label for="quantidade-PC0003">Quantidade</label>
-                    <input
-                      type="number"
-                      id="quantidade-PC0003"
-                      value="6"
-                      min="0"
-                    >
-                  </div>
-
-                  <div class="campo-formulario">
-                    <label for="custo-PC0003">Custo unitário</label>
-                    <input
-                      type="number"
-                      id="custo-PC0003"
-                      value="320.00"
-                      min="0"
-                      step="0.01"
-                    >
-                  </div>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Total atual</label>
-                  <input type="text" value="R$ 1920.00" readonly>
-                </div>
-
-                <div class="acoes-popup">
-                  <button type="button" class="botao-excluir" id="excluir-PC0003">
-                    <i class="bi bi-trash3"></i>
-                    Excluir peça
-                  </button>
-
-                  <button type="button" class="botao-salvar" id="salvar-PC0003">
-                    <i class="bi bi-check-lg"></i>
-                    Salvar alterações
-                  </button>
-                </div>
-
-              </form>
-            </div>
-          </div>
-
-
-          <!-- PC0004 -->
-          <div class="popup-edicao" id="editar-PC0004">
-            <div class="popup-overlay"></div>
-
-            <div class="popup-conteudo">
-              <a href="#" class="popup-fechar" aria-label="Fechar">
-                <i class="bi bi-x-lg"></i>
-              </a>
-
-              <div class="popup-cabecalho">
-                <div class="popup-icone">
-                  <i class="bi bi-nut"></i>
-                </div>
-
-                <div>
-                  <h2>Editar peça</h2>
-                  <p>Atualize as informações do estoque.</p>
-                </div>
-              </div>
-
-              <form class="form-edicao-peca" id="form-PC0004">
-
-                <div class="campo-formulario">
-                  <label>Código da peça</label>
-                  <input type="text" value="PC0004" readonly>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Descrição</label>
-                  <input type="text" value="Rolamento SKF 6205-2RS" readonly>
-                </div>
-
-                <div class="linha-formulario">
-                  <div class="campo-formulario">
-                    <label for="quantidade-PC0004">Quantidade</label>
-                    <input
-                      type="number"
-                      id="quantidade-PC0004"
-                      value="30"
-                      min="0"
-                    >
-                  </div>
-
-                  <div class="campo-formulario">
-                    <label for="custo-PC0004">Custo unitário</label>
-                    <input
-                      type="number"
-                      id="custo-PC0004"
-                      value="38.75"
-                      min="0"
-                      step="0.01"
-                    >
-                  </div>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Total atual</label>
-                  <input type="text" value="R$ 1162.50" readonly>
-                </div>
-
-                <div class="acoes-popup">
-                  <button type="button" class="botao-excluir" id="excluir-PC0004">
-                    <i class="bi bi-trash3"></i>
-                    Excluir peça
-                  </button>
-
-                  <button type="button" class="botao-salvar" id="salvar-PC0004">
-                    <i class="bi bi-check-lg"></i>
-                    Salvar alterações
-                  </button>
-                </div>
-
-              </form>
-            </div>
-          </div>
-
-
-          <!-- PC0005 -->
-          <div class="popup-edicao" id="editar-PC0005">
-            <div class="popup-overlay"></div>
-
-            <div class="popup-conteudo">
-              <a href="#" class="popup-fechar" aria-label="Fechar">
-                <i class="bi bi-x-lg"></i>
-              </a>
-
-              <div class="popup-cabecalho">
-                <div class="popup-icone">
-                  <i class="bi bi-nut"></i>
-                </div>
-
-                <div>
-                  <h2>Editar peça</h2>
-                  <p>Atualize as informações do estoque.</p>
-                </div>
-              </div>
-
-              <form class="form-edicao-peca" id="form-PC0005">
-
-                <div class="campo-formulario">
-                  <label>Código da peça</label>
-                  <input type="text" value="PC0005" readonly>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Descrição</label>
-                  <input type="text" value="Filtro de ar comprimido" readonly>
-                </div>
-
-                <div class="linha-formulario">
-                  <div class="campo-formulario">
-                    <label for="quantidade-PC0005">Quantidade</label>
-                    <input
-                      type="number"
-                      id="quantidade-PC0005"
-                      value="12"
-                      min="0"
-                    >
-                  </div>
-
-                  <div class="campo-formulario">
-                    <label for="custo-PC0005">Custo unitário</label>
-                    <input
-                      type="number"
-                      id="custo-PC0005"
-                      value="95.00"
-                      min="0"
-                      step="0.01"
-                    >
-                  </div>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Total atual</label>
-                  <input type="text" value="R$ 1140.00" readonly>
-                </div>
-
-                <div class="acoes-popup">
-                  <button type="button" class="botao-excluir" id="excluir-PC0005">
-                    <i class="bi bi-trash3"></i>
-                    Excluir peça
-                  </button>
-
-                  <button type="button" class="botao-salvar" id="salvar-PC0005">
-                    <i class="bi bi-check-lg"></i>
-                    Salvar alterações
-                  </button>
-                </div>
-
-              </form>
-            </div>
-          </div>
-
-
-          <!-- PC0006 -->
-          <div class="popup-edicao" id="editar-PC0006">
-            <div class="popup-overlay"></div>
-
-            <div class="popup-conteudo">
-              <a href="#" class="popup-fechar" aria-label="Fechar">
-                <i class="bi bi-x-lg"></i>
-              </a>
-
-              <div class="popup-cabecalho">
-                <div class="popup-icone">
-                  <i class="bi bi-nut"></i>
-                </div>
-
-                <div>
-                  <h2>Editar peça</h2>
-                  <p>Atualize as informações do estoque.</p>
-                </div>
-              </div>
-
-              <form class="form-edicao-peca" id="form-PC0006">
-
-                <div class="campo-formulario">
-                  <label>Código da peça</label>
-                  <input type="text" value="PC0006" readonly>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Descrição</label>
-                  <input
-                    type="text"
-                    value="Sensor de temperatura PT100"
-                    readonly
-                  >
-                </div>
-
-                <div class="linha-formulario">
-                  <div class="campo-formulario">
-                    <label for="quantidade-PC0006">Quantidade</label>
-                    <input
-                      type="number"
-                      id="quantidade-PC0006"
-                      value="5"
-                      min="0"
-                    >
-                  </div>
-
-                  <div class="campo-formulario">
-                    <label for="custo-PC0006">Custo unitário</label>
-                    <input
-                      type="number"
-                      id="custo-PC0006"
-                      value="210.00"
-                      min="0"
-                      step="0.01"
-                    >
-                  </div>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Total atual</label>
-                  <input type="text" value="R$ 1050.00" readonly>
-                </div>
-
-                <div class="acoes-popup">
-                  <button type="button" class="botao-excluir" id="excluir-PC0006">
-                    <i class="bi bi-trash3"></i>
-                    Excluir peça
-                  </button>
-
-                  <button type="button" class="botao-salvar" id="salvar-PC0006">
-                    <i class="bi bi-check-lg"></i>
-                    Salvar alterações
-                  </button>
-                </div>
-
-              </form>
-            </div>
-          </div>
-
-
-          <!-- PC0007 -->
-          <div class="popup-edicao" id="editar-PC0007">
-            <div class="popup-overlay"></div>
-
-            <div class="popup-conteudo">
-              <a href="#" class="popup-fechar" aria-label="Fechar">
-                <i class="bi bi-x-lg"></i>
-              </a>
-
-              <div class="popup-cabecalho">
-                <div class="popup-icone">
-                  <i class="bi bi-nut"></i>
-                </div>
-
-                <div>
-                  <h2>Editar peça</h2>
-                  <p>Atualize as informações do estoque.</p>
-                </div>
-              </div>
-
-              <form class="form-edicao-peca" id="form-PC0007">
-
-                <div class="campo-formulario">
-                  <label>Código da peça</label>
-                  <input type="text" value="PC0007" readonly>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Descrição</label>
-                  <input
-                    type="text"
-                    value="Parafuso M8×30 inox (caixa)"
-                    readonly
-                  >
-                </div>
-
-                <div class="linha-formulario">
-                  <div class="campo-formulario">
-                    <label for="quantidade-PC0007">Quantidade</label>
-                    <input
-                      type="number"
-                      id="quantidade-PC0007"
-                      value="3"
-                      min="0"
-                    >
-                  </div>
-
-                  <div class="campo-formulario">
-                    <label for="custo-PC0007">Custo unitário</label>
-                    <input
-                      type="number"
-                      id="custo-PC0007"
-                      value="28.40"
-                      min="0"
-                      step="0.01"
-                    >
-                  </div>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Total atual</label>
-                  <input type="text" value="R$ 85.20" readonly>
-                </div>
-
-                <div class="acoes-popup">
-                  <button type="button" class="botao-excluir" id="excluir-PC0007">
-                    <i class="bi bi-trash3"></i>
-                    Excluir peça
-                  </button>
-
-                  <button type="button" class="botao-salvar" id="salvar-PC0007">
-                    <i class="bi bi-check-lg"></i>
-                    Salvar alterações
-                  </button>
-                </div>
-
-              </form>
-            </div>
-          </div>
-
-
-          <!-- PC0008 -->
-          <div class="popup-edicao" id="editar-PC0008">
-            <div class="popup-conteudo">
-
-              <a href="#" class="popup-fechar" aria-label="Fechar">
-                <i class="bi bi-x-lg"></i>
-              </a>
-
-              <div class="popup-cabecalho">
-                <div class="popup-icone">
-                  <i class="bi bi-nut"></i>
-                </div>
-
-                <div>
-                  <h2>Editar peça</h2>
-                  <p>Atualize as informações do estoque.</p>
-                </div>
-              </div>
-
-              <form class="form-edicao-peca" id="form-PC0008">
-
-                <div class="campo-formulario">
-                  <label>Código da peça</label>
-                  <input type="text" value="PC0008" readonly>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Descrição</label>
-                  <input
-                    type="text"
-                    value="Lubrificante Mobil Extra 2L"
-                    readonly
-                  >
-                </div>
-
-                <div class="linha-formulario">
-                  <div class="campo-formulario">
-                    <label for="quantidade-PC0008">Quantidade</label>
-                    <input
-                      type="number"
-                      id="quantidade-PC0008"
-                      value="18"
-                      min="0"
-                    >
-                  </div>
-
-                  <div class="campo-formulario">
-                    <label for="custo-PC0008">Custo unitário</label>
-                    <input
-                      type="number"
-                      id="custo-PC0008"
-                      value="67.20"
-                      min="0"
-                      step="0.01"
-                    >
-                  </div>
-                </div>
-
-                <div class="campo-formulario">
-                  <label>Total atual</label>
-                  <input type="text" value="R$ 1209.60" readonly>
-                </div>
-
-                <div class="acoes-popup">
-                  <button type="button" class="botao-excluir" id="excluir-PC0008">
-                    <i class="bi bi-trash3"></i>
-                    Excluir peça
-                  </button>
-
-                  <button type="button" class="botao-salvar" id="salvar-PC0008">
-                    <i class="bi bi-check-lg"></i>
-                    Salvar alterações
-                  </button>
-                </div>
-
-              </form>
-            </div>
-          </div>
-
         </main>
       </div>
     </div>
 
-
-    <!-- Caminho do JS mantido -->
+    <!-- Caminho do JS -->
     <script src="../-js/global.js"></script>
-
+    <script src="../-js/pages/pecas_adm.js"></script>
   </body>
 </html>

@@ -18,7 +18,6 @@
 
   <body>
     <div class="layout">
-
       <!-- Menu lateral -->
       <aside class="barra-lateral" id="barraLateral">
         <div class="cabecalho-barra">
@@ -34,7 +33,6 @@
 
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
-
             <!-- Dashboard -->
             <li class="item-navegacao">
               <a href="dashboard.html" class="link-navegacao">
@@ -134,18 +132,14 @@
                 <span>Administração</span>
               </a>
             </li>
-
           </ul>
         </nav>
       </aside>
 
-
       <!-- Área principal -->
       <div class="area-principal">
-
         <!-- Cabeçalho -->
         <header class="cabecalho">
-
           <div class="cabecalho-esquerdo">
             <button
               class="botao-menu"
@@ -158,7 +152,6 @@
           </div>
 
           <div class="cabecalho-direito">
-
             <!-- Notificações -->
             <button
               class="botao-notificacao"
@@ -176,14 +169,11 @@
                 <span>Administrador</span>
               </div>
             </div>
-
           </div>
         </header>
 
-
         <!-- Conteúdo principal -->
         <main class="conteudo-principal">
-
           <!-- Elementos decorativos -->
           <div class="decoracao-peca" aria-hidden="true">
             <span class="ponto-peca ponto-peca-1"></span>
@@ -200,12 +190,8 @@
             <span class="linhas-peca"></span>
           </div>
 
-
           <!-- Breadcrumb -->
-          <nav
-            class="breadcrumb-pagina"
-            aria-label="Navegação estrutural"
-          >
+          <nav class="breadcrumb-pagina" aria-label="Navegação estrutural">
             <a href="pecas_adm.html">
               <i class="bi bi-chevron-left"></i>
               <span>Peças e Materiais</span>
@@ -215,30 +201,19 @@
               <i class="bi bi-chevron-right"></i>
             </span>
 
-            <span class="breadcrumb-atual">
-              Nova Peça
-            </span>
+            <span class="breadcrumb-atual"> Nova Peça </span>
           </nav>
-
 
           <!-- Cabeçalho da página -->
           <section class="cabecalho-pagina">
             <h1>Nova Peça</h1>
 
-            <p>
-              Registre uma peça ou material no estoque do almoxarifado
-            </p>
+            <p>Registre uma peça ou material no estoque do almoxarifado</p>
           </section>
 
-
           <!-- Formulário -->
-          <form
-            class="formulario-peca"
-            id="formularioPeca"
-          >
-
+          <form class="formulario-peca" id="formularioPeca">
             <div class="campos-peca">
-
               <!-- Descrição -->
               <div class="campo-formulario campo-largo">
                 <label for="descricaoPeca">
@@ -255,6 +230,17 @@
                 />
               </div>
 
+              <!-- Categoria (NOVO CAMPO) -->
+              <div class="campo-formulario campo-largo">
+                <label for="categoriaPeca">
+                  Categoria
+                  <span class="campo-obrigatorio">*</span>
+                </label>
+
+                <select id="categoriaPeca" name="categoriaPeca" required>
+                  <option value="">Carregando categorias...</option>
+                </select>
+              </div>
 
               <!-- Custo Unitário -->
               <div class="campo-formulario">
@@ -273,11 +259,8 @@
                   required
                 />
 
-                <span class="texto-ajuda">
-                  Deve ser maior que zero
-                </span>
+                <span class="texto-ajuda"> Deve ser maior que zero </span>
               </div>
-
 
               <!-- Quantidade em Estoque -->
               <div class="campo-formulario">
@@ -301,7 +284,6 @@
                 </span>
               </div>
 
-
               <!-- Estoque Mínimo -->
               <div class="campo-formulario">
                 <label for="estoqueMinimo">
@@ -324,7 +306,6 @@
                 </span>
               </div>
 
-
               <!-- Unidade de Medida -->
               <div class="campo-formulario">
                 <label for="unidadeMedida">
@@ -332,11 +313,7 @@
                   <span class="campo-obrigatorio">*</span>
                 </label>
 
-                <select
-                  id="unidadeMedida"
-                  name="unidadeMedida"
-                  required
-                >
+                <select id="unidadeMedida" name="unidadeMedida" required>
                   <option value="un">un — Unidade</option>
                   <option value="cx">cx — Caixa</option>
                   <option value="l">L — Litro</option>
@@ -345,9 +322,7 @@
                   <option value="kit">kit — Kit</option>
                 </select>
               </div>
-
             </div>
-
 
             <!-- Aviso -->
             <div class="aviso-formulario">
@@ -358,37 +333,23 @@
                 (troca_peca.custo_unitario_na_troca).
               </span>
             </div>
-
           </form>
-
 
           <!-- Ações -->
           <div class="acoes-formulario">
+            <a href="pecas_adm.html" class="botao-cancelar"> Cancelar </a>
 
-            <a
-              href="pecas_adm.html"
-              class="botao-cancelar"
-            >
-              Cancelar
-            </a>
-
-            <button
-              type="submit"
-              class="botao-cadastrar"
-              form="formularioPeca"
-            >
+            <button type="submit" class="botao-cadastrar" form="formularioPeca">
               <i class="bi bi-plus-lg"></i>
               <span>Cadastrar</span>
             </button>
-
           </div>
-
         </main>
       </div>
     </div>
 
-
     <!-- Caminho do JS mantido -->
+    <script src="../-js/pages/nova_peca_adm.js"></script>
     <script src="../-js/global.js"></script>
   </body>
 </html>

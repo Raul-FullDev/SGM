@@ -2,7 +2,6 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
-
 /* =========================================================
    CONTEÚDO PRINCIPAL
    ========================================================= */
@@ -11,7 +10,6 @@
   position: relative;
   overflow: hidden;
 }
-
 
 /* =========================================================
    CABEÇALHO DA PÁGINA
@@ -43,14 +41,12 @@
   font-size: 13px;
 }
 
-
 .botoes-cabecalho {
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
 }
-
 
 /* =========================================================
    BOTÃO NOVA PEÇA
@@ -98,7 +94,6 @@
   font-size: 13px;
 }
 
-
 /* =========================================================
    CARDS DE RESUMO
    ========================================================= */
@@ -142,7 +137,6 @@
     0 8px 16px rgba(47, 82, 130, 0.05);
 }
 
-
 /* =========================================================
    ÍCONES DOS CARDS
    ========================================================= */
@@ -176,7 +170,6 @@
   background: #ff3038;
 }
 
-
 /* =========================================================
    CONTEÚDO DOS CARDS
    ========================================================= */
@@ -202,7 +195,6 @@
   color: #8ca0bd;
   font-size: 10px;
 }
-
 
 /* =========================================================
    TABELA
@@ -234,7 +226,6 @@
   table-layout: fixed;
 }
 
-
 /* =========================================================
    CABEÇALHO DA TABELA
    ========================================================= */
@@ -262,36 +253,29 @@
 
 .tabela-pecas th:nth-child(1) {
   width: 10%;
-}
-
+} /* Código */
 .tabela-pecas th:nth-child(2) {
-  width: 39%;
-}
-
+  width: 25%;
+} /* Descrição */
 .tabela-pecas th:nth-child(3) {
-  width: 13%;
-
-  text-align: center;
-}
-
+  width: 15%;
+} /* Categoria */
 .tabela-pecas th:nth-child(4) {
-  width: 14%;
-
-  text-align: right;
-}
-
+  width: 12%;
+  text-align: center;
+} /* Qtd */
 .tabela-pecas th:nth-child(5) {
   width: 14%;
-
   text-align: right;
-}
-
+} /* Custo */
 .tabela-pecas th:nth-child(6) {
+  width: 14%;
+  text-align: right;
+} /* Total */
+.tabela-pecas th:nth-child(7) {
   width: 10%;
-
   text-align: center;
-}
-
+} /* Ações */
 
 /* =========================================================
    LINHAS
@@ -327,11 +311,13 @@
   text-align: center;
 }
 
-.tabela-pecas td:nth-child(4),
-.tabela-pecas td:nth-child(5) {
+.tabela-pecas td:nth-child(4) {
+  text-align: center;
+}
+.tabela-pecas td:nth-child(5),
+.tabela-pecas td:nth-child(6) {
   text-align: right;
 }
-
 
 /* =========================================================
    DADOS DA TABELA
@@ -374,10 +360,13 @@
   font-weight: 600;
 }
 
-
 /* =========================================================
    AÇÕES DA PEÇA
    ========================================================= */
+
+.acoes-peca {
+  text-align: center !important;
+}
 
 .acoes-peca {
   text-align: center !important;
@@ -392,11 +381,15 @@
   justify-content: center;
 
   border-radius: 8px;
-
   color: #637b9d;
 
   font-size: 17px;
   text-decoration: none;
+
+  /* Lápis Minimalista: Remove o botão cinza padrão do navegador */
+  border: none;
+  background: transparent;
+  cursor: pointer;
 
   transition:
     background 0.2s ease,
@@ -407,7 +400,6 @@
   background: #eef4ff;
   color: #2055dc;
 }
-
 
 /* =========================================================
    ALERTA DE ESTOQUE
@@ -437,7 +429,6 @@
 
   white-space: nowrap;
 }
-
 
 /* =========================================================
    POP-UP DE EDIÇÃO
@@ -488,7 +479,6 @@
 
   z-index: 1;
 }
-
 
 /* =========================================================
    CABEÇALHO DO POP-UP
@@ -567,7 +557,6 @@
   font-size: 11px;
 }
 
-
 /* =========================================================
    FORMULÁRIO DO POP-UP
    ========================================================= */
@@ -586,38 +575,45 @@
 
 .campo-formulario label {
   color: #536b8c;
-
   font-size: 11px;
   font-weight: 600;
 }
 
-.campo-formulario input {
+/* Aplicando o estilo para INPUT e SELECT juntos */
+.campo-formulario input,
+.campo-formulario select {
   width: 100%;
   height: 39px;
-
   padding: 0 11px;
-
   box-sizing: border-box;
-
   border: 1px solid #d7e0eb;
   border-radius: 8px;
-
   background: white;
   color: #293950;
-
   outline: none;
-
   font-family: inherit;
   font-size: 12px;
-
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-.campo-formulario input:focus {
-  border-color: #2055dc;
+/* Setinha customizada e remoção do estilo feio do navegador para o Select */
+.campo-formulario select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23536b8c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+  background-size: 14px;
+  padding-right: 32px;
+}
 
+.campo-formulario input:focus,
+.campo-formulario select:focus {
+  border-color: #2055dc;
   box-shadow: 0 0 0 3px rgba(32, 85, 220, 0.08);
 }
 
@@ -626,7 +622,6 @@
   color: #7285a0;
   cursor: default;
 }
-
 
 /* =========================================================
    CAMPOS LADO A LADO
@@ -638,7 +633,6 @@
 
   gap: 13px;
 }
-
 
 /* =========================================================
    BOTÕES DO POP-UP
@@ -711,7 +705,6 @@
   transform: translateY(1px);
 }
 
-
 /* =========================================================
    DECORAÇÕES
    ========================================================= */
@@ -724,7 +717,6 @@
 
   pointer-events: none;
 }
-
 
 /* Pontos */
 
@@ -758,7 +750,6 @@
   top: 61px;
   right: 20.1%;
 }
-
 
 /* Círculos */
 
@@ -808,7 +799,6 @@
   border: 1px solid #bed6fc;
 }
 
-
 /* Linhas diagonais */
 
 .linhas-peca {
@@ -848,13 +838,11 @@
   top: 28px;
 }
 
-
 /* =========================================================
    RESPONSIVIDADE
    ========================================================= */
 
 @media (max-width: 1000px) {
-
   .cards-pecas {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -872,9 +860,7 @@
   }
 }
 
-
 @media (max-width: 750px) {
-
   .cards-pecas {
     grid-template-columns: 1fr;
   }
@@ -888,9 +874,7 @@
   }
 }
 
-
 @media (max-width: 650px) {
-
   .cabecalho-pecas {
     flex-direction: column;
     align-items: stretch;
