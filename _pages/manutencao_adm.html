@@ -1,349 +1,300 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="../-css/pages/manutencao_adm.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../-css/pages/manutencao_adm.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
 
     <title>Planos de Manutenção</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="layout">
+      <!-- MENU LATERAL -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
+          <div class="logo">
+            <span class="icone-logo">S</span>
 
-        <!-- MENU LATERAL -->
-        <aside class="barra-lateral" id="barraLateral">
-
-            <div class="cabecalho-barra">
-                <div class="logo">
-                    <span class="icone-logo">S</span>
-
-                    <div class="texto-logo">
-                        <strong>SGM</strong>
-                        <span>Gestão de manutenção</span>
-                    </div>
-                </div>
+            <div class="texto-logo">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
             </div>
-
-            <nav class="navegacao-lateral" aria-label="Navegação principal">
-                <ul class="lista-navegacao">
-
-                    <li class="item-navegacao">
-                        <a href="dashboard.html" class="link-navegacao">
-                            <span class="icone-navegacao">
-                                <i class="bi bi-list-task"></i>
-                            </span>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-
-                    <li class="item-navegacao">
-                        <a href="todas_os.html" class="link-navegacao">
-                            <span class="icone-navegacao">
-                                <i class="bi bi-clipboard-data"></i>
-                            </span>
-                            <span>Ordens de Serviço</span>
-                        </a>
-                    </li>
-
-                    <li class="item-navegacao">
-                        <a href="equipamentos.html" class="link-navegacao">
-                            <span class="icone-navegacao">
-                                <i class="bi bi-wrench-adjustable"></i>
-                            </span>
-                            <span>Equipamentos</span>
-                        </a>
-                    </li>
-
-                    <li class="item-navegacao">
-                        <a href="setor_adm.html" class="link-navegacao">
-                            <span class="icone-navegacao">
-                                <i class="bi bi-collection"></i>
-                            </span>
-                            <span>Setor</span>
-                        </a>
-                    </li>
-
-                    <li class="item-navegacao">
-                        <a href="historico_adm.html" class="link-navegacao">
-                            <span class="icone-navegacao">
-                                <i class="bi bi-clock-history"></i>
-                            </span>
-                            <span>Histórico</span>
-                        </a>
-                    </li>
-
-                    <li class="item-navegacao">
-                        <a href="indicadores_adm.html" class="link-navegacao">
-                            <span class="icone-navegacao">
-                                <i class="bi bi-bar-chart"></i>
-                            </span>
-                            <span>Indicadores</span>
-                        </a>
-                    </li>
-
-                    <li class="item-navegacao">
-                        <a href="relatorios_adm.html" class="link-navegacao">
-                            <span class="icone-navegacao">
-                                <i class="bi bi-file-earmark-text"></i>
-                            </span>
-                            <span>Relatórios</span>
-                        </a>
-                    </li>
-
-                    <li class="item-navegacao ativo">
-                        <a href="manutencao_adm.html" class="link-navegacao">
-                            <span class="icone-navegacao">
-                                <i class="bi bi-tools"></i>
-                            </span>
-                            <span>Manutenção</span>
-                        </a>
-                    </li>
-
-                    <li class="item-navegacao">
-                        <a href="pecas_adm.html" class="link-navegacao">
-                            <span class="icone-navegacao">
-                                <i class="bi bi-nut"></i>
-                            </span>
-                            <span>Peças</span>
-                        </a>
-                    </li>
-
-                    <li class="item-navegacao">
-                        <a href="usuarios.html" class="link-navegacao">
-                            <span class="icone-navegacao">
-                                <i class="bi bi-people"></i>
-                            </span>
-                            <span>Administração</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </nav>
-
-        </aside>
-
-        <!-- ÁREA PRINCIPAL -->
-        <div class="area-principal">
-
-            <!-- CABEÇALHO SUPERIOR -->
-            <header class="cabecalho">
-
-                <div class="cabecalho-esquerdo">
-                    <button
-                        class="botao-menu"
-                        id="botaoMenu"
-                        type="button"
-                        aria-label="Abrir menu">
-                        ☰
-                    </button>
-                </div>
-
-                <div class="cabecalho-direito">
-
-                    <button
-                        class="botao-notificacao"
-                        id="botaoNotificacao"
-                        type="button"
-                        aria-label="Notificações">
-                        <i class="bi bi-bell"></i>
-                    </button>
-
-                    <div class="perfil-usuario">
-
-                        <div class="avatar-usuario">
-                            AS
-                        </div>
-
-                        <div class="informacoes-usuario">
-                            <strong>Admin Sistema</strong>
-                            <span>Administrador</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </header>
-
-            <!-- CONTEÚDO -->
-            <main class="conteudo-principal main-content">
-
-                <section class="page-header">
-
-                    <div class="page-title">
-                        <h1>Planos de Manutenção</h1>
-
-                        <p>
-                            Manutenções preventivas e preditivas programadas
-                        </p>
-                    </div>
-
-                    <button class="btn-new-plan" type="button">
-                        <a href="novo_plano_manutencao_adm.html">
-                            + Novo Plano
-                        </a>
-                    </button>
-
-                </section>
-
-                <section class="plans-list">
-
-                    <!-- PLANO 1 -->
-                    <article class="plan-card">
-
-                        <div class="plan-info">
-                            <h2>Troca de óleo compressor</h2>
-                            <p>Compressor de Ar · Preventiva · Semestral</p>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>ÚLTIMA</span>
-                            <strong>2024-03-01</strong>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>PRÓXIMA</span>
-                            <strong class="next">2024-09-01</strong>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>RESTAM</span>
-                            <strong class="remaining">-733d</strong>
-                        </div>
-
-                        <div class="plan-actions">
-                            <button class="btn-edit" type="button">
-                                Editar
-                            </button>
-
-                            <button class="btn-os" type="button">
-                                Gerar OS
-                            </button>
-                        </div>
-
-                    </article>
-
-                    <!-- PLANO 2 -->
-                    <article class="plan-card">
-
-                        <div class="plan-info">
-                            <h2>Calibração torno CNC</h2>
-                            <p>Torno CNC · Preventiva · Trimestral</p>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>ÚLTIMA</span>
-                            <strong>2024-05-15</strong>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>PRÓXIMA</span>
-                            <strong class="next">2024-08-15</strong>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>RESTAM</span>
-                            <strong class="remaining">-750d</strong>
-                        </div>
-
-                        <div class="plan-actions">
-                            <button class="btn-edit" type="button">
-                                Editar
-                            </button>
-
-                            <button class="btn-os" type="button">
-                                Gerar OS
-                            </button>
-                        </div>
-
-                    </article>
-
-                    <!-- PLANO 3 -->
-                    <article class="plan-card">
-
-                        <div class="plan-info">
-                            <h2>Análise de vibração gerador</h2>
-                            <p>Gerador · Preditiva · Mensal</p>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>ÚLTIMA</span>
-                            <strong>2024-07-20</strong>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>PRÓXIMA</span>
-                            <strong class="next">2024-08-20</strong>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>RESTAM</span>
-                            <strong class="remaining">-745d</strong>
-                        </div>
-
-                        <div class="plan-actions">
-                            <button class="btn-edit" type="button">
-                                Editar
-                            </button>
-
-                            <button class="btn-os" type="button">
-                                Gerar OS
-                            </button>
-                        </div>
-
-                    </article>
-
-                    <!-- PLANO 4 -->
-                    <article class="plan-card">
-
-                        <div class="plan-info">
-                            <h2>Inspeção correia esteira</h2>
-                            <p>Esteira Transportadora · Preventiva · Anual</p>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>ÚLTIMA</span>
-                            <strong>2024-06-10</strong>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>PRÓXIMA</span>
-                            <strong class="next">2025-06-10</strong>
-                        </div>
-
-                        <div class="plan-column">
-                            <span>RESTAM</span>
-                            <strong class="remaining">-451d</strong>
-                        </div>
-
-                        <div class="plan-actions">
-                            <button class="btn-edit" type="button">
-                                Editar
-                            </button>
-
-                            <button class="btn-os" type="button">
-                                Gerar OS
-                            </button>
-                        </div>
-
-                    </article>
-
-                </section>
-
-            </main>
-
+          </div>
         </div>
 
+        <nav class="navegacao-lateral" aria-label="Navegação principal">
+          <ul class="lista-navegacao">
+            <li class="item-navegacao">
+              <a href="dashboard.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-list-task"></i>
+                </span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="todas_os.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-clipboard-data"></i>
+                </span>
+                <span>Ordens de Serviço</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="equipamentos.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-wrench-adjustable"></i>
+                </span>
+                <span>Equipamentos</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="setor_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-collection"></i>
+                </span>
+                <span>Setor</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="historico_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-clock-history"></i>
+                </span>
+                <span>Histórico</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="indicadores_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-bar-chart"></i>
+                </span>
+                <span>Indicadores</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="relatorios_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-file-earmark-text"></i>
+                </span>
+                <span>Relatórios</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao ativo">
+              <a href="manutencao_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-tools"></i>
+                </span>
+                <span>Manutenção</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="pecas_adm.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-nut"></i>
+                </span>
+                <span>Peças</span>
+              </a>
+            </li>
+
+            <li class="item-navegacao">
+              <a href="usuarios.html" class="link-navegacao">
+                <span class="icone-navegacao">
+                  <i class="bi bi-people"></i>
+                </span>
+                <span>Administração</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- ÁREA PRINCIPAL -->
+      <div class="area-principal">
+        <!-- CABEÇALHO SUPERIOR -->
+        <header class="cabecalho">
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="cabecalho-direito">
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            >
+              <i class="bi bi-bell"></i>
+            </button>
+
+            <div class="perfil-usuario">
+              <div class="avatar-usuario">AS</div>
+
+              <div class="informacoes-usuario">
+                <strong>Admin Sistema</strong>
+                <span>Administrador</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- CONTEÚDO -->
+        <main class="conteudo-principal main-content">
+          <section class="page-header">
+            <div class="page-title">
+              <h1>Planos de Manutenção</h1>
+
+              <p>Manutenções preventivas e preditivas programadas</p>
+            </div>
+
+            <button class="btn-new-plan" type="button">
+              <a href="novo_plano_manutencao_adm.html"> + Novo Plano </a>
+            </button>
+          </section>
+
+          <section class="plans-list">
+            <!-- PLANO 1 -->
+            <article class="plan-card">
+              <div class="plan-info">
+                <h2>Troca de óleo compressor</h2>
+                <p>Compressor de Ar · Preventiva · Semestral</p>
+              </div>
+
+              <div class="plan-column">
+                <span>ÚLTIMA</span>
+                <strong>2024-03-01</strong>
+              </div>
+
+              <div class="plan-column">
+                <span>PRÓXIMA</span>
+                <strong class="next">2024-09-01</strong>
+              </div>
+
+              <div class="plan-column">
+                <span>RESTAM</span>
+                <strong class="remaining">-733d</strong>
+              </div>
+
+              <div class="plan-actions">
+                <button class="btn-edit" type="button">Editar</button>
+
+                <button class="btn-os" type="button">Gerar OS</button>
+              </div>
+            </article>
+
+            <!-- PLANO 2 -->
+            <article class="plan-card">
+              <div class="plan-info">
+                <h2>Calibração torno CNC</h2>
+                <p>Torno CNC · Preventiva · Trimestral</p>
+              </div>
+
+              <div class="plan-column">
+                <span>ÚLTIMA</span>
+                <strong>2024-05-15</strong>
+              </div>
+
+              <div class="plan-column">
+                <span>PRÓXIMA</span>
+                <strong class="next">2024-08-15</strong>
+              </div>
+
+              <div class="plan-column">
+                <span>RESTAM</span>
+                <strong class="remaining">-750d</strong>
+              </div>
+
+              <div class="plan-actions">
+                <button class="btn-edit" type="button">Editar</button>
+
+                <button class="btn-os" type="button">Gerar OS</button>
+              </div>
+            </article>
+
+            <!-- PLANO 3 -->
+            <article class="plan-card">
+              <div class="plan-info">
+                <h2>Análise de vibração gerador</h2>
+                <p>Gerador · Preditiva · Mensal</p>
+              </div>
+
+              <div class="plan-column">
+                <span>ÚLTIMA</span>
+                <strong>2024-07-20</strong>
+              </div>
+
+              <div class="plan-column">
+                <span>PRÓXIMA</span>
+                <strong class="next">2024-08-20</strong>
+              </div>
+
+              <div class="plan-column">
+                <span>RESTAM</span>
+                <strong class="remaining">-745d</strong>
+              </div>
+
+              <div class="plan-actions">
+                <button class="btn-edit" type="button">Editar</button>
+
+                <button class="btn-os" type="button">Gerar OS</button>
+              </div>
+            </article>
+
+            <!-- PLANO 4 -->
+            <article class="plan-card">
+              <div class="plan-info">
+                <h2>Inspeção correia esteira</h2>
+                <p>Esteira Transportadora · Preventiva · Anual</p>
+              </div>
+
+              <div class="plan-column">
+                <span>ÚLTIMA</span>
+                <strong>2024-06-10</strong>
+              </div>
+
+              <div class="plan-column">
+                <span>PRÓXIMA</span>
+                <strong class="next">2025-06-10</strong>
+              </div>
+
+              <div class="plan-column">
+                <span>RESTAM</span>
+                <strong class="remaining">-451d</strong>
+              </div>
+
+              <div class="plan-actions">
+                <button class="btn-edit" type="button">Editar</button>
+
+                <button class="btn-os" type="button">Gerar OS</button>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
     </div>
 
     <script src="../-js/global.js"></script>
-
-</body>
-
+    <script src="../-js/pages/manutencao_adm.js"></script>
+  </body>
 </html>
