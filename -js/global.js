@@ -163,6 +163,34 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // ==========================================
+  // CONTROLE DO DROPDOWN DE NOTIFICAÇÕES
+  // ==========================================
+  const botaoNotificacao = document.getElementById("botaoNotificacao");
+  const dropdownNotificacoes = document.getElementById("dropdownNotificacoes");
+
+  if (botaoNotificacao && dropdownNotificacoes) {
+    // Abre/Fecha ao clicar no Sino
+    botaoNotificacao.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdownNotificacoes.classList.toggle("mostrar");
+
+      // Dica de UX: Se abrir o Sino, fecha o Perfil pra não encavalar
+      const dropPerfil = document.getElementById("dropdownPerfil");
+      if (dropPerfil) dropPerfil.classList.remove("mostrar");
+    });
+
+    // Fecha se clicar fora
+    document.addEventListener("click", (e) => {
+      if (
+        !dropdownNotificacoes.contains(e.target) &&
+        !botaoNotificacao.contains(e.target)
+      ) {
+        dropdownNotificacoes.classList.remove("mostrar");
+      }
+    });
+  }
 });
 
 // ==========================================

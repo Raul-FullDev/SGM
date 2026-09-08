@@ -138,14 +138,67 @@
           </div>
 
           <div class="cabecalho-direito">
-            <button
-              class="botao-notificacao"
-              id="botaoNotificacao"
-              type="button"
-              aria-label="Notificações"
-            >
-              <i class="bi bi-bell"></i>
-            </button>
+            <!-- ========================================== -->
+            <!-- NOTIFICAÇÕES COM DROPDOWN                  -->
+            <!-- ========================================== -->
+            <div class="notificacao-container" style="position: relative">
+              <button
+                class="botao-notificacao"
+                id="botaoNotificacao"
+                type="button"
+                aria-label="Notificações"
+              >
+                <i class="bi bi-bell"></i>
+                <span class="badge-notificacao">2</span>
+              </button>
+
+              <div class="dropdown-notificacoes" id="dropdownNotificacoes">
+                <div class="dropdown-cabecalho-noti">
+                  <span class="dropdown-titulo">Notificações</span>
+                  <button type="button" class="btn-marcar-lidas">
+                    Marcar como lidas
+                  </button>
+                </div>
+
+                <div class="lista-notificacoes">
+                  <!-- Notificação 1: Manutenção Preventiva -->
+                  <a href="#" class="notificacao-item nao-lida">
+                    <div class="notificacao-icone preventivo">
+                      <i class="bi bi-calendar-event"></i>
+                    </div>
+                    <div class="notificacao-conteudo">
+                      <strong>Manutenção Preventiva</strong>
+                      <p>Compressor de Ar (EQ001) programado para amanhã.</p>
+                      <span>Há 2 horas</span>
+                    </div>
+                  </a>
+
+                  <!-- Notificação 2: Estoque Baixo -->
+                  <a href="#" class="notificacao-item nao-lida">
+                    <div class="notificacao-icone alerta">
+                      <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                    <div class="notificacao-conteudo">
+                      <strong>Estoque Baixo</strong>
+                      <p>Filtro de ar atingiu o estoque mínimo (2 un).</p>
+                      <span>Há 5 horas</span>
+                    </div>
+                  </a>
+
+                  <!-- Notificação 3: OS Concluída -->
+                  <a href="#" class="notificacao-item">
+                    <div class="notificacao-icone os">
+                      <i class="bi bi-clipboard-check"></i>
+                    </div>
+                    <div class="notificacao-conteudo">
+                      <strong>OS Concluída</strong>
+                      <p>A OS #1033 foi finalizada com sucesso.</p>
+                      <span>Ontem</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
 
             <div class="perfil-container" style="position: relative">
               <div
@@ -282,9 +335,7 @@
                     <td>Preventiva</td>
 
                     <td>
-                      <span class="status status-concluida">
-                        Concluída
-                      </span>
+                      <span class="status status-concluida"> Concluída </span>
                     </td>
 
                     <td>2024-07-28</td>
@@ -300,9 +351,7 @@
                     <td>Corretiva</td>
 
                     <td>
-                      <span class="status status-aberta">
-                        Aberta
-                      </span>
+                      <span class="status status-aberta"> Aberta </span>
                     </td>
 
                     <td>2024-07-25</td>
@@ -318,9 +367,7 @@
                     <td>Preditiva</td>
 
                     <td>
-                      <span class="status status-peca">
-                        Aguardando Peça
-                      </span>
+                      <span class="status status-peca"> Aguardando Peça </span>
                     </td>
 
                     <td>2024-07-20</td>
@@ -336,9 +383,7 @@
                     <td>Preventiva</td>
 
                     <td>
-                      <span class="status status-concluida">
-                        Concluída
-                      </span>
+                      <span class="status status-concluida"> Concluída </span>
                     </td>
 
                     <td>2024-07-15</td>

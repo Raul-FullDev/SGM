@@ -121,6 +121,8 @@ ul {
   border: 0;
 }
 
+
+
 @media (max-width: 900px) {
   :root {
     --largura-barra: 175px;
