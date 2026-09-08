@@ -3,13 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>SGM - Histórico de Manutenções</title>
 
-    <!-- Caminho do CSS mantido -->
     <link rel="stylesheet" href="../-css/pages/historico_adm.css" />
-
-    <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -23,7 +19,6 @@
         <div class="cabecalho-barra">
           <div class="logo">
             <span class="icone-logo">S</span>
-
             <div class="texto-logo">
               <strong>SGM</strong>
               <span>Gestão de manutenção</span>
@@ -33,102 +28,79 @@
 
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
-            <!-- Dashboard -->
             <li class="item-navegacao">
               <a href="dashboard.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-list-task"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-list-task"></i
+                ></span>
                 <span>Dashboard</span>
               </a>
             </li>
-
-            <!-- Ordens de Serviço -->
             <li class="item-navegacao">
               <a href="todas_os.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-clipboard-data"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clipboard-data"></i
+                ></span>
                 <span>Ordens de Serviço</span>
               </a>
             </li>
-
-            <!-- Equipamentos -->
             <li class="item-navegacao">
               <a href="equipamentos.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-wrench-adjustable"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-wrench-adjustable"></i
+                ></span>
                 <span>Equipamentos</span>
               </a>
             </li>
-
-            <!-- Setor -->
             <li class="item-navegacao">
               <a href="setor_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-collection"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-collection"></i
+                ></span>
                 <span>Setor</span>
               </a>
             </li>
-
-            <!-- Histórico -->
             <li class="item-navegacao ativo">
               <a href="historico_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-clock-history"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clock-history"></i
+                ></span>
                 <span>Histórico</span>
               </a>
             </li>
-
-            <!-- Indicadores -->
             <li class="item-navegacao">
               <a href="indicadores_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-bar-chart"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-bar-chart"></i
+                ></span>
                 <span>Indicadores</span>
               </a>
             </li>
-
-            <!-- Relatórios -->
             <li class="item-navegacao">
               <a href="relatorios_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-file-earmark-text"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-file-earmark-text"></i
+                ></span>
                 <span>Relatórios</span>
               </a>
             </li>
-
-            <!-- Manutenção -->
             <li class="item-navegacao">
               <a href="manutencao_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-tools"></i>
-                </span>
+                <span class="icone-navegacao"><i class="bi bi-tools"></i></span>
                 <span>Manutenção</span>
               </a>
             </li>
-
-            <!-- Peças -->
             <li class="item-navegacao">
               <a href="pecas_adm.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-nut"></i>
-                </span>
+                <span class="icone-navegacao"><i class="bi bi-nut"></i></span>
                 <span>Peças</span>
               </a>
             </li>
-
-            <!-- Administração -->
             <li class="item-navegacao">
               <a href="usuarios.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-people"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-people"></i
+                ></span>
                 <span>Administração</span>
               </a>
             </li>
@@ -138,7 +110,6 @@
 
       <!-- Área principal -->
       <div class="area-principal">
-        <!-- Cabeçalho -->
         <header class="cabecalho">
           <div class="cabecalho-esquerdo">
             <button
@@ -152,10 +123,6 @@
           </div>
 
           <div class="cabecalho-direito">
-            <!-- Notificações -->
-            <!-- ========================================== -->
-            <!-- NOTIFICAÇÕES DINÂMICAS COM DROPDOWN        -->
-            <!-- ========================================== -->
             <div
               class="notificacao-container"
               style="position: relative; display: flex; align-items: center"
@@ -167,7 +134,6 @@
                 aria-label="Notificações"
               >
                 <i class="bi bi-bell"></i>
-                <!-- Bolinha começa invisível e vazia -->
                 <span class="badge-notificacao" style="display: none">0</span>
               </button>
 
@@ -182,8 +148,6 @@
                     Marcar como lidas
                   </button>
                 </div>
-
-                <!-- O JavaScript vai injetar as notificações REAIS aqui dentro -->
                 <div class="lista-notificacoes" id="containerListaNotificacoes">
                   <p
                     style="
@@ -199,9 +163,7 @@
               </div>
             </div>
 
-            <!-- Perfil -->
             <div class="perfil-container" style="position: relative">
-              <!-- Botão clicável (Mantive as classes que você já usava: user-profile, user-avatar, user-info) -->
               <div
                 class="user-profile"
                 id="botaoPerfil"
@@ -223,13 +185,11 @@
                 ></i>
               </div>
 
-              <!-- Caixa do Dropdown (Escondida por padrão) -->
               <div class="dropdown-perfil" id="dropdownPerfil">
                 <div class="dropdown-cabecalho">
                   <span class="dropdown-titulo">Conta</span>
                 </div>
                 <div class="dropdown-divisor"></div>
-                <!-- LINK PARA A TELA DE PERFIL -->
                 <a href="perfil.html" class="dropdown-item">
                   <i class="bi bi-person"></i> Meu Perfil
                 </a>
@@ -248,25 +208,8 @@
 
         <!-- Conteúdo principal -->
         <main class="conteudo-principal">
-          <!-- Decorações -->
-          <div class="decoracao-historico" aria-hidden="true">
-            <span class="ponto-historico ponto-historico-1"></span>
-            <span class="ponto-historico ponto-historico-2"></span>
-            <span class="ponto-historico ponto-historico-3"></span>
-            <span class="ponto-historico ponto-historico-4"></span>
-
-            <span class="circulo-historico circulo-historico-1"></span>
-            <span class="circulo-historico circulo-historico-2"></span>
-            <span class="circulo-historico circulo-historico-3"></span>
-            <span class="circulo-historico circulo-historico-4"></span>
-
-            <span class="linhas-historico"></span>
-          </div>
-
-          <!-- Cabeçalho da página -->
           <section class="cabecalho-pagina">
             <h1>Histórico de Manutenções</h1>
-
             <p>Registro completo de serviços executados</p>
           </section>
 
@@ -276,23 +219,19 @@
             id="filtrosHistorico"
             aria-label="Pesquisar e filtrar histórico"
           >
-            <!-- Pesquisa -->
             <div class="campo-pesquisa-historico">
               <i class="bi bi-search"></i>
-
               <input
                 type="search"
                 id="pesquisaHistorico"
                 name="pesquisaHistorico"
-                placeholder="Pesquisar por OS, equipamento ou técnico..."
+                placeholder="Pesquisar por OS, equipamento..."
                 autocomplete="off"
               />
             </div>
 
-            <!-- Filtro de data -->
             <div class="campo-filtro-historico">
-              <label for="filtroDataHistorico"> Data </label>
-
+              <label for="filtroDataHistorico">Data</label>
               <select id="filtroDataHistorico" name="filtroDataHistorico">
                 <option value="todas">Todas as datas</option>
                 <option value="hoje">Hoje</option>
@@ -302,32 +241,22 @@
               </select>
             </div>
 
-            <!-- Filtro de tipo -->
             <div class="campo-filtro-historico">
-              <label for="filtroTipoHistorico"> Tipo </label>
-
+              <label for="filtroTipoHistorico">Tipo</label>
               <select id="filtroTipoHistorico" name="filtroTipoHistorico">
                 <option value="todos">Todos os tipos</option>
-                <option value="preventiva">Preventiva</option>
-                <option value="corretiva">Corretiva</option>
-                <option value="preditiva">Preditiva</option>
               </select>
             </div>
 
-            <!-- Filtro de status -->
             <div class="campo-filtro-historico">
-              <label for="filtroStatusHistorico"> Status </label>
-
+              <label for="filtroStatusHistorico">Status</label>
               <select id="filtroStatusHistorico" name="filtroStatusHistorico">
                 <option value="todos">Todos os status</option>
-                <option value="andamento">Em andamento</option>
-                <option value="concluida">Concluída</option>
-                <option value="cancelada">Cancelada</option>
               </select>
             </div>
           </section>
 
-          <!-- Tabela de histórico -->
+          <!-- Tabela de histórico limpa para o JS popular -->
           <section
             class="tabela-historico-container"
             id="tabelaHistoricoContainer"
@@ -345,103 +274,14 @@
                   <th scope="col">Custo</th>
                 </tr>
               </thead>
-
               <tbody id="listaHistorico">
-                <!-- Registro 01 -->
                 <tr>
-                  <td class="os-historico">OS-2024-0122</td>
-
-                  <td class="equipamento-historico">Esteira Transportadora</td>
-
-                  <td class="tipo-historico tipo-preventiva">Preventiva</td>
-
-                  <td class="tecnico-historico">João Ferreira</td>
-
-                  <td class="data-historico">2024-07-29</td>
-
-                  <td class="duracao-historico">6h 30min</td>
-
-                  <td class="status-historico status-concluida">Concluída</td>
-
-                  <td class="custo-historico">R$ 620.00</td>
-                </tr>
-
-                <!-- Registro 02 -->
-                <tr>
-                  <td class="os-historico">OS-2024-0121</td>
-
-                  <td class="equipamento-historico">Torno CNC</td>
-
-                  <td class="tipo-historico tipo-preventiva">Preventiva</td>
-
-                  <td class="tecnico-historico">João Ferreira</td>
-
-                  <td class="data-historico">2024-07-16</td>
-
-                  <td class="duracao-historico">4h 15min</td>
-
-                  <td class="status-historico status-concluida">Concluída</td>
-
-                  <td class="custo-historico">R$ 340.00</td>
-                </tr>
-
-                <!-- Registro 03 -->
-                <tr>
-                  <td class="os-historico">OS-2024-0118</td>
-
-                  <td class="equipamento-historico">Compressor de Ar</td>
-
-                  <td class="tipo-historico tipo-corretiva">Corretiva</td>
-
-                  <td class="tecnico-historico">Ana Souza</td>
-
-                  <td class="data-historico">2024-07-05</td>
-
-                  <td class="duracao-historico">3h 00min</td>
-
-                  <td class="status-historico status-andamento">
-                    Em andamento
+                  <td
+                    colspan="8"
+                    style="text-align: center; padding: 25px; color: #8b9ab1"
+                  >
+                    Carregando histórico do banco de dados...
                   </td>
-
-                  <td class="custo-historico">R$ 510.00</td>
-                </tr>
-
-                <!-- Registro 04 -->
-                <tr>
-                  <td class="os-historico">OS-2024-0115</td>
-
-                  <td class="equipamento-historico">Gerador</td>
-
-                  <td class="tipo-historico tipo-preditiva">Preditiva</td>
-
-                  <td class="tecnico-historico">Ricardo Nunes</td>
-
-                  <td class="data-historico">2024-06-22</td>
-
-                  <td class="duracao-historico">2h 45min</td>
-
-                  <td class="status-historico status-cancelada">Cancelada</td>
-
-                  <td class="custo-historico">R$ 280.00</td>
-                </tr>
-
-                <!-- Registro 05 -->
-                <tr>
-                  <td class="os-historico">OS-2024-0110</td>
-
-                  <td class="equipamento-historico">Empilhadeira</td>
-
-                  <td class="tipo-historico tipo-corretiva">Corretiva</td>
-
-                  <td class="tecnico-historico">Ana Souza</td>
-
-                  <td class="data-historico">2024-06-10</td>
-
-                  <td class="duracao-historico">5h 20min</td>
-
-                  <td class="status-historico status-concluida">Concluída</td>
-
-                  <td class="custo-historico">R$ 1240.00</td>
                 </tr>
               </tbody>
             </table>
@@ -450,7 +290,7 @@
       </div>
     </div>
 
-    <!-- Caminho do JS mantido -->
     <script src="../-js/global.js"></script>
+    <script src="../-js/pages/historico_adm.js"></script>
   </body>
 </html>

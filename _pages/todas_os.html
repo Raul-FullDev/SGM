@@ -199,7 +199,6 @@
                 aria-label="Notificações"
               >
                 <i class="bi bi-bell"></i>
-                <!-- Bolinha começa invisível e vazia -->
                 <span class="badge-notificacao" style="display: none">0</span>
               </button>
 
@@ -215,7 +214,6 @@
                   </button>
                 </div>
 
-                <!-- O JavaScript vai injetar as notificações REAIS aqui dentro -->
                 <div class="lista-notificacoes" id="containerListaNotificacoes">
                   <p
                     style="
@@ -232,7 +230,6 @@
             </div>
 
             <div class="perfil-container" style="position: relative">
-              <!-- Botão clicável (Mantive as classes que você já usava: user-profile, user-avatar, user-info) -->
               <div
                 class="user-profile"
                 id="botaoPerfil"
@@ -254,13 +251,11 @@
                 ></i>
               </div>
 
-              <!-- Caixa do Dropdown (Escondida por padrão) -->
               <div class="dropdown-perfil" id="dropdownPerfil">
                 <div class="dropdown-cabecalho">
                   <span class="dropdown-titulo">Conta</span>
                 </div>
                 <div class="dropdown-divisor"></div>
-                <!-- LINK PARA A TELA DE PERFIL -->
                 <a href="perfil.html" class="dropdown-item">
                   <i class="bi bi-person"></i> Meu Perfil
                 </a>
@@ -284,7 +279,6 @@
 
             <div class="titulo-com-botao">
               <h1>Ordens de Serviço</h1>
-              <!-- ADICIONADO O ID "btnNovaOS" PARA O JS ESCONDER SE FOR GERENTE -->
               <a href="abrir_os.html" class="botao-principal" id="btnNovaOS">
                 <span>+</span> Nova Ordem de Serviço
               </a>
@@ -305,13 +299,30 @@
                 />
               </div>
 
-              <div class="campo-filtro">
-                <label for="filtroData" class="sr-only">Filtrar por data</label>
+              <!-- Filtro Data de Início (Criação) -->
+              <!-- Filtro Data de Início (Criação) -->
+              <div class="campo-filtro grupo-filtro-data">
+                <label for="filtroDataCriacao" class="label-filtro-data"
+                  >Início</label
+                >
                 <input
                   type="date"
-                  id="filtroData"
-                  name="data"
+                  id="filtroDataCriacao"
+                  name="dataCriacao"
                   class="input-data"
+                  title="Filtrar por Data de Início"
+                />
+              </div>
+
+              <!-- Filtro Data de Fim -->
+              <div class="campo-filtro grupo-filtro-data">
+                <label for="filtroDataFim" class="label-filtro-data">Fim</label>
+                <input
+                  type="date"
+                  id="filtroDataFim"
+                  name="dataFim"
+                  class="input-data"
+                  title="Filtrar por Data de Fim"
                 />
               </div>
 
@@ -321,10 +332,6 @@
                 >
                 <select id="filtroStatus" name="status">
                   <option value="todos">Todos os status</option>
-                  <option value="aberta">Aberta</option>
-                  <option value="andamento">Em andamento</option>
-                  <option value="concluida">Concluída</option>
-                  <option value="cancelada">Cancelada</option>
                 </select>
               </div>
 
@@ -332,9 +339,6 @@
                 <label for="filtroTipo" class="sr-only">Filtrar por tipo</label>
                 <select id="filtroTipo" name="tipo">
                   <option value="todos">Todos os tipos</option>
-                  <option value="corretivo">Corretivo</option>
-                  <option value="preventivo">Preventivo</option>
-                  <option value="preditivo">Preditivo</option>
                 </select>
               </div>
 
@@ -361,7 +365,7 @@
             </form>
           </section>
 
-          <!-- Tabela -->
+          <!-- Tabela Única e Limpa -->
           <section class="tabela-os">
             <div class="tabela-container">
               <table id="tabelaOrdens">
@@ -372,16 +376,15 @@
                     <th scope="col">SETOR</th>
                     <th scope="col">TIPO</th>
                     <th scope="col">SOLICITANTE</th>
-                    <th scope="col">ABERTURA</th>
+                    <th scope="col">CRIAÇÃO</th>
+                    <th scope="col">FIM</th>
                     <th scope="col">STATUS</th>
                     <th scope="col">DETALHES</th>
                   </tr>
                 </thead>
-
-                <!-- CORPO VAZIO PARA O JS POPULAR -->
                 <tbody id="corpoTabelaOrdens">
                   <tr>
-                    <td colspan="8" style="text-align: center">
+                    <td colspan="9" style="text-align: center">
                       Carregando Ordens de Serviço...
                     </td>
                   </tr>

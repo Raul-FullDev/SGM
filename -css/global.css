@@ -153,10 +153,9 @@ ul {
 /* Redefine o 1fr automático da primeira coluna do Grid para respeitar o max-width */
 @media (min-width: 901px) {
   .formulario-filtros {
-    grid-template-columns: minmax(180px, 350px) repeat(
-        auto-fit,
-        minmax(120px, max-content)
-      ) auto !important;
+    grid-template-columns:
+      minmax(180px, 350px) repeat(auto-fit, minmax(120px, max-content))
+      auto !important;
   }
 }
 
