@@ -107,11 +107,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   // DELEGAÇÃO DE EVENTOS (BOTÕES DA LISTA)
   // ==========================================
+  // ==========================================
+  // DELEGAÇÃO DE EVENTOS (BOTÕES DA LISTA)
+  // ==========================================
   listaPlanos.addEventListener("click", async (e) => {
     // AÇÃO: REDIRECIONAR PARA EDIÇÃO
     if (e.target.classList.contains("btn-edit")) {
       const idPlano = e.target.getAttribute("data-id");
-      // Manda o ID pela URL para a tela de criação/edição carregar os dados
       window.location.href = `novo_plano_manutencao_adm.html?id=${idPlano}`;
     }
 
@@ -135,11 +137,16 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.disabled = true;
 
       try {
-        // 1. Insere a OS Principal
+        // 1. Recuperar o ID do usuário logado na sessão ativa
+        const sessaoStr = localStorage.getItem("sgm_sessao");
+        const sessao = sessaoStr ? JSON.parse(sessaoStr) : null;
+        const idUsuarioLogado = sessao ? sessao.id : 1;
+
+        // 2. Insere a OS Principal (removendo o id fixo e garantindo payload limpo)
         const payloadOS = {
           descricao_problema: `Manutenção Programada: ${descPlano}`,
-          prioridade: "media",
-          id_usuario_solicitante: 1, // Mock: Admin Sistema
+          prioridade: "Média",
+          id_usuario_solicitante: idUsuarioLogado,
           id_tipo_manutencao: Number(idTipo),
           id_equipamento: Number(idEquip),
           id_plano_manutencao: Number(idPlano),
@@ -150,17 +157,18 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: headersConfig,
           body: JSON.stringify(payloadOS),
         });
-        if (!resOs.ok) throw new Error("Erro ao criar a Ordem de Serviço.");
+
+        if (!resOs.ok) throw new Error(await resOs.text());
 
         const osCriada = await resOs.json();
         const idOSGerada = osCriada[0].id;
 
-        // 2. Insere a Abertura da OS
+        // 3. Insere a Abertura da OS vinculando ao status Aberta (ID 1)
         const payloadAbertura = {
           id_ordem_servico: idOSGerada,
-          id_status: 1, // Aberta
-          id_usuario_responsavel: 1,
-          id_usuario_ultima_atualizacao: 1,
+          id_status: 1,
+          id_usuario_responsavel: idUsuarioLogado,
+          id_usuario_ultima_atualizacao: idUsuarioLogado,
         };
 
         const resAbertura = await fetch(`${baseUrl}/abertura_ordem_servico`, {
@@ -168,11 +176,29 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: headersConfig,
           body: JSON.stringify(payloadAbertura),
         });
-        if (!resAbertura.ok)
-          throw new Error("Erro ao vincular a abertura da OS.");
+
+        if (!resAbertura.ok) throw new Error(await resAbertura.text());
+
+        const aberturaCriada = await resAbertura.json();
+        const idAberturaGerada = aberturaCriada[0].id;
+
+        // 4. Registra o histórico inicial de abertura da OS
+        const payloadHistorico = {
+          id_abertura_ordem_servico: idAberturaGerada,
+          id_status_novo: 1,
+          id_usuario_responsavel: idUsuarioLogado,
+          observacao:
+            "Ordem de serviço gerada via plano de manutenção programada.",
+        };
+
+        await fetch(`${baseUrl}/historico_status_ordem_servico`, {
+          method: "POST",
+          headers: headersConfig,
+          body: JSON.stringify(payloadHistorico),
+        });
 
         alert(
-          `Ordem de Serviço gerada com sucesso! Verifique a aba de Ordens de Serviço.`,
+          "Ordem de Serviço gerada com sucesso! Verifique a aba de Ordens de Serviço.",
         );
       } catch (erro) {
         console.error(erro);

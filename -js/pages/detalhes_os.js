@@ -206,7 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
         iconeNumero = '<i class="bi bi-check"></i>';
       }
 
-      // Se estiver concluída, o botão do lápis não é gerado (some)
       const botaoLapisHTML = isConcluida
         ? ""
         : `<button type="button" class="botao-editar-atividade" data-id="${ativ.id}" aria-label="Editar atividade"><i class="bi bi-pencil"></i></button>`;
@@ -227,21 +226,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // CORREÇÃO: Busca robusta de peças utilizando o relacionamento correto de atividades da OS
+  // ==========================================
+  // 3. BUSCAR E RENDERIZAR PEÇAS UTILIZADAS
+  // ==========================================
   async function carregarPecasDaOS() {
     try {
-      const query = `select=id,quantidade,custo_unitario_na_troca,peca(descricao),atividade!inner(id_abertura_ordem_servico)&atividade.id_abertura_ordem_servico=eq.${idAberturaAtual}`;
-      const res = await fetch(`${baseUrl}/troca_peca?${query}`, {
-        headers: headersConfig,
-      });
-      if (!res.ok) throw new Error("Erro ao buscar peças");
+      // 1. Pega primeiro todas as IDs das atividades desta abertura de OS
+      const resAtiv = await fetch(
+        `${baseUrl}/atividade?select=id&id_abertura_ordem_servico=eq.${idAberturaAtual}`,
+        { headers: headersConfig },
+      );
+      if (!resAtiv.ok) throw new Error("Erro ao buscar atividades para peças");
+      const ativs = await resAtiv.json();
 
-      const trocas = await res.json();
       const tbody = document.querySelector(".tabela-pecas tbody");
       const tfootTotal = document.querySelector(
         ".tabela-pecas tfoot td:last-child strong",
       );
 
       if (!tbody) return;
+
+      if (ativs.length === 0) {
+        tbody.innerHTML =
+          '<tr><td colspan="5" style="text-align: center; color: #6c809b; font-size: 11px;">Nenhuma peça utilizada nesta OS.</td></tr>';
+        if (tfootTotal) tfootTotal.textContent = "R$ 0.00";
+        return;
+      }
+
+      const idsAtividades = ativs.map((a) => a.id);
+
+      // 2. Busca as trocas de peças vinculadas a essas atividades de forma limpa e direta
+      const queryPecas = `${baseUrl}/troca_peca?select=id,quantidade,custo_unitario_na_troca,peca(descricao),id_atividade&id_atividade=in.(${idsAtividades.join(",")})`;
+      const resTrocas = await fetch(queryPecas, { headers: headersConfig });
+      if (!resTrocas.ok) throw new Error("Erro ao buscar peças utilizadas");
+
+      const trocas = await resTrocas.json();
       tbody.innerHTML = "";
 
       if (trocas.length === 0) {
@@ -273,6 +293,42 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (erro) {
       console.error("Falha ao carregar peças:", erro);
     }
+  }
+  function renderizarTabelaPecas(trocas) {
+    const tbody = document.querySelector(".tabela-pecas tbody");
+    const tfootTotal = document.querySelector(
+      ".tabela-pecas tfoot td:last-child strong",
+    );
+
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    if (trocas.length === 0) {
+      tbody.innerHTML =
+        '<tr><td colspan="5" style="text-align: center; color: #6c809b; font-size: 11px;">Nenhuma peça utilizada nesta OS.</td></tr>';
+      if (tfootTotal) tfootTotal.textContent = "R$ 0.00";
+      return;
+    }
+
+    let totalOS = 0;
+    trocas.forEach((t) => {
+      const totalItem = t.quantidade * t.custo_unitario_na_troca;
+      totalOS += totalItem;
+      tbody.innerHTML += `
+        <tr>
+            <td>${t.peca?.descricao || "-"}</td>
+            <td>${t.quantidade}</td>
+            <td>R$ ${t.custo_unitario_na_troca.toFixed(2)}</td>
+            <td><strong>R$ ${totalItem.toFixed(2)}</strong></td>
+            <td class="acao-peca">
+              <button type="button" class="botao-editar-peca" data-id="${t.id}" data-qtd="${t.quantidade}" title="Editar quantidade da peça">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </td>
+        </tr>
+      `;
+    });
+    if (tfootTotal) tfootTotal.textContent = `R$ ${totalOS.toFixed(2)}`;
   }
 
   document
@@ -435,7 +491,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const novoStatusId = mapStatusIds[chaveStatus];
     if (!idAberturaAtual || !novoStatusId) return alert("Carregando dados...");
 
-    // Validação restritiva solicitada para Finalizar OS (concluida)
     if (chaveStatus === "concluida") {
       if (arrayAtividadesGlobal.length === 0) {
         return alert(
@@ -578,4 +633,81 @@ document.addEventListener("DOMContentLoaded", () => {
     ?.addEventListener("click", () => (modalNovaPeca.style.display = "none"));
 
   inicializarDados();
+
+  // ==========================================
+  // ADICIONAR NOVA PEÇA E BAIXAR ESTOQUE
+  // ==========================================
+  formNovaPeca?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Captura os valores do formulário
+    const idAtividade = document.getElementById("pecaAtividadeVinculada").value;
+    const idPeca = document.getElementById("pecaSelecionada").value;
+    const quantidade = document.getElementById("pecaQuantidade").value;
+
+    if (!idAtividade || !idPeca || !quantidade) {
+      return alert("Preencha todos os campos obrigatórios.");
+    }
+
+    // Encontra a peça selecionada na variável global para pegar o custo unitário e a quantidade em estoque
+    const pecaObj = window.pecasGlobal.find((p) => p.id == idPeca);
+    if (!pecaObj) {
+      return alert("Peça não encontrada no sistema.");
+    }
+
+    const qtdSolicitada = Number(quantidade);
+
+    // Validação de estoque
+    if (qtdSolicitada > pecaObj.qtde) {
+      return alert(
+        `Quantidade solicitada maior que o estoque disponível (${pecaObj.qtde} un).`,
+      );
+    }
+
+    try {
+      // 1. Insere o registro na tabela troca_peca
+      const payloadTroca = {
+        id_atividade: Number(idAtividade),
+        id_peca: Number(idPeca),
+        quantidade: qtdSolicitada,
+        custo_unitario_na_troca: pecaObj.custo_unitario,
+      };
+
+      const resTroca = await fetch(`${baseUrl}/troca_peca`, {
+        method: "POST",
+        headers: headersConfig,
+        body: JSON.stringify(payloadTroca),
+      });
+
+      if (!resTroca.ok) throw new Error("Erro ao vincular a peça à atividade.");
+
+      // 2. Atualiza (baixa) o estoque na tabela peca
+      const novaQtdEstoque = pecaObj.qtde - qtdSolicitada;
+      const resEstoque = await fetch(`${baseUrl}/peca?id=eq.${idPeca}`, {
+        method: "PATCH",
+        headers: headersConfig,
+        body: JSON.stringify({ qtde: novaQtdEstoque }),
+      });
+
+      if (!resEstoque.ok) {
+        console.warn(
+          "A peça foi adicionada à OS, mas houve um erro ao baixar o estoque principal.",
+        );
+      } else {
+        // Atualiza a variável global localmente para não precisar recarregar o banco todo agora
+        pecaObj.qtde = novaQtdEstoque;
+      }
+
+      alert("Peça adicionada e estoque baixado com sucesso!");
+
+      // Fecha o modal e limpa o formulário
+      modalNovaPeca.style.display = "none";
+      formNovaPeca.reset();
+
+      // Recarrega a tabela de peças na interface
+      await carregarPecasDaOS();
+    } catch (erro) {
+      alert(erro.message);
+    }
+  });
 });
