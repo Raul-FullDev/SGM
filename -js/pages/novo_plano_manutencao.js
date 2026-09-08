@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================
-  // CONFIGURAÇÕES SUPABASE
-  // ==========================================
+
   const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1";
   const apiKey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
   const headersConfig = {
@@ -11,23 +9,18 @@ document.addEventListener("DOMContentLoaded", () => {
     Prefer: "return=minimal",
   };
 
-  // Referências dos elementos
   const form = document.querySelector(".maintenance-form");
   const selectEquip = document.getElementById("equipamento");
   const selectTipo = document.getElementById("tipo-manutencao");
   const selectPeriocidade = document.getElementById("periodicidade");
   const btnSubmit = form.querySelector(".btn-register");
 
-  // Identifica se estamos em Modo de Edição
   const urlParams = new URLSearchParams(window.location.search);
   const idPlanoEdicao = urlParams.get("id");
 
-  // ==========================================
-  // 1. CARREGAR OPÇÕES DO BANCO (FKs)
-  // ==========================================
   async function carregarDropdowns() {
+    
     try {
-      // Busca Equipamentos
       const resEq = await fetch(
         `${baseUrl}/equipamento?select=id,descricao,asset`,
         { headers: headersConfig },
@@ -40,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
           (selectEquip.innerHTML += `<option value="${e.id}">[${e.asset}] ${e.descricao}</option>`),
       );
 
-      // Busca Tipos de Manutenção
       const resTipo = await fetch(
         `${baseUrl}/tipo_manutencao?select=id,descricao`,
         { headers: headersConfig },
@@ -52,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
           (selectTipo.innerHTML += `<option value="${t.id}">${t.descricao}</option>`),
       );
 
-      // Busca Periodicidade
       const resPer = await fetch(`${baseUrl}/periocidade?select=id,descricao`, {
         headers: headersConfig,
       });
@@ -68,17 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ==========================================
-  // 2. PREENCHER DADOS SE FOR EDIÇÃO
-  // ==========================================
-  // ==========================================
-  // 2. PREENCHER DADOS SE FOR EDIÇÃO (OU DATA ATUAL SE FOR NOVO)
-  // ==========================================
+
   async function carregarPlanoParaEdicao() {
     if (!idPlanoEdicao) {
-      // SE FOR UM NOVO PLANO: Preenche as datas com o dia de hoje
+
       const hoje = new Date();
-      // Pega o ano, mês (lembrando que começa no zero, por isso +1) e dia, forçando 2 dígitos com padStart
       const ano = hoje.getFullYear();
       const mes = String(hoje.getMonth() + 1).padStart(2, "0");
       const dia = String(hoje.getDate()).padStart(2, "0");
@@ -87,10 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("data-inicio").value = dataFormatada;
       document.getElementById("proxima-execucao").value = dataFormatada;
 
-      return; // Interrompe a função aqui para não tentar buscar no banco
+      return; 
     }
 
-    // SE FOR EDIÇÃO: Muda a interface e busca os dados
+
     document.querySelector(".page-title h1").textContent =
       "Editar Plano de Manutenção";
     document.querySelector(".breadcrumb strong").textContent = "Editar Plano";
@@ -127,9 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ==========================================
-  // 3. SALVAR NO BANCO (POST OU PATCH)
-  // ==========================================
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -137,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnSubmit.innerHTML = "Processando...";
     btnSubmit.disabled = true;
 
-    // Monta o objeto com os dados do formulário
+
     const payload = {
       descricao: document.getElementById("descricao").value,
       id_equipamento: Number(selectEquip.value),
@@ -156,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       if (idPlanoEdicao) {
-        // MODO EDIÇÃO (PATCH)
         const resPatch = await fetch(
           `${baseUrl}/plano_manutencao?id=eq.${idPlanoEdicao}`,
           {
@@ -168,7 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!resPatch.ok) throw new Error("Falha ao atualizar o plano.");
         alert("Plano atualizado com sucesso!");
       } else {
-        // MODO CRIAÇÃO (POST)
         const resPost = await fetch(`${baseUrl}/plano_manutencao`, {
           method: "POST",
           headers: headersConfig,
@@ -178,7 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Plano cadastrado com sucesso!");
       }
 
-      // Redireciona de volta para a lista
       window.location.href = "manutencao_adm.html";
     } catch (err) {
       console.error(err);
@@ -188,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Inicia o processo quando a tela carrega
   async function inicializarTela() {
     await carregarDropdowns();
     await carregarPlanoParaEdicao();

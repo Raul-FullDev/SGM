@@ -10,15 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const listaPlanos = document.querySelector(".plans-list");
 
-  // ==========================================
-  // BUSCAR E RENDERIZAR PLANOS NO BANCO
-  // ==========================================
   async function carregarPlanos() {
     try {
       listaPlanos.innerHTML =
         '<p style="text-align: center; padding: 30px; color: #6f82a0;">Carregando planos de manutenção...</p>';
 
-      // Busca os planos trazendo junto as descrições via Foreign Key
       const query = `select=*,equipamento(id,descricao),tipo_manutencao(id,descricao),periocidade(id,descricao)&order=data_proxima_execucao.asc`;
       const resposta = await fetch(`${baseUrl}/plano_manutencao?${query}`, {
         headers: headersConfig,
@@ -44,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Data atual com as horas zeradas para fazer o cálculo correto
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
 
@@ -56,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const ultima = plano.data_ultima_execucao || "Inédita";
       const proxima = plano.data_proxima_execucao;
 
-      // Calcula os dias restantes
       const dataProx = new Date(proxima);
       const dataProxFormatada = new Date(
         dataProx.getTime() + Math.abs(dataProx.getTimezoneOffset() * 60000),
@@ -66,11 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const diffTime = dataProxFormatada - hoje;
       const diasRestantes = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-      // Lógica de cores inteligente
-      let corDestaque = "#6459ff"; // Azul padrão
+      let corDestaque = "#6459ff"; 
       if (diasRestantes < 0)
-        corDestaque = "#cf5555"; // Atrasado (Vermelho)
-      else if (diasRestantes <= 7) corDestaque = "#e69a22"; // Próximo da data (Laranja)
+        corDestaque = "#cf5555"; 
+      else if (diasRestantes <= 7) corDestaque = "#e69a22"; 
 
       const article = document.createElement("article");
       article.className = "plan-card";
@@ -104,20 +97,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ==========================================
-  // DELEGAÇÃO DE EVENTOS (BOTÕES DA LISTA)
-  // ==========================================
-  // ==========================================
-  // DELEGAÇÃO DE EVENTOS (BOTÕES DA LISTA)
-  // ==========================================
   listaPlanos.addEventListener("click", async (e) => {
-    // AÇÃO: REDIRECIONAR PARA EDIÇÃO
     if (e.target.classList.contains("btn-edit")) {
       const idPlano = e.target.getAttribute("data-id");
       window.location.href = `novo_plano_manutencao_adm.html?id=${idPlano}`;
     }
 
-    // AÇÃO: GERAR ORDEM DE SERVIÇO AUTOMATICAMENTE
     if (e.target.classList.contains("btn-os")) {
       const idPlano = e.target.getAttribute("data-id");
       const idEquip = e.target.getAttribute("data-equip");
@@ -137,12 +122,10 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.disabled = true;
 
       try {
-        // 1. Recuperar o ID do usuário logado na sessão ativa
         const sessaoStr = localStorage.getItem("sgm_sessao");
         const sessao = sessaoStr ? JSON.parse(sessaoStr) : null;
         const idUsuarioLogado = sessao ? sessao.id : 1;
 
-        // 2. Insere a OS Principal (removendo o id fixo e garantindo payload limpo)
         const payloadOS = {
           descricao_problema: `Manutenção Programada: ${descPlano}`,
           prioridade: "Média",
@@ -163,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const osCriada = await resOs.json();
         const idOSGerada = osCriada[0].id;
 
-        // 3. Insere a Abertura da OS vinculando ao status Aberta (ID 1)
         const payloadAbertura = {
           id_ordem_servico: idOSGerada,
           id_status: 1,
@@ -182,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const aberturaCriada = await resAbertura.json();
         const idAberturaGerada = aberturaCriada[0].id;
 
-        // 4. Registra o histórico inicial de abertura da OS
         const payloadHistorico = {
           id_abertura_ordem_servico: idAberturaGerada,
           id_status_novo: 1,

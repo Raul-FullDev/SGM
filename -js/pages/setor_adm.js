@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Configurações do Supabase
     const baseUrl = 'https://umvtsquzpugempndwitx.supabase.co/rest/v1';
-    const apiKey = 'sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb'; // Troque pela sua chave real que copiamos antes
+    const apiKey = 'sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb';
     const headersConfig = {
         'Content-Type': 'application/json',
         "apikey": apiKey,
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
         "Prefer": "return=representation"
     };
 
-    // Referências do HTML
     const listaSetores = document.getElementById('listaSetores');
     const botaoNovoSetor = document.getElementById('botaoNovoSetor');
     const modalSetor = document.getElementById('modalSetor');
@@ -18,12 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCancelar = document.getElementById('cancelarModal');
     const formNovoSetor = document.getElementById('formNovoSetor');
 
-    // ==============================================
-    // 1. FUNÇÃO PARA BUSCAR E RENDERIZAR OS SETORES (SELECT)
-    // ==============================================
     async function carregarSetores() {
         try {
-            // Faz o GET na tabela 'local'
             const resposta = await fetch(`${baseUrl}/local?select=*`, {
                 method: 'GET',
                 headers: headersConfig
@@ -33,16 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const setores = await resposta.json();
             
-            // Limpa o HTML atual
             listaSetores.innerHTML = '';
 
-            // Se não tiver setor, mostra mensagem vazia
             if (setores.length === 0) {
                 listaSetores.innerHTML = '<p>Nenhum setor cadastrado ainda.</p>';
                 return;
             }
 
-            // Injeta o HTML para cada setor encontrado
+
             setores.forEach(setor => {
                 const cardHtml = `
                     <article class="card-setor">
@@ -73,9 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ==============================================
-    // 2. FUNÇÃO PARA CADASTRAR UM NOVO SETOR (INSERT)
-    // ==============================================
     formNovoSetor.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -89,13 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (!resposta.ok) {
-                // Se der erro 42501 é porque esqueceu de desativar o RLS na tabela local lá no Supabase
                 throw new Error(await resposta.text());
             }
 
             alert("Setor cadastrado com sucesso!");
-            
-            // Limpa o input, fecha o modal e recarrega a lista
             formNovoSetor.reset();
             modalSetor.style.display = 'none';
             carregarSetores(); 
@@ -106,13 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ==============================================
-    // CONTROLES DO MODAL (ABRIR E FECHAR)
-    // ==============================================
     botaoNovoSetor.addEventListener('click', () => modalSetor.style.display = 'flex');
     btnFechar.addEventListener('click', () => modalSetor.style.display = 'none');
     btnCancelar.addEventListener('click', () => modalSetor.style.display = 'none');
 
-    // Inicializa a página buscando os setores
     carregarSetores();
 });

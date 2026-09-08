@@ -47,12 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let idAberturaAtual = null;
   let idStatusAtual = null;
-  let isOsConcluida = false; // Flag global de bloqueio
+  let isOsConcluida = false; 
   const mapStatusIds = {};
 
-  // ==========================================
-  // 1. CARREGAR DADOS INICIAIS
-  // ==========================================
   async function inicializarDados() {
     try {
       const resStatusOS = await fetch(
@@ -181,9 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ==========================================
-  // 2. ATIVIDADES
-  // ==========================================
   async function carregarAtividadesDaOS() {
     try {
       const query = `select=id,servico,data_inicio,data_fechamento,tipo_servico(id,tipo),status_atividade(id,descricao)&id_abertura_ordem_servico=eq.${idAberturaAtual}&order=id.asc`;
@@ -226,7 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
         iconeNumero = '<i class="bi bi-check"></i>';
       }
 
-      // Se atividade concluída OU OS finalizada, lápis some!
       const botaoLapisHTML =
         isAtivConcluida || isOsConcluida
           ? ""
@@ -391,12 +384,9 @@ document.addEventListener("DOMContentLoaded", () => {
       () => (modalNovaAtividade.style.display = "flex"),
     );
 
-  // ==========================================
-  // 3. PEÇAS (Busca Otimizada para POSTGREST)
-  // ==========================================
   async function carregarPecasDaOS() {
     try {
-      // 1. Puxa as atividades primeiro para fazer o join reverso com as peças
+  
       const resAtiv = await fetch(
         `${baseUrl}/atividade?select=id&id_abertura_ordem_servico=eq.${idAberturaAtual}`,
         { headers: headersConfig },
@@ -418,8 +408,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const idsAtividades = ativs.map((a) => a.id);
-
-      // 2. Traz as trocas daquelas atividades com a descrição da Peça
       const queryPecas = `${baseUrl}/troca_peca?select=id,id_peca,quantidade,custo_unitario_na_troca,peca(descricao),id_atividade&id_atividade=in.(${idsAtividades.join(",")})`;
       const resTrocas = await fetch(queryPecas, { headers: headersConfig });
       if (!resTrocas.ok) throw new Error("Erro ao buscar peças utilizadas");
@@ -439,7 +427,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const totalItem = t.quantidade * t.custo_unitario_na_troca;
         totalOS += totalItem;
 
-        // Se a OS estiver finalizada, removemos o lápis!
         const btnAcaoHtml = isOsConcluida
           ? ""
           : `<button type="button" class="botao-editar-peca" data-id="${t.id}" data-idpeca="${t.id_peca}" data-qtd="${t.quantidade}" data-desc="${t.peca?.descricao}" title="Editar peça">
@@ -462,7 +449,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Nova peça
   formNovaPeca?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const idPeca = Number(document.getElementById("pecaSelecionada").value);
@@ -502,7 +488,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Peça adicionada e estoque atualizado com sucesso!");
       modalNovaPeca.style.display = "none";
       formNovaPeca.reset();
-      inicializarDados(); // Recarrega tudo para sync do array
+      inicializarDados(); 
     } catch (erro) {
       alert(erro.message);
     }
@@ -530,7 +516,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("cancelarModalPeca")
     ?.addEventListener("click", () => (modalNovaPeca.style.display = "none"));
 
-  // Edição Modal de Peça Utilizada
   document.querySelector(".tabela-pecas")?.addEventListener("click", (e) => {
     const btnPeca = e.target.closest(".botao-editar-peca");
     if (!btnPeca) return;
@@ -566,7 +551,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       if (!res.ok) throw new Error("Erro ao atualizar a quantidade.");
 
-      // Correção de Estoque no banco baseada na diferença
+
       const diferenca = qtdNova - qtdAntiga;
       if (diferenca !== 0) {
         const peca = window.pecasGlobal.find((p) => p.id == idPecaOrig);
@@ -582,7 +567,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       alert("Quantidade atualizada com sucesso!");
       modalEditarPeca.style.display = "none";
-      inicializarDados(); // Recarrega array global e as telas
+      inicializarDados(); 
     } catch (err) {
       alert(err.message);
     }
@@ -595,9 +580,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("cancelarModalEditarPeca")
     ?.addEventListener("click", () => (modalEditarPeca.style.display = "none"));
 
-  // ==========================================
-  // 6. ALTERAR E FINALIZAR OS
-  // ==========================================
+
   async function executarTrocaDeStatus(chaveStatus, dataInicio, dataFim) {
     const novoStatusId = mapStatusIds[chaveStatus];
     if (!idAberturaAtual || !novoStatusId) return alert("Carregando dados...");
@@ -615,7 +598,6 @@ document.addEventListener("DOMContentLoaded", () => {
           payloadAbertura.data_fechamento = new Date(dataFim).toISOString();
         payloadAbertura.id_usuario_conclusao = idUsuarioLogado;
       } else {
-        // Se voltou para aberta ou andamento, apaga a data de fechamento do banco!
         payloadAbertura.data_fechamento = null;
         payloadAbertura.id_usuario_conclusao = null;
       }
@@ -665,7 +647,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (btnFinalizarOS && modalEncerrar) {
     btnFinalizarOS.addEventListener("click", () => {
-      // VALIDAÇÕES CRÍTICAS ANTES DE ABRIR O MODAL
       if (arrayAtividadesGlobal.length === 0) {
         return alert(
           "Não é possível finalizar a OS: Nenhuma atividade cadastrada.",
@@ -689,7 +670,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .getElementById("cancelarModal")
       .addEventListener("click", () => (modalEncerrar.style.display = "none"));
 
-    // Confirmação final enviando as datas preenchidas do modal para a função de troca
     formFinalizarOS.addEventListener("submit", (e) => {
       e.preventDefault();
       const dInicio = document.getElementById("encerraDataInicio").value;

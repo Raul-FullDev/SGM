@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================
-  // CONFIGURAÇÕES DA API SUPABASE
-  // ==========================================
   const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1/";
   const apikey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
 
@@ -12,9 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     Prefer: "return=representation",
   };
 
-  // ==========================================
-  // ELEMENTOS DO DOM
-  // ==========================================
   const corpoTabela = document.getElementById("usersTableBody");
   const inputPesquisa = document.getElementById("userSearch");
   const filtroNivel = document.getElementById("levelFilter");
@@ -23,9 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let todosUsuarios = [];
 
-  // ==========================================
-  // FUNÇÃO DE BUSCA NA API (COM FILTROS)
-  // ==========================================
 
     async function carregarFiltroNiveis() {
         if (!filtroNivel) return;
@@ -51,14 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
   async function carregarUsuario() {
     try {
       let urlQuery = `${baseUrl}/usuario?select=*,nivel(funcao)&order=id.asc`;
-
-      // Filtro por Nível (id_papel)
       const idNivel = filtroNivel ? filtroNivel.value : "";
       if (idNivel && idNivel !== "all" && !idNivel.toLowerCase().includes("todos")) {
         urlQuery += `&id_papel=eq.${idNivel}`;
       }
 
-      // Filtro por Texto (Nome ou Matrícula)
       const termo = inputPesquisa ? inputPesquisa.value.trim() : "";
       if (termo) {
         urlQuery += `&or=(nome.ilike.*${encodeURIComponent(termo)}*,matricula.ilike.*${encodeURIComponent(termo)}*,funcao.ilike.*${encodeURIComponent(termo)}*,contato.ilike.*${encodeURIComponent(termo)}*)`;
@@ -79,9 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ==========================================
-  // FUNÇÕES AUXILIARES
-  // ==========================================
   function obterIniciais(nome) {
     if (!nome) return "US";
     const separar = nome.trim().split(" ");
@@ -89,9 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return (separar[0][0] + separar[separar.length - 1][0]).toUpperCase();
   }
 
-  // ==========================================
-  // RENDERIZAÇÃO DA TABELA
-  // ==========================================
   function renderizarTabela(dados) {
     if (!corpoTabela) return;
 
@@ -107,16 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (estadoVazio) estadoVazio.style.display = "none";
 
     dados.forEach((user) => {
-      // Pega o nível vindo do JOIN do Supabase
       const nomeNivel = user.nivel ? user.nivel.funcao : "Usuário";
 
-      // Define a classe CSS baseada no nome do nível
       let classe = "badge-usuario";
       if (nomeNivel === "Administrador" || nomeNivel === "ADM") classe = "badge-administrador";
       if (nomeNivel === "Técnico" || nomeNivel === "Tecnico") classe = "badge-tecnico";
       if (nomeNivel === "Gerência" || nomeNivel === "Gerencia") classe = "badge-gerencia";
 
-      // Checagem de status simplificada no seu padrão
       const isAtivo = user.is_active === true || user.is_active === 1 || String(user.is_active).toLowerCase() === "ativo";
       const iniciais = obterIniciais(user.nome);
 
@@ -147,9 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ==========================================
-  // LISTENERS DOS FILTROS DA TELA
-  // ==========================================
   if (inputPesquisa) {
     inputPesquisa.addEventListener("input", carregarUsuario);
   }

@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Configurações do Supabase
   const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1";
   const apiKey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
   const headersConfig = {
@@ -9,11 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     Prefer: "return=representation",
   };
 
-  // Referências baseadas nos IDs reais do seu HTML
   const selectSetor = document.getElementById("setorLocalizacao");
   const formEquipamento = document.getElementById("formularioEquipamento");
 
-  // 1. CARREGAR SETORES NO SELECT
   async function carregarSetores() {
     try {
       const resposta = await fetch(
@@ -42,11 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 2. CADASTRAR NOVO EQUIPAMENTO
   formEquipamento.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    // Mapeando exatamente os IDs dos inputs do seu HTML
     const novoEquipamento = {
       asset: document.getElementById("codigoAtivo").value,
       status: document.getElementById("statusEquipamento").value,
@@ -92,6 +87,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Chama a função para preencher o select ao carregar a tela
   carregarSetores();
 });

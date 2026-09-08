@@ -238,17 +238,12 @@ document.addEventListener("DOMContentLoaded", () => {
       else if (statusLabel.toLowerCase().includes("cancelada"))
         classeStatus = "status-cancelada";
 
-      // ==========================================
-      // LÓGICA DE BLOQUEIO SE OS ESTIVER CONCLUÍDA
-      // ==========================================
       const isConcluida = classeStatus === "status-encerrada";
 
-      // Se concluída, removemos o href e deixamos o número cinza
       const colunaNumero = isConcluida
         ? `<span class="numero-os" style="color: #94a4b8; cursor: default; text-decoration: none;" title="OS Finalizada">#${numeroFormatado}</span>`
         : `<a href="detalhes_os.html?id=${os.id}" class="numero-os">#${numeroFormatado}</a>`;
 
-      // Se concluída, o ícone de visualizar some e vira apenas um traço
       const colunaAcao = isConcluida
         ? `<span style="color: #94a4b8; font-size: 14px; display: inline-flex; width: 32px; justify-content: center;" title="Detalhes indisponíveis para OS Finalizada">-</span>`
         : `<a href="detalhes_os.html?id=${os.id}" class="botao-visualizar" title="Ver detalhes da ordem de serviço">

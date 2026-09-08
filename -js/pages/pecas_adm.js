@@ -8,17 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
     Prefer: "return=representation",
   };
 
-  // Elementos do HTML
   const listaPecas = document.getElementById("listaPecas");
   let arrayPecasGlobal = [];
   let arrayCategoriasGlobal = [];
 
-  // ==========================================
-  // 1. CARREGAR DADOS (PEÇAS E CATEGORIAS)
-  // ==========================================
   async function inicializarTela() {
     try {
-      // Busca categorias
       const resCat = await fetch(
         `${baseUrl}/categoria_peca?select=id,descricao&is_active=eq.true&order=descricao.asc`,
         { headers: headersConfig },
@@ -33,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
           (selectEditCategoria.innerHTML += `<option value="${c.id}">${c.descricao}</option>`),
       );
 
-      // Busca peças (Trazendo o nome da categoria junto)
       const resPecas = await fetch(
         `${baseUrl}/peca?select=*,categoria_peca(descricao)&is_active=eq.true&order=id.desc`,
         { headers: headersConfig },
@@ -50,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderizarInterface(pecas) {
-    // 1.1 Atualizar os Cards Superiores (Dashboard)
     let totalItens = pecas.length;
     let valorTotal = 0;
     let estoqueCritico = 0;
@@ -65,13 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
     pecas.forEach((peca) => {
       const custo = Number(peca.custo_unitario) || 0;
       const qtd = Number(peca.qtde) || 0;
-      const min = Number(peca.estoque_minimo) || 5; // Padrão 5 se não houver
+      const min = Number(peca.estoque_minimo) || 5;
       const totalItem = custo * qtd;
 
       valorTotal += totalItem;
       if (qtd <= min) estoqueCritico++;
 
-      // Alerta visual de estoque
+
       let alertaHTML =
         qtd <= min ? `<span class="alerta-estoque">estoque baixo</span>` : "";
       let classeLinha = qtd <= min ? 'class="peca-estoque-baixo"' : "";
@@ -99,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     });
 
-    // Injeta os valores nos Cards Superiores
     document.querySelectorAll(".conteudo-resumo-peca h2")[0].textContent =
       totalItens;
     document.querySelectorAll(".conteudo-resumo-peca h2")[1].textContent =
@@ -108,13 +100,10 @@ document.addEventListener("DOMContentLoaded", () => {
       estoqueCritico;
   }
 
-  // ==========================================
-  // 2. MODAL DE EDIÇÃO DE PEÇA (UPDATE / DELETE)
-  // ==========================================
   const modalEditar = document.getElementById("modalEditarPeca");
   const formEditar = document.getElementById("formEditarPeca");
 
-  // Escuta cliques nos botões de Lápis da tabela
+
   if (listaPecas) {
     listaPecas.addEventListener("click", (e) => {
       const btn = e.target.closest(".btn-abrir-edicao");
@@ -124,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const peca = arrayPecasGlobal.find((p) => p.id === idPeca);
       if (!peca) return;
 
-      // Preenche o Modal
       document.getElementById("editPecaId").value = peca.id;
       document.getElementById("editPecaDescricao").value = peca.descricao;
       document.getElementById("editPecaQuantidade").value = peca.qtde;
@@ -149,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("overlayEditarPeca")
     ?.addEventListener("click", fecharModalEditar);
 
-  // SALVAR EDIÇÃO (PATCH)
   formEditar?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const btnSalvar = document.getElementById("btnSalvarPecaEdit");
@@ -173,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!res.ok) throw new Error("Erro ao atualizar a peça.");
       alert("Peça atualizada!");
       fecharModalEditar();
-      inicializarTela(); // Recarrega a tabela e os totais
+      inicializarTela();
     } catch (err) {
       alert(err.message);
     } finally {
@@ -182,7 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // EXCLUIR PEÇA (DELETE LÓGICO)
   document
     .getElementById("btnExcluirPeca")
     ?.addEventListener("click", async () => {
@@ -191,7 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const id = document.getElementById("editPecaId").value;
       try {
-        // Delete lógico (apenas inativa para não quebrar históricos antigos de Ordens de Serviço)
         const res = await fetch(`${baseUrl}/peca?id=eq.${id}`, {
           method: "PATCH",
           headers: headersConfig,
@@ -206,9 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-  // ==========================================
-  // 3. MODAL DE NOVA CATEGORIA (MANTIDO)
-  // ==========================================
   const modalCategoria = document.getElementById("popupNovaCategoria");
   const formCategoria = document.getElementById("formNovaCategoria");
 
@@ -254,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       alert("Categoria criada!");
       fecharModalCategoria();
-      inicializarTela(); // Recarrega para a nova categoria já aparecer nos Selects
+      inicializarTela();
     } catch (err) {
       alert(err.message);
     } finally {
@@ -263,6 +245,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Dispara a busca principal
   inicializarTela();
 });

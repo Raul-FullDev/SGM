@@ -1,8 +1,6 @@
 document.getElementById("userForm").addEventListener("submit", async function (event) {
     event.preventDefault();
     
-    //TROCAR O BANCO DO CADASTRO E DO "USUARIOS" ANTES DE TESTAR
-    // 1. Capturando os elementos de forma segura
     const nome = document.getElementById("userName").value;
     const matricula = document.getElementById("userRegistration").value;
     const contato = document.getElementById("userContact").value;
@@ -10,14 +8,13 @@ document.getElementById("userForm").addEventListener("submit", async function (e
     const senha = document.getElementById("userPassword").value;
     const nivel = document.getElementById("userLevel").value;
 
-    // 2. Montando o objeto exatamente igual às colunas do Supabase
     const novoUsuario = {
       nome: nome,
       matricula: matricula,
       contato: contato,
       funcao: funcao,
       senha: senha,
-      id_papel: Number(nivel), // Corrigido de 'id_nivel_usuario' para 'id_papel'
+      id_papel: Number(nivel),
     };
 
     if (contato.length > 12){
@@ -54,14 +51,13 @@ document.getElementById("userForm").addEventListener("submit", async function (e
 
     console.log("Enviando usuário:", novoUsuario);
 
-    // 3. Fazendo a requisição (POST) para o Supabase
     fetch("https://umvtsquzpugempndwitx.supabase.co/rest/v1/usuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         apikey: "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
         Authorization: "Bearer sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
-        Prefer: "return=representation", // Faz o Supabase devolver os dados inseridos na resposta
+        Prefer: "return=representation", 
       },
       body: JSON.stringify(novoUsuario),
     })
@@ -78,11 +74,8 @@ document.getElementById("userForm").addEventListener("submit", async function (e
         console.log("Usuário cadastrado com sucesso:", dadosInseridos);
         alert("Usuário cadastrado com sucesso!");
 
-        // Opcional: Limpar o formulário após o sucesso
         document.getElementById("userForm").reset();
 
-        // Opcional: Redirecionar para a tela de listagem
-        // window.location.href = 'usuarios.html';
       })
       .catch((error) => {
         console.error("Falha ao salvar no banco:", error);

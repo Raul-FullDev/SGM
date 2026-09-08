@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================
-  // CONFIGURAÇÕES DA API SUPABASE
-  // ==========================================
+
   const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1";
   const apiKey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
   const headersConfig = {
@@ -10,36 +8,27 @@ document.addEventListener("DOMContentLoaded", () => {
     Authorization: `Bearer ${apiKey}`,
   };
 
-  // Pega a sessão atual garantida pelo global.js
+
   const sessaoStr = localStorage.getItem("sgm_sessao");
   if (!sessaoStr) return;
   const sessao = JSON.parse(sessaoStr);
   const idUsuario = sessao.id;
-
-  // Elementos da Tela (Dados)
   const perfilAvatar = document.getElementById("perfilAvatar");
   const perfilNome = document.getElementById("perfilNome");
   const perfilFuncao = document.getElementById("perfilFuncao");
   const perfilMatricula = document.getElementById("perfilMatricula");
   const perfilContato = document.getElementById("perfilContato");
   const perfilNivel = document.getElementById("perfilNivel");
-
-  // Elementos da Tela (Formulário Senha)
   const formSenha = document.getElementById("formAlterarSenha");
   const inputSenhaAtual = document.getElementById("senhaAtual");
   const inputNovaSenha = document.getElementById("novaSenha");
   const inputConfirmar = document.getElementById("confirmarSenha");
   const btnSalvar = document.getElementById("btnSalvarSenha");
 
-  // Guarda a senha atual vinda do banco para verificação
   let senhaRealDoBanco = "";
 
-  // ==========================================
-  // 1. CARREGAR DADOS DO USUÁRIO
-  // ==========================================
   async function carregarDadosPerfil() {
     try {
-      // Busca os dados completos do usuário ativo no banco
       const resposta = await fetch(
         `${baseUrl}/usuario?select=*,nivel(funcao)&id=eq.${idUsuario}`,
         {
@@ -54,8 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (usuarios.length === 0) return;
 
       const usuarioData = usuarios[0];
-
-      // Preenche a tela
       const iniciais = usuarioData.nome
         .split(" ")
         .map((n) => n[0])
@@ -70,16 +57,12 @@ document.addEventListener("DOMContentLoaded", () => {
       perfilNivel.textContent =
         usuarioData.nivel?.funcao || "Nível Desconhecido";
 
-      // Guarda a senha para a validação do formulário
       senhaRealDoBanco = usuarioData.senha;
     } catch (erro) {
       console.error("Falha ao carregar perfil:", erro);
     }
   }
 
-  // ==========================================
-  // 2. ALTERAR SENHA (UPDATE)
-  // ==========================================
   formSenha.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -87,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const novaSenha = inputNovaSenha.value.trim();
     const confirmacao = inputConfirmar.value.trim();
 
-    // Validações locais
     if (senhaAtualDigitada !== senhaRealDoBanco) {
       alert("A senha atual digitada está incorreta!");
       return;
@@ -103,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Se passou, desativa botão e manda o PATCH pro Supabase
     const textoOriginal = btnSalvar.textContent;
     btnSalvar.textContent = "Atualizando...";
     btnSalvar.disabled = true;
@@ -121,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "Senha atualizada com sucesso! Por segurança, faça o login novamente.",
       );
 
-      // Limpa a sessão e desloga
       localStorage.removeItem("sgm_sessao");
       window.location.href = "../index.html";
     } catch (erro) {
@@ -132,6 +112,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Inicia o carregamento
   carregarDadosPerfil();
 });

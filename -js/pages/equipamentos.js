@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const estadoVazio = document.getElementById("estadoVazio");
   const tabelaContainer = document.querySelector(".tabela-equipamentos");
 
-  // Elementos do Modal de Histórico que criamos no HTML
   const modalHistorico = document.getElementById("modalHistoricoEquipamento");
   const corpoTabelaHistorico = document.getElementById(
     "corpoTabelaHistoricoModal",
@@ -24,9 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const tituloModal = document.getElementById("modalHistoricoTitulo");
   const descAssetModal = document.getElementById("modalHistoricoAsset");
 
-  // ==========================================
-  // 1. CARREGAR SELECTS INICIAIS (SETOR E FABRICANTE)
-  // ==========================================
   async function carregarFiltrosIniciais() {
     try {
       const resSetores = await fetch(
@@ -43,30 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // const resEquip = await fetch(
-      //   `${baseUrl}/equipamento?select=manufaturado`,
-      //   { headers: headersConfig },
-      // );
-      // if (resEquip.ok) {
-      //   const dados = await resEquip.json();
-      //   const fabricantesUnicos = [
-      //     ...new Set(dados.map((e) => e.manufaturado).filter(Boolean)),
-      //   ];
-      //   if (filtroFabricante) {
-      //     filtroFabricante.innerHTML = `<option value="">Todos os fabricantes</option>`;
-      //     fabricantesUnicos.forEach((fab) => {
-      //       filtroFabricante.innerHTML += `<option value="${fab}">${fab}</option>`;
-      //     });
-      //   }
-      // }
     } catch (erro) {
       console.error("Erro ao carregar filtros:", erro);
     }
   }
 
-  // ==========================================
-  // 2. FETCH COM FILTROS NA QUERY URL SUPABASE
-  // ==========================================
   async function carregarEquipamentosFiltrados() {
     try {
       let urlQuery = `${baseUrl}/equipamento?select=*,local(id,setor)&order=id.asc`;
@@ -75,9 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (idLocal && !idLocal.toLowerCase().includes("todos"))
         urlQuery += `&id_local=eq.${idLocal}`;
 
-      // const fabricante = filtroFabricante ? filtroFabricante.value : "";
-      // if (fabricante && !fabricante.toLowerCase().includes("todos"))
-      //   urlQuery += `&manufaturado=eq.${encodeURIComponent(fabricante)}`;
 
       const status = filtroStatus ? filtroStatus.value : "";
       if (status && !status.toLowerCase().includes("todos"))
@@ -99,9 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ==========================================
-  // 3. RENDERIZAR TABELA PRINCIPAL
-  // ==========================================
   function renderizarTabela(dados) {
     if (!corpoTabela) return;
     corpoTabela.innerHTML = "";
@@ -147,11 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ==========================================
-  // 4. LÓGICA DO MODAL DE HISTÓRICO (JIRA SGM-222)
-  // ==========================================
+
   corpoTabela.addEventListener("click", async (e) => {
-    // Verifica se clicou no botão do relógio
     const btn = e.target.closest(".btn-ver-historico");
     if (!btn) return;
 
@@ -163,10 +131,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (corpoTabelaHistorico)
       corpoTabelaHistorico.innerHTML = `<tr><td colspan="4" style="text-align: center;">Carregando histórico do banco de dados...</td></tr>`;
-    if (modalHistorico) modalHistorico.style.display = "flex"; // Abre a janelinha modal
+    if (modalHistorico) modalHistorico.style.display = "flex"; 
 
     try {
-      // Faz o GET no supabase filtrando só as OS deste equipamento selecionado
       const query = `select=id,tipo_manutencao(descricao),abertura_ordem_servico(data_abertura,status_ordem_servico(descricao))&id_equipamento=eq.${idEqp}&order=id.desc`;
       const resposta = await fetch(`${baseUrl}/ordem_servico?${query}`, {
         headers: headersConfig,
@@ -210,7 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Fechar o Modal
   const btnFecharModalX = document.getElementById("fecharModalHistorico");
   const btnFecharModalBtn = document.getElementById("fecharModalHistoricoBtn");
 
@@ -225,15 +191,12 @@ document.addEventListener("DOMContentLoaded", () => {
       () => (modalHistorico.style.display = "none"),
     );
 
-  // ==========================================
-  // 5. EVENT LISTENERS PARA OS FILTROS DA TELA
-  // ==========================================
   if (inputPesquisa)
     inputPesquisa.addEventListener("input", carregarEquipamentosFiltrados);
-  // if (filtroFabricante)
-  //   filtroFabricante.addEventListener("change", carregarEquipamentosFiltrados);
+
   if (filtroSetor)
     filtroSetor.addEventListener("change", carregarEquipamentosFiltrados);
+  
   if (filtroStatus)
     filtroStatus.addEventListener("change", carregarEquipamentosFiltrados);
 

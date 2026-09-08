@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================
-  // CONFIGURAÇÕES DA API SUPABASE
-  // ==========================================
   const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1";
   const apiKey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
   const headersConfig = {
@@ -10,18 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
     Authorization: `Bearer ${apiKey}`,
   };
 
-  // ==========================================
-  // MOTORES DE EXPORTAÇÃO (PDF e CSV)
-  // ==========================================
-
-  // Motor CSV: Gera uma string com separadores e força o download
   function exportarCSV(colunasVisiveis, chavesDados, dados, nomeArquivo) {
-    let csvContent = "data:text/csv;charset=utf-8,\uFEFF"; // \uFEFF garante que o Excel leia acentos em UTF-8
+    let csvContent = "data:text/csv;charset=utf-8,\uFEFF"; 
 
-    // Cabeçalhos
     csvContent += colunasVisiveis.join(";") + "\n";
 
-    // Linhas
     dados.forEach((row) => {
       const linha = chavesDados
         .map((chave) => {
@@ -29,13 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
             row[chave] === null || row[chave] === undefined
               ? ""
               : String(row[chave]);
-          return `"${valor.replace(/"/g, '""')}"`; // Escapa aspas duplas
+          return `"${valor.replace(/"/g, '""')}"`;
         })
         .join(";");
       csvContent += linha + "\n";
     });
 
-    // Download
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -45,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.removeChild(link);
   }
 
-  // Motor PDF: Usa o jsPDF e AutoTable para desenhar a tabela
   function exportarPDF(
     titulo,
     colunasVisiveis,
@@ -56,34 +44,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    // Título do documento
     doc.setFontSize(16);
     doc.text(titulo, 14, 15);
     doc.setFontSize(10);
     doc.text(`Gerado em: ${new Date().toLocaleDateString("pt-BR")}`, 14, 22);
 
-    // Mapeia os dados brutos para um formato de matriz que o PDF entende
     const linhas = dados.map((row) =>
       chavesDados.map((chave) => row[chave] || ""),
     );
 
-    // Desenha a tabela
     doc.autoTable({
       head: [colunasVisiveis],
       body: linhas,
       startY: 28,
       theme: "grid",
-      headStyles: { fillColor: [33, 85, 220] }, // Azul do seu SGM
+      headStyles: { fillColor: [33, 85, 220] },
       styles: { fontSize: 9 },
     });
 
-    // Salva o arquivo
     doc.save(`${nomeArquivo}.pdf`);
   }
 
-  // ==========================================
-  // REGRAS DE NEGÓCIO DE CADA RELATÓRIO
-  // ==========================================
   async function processarRelatorio(
     tipoRelatorio,
     formatoExportacao,
@@ -126,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
 
         case "custo-equipamento":
-          // Como agrupamento complexo é restrito no Supabase via REST, puxamos o inventário base
           const resEquip = await fetch(
             `${baseUrl}/equipamento?select=asset,descricao,status,local(setor)`,
             { headers: headersConfig },
@@ -164,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
 
         case "historico-tecnico":
-          // Puxa apenas usuários que são técnicos (id_papel = 3)
           const resTec = await fetch(
             `${baseUrl}/usuario?select=nome,matricula,funcao,contato&id_papel=eq.3`,
             { headers: headersConfig },
@@ -237,7 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
           throw new Error("Relatório não configurado.");
       }
 
-      // Após formatar os dados, joga para o motor selecionado
       if (formatoExportacao === "pdf") {
         exportarPDF(
           tituloPDF,
@@ -258,9 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ==========================================
-  // ESCUTADORES DE CLIQUES NOS BOTÕES
-  // ==========================================
   document.querySelectorAll(".botao-gerar-relatorio").forEach((botao) => {
     botao.addEventListener("click", (e) => {
       const tipo = e.target.getAttribute("data-relatorio");

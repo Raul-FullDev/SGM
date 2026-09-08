@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================
-  // CONFIGURAÇÕES DA API SUPABASE
-  // ==========================================
+
   const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1";
   const apiKey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
   const headersConfig = {
@@ -11,16 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
     Prefer: "return=minimal",
   };
 
-  // Referências do HTML
   const selectCategoria = document.getElementById("categoriaPeca");
   const formPeca = document.getElementById("formularioPeca");
 
-  // CORREÇÃO: Busca no documento inteiro, pois o botão está fora da tag <form>
   const btnCadastrar = document.querySelector(".botao-cadastrar");
 
-  // ==========================================
-  // 1. CARREGAR AS CATEGORIAS NO SELECT
-  // ==========================================
   async function carregarCategorias() {
     try {
       const resposta = await fetch(
@@ -44,9 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ==========================================
-  // 2. SALVAR A NOVA PEÇA NO BANCO
-  // ==========================================
   formPeca.addEventListener("submit", async (e) => {
     e.preventDefault();
 

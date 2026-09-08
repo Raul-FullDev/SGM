@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================
-  // CONFIGURAÇÕES DA API SUPABASE
-  // ==========================================
+  
   const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1";
   const apiKey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
 
@@ -14,9 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const selectEquipamento = document.getElementById("equipamento");
 
-  // ==========================================
-  // CARREGAR EQUIPAMENTOS DINAMICAMENTE
-  // ==========================================
   async function carregarEquipamentos() {
     try {
       const resposta = await fetch(
@@ -45,31 +40,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Chama a função para preencher o select ao abrir a tela
   carregarEquipamentos();
 
-  // ==========================================
-  // SALVAR NOVA ORDEM DE SERVIÇO
-  // ==========================================
   document
     .getElementById("formularioOrdemServico")
     .addEventListener("submit", async function (event) {
       event.preventDefault();
 
-      // 1. Recuperar dados da sessão ativa no navegador
       const sessaoStr = localStorage.getItem("sgm_sessao");
       const sessao = sessaoStr ? JSON.parse(sessaoStr) : null;
       const idUsuarioLogado = sessao ? sessao.id : 1;
 
-      // 2. Capturando os valores reais existentes no formulário HTML
       const idEquipamento = selectEquipamento.value;
       const tipoManutencao = document.getElementById("tipoManutencao").value;
       const descricaoProblema =
         document.getElementById("descricaoProblema").value;
 
-      // Valores padrão
       const prioridadePadrao = "Média";
-      const idStatusAberta = 1; // ID 1 = 'Aberta' no banco
+      const idStatusAberta = 1;
 
       const btnSubmit = document.getElementById("criarOrdemButton");
       const txtOriginal = btnSubmit.innerHTML;
@@ -77,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
       btnSubmit.disabled = true;
 
       try {
-        // TAREFA 1: INSERT na tabela ordem_servico
         const novaOrdemServico = {
           descricao_problema: descricaoProblema,
           prioridade: prioridadePadrao,
@@ -98,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const idOsGerada = dadosOs[0].id;
         console.log("Passo 1 OK! OS gerada ID:", idOsGerada);
 
-        // TAREFA 2: INSERT na tabela abertura_ordem_servico
         const novaAbertura = {
           id_ordem_servico: idOsGerada,
           id_status: idStatusAberta,
@@ -122,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const idAberturaGerada = dadosAbertura[0].id;
         console.log("Passo 2 OK! Abertura gerada ID:", idAberturaGerada);
 
-        // TAREFA 3: INSERT no historico_status_ordem_servico
         const novoHistorico = {
           id_abertura_ordem_servico: idAberturaGerada,
           id_status_novo: idStatusAberta,
