@@ -35,7 +35,9 @@
   color: white;
   font-size: 12px;
   box-shadow: 0 2px 5px rgba(34, 89, 210, 0.18);
-  transition: background 0.2s ease, transform 0.1s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
   text-decoration: none;
 }
 .botao-principal:hover {
@@ -64,7 +66,7 @@
 .formulario-filtros {
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) 130px 130px 130px 130px auto;
+  grid-template-columns: minmax(200px, 1fr) 175px 175px 130px 130px 130px auto;
   align-items: center;
   gap: 12px;
 }
@@ -105,7 +107,7 @@
 .campo-filtro select {
   width: 100%;
   height: 42px;
-  padding: 0 12px;
+  padding: 0 px;
   border: 1px solid #dce3eb;
   border-radius: 7px;
   outline: none;
@@ -178,14 +180,43 @@
 }
 
 /* Larguras ajustadas para 8 colunas */
-.tabela-container th:nth-child(1), .tabela-container td:nth-child(1) { width: 10%; }
-.tabela-container th:nth-child(2), .tabela-container td:nth-child(2) { width: 18%; }
-.tabela-container th:nth-child(3), .tabela-container td:nth-child(3) { width: 12%; }
-.tabela-container th:nth-child(4), .tabela-container td:nth-child(4) { width: 11%; }
-.tabela-container th:nth-child(5), .tabela-container td:nth-child(5) { width: 16%; }
-.tabela-container th:nth-child(6), .tabela-container td:nth-child(6) { width: 11%; }
-.tabela-container th:nth-child(7), .tabela-container td:nth-child(7) { width: 12%; }
-.tabela-container th:nth-child(8), .tabela-container td:nth-child(8) { width: 10%; text-align: center; }
+.tabela-container th:nth-child(1),
+.tabela-container td:nth-child(1) {
+  width: 8%;
+}
+.tabela-container th:nth-child(2),
+.tabela-container td:nth-child(2) {
+  width: 17%;
+}
+.tabela-container th:nth-child(3),
+.tabela-container td:nth-child(3) {
+  width: 11%;
+}
+.tabela-container th:nth-child(4),
+.tabela-container td:nth-child(4) {
+  width: 10%;
+}
+.tabela-container th:nth-child(5),
+.tabela-container td:nth-child(5) {
+  width: 14%;
+}
+.tabela-container th:nth-child(6),
+.tabela-container td:nth-child(6) {
+  width: 10%;
+}
+.tabela-container th:nth-child(7),
+.tabela-container td:nth-child(7) {
+  width: 10%;
+}
+.tabela-container th:nth-child(8),
+.tabela-container td:nth-child(8) {
+  width: 11%;
+}
+.tabela-container th:nth-child(9),
+.tabela-container td:nth-child(9) {
+  width: 9%;
+  text-align: center;
+}
 
 /* Linhas Específicas */
 .numero-os {
@@ -211,7 +242,8 @@
 }
 
 /* Etiquetas Tabela */
-.etiqueta-os, .status-os {
+.etiqueta-os,
+.status-os {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -276,6 +308,44 @@
 .botao-visualizar:hover {
   background: #eef4fb;
   color: #356bbd;
+}
+
+/* Deixa o bloco do calendário lado a lado com o texto com respiro adequado */
+.grupo-filtro-data {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #dce3eb;
+  border-radius: 7px;
+  padding: 0 10px;
+  height: 42px;
+}
+
+.grupo-filtro-data:focus-within {
+  border-color: #6c95dc;
+  box-shadow: 0 0 0 2px rgba(34, 89, 210, 0.08);
+}
+
+/* Estilo do texto (Início / Fim) */
+.label-filtro-data {
+  font-size: 11px;
+  color: #516278;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* O input de data perde a borda própria e preenche o espaço interno do grupo */
+.grupo-filtro-data .input-data {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  height: 100% !important;
+  background: transparent !important;
+}
+
+.grupo-filtro-data .input-data:focus {
+  box-shadow: none !important;
 }
 
 /* Responsividade Específica */

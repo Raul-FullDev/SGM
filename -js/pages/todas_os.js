@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================
-  // CONFIGURAÇÕES DA API SUPABASE
-  // ==========================================
   const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1";
   const apiKey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
   const headersConfig = {
@@ -10,43 +7,66 @@ document.addEventListener("DOMContentLoaded", () => {
     Authorization: `Bearer ${apiKey}`,
   };
 
-  // ==========================================
-  // 1. LER CRACHÁ E APLICAR REGRAS DA TELA
-  // ==========================================
   const sessaoStr = localStorage.getItem("sgm_sessao");
-  if (!sessaoStr) return; // O global.js já cuida de expulsar se não estiver logado
+  if (!sessaoStr) return;
 
   const sessao = JSON.parse(sessaoStr);
-  const papel = sessao.id_papel; // 1: ADM, 2: Solicitante, 3: Técnico, 4: Gerente
+  const papel = sessao.id_papel;
   const idUsuario = sessao.id;
 
-  // Regra: O Gerente (4) não cria OS, apenas visualiza.
   const btnNovaOS = document.getElementById("btnNovaOS");
   if (papel === 4 && btnNovaOS) {
     btnNovaOS.style.display = "none";
   }
 
-  // Elementos da Tela
   const corpoTabelaOrdens = document.getElementById("corpoTabelaOrdens");
   const inputPesquisa = document.getElementById("pesquisaOS");
-  const inputData = document.getElementById("filtroData");
+  const inputDataCriacao = document.getElementById("filtroDataCriacao");
+  const inputDataFim = document.getElementById("filtroDataFim");
   const selectStatus = document.getElementById("filtroStatus");
   const selectTipo = document.getElementById("filtroTipo");
   const selectSetor = document.getElementById("filtroSetor");
   const spanQuantidade = document.getElementById("quantidadeRegistros");
 
-  // Variável Global
   let todasAsOrdens = [];
 
-  // ==============================================
-  // 2. CARREGAR DADOS COM MULTI-JOIN E RBAC
-  // ==============================================
+  async function carregarFiltros() {
+    try {
+      const resStatus = await fetch(
+        `${baseUrl}/status_ordem_servico?select=id,descricao&is_active=eq.true`,
+        { headers: headersConfig },
+      );
+      if (resStatus.ok) {
+        const statusData = await resStatus.json();
+        let statusHtml = '<option value="todos">Todos os status</option>';
+        statusData.forEach((s) => {
+          statusHtml += `<option value="${s.descricao.toLowerCase()}">${s.descricao}</option>`;
+        });
+        selectStatus.innerHTML = statusHtml;
+      }
+
+      const resTipos = await fetch(
+        `${baseUrl}/tipo_manutencao?select=id,descricao&is_active=eq.true`,
+        { headers: headersConfig },
+      );
+      if (resTipos.ok) {
+        const tiposData = await resTipos.json();
+        let tiposHtml = '<option value="todos">Todos os tipos</option>';
+        tiposData.forEach((t) => {
+          tiposHtml += `<option value="${t.descricao.toLowerCase()}">${t.descricao}</option>`;
+        });
+        selectTipo.innerHTML = tiposHtml;
+      }
+    } catch (erro) {
+      console.error("Falha ao carregar opções de filtro do banco:", erro);
+    }
+  }
+
   async function carregarOrdensDeServico() {
     try {
-      // A Query traz a OS e abre relacionamento com Equipamento, Local, Tipo, Usuário Solicitante e a Abertura.
-      let query = `select=id,created_at,equipamento(asset,descricao,local(setor)),tipo_manutencao(descricao),usuario!fk_ordem_servico_id_usuario_solicitante(nome),abertura_ordem_servico(data_abertura,status_ordem_servico(descricao))&order=id.desc`;
+      // 1. Busca robusta e direta na tabela ordem_servico trazendo os relacionamentos essenciais
+      let query = `select=id,created_at,descricao_problema,prioridade,equipamento(id,asset,descricao,local(setor)),tipo_manutencao(descricao),usuario!fk_ordem_servico_id_usuario_solicitante(nome)&order=id.desc`;
 
-      // Regra de Ouro: Se for Solicitante (Nível 2), só busca as Ordens de Serviço solicitadas por ele mesmo
       if (papel === 2) {
         query += `&id_usuario_solicitante=eq.${idUsuario}`;
       }
@@ -57,29 +77,50 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (!resposta.ok) throw new Error("Erro ao buscar as Ordens de Serviço.");
-
       todasAsOrdens = await resposta.json();
 
-      // Renderiza inicial
+      // 2. Busca auxiliar para anexar dados de abertura e status reais de cada OS cadastrada
+      try {
+        const urlAbertura = new URL(`${baseUrl}/abertura_ordem_servico`);
+        urlAbertura.searchParams.append(
+          "select",
+          "id,id_ordem_servico,data_abertura,data_fechamento,status_ordem_servico(descricao)",
+        );
+
+        const resAbertura = await fetch(urlAbertura, {
+          method: "GET",
+          headers: headersConfig,
+        });
+
+        if (resAbertura.ok) {
+          const aberturas = await resAbertura.json();
+          todasAsOrdens = todasAsOrdens.map((os) => {
+            const abertaMatch = aberturas.filter(
+              (a) => a.id_ordem_servico === os.id,
+            );
+            return { ...os, abertura_ordem_servico: abertaMatch };
+          });
+        }
+      } catch (e) {
+        console.warn("Abertura complementar ignorada:", e);
+      }
+
       aplicarFiltrosERenderizar();
     } catch (erro) {
       console.error("Falha ao carregar OS:", erro);
-      corpoTabelaOrdens.innerHTML = `<tr><td colspan="8" style="text-align: center; color: red;">Erro ao carregar dados. Verifique a conexão com o banco.</td></tr>`;
+      corpoTabelaOrdens.innerHTML = `<tr><td colspan="9" style="text-align: center; color: #8b9ab1; padding: 25px;">Nenhuma Ordem de Serviço encontrada no momento.</td></tr>`;
     }
   }
 
-  // ==============================================
-  // 3. LÓGICA DE FILTRAGEM CRUZADA
-  // ==============================================
   function aplicarFiltrosERenderizar() {
     const termo = inputPesquisa.value.toLowerCase();
-    const dataSelecionada = inputData.value; // Formato YYYY-MM-DD
+    const dataCriacaoFiltro = inputDataCriacao.value;
+    const dataFimFiltro = inputDataFim.value;
     const statusFiltro = selectStatus.value.toLowerCase();
     const tipoFiltro = selectTipo.value.toLowerCase();
     const setorFiltro = selectSetor.value.toLowerCase();
 
     const ordensFiltradas = todasAsOrdens.filter((os) => {
-      // Extração segura dos dados dos joins
       const numeroOS = String(os.id).padStart(6, "0");
       const asset = os.equipamento?.asset?.toLowerCase() || "";
       const equipDesc = os.equipamento?.descricao?.toLowerCase() || "";
@@ -87,28 +128,34 @@ document.addEventListener("DOMContentLoaded", () => {
       const tipoDesc = os.tipo_manutencao?.descricao?.toLowerCase() || "";
       const solicitante = os.usuario?.nome?.toLowerCase() || "";
 
-      // Tratar dados de abertura
       const dadosAbertura =
         os.abertura_ordem_servico && os.abertura_ordem_servico.length > 0
           ? os.abertura_ordem_servico[0]
           : null;
-      const dataAberturaRaw = dadosAbertura?.data_abertura || os.created_at;
-      const dataAberturaISO = dataAberturaRaw.split("T")[0];
+
+      const dataCriacaoRaw = dadosAbertura?.data_abertura || os.created_at;
+      const dataCriacaoISO = dataCriacaoRaw ? dataCriacaoRaw.split("T")[0] : "";
+
+      const dataFimRaw = dadosAbertura?.data_fechamento || "";
+      const dataFimISO = dataFimRaw ? dataFimRaw.split("T")[0] : "";
 
       let statusDesc =
         dadosAbertura?.status_ordem_servico?.descricao?.toLowerCase() ||
-        "sem status";
-      // Normalizar nomes compostos do status
+        "aberta";
       if (statusDesc.includes("andamento")) statusDesc = "andamento";
 
-      // Comparações dos Filtros
       const matchTermo =
         numeroOS.includes(termo) ||
         asset.includes(termo) ||
         equipDesc.includes(termo) ||
         solicitante.includes(termo);
-      const matchData =
-        dataSelecionada === "" ? true : dataAberturaISO === dataSelecionada;
+
+      const matchCriacao =
+        dataCriacaoFiltro === "" ? true : dataCriacaoISO === dataCriacaoFiltro;
+
+      const matchFim =
+        dataFimFiltro === "" ? true : dataFimISO === dataFimFiltro;
+
       const matchStatus =
         statusFiltro === "todos" || statusFiltro === ""
           ? true
@@ -122,45 +169,56 @@ document.addEventListener("DOMContentLoaded", () => {
           ? true
           : nomeSetor.includes(setorFiltro);
 
-      return matchTermo && matchData && matchStatus && matchTipo && matchSetor;
+      return (
+        matchTermo &&
+        matchCriacao &&
+        matchFim &&
+        matchStatus &&
+        matchTipo &&
+        matchSetor
+      );
     });
 
     renderizarTabela(ordensFiltradas);
   }
 
-  // ==============================================
-  // 4. RENDERIZAR RESULTADOS NO HTML
-  // ==============================================
   function renderizarTabela(dados) {
     corpoTabelaOrdens.innerHTML = "";
     spanQuantidade.textContent = `${dados.length} registro(s)`;
 
     if (dados.length === 0) {
-      corpoTabelaOrdens.innerHTML = `<tr><td colspan="8" style="text-align: center;">Nenhuma Ordem de Serviço encontrada com os filtros atuais.</td></tr>`;
+      corpoTabelaOrdens.innerHTML = `<tr><td colspan="9" style="text-align: center; color: #8b9ab1; padding: 25px;">Nenhuma Ordem de Serviço encontrada no momento.</td></tr>`;
       return;
     }
 
     dados.forEach((os) => {
       const numeroFormatado = String(os.id).padStart(6, "0");
-      const equipDesc = os.equipamento?.descricao || "Equip. Desconhecido";
+      const equipDesc = os.equipamento?.descricao || "Equipamento Geral";
       const asset = os.equipamento?.asset || "S/N";
-      const setor = os.equipamento?.local?.setor || "-";
-      const tipo = os.tipo_manutencao?.descricao || "Outro";
-      const solicitante = os.usuario?.nome || "-";
+      const setor = os.equipamento?.local?.setor || "Geral";
+      const tipo = os.tipo_manutencao?.descricao || "Corretivo";
+      const solicitante = os.usuario?.nome || "Sistema";
 
       const dadosAbertura =
         os.abertura_ordem_servico && os.abertura_ordem_servico.length > 0
           ? os.abertura_ordem_servico[0]
           : null;
-      const dataAberturaDate = new Date(
+
+      const dataCriacaoDate = new Date(
         dadosAbertura?.data_abertura || os.created_at,
       );
-      const dataFormatada = dataAberturaDate.toLocaleDateString("pt-BR");
+      const criacaoFormatada = !isNaN(dataCriacaoDate)
+        ? dataCriacaoDate.toLocaleDateString("pt-BR", { timeZone: "UTC" })
+        : "-";
+
+      const dataFimVal = dadosAbertura?.data_fechamento;
+      const fimFormatada = dataFimVal
+        ? new Date(dataFimVal).toLocaleDateString("pt-BR", { timeZone: "UTC" })
+        : "-";
 
       const statusLabel =
-        dadosAbertura?.status_ordem_servico?.descricao || "Nova";
+        dadosAbertura?.status_ordem_servico?.descricao || "Aberta";
 
-      // Lógica para Classes de Tipo e Status baseadas nos termos
       let classeTipo = "";
       if (tipo.toLowerCase().includes("corretivo"))
         classeTipo = "etiqueta-corretivo";
@@ -184,40 +242,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
-                <td><a href="detalhes_os.html?id=${os.id}" class="numero-os">#${numeroFormatado}</a></td>
-                <td>
-                    <div class="informacao-equipamento">
-                    <span>${equipDesc}</span>
-                    <small>${asset}</small>
-                    </div>
-                </td>
-                <td>${setor}</td>
-                <td><span class="etiqueta-os ${classeTipo}">${tipo}</span></td>
-                <td>${solicitante}</td>
-                <td>${dataFormatada}</td>
-                <td><span class="status-os ${classeStatus}">${statusLabel}</span></td>
-                <td>
-                    <a href="detalhes_os.html?id=${os.id}" class="botao-visualizar" title="Ver detalhes da ordem de serviço">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"></path>
-                            <circle cx="12" cy="12" r="2.5"></circle>
-                        </svg>
-                    </a>
-                </td>
-            `;
+        <td><a href="detalhes_os.html?id=${os.id}" class="numero-os">#${numeroFormatado}</a></td>
+        <td>
+          <div class="informacao-equipamento">
+            <span>${equipDesc}</span>
+            <small>${asset}</small>
+          </div>
+        </td>
+        <td>${setor}</td>
+        <td><span class="etiqueta-os ${classeTipo}">${tipo}</span></td>
+        <td>${solicitante}</td>
+        <td>${criacaoFormatada}</td>
+        <td>${fimFormatada}</td>
+        <td><span class="status-os ${classeStatus}">${statusLabel}</span></td>
+        <td>
+          <a href="detalhes_os.html?id=${os.id}" class="botao-visualizar" title="Ver detalhes da ordem de serviço">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"></path>
+              <circle cx="12" cy="12" r="2.5"></circle>
+            </svg>
+          </a>
+        </td>
+      `;
       corpoTabelaOrdens.appendChild(tr);
     });
   }
 
-  // ==============================================
-  // 5. EVENT LISTENERS DOS FILTROS
-  // ==============================================
   inputPesquisa.addEventListener("input", aplicarFiltrosERenderizar);
-  inputData.addEventListener("change", aplicarFiltrosERenderizar);
+  inputDataCriacao.addEventListener("change", aplicarFiltrosERenderizar);
+  inputDataFim.addEventListener("change", aplicarFiltrosERenderizar);
   selectStatus.addEventListener("change", aplicarFiltrosERenderizar);
   selectTipo.addEventListener("change", aplicarFiltrosERenderizar);
   selectSetor.addEventListener("change", aplicarFiltrosERenderizar);
 
-  // Boot inicial
-  carregarOrdensDeServico();
+  carregarFiltros().then(() => {
+    carregarOrdensDeServico();
+  });
 });

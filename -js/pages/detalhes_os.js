@@ -5,48 +5,19 @@ document.addEventListener("DOMContentLoaded", () => {
     "Content-Type": "application/json",
     apikey: apiKey,
     Authorization: `Bearer ${apiKey}`,
-    Prefer: "return=minimal",
+    Prefer: "return=representation",
   };
 
-  // ==========================================
-  // 0. VERIFICAÇÃO DE PAPEL DA SESSÃO (RBAC DA TELA)
-  // ==========================================
   const sessaoStr = localStorage.getItem("sgm_sessao");
-  if (!sessaoStr) return; // Se não tiver, o global.js chuta pra fora
+  if (!sessaoStr) return;
 
   const sessao = JSON.parse(sessaoStr);
-  const papel = sessao.id_papel; // 1: ADM, 2: Solicitante, 3: Técnico, 4: Gerente
+  const papel = sessao.id_papel;
+  const idUsuarioLogado = sessao.id;
 
-  // Lógica Solicitante: Não vê as abas operacionais
-  if (papel === 2) {
-    // Procura todos os cards da coluna esquerda (Atividades e Peças) e some com eles
-    const cardsEsquerda = document.querySelectorAll(
-      ".coluna-esquerda .card-detalhes",
-    );
-    if (cardsEsquerda.length >= 3) {
-      cardsEsquerda[1].style.display = "none"; // Some com Atividades
-      cardsEsquerda[2].style.display = "none"; // Some com Peças
-    }
+  const urlParams = new URLSearchParams(window.location.search);
+  const idOsUrl = urlParams.get("id");
 
-    // Solicitante não pode mudar o Status nem encerrar OS (Esconde botões da direita)
-    const cardStatus = document.querySelector(".card-status");
-    if (cardStatus) cardStatus.style.display = "none";
-  }
-
-  // Lógica Gerente: Somente Leitura
-  if (papel === 4) {
-    // Remove todos os botões de adicionar e editar atividades/peças
-    const btnsAcao = document.querySelectorAll(
-      ".botao-adicionar-atividade, .botao-adicionar-peca, .botao-editar-atividade, .botao-editar-peca",
-    );
-    btnsAcao.forEach((btn) => (btn.style.display = "none"));
-
-    // Esconde o painel inteiro de "Alterar Status" e botões de Finalizar/Cancelar
-    const cardStatus = document.querySelector(".card-status");
-    if (cardStatus) cardStatus.style.display = "none";
-  }
-
-  // Elementos do HTML
   const botoesStatus = document.querySelectorAll(".opcao-status");
   const btnCancelarOS = document.getElementById("cancelarOS");
   const btnFinalizarOS = document.getElementById("finalizarOS");
@@ -58,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const selectTipoServico = document.getElementById("atividadeTipoServico");
   const selectStatusAtividade = document.getElementById("atividadeStatus");
 
-  // Elementos Edição de Atividade
   const modalEditarAtividade = document.getElementById("modalEditarAtividade");
   const formEditarAtividade = document.getElementById("formEditarAtividade");
   const editTipoServico = document.getElementById("editAtividadeTipoServico");
@@ -69,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   let arrayAtividadesGlobal = [];
 
-  // Elementos Peças (SGM-234)
   const btnAdicionarPeca = document.getElementById("adicionarPeca");
   const modalNovaPeca = document.getElementById("modalNovaPeca");
   const formNovaPeca = document.getElementById("formNovaPeca");
@@ -77,31 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let idAberturaAtual = null;
   let idStatusAtual = null;
-  let idUsuarioLogado = sessao.id; // Pegando do localStorage ao invés de buscar do banco
+  const mapStatusIds = {};
 
-  const mapStatusIds = {
-    aberta: null,
-    andamento: null,
-    cancelada: null,
-    concluida: null,
-  };
-
-  // ==========================================
-  // 1. CARREGAR DADOS INICIAIS DA PÁGINA
-  // ==========================================
   async function inicializarDados() {
     try {
-      // Simulação para testes de UI, já que a URL não tá passando parâmetro "?id=" ainda
-      const resOs = await fetch(
-        `${baseUrl}/abertura_ordem_servico?select=id,id_status&order=id.desc&limit=1`,
-        { headers: headersConfig },
-      );
-      const dadosOs = await resOs.json();
-      if (dadosOs.length > 0) {
-        idAberturaAtual = dadosOs[0].id;
-        idStatusAtual = dadosOs[0].id_status;
-      }
-
       const resStatusOS = await fetch(
         `${baseUrl}/status_ordem_servico?select=id,descricao`,
         { headers: headersConfig },
@@ -115,21 +63,69 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (desc.includes("cancelada")) mapStatusIds["cancelada"] = s.id;
       });
 
+      let queryAbertura = `${baseUrl}/abertura_ordem_servico?select=id,id_ordem_servico,id_status,data_abertura,data_fechamento,status_ordem_servico(descricao),ordem_servico(id,descricao_problema,equipamento(id,asset,descricao,local(setor)),tipo_manutencao(descricao),usuario!fk_ordem_servico_id_usuario_solicitante(nome))&order=id.desc&limit=1`;
+
+      if (idOsUrl) {
+        queryAbertura = `${baseUrl}/abertura_ordem_servico?select=id,id_ordem_servico,id_status,data_abertura,data_fechamento,status_ordem_servico(descricao),ordem_servico(id,descricao_problema,equipamento(id,asset,descricao,local(setor)),tipo_manutencao(descricao),usuario!fk_ordem_servico_id_usuario_solicitante(nome))&id_ordem_servico=eq.${idOsUrl}`;
+      }
+
+      const resOs = await fetch(queryAbertura, { headers: headersConfig });
+      const dadosOs = await resOs.json();
+
+      if (dadosOs.length > 0) {
+        const abertura = dadosOs[0];
+        idAberturaAtual = abertura.id;
+        idStatusAtual = abertura.id_status;
+        const os = abertura.ordem_servico;
+
+        if (os) {
+          document.querySelector(".numero-os").textContent =
+            `OS #${String(os.id).padStart(4, "0")}`;
+          document.querySelector(".informacoes-grid").innerHTML = `
+            <div class="informacao"><span class="informacao-label">EQUIPAMENTO</span><strong>${os.equipamento?.descricao || "-"}</strong></div>
+            <div class="informacao"><span class="informacao-label">ASSET</span><strong>${os.equipamento?.asset || "-"}</strong></div>
+            <div class="informacao"><span class="informacao-label">SETOR</span><strong>${os.equipamento?.local?.setor || "-"}</strong></div>
+            <div class="informacao"><span class="informacao-label">TIPO</span><strong>${os.tipo_manutencao?.descricao || "-"}</strong></div>
+            <div class="informacao"><span class="informacao-label">SOLICITANTE</span><strong>${os.usuario?.nome || "-"}</strong></div>
+            <div class="informacao"><span class="informacao-label">TÉCNICO</span><strong>Admin</strong></div>
+            <div class="informacao"><span class="informacao-label">ABERTURA</span><strong>${abertura.data_abertura ? new Date(abertura.data_abertura).toLocaleDateString("pt-BR") : "-"}</strong></div>
+            <div class="informacao"><span class="informacao-label">FECHAMENTO</span><strong>${abertura.data_fechamento ? new Date(abertura.data_fechamento).toLocaleDateString("pt-BR") : "—"}</strong></div>
+          `;
+          document.querySelector(".descricao-problema p").textContent =
+            os.descricao_problema || "Sem descrição";
+        }
+
+        const statusDesc =
+          abertura.status_ordem_servico?.descricao || "Em Andamento";
+        const badge = document.querySelector(".status-badge");
+        badge.textContent = statusDesc;
+        badge.className = `status-badge status-${statusDesc.toLowerCase().replace(/\s+/g, "-")}`;
+
+        botoesStatus.forEach((btn) => {
+          btn.classList.remove("selecionado");
+          if (
+            btn.textContent.trim().toLowerCase() === statusDesc.toLowerCase()
+          ) {
+            btn.classList.add("selecionado");
+          }
+        });
+      }
+
       const resTipos = await fetch(`${baseUrl}/tipo_servico?select=id,tipo`, {
         headers: headersConfig,
       });
       const tipos = await resTipos.json();
-
       selectTipoServico.innerHTML =
         '<option value="">Selecione o tipo</option>';
       editTipoServico.innerHTML = '<option value="">Selecione o tipo</option>';
-      filtroTipoAtividade.innerHTML =
-        '<option value="todos">Todos os tipos</option>';
-
+      if (filtroTipoAtividade)
+        filtroTipoAtividade.innerHTML =
+          '<option value="todos">Todos os tipos</option>';
       tipos.forEach((t) => {
         selectTipoServico.innerHTML += `<option value="${t.id}">${t.tipo}</option>`;
         editTipoServico.innerHTML += `<option value="${t.id}">${t.tipo}</option>`;
-        filtroTipoAtividade.innerHTML += `<option value="${t.id}">${t.tipo}</option>`;
+        if (filtroTipoAtividade)
+          filtroTipoAtividade.innerHTML += `<option value="${t.id}">${t.tipo}</option>`;
       });
 
       const resStatusAtv = await fetch(
@@ -137,53 +133,43 @@ document.addEventListener("DOMContentLoaded", () => {
         { headers: headersConfig },
       );
       const statusAtv = await resStatusAtv.json();
-
       selectStatusAtividade.innerHTML =
         '<option value="">Selecione o status</option>';
       editStatusAtividade.innerHTML =
         '<option value="">Selecione o status</option>';
-
       statusAtv.forEach((s) => {
         selectStatusAtividade.innerHTML += `<option value="${s.id}">${s.descricao}</option>`;
         editStatusAtividade.innerHTML += `<option value="${s.id}">${s.descricao}</option>`;
       });
 
-      // Carregar Peças Dinamicamente (SGM-234)
-      if (papel !== 2 && selectPeca) {
-        // Solicitante não carrega peças
+      if (selectPeca) {
         const resPecas = await fetch(
           `${baseUrl}/peca?select=id,descricao,custo_unitario,qtde&is_active=eq.true&order=descricao.asc`,
           { headers: headersConfig },
         );
         const pecasData = await resPecas.json();
         window.pecasGlobal = pecasData;
-
         selectPeca.innerHTML = '<option value="">Selecione a peça...</option>';
         pecasData.forEach((p) => {
           selectPeca.innerHTML += `<option value="${p.id}">[Estoque: ${p.qtde}] ${p.descricao} - R$ ${p.custo_unitario.toFixed(2)}</option>`;
         });
       }
 
-      if (idAberturaAtual && papel !== 2) {
-        carregarAtividadesDaOS();
-        carregarPecasDaOS();
+      if (idAberturaAtual) {
+        await carregarAtividadesDaOS();
+        await carregarPecasDaOS();
       }
     } catch (e) {
       console.error("Erro ao inicializar dados:", e);
     }
   }
 
-  // ==========================================
-  // 2. BUSCAR E RENDERIZAR ATIVIDADES
-  // ==========================================
   async function carregarAtividadesDaOS() {
     try {
-      const query = `select=id,servico,tipo_servico(id,tipo),status_atividade(id,descricao)&id_abertura_ordem_servico=eq.${idAberturaAtual}&order=id.asc`;
+      const query = `select=id,servico,data_inicio,data_fechamento,tipo_servico(id,tipo),status_atividade(id,descricao)&id_abertura_ordem_servico=eq.${idAberturaAtual}&order=id.asc`;
       const resposta = await fetch(`${baseUrl}/atividade?${query}`, {
-        method: "GET",
         headers: headersConfig,
       });
-
       if (!resposta.ok) throw new Error("Erro ao buscar atividades");
 
       arrayAtividadesGlobal = await resposta.json();
@@ -212,59 +198,70 @@ document.addEventListener("DOMContentLoaded", () => {
       let classeConcluida = "";
       let iconeNumero = index + 1;
 
-      if (status.toLowerCase().includes("conclu")) {
+      const isConcluida =
+        status.toLowerCase().includes("conclu") ||
+        status.toLowerCase().includes("concluída");
+      if (isConcluida) {
         classeConcluida = "concluida";
         iconeNumero = '<i class="bi bi-check"></i>';
       }
 
-      // Se for gerente, o botão de edição de atividade não aparece
-      const displayBtnEditar = papel === 4 ? 'style="display: none;"' : "";
+      const botaoLapisHTML = isConcluida
+        ? ""
+        : `<button type="button" class="botao-editar-atividade" data-id="${ativ.id}" aria-label="Editar atividade"><i class="bi bi-pencil"></i></button>`;
 
       containerListaAtividades.innerHTML += `
-            <div class="atividade ${classeConcluida}">
-                <span class="atividade-numero">${iconeNumero}</span>
-                <div class="atividade-info">
-                    <div class="atividade-conteudo">
-                    <span class="atividade-texto">${descricao}</span>
-                    <span class="atividade-tipo">Tipo: ${tipo}</span>
-                    </div>
-                    <span class="atividade-status">${status}</span>
-                    <button type="button" class="botao-editar-atividade" data-id="${ativ.id}" ${displayBtnEditar} aria-label="Editar atividade">
-                      <i class="bi bi-pencil"></i>
-                    </button>
+        <div class="atividade ${classeConcluida}">
+            <span class="atividade-numero">${iconeNumero}</span>
+            <div class="atividade-info">
+                <div class="atividade-conteudo">
+                  <span class="atividade-texto">${descricao}</span>
+                  <span class="atividade-tipo">Tipo: ${tipo}</span>
                 </div>
+                <span class="atividade-status">${status}</span>
+                ${botaoLapisHTML}
             </div>
-          `;
+        </div>
+      `;
     });
   }
 
-  filtroTipoAtividade?.addEventListener("change", (e) => {
-    const val = e.target.value;
-    if (val === "todos") renderizarAtividades(arrayAtividadesGlobal);
-    else
-      renderizarAtividades(
-        arrayAtividadesGlobal.filter((a) => a.tipo_servico?.id === Number(val)),
-      );
-  });
-
+  // CORREÇÃO: Busca robusta de peças utilizando o relacionamento correto de atividades da OS
   // ==========================================
-  // 3. BUSCAR E RENDERIZAR PEÇAS
+  // 3. BUSCAR E RENDERIZAR PEÇAS UTILIZADAS
   // ==========================================
   async function carregarPecasDaOS() {
     try {
-      const query = `select=id,quantidade,custo_unitario_na_troca,peca(descricao),atividade!inner(id_abertura_ordem_servico)&atividade.id_abertura_ordem_servico=eq.${idAberturaAtual}`;
-      const res = await fetch(`${baseUrl}/troca_peca?${query}`, {
-        headers: headersConfig,
-      });
-      if (!res.ok) throw new Error("Erro ao buscar peças");
+      // 1. Pega primeiro todas as IDs das atividades desta abertura de OS
+      const resAtiv = await fetch(
+        `${baseUrl}/atividade?select=id&id_abertura_ordem_servico=eq.${idAberturaAtual}`,
+        { headers: headersConfig },
+      );
+      if (!resAtiv.ok) throw new Error("Erro ao buscar atividades para peças");
+      const ativs = await resAtiv.json();
 
-      const trocas = await res.json();
       const tbody = document.querySelector(".tabela-pecas tbody");
       const tfootTotal = document.querySelector(
         ".tabela-pecas tfoot td:last-child strong",
       );
 
       if (!tbody) return;
+
+      if (ativs.length === 0) {
+        tbody.innerHTML =
+          '<tr><td colspan="5" style="text-align: center; color: #6c809b; font-size: 11px;">Nenhuma peça utilizada nesta OS.</td></tr>';
+        if (tfootTotal) tfootTotal.textContent = "R$ 0.00";
+        return;
+      }
+
+      const idsAtividades = ativs.map((a) => a.id);
+
+      // 2. Busca as trocas de peças vinculadas a essas atividades de forma limpa e direta
+      const queryPecas = `${baseUrl}/troca_peca?select=id,quantidade,custo_unitario_na_troca,peca(descricao),id_atividade&id_atividade=in.(${idsAtividades.join(",")})`;
+      const resTrocas = await fetch(queryPecas, { headers: headersConfig });
+      if (!resTrocas.ok) throw new Error("Erro ao buscar peças utilizadas");
+
+      const trocas = await resTrocas.json();
       tbody.innerHTML = "";
 
       if (trocas.length === 0) {
@@ -275,119 +272,93 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       let totalOS = 0;
-
-      const displayBtnEditar = papel === 4 ? 'style="display: none;"' : "";
-
       trocas.forEach((t) => {
         const totalItem = t.quantidade * t.custo_unitario_na_troca;
         totalOS += totalItem;
         tbody.innerHTML += `
-                  <tr>
-                      <td>${t.peca?.descricao || "-"}</td>
-                      <td>${t.quantidade}</td>
-                      <td>R$ ${t.custo_unitario_na_troca.toFixed(2)}</td>
-                      <td><strong>R$ ${totalItem.toFixed(2)}</strong></td>
-                      <td class="acao-peca">
-                        <button type="button" class="botao-editar-peca" data-id="${t.id}" ${displayBtnEditar} aria-label="Editar peça">
-                          <i class="bi bi-pencil"></i>
-                        </button>
-                      </td>
-                  </tr>
-              `;
+          <tr>
+              <td>${t.peca?.descricao || "-"}</td>
+              <td>${t.quantidade}</td>
+              <td>R$ ${t.custo_unitario_na_troca.toFixed(2)}</td>
+              <td><strong>R$ ${totalItem.toFixed(2)}</strong></td>
+              <td class="acao-peca">
+                <button type="button" class="botao-editar-peca" data-id="${t.id}" data-qtd="${t.quantidade}" title="Editar quantidade da peça">
+                  <i class="bi bi-pencil"></i>
+                </button>
+              </td>
+          </tr>
+        `;
       });
       if (tfootTotal) tfootTotal.textContent = `R$ ${totalOS.toFixed(2)}`;
     } catch (erro) {
       console.error("Falha ao carregar peças:", erro);
     }
   }
+  function renderizarTabelaPecas(trocas) {
+    const tbody = document.querySelector(".tabela-pecas tbody");
+    const tfootTotal = document.querySelector(
+      ".tabela-pecas tfoot td:last-child strong",
+    );
 
-  // ==========================================
-  // 4. NOVA PEÇA E ATUALIZAÇÃO DE ESTOQUE
-  // ==========================================
-  if (btnAdicionarPeca) {
-    btnAdicionarPeca.addEventListener("click", () => {
-      if (arrayAtividadesGlobal.length === 0) {
-        return alert(
-          "Você precisa cadastrar ao menos uma Atividade antes de registrar uma Peça!",
-        );
-      }
+    if (!tbody) return;
+    tbody.innerHTML = "";
 
-      const selectAtiv = document.getElementById("pecaAtividadeVinculada");
-      selectAtiv.innerHTML =
-        '<option value="">Selecione a atividade referente...</option>';
-      arrayAtividadesGlobal.forEach((a) => {
-        selectAtiv.innerHTML += `<option value="${a.id}">${a.servico}</option>`;
-      });
+    if (trocas.length === 0) {
+      tbody.innerHTML =
+        '<tr><td colspan="5" style="text-align: center; color: #6c809b; font-size: 11px;">Nenhuma peça utilizada nesta OS.</td></tr>';
+      if (tfootTotal) tfootTotal.textContent = "R$ 0.00";
+      return;
+    }
 
-      modalNovaPeca.style.display = "flex";
+    let totalOS = 0;
+    trocas.forEach((t) => {
+      const totalItem = t.quantidade * t.custo_unitario_na_troca;
+      totalOS += totalItem;
+      tbody.innerHTML += `
+        <tr>
+            <td>${t.peca?.descricao || "-"}</td>
+            <td>${t.quantidade}</td>
+            <td>R$ ${t.custo_unitario_na_troca.toFixed(2)}</td>
+            <td><strong>R$ ${totalItem.toFixed(2)}</strong></td>
+            <td class="acao-peca">
+              <button type="button" class="botao-editar-peca" data-id="${t.id}" data-qtd="${t.quantidade}" title="Editar quantidade da peça">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </td>
+        </tr>
+      `;
     });
+    if (tfootTotal) tfootTotal.textContent = `R$ ${totalOS.toFixed(2)}`;
   }
 
   document
-    .getElementById("fecharModalPeca")
-    ?.addEventListener("click", () => (modalNovaPeca.style.display = "none"));
-  document
-    .getElementById("cancelarModalPeca")
-    ?.addEventListener("click", () => (modalNovaPeca.style.display = "none"));
+    .querySelector(".tabela-pecas")
+    ?.addEventListener("click", async (e) => {
+      const btnPeca = e.target.closest(".botao-editar-peca");
+      if (!btnPeca) return;
+      const idTroca = btnPeca.getAttribute("data-id");
+      const qtdAtual = btnPeca.getAttribute("data-qtd");
 
-  formNovaPeca?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const idPeca = Number(document.getElementById("pecaSelecionada").value);
-    const qtdUsada = Number(document.getElementById("pecaQuantidade").value);
-    const idAtiv = Number(
-      document.getElementById("pecaAtividadeVinculada").value,
-    );
-
-    const peca = window.pecasGlobal.find((p) => p.id === idPeca);
-    if (!peca) return alert("Peça não encontrada.");
-
-    if (qtdUsada > peca.qtde) {
-      return alert(
-        `ESTOQUE INSUFICIENTE: Você tentou usar ${qtdUsada} unidades, mas temos apenas ${peca.qtde} no estoque.`,
+      const novaQtd = prompt(
+        "Informe a nova quantidade utilizada para esta peça:",
+        qtdAtual,
       );
-    }
+      if (novaQtd === null || isNaN(novaQtd) || Number(novaQtd) <= 0) return;
 
-    const btnSubmit = formNovaPeca.querySelector('button[type="submit"]');
-    const txtOriginal = btnSubmit.innerHTML;
-    btnSubmit.innerHTML = "Baixando Estoque...";
-    btnSubmit.disabled = true;
+      try {
+        const res = await fetch(`${baseUrl}/troca_peca?id=eq.${idTroca}`, {
+          method: "PATCH",
+          headers: headersConfig,
+          body: JSON.stringify({ quantidade: Number(novaQtd) }),
+        });
+        if (!res.ok) throw new Error("Erro ao atualizar a quantidade da peça.");
+        alert("Quantidade atualizada com sucesso!");
+        carregarPecasDaOS();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
 
-    try {
-      const resTroca = await fetch(`${baseUrl}/troca_peca`, {
-        method: "POST",
-        headers: headersConfig,
-        body: JSON.stringify({
-          id_atividade: idAtiv,
-          id_peca: idPeca,
-          quantidade: qtdUsada,
-          custo_unitario_na_troca: peca.custo_unitario,
-        }),
-      });
-      if (!resTroca.ok) throw new Error("Erro ao vincular a peça à OS.");
-
-      const novoEstoque = peca.qtde - qtdUsada;
-      const resEstoque = await fetch(`${baseUrl}/peca?id=eq.${idPeca}`, {
-        method: "PATCH",
-        headers: headersConfig,
-        body: JSON.stringify({ qtde: novoEstoque }),
-      });
-      if (!resEstoque.ok) throw new Error("Erro ao dar baixa no estoque.");
-
-      alert("Peça adicionada com sucesso!");
-      modalNovaPeca.style.display = "none";
-      formNovaPeca.reset();
-      inicializarDados();
-    } catch (erro) {
-      alert(erro.message);
-    } finally {
-      btnSubmit.innerHTML = txtOriginal;
-      btnSubmit.disabled = false;
-    }
-  });
-
-  // ==========================================
-  // 5. ABRIR E SALVAR EDIÇÃO DA ATIVIDADE
-  // ==========================================
   containerListaAtividades?.addEventListener("click", (e) => {
     const btnEditar = e.target.closest(".botao-editar-atividade");
     if (!btnEditar) return;
@@ -403,6 +374,15 @@ document.addEventListener("DOMContentLoaded", () => {
     editTipoServico.value = ativ.tipo_servico?.id || "";
     editStatusAtividade.value = ativ.status_atividade?.id || "";
 
+    if (ativ.data_fechamento) {
+      document.getElementById("editAtividadeDataFim").value =
+        ativ.data_fechamento.slice(0, 16);
+    } else {
+      document.getElementById("editAtividadeDataFim").value = new Date()
+        .toISOString()
+        .slice(0, 16);
+    }
+
     modalEditarAtividade.style.display = "flex";
   });
 
@@ -415,13 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const statusNovo = editStatusAtividade.value;
     const tipoNovo = editTipoServico.value;
     const descNova = document.getElementById("editAtividadeDescricao").value;
-
-    const btnSubmit = formEditarAtividade.querySelector(
-      'button[type="submit"]',
-    );
-    const txtOriginal = btnSubmit.innerHTML;
-    btnSubmit.innerHTML = "Salvando...";
-    btnSubmit.disabled = true;
+    const dataFimEdit = document.getElementById("editAtividadeDataFim").value;
 
     try {
       const payload = {
@@ -430,6 +404,12 @@ document.addEventListener("DOMContentLoaded", () => {
         id_status: Number(statusNovo),
         id_usuario_ultima_atualizacao: idUsuarioLogado,
       };
+
+      if (dataFimEdit) {
+        payload.data_fechamento = new Date(dataFimEdit).toISOString();
+        payload.id_usuario_conclusao = idUsuarioLogado;
+      }
+
       const resPatch = await fetch(`${baseUrl}/atividade?id=eq.${idAtiv}`, {
         method: "PATCH",
         headers: headersConfig,
@@ -446,7 +426,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id_status_anterior: Number(statusAntigo),
             id_status_novo: Number(statusNovo),
             id_usuario_responsavel: idUsuarioLogado,
-            observacao: "Status alterado via pop-up de edição.",
+            observacao: "Status e data de encerramento atualizados.",
           }),
         });
       }
@@ -455,9 +435,6 @@ document.addEventListener("DOMContentLoaded", () => {
       carregarAtividadesDaOS();
     } catch (erro) {
       alert(erro.message);
-    } finally {
-      btnSubmit.innerHTML = txtOriginal;
-      btnSubmit.disabled = false;
     }
   });
 
@@ -474,74 +451,10 @@ document.addEventListener("DOMContentLoaded", () => {
       () => (modalEditarAtividade.style.display = "none"),
     );
 
-  // ==========================================
-  // 6. ATUALIZAR STATUS DA OS
-  // ==========================================
-  async function executarTrocaDeStatus(chaveStatus) {
-    const novoStatusId = mapStatusIds[chaveStatus];
-    if (!idAberturaAtual || !idUsuarioLogado || !novoStatusId)
-      return alert("Sistema carregando...");
-    if (novoStatusId === idStatusAtual)
-      return alert("Esta OS já se encontra neste status.");
-
-    try {
-      const payloadAbertura = {
-        id_status: novoStatusId,
-        id_usuario_ultima_atualizacao: idUsuarioLogado,
-      };
-      if (chaveStatus === "concluida") {
-        payloadAbertura.data_fechamento = new Date().toISOString();
-        payloadAbertura.id_usuario_conclusao = idUsuarioLogado;
-      }
-      const resPatch = await fetch(
-        `${baseUrl}/abertura_ordem_servico?id=eq.${idAberturaAtual}`,
-        {
-          method: "PATCH",
-          headers: headersConfig,
-          body: JSON.stringify(payloadAbertura),
-        },
-      );
-      if (!resPatch.ok) throw new Error("Erro Supabase (PATCH OS)");
-
-      await fetch(`${baseUrl}/historico_status_ordem_servico`, {
-        method: "POST",
-        headers: headersConfig,
-        body: JSON.stringify({
-          id_abertura_ordem_servico: idAberturaAtual,
-          id_status_anterior: idStatusAtual,
-          id_status_novo: novoStatusId,
-          id_usuario_responsavel: idUsuarioLogado,
-          observacao: "Status atualizado.",
-        }),
-      });
-      alert("Status da OS atualizado com sucesso!");
-      window.location.reload();
-    } catch (erro) {
-      alert(erro.message);
-    }
-  }
-
-  // ==========================================
-  // 7. REGISTRAR NOVA ATIVIDADE
-  // ==========================================
   formNovaAtividade?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (!idAberturaAtual || !idUsuarioLogado)
-      return alert("Aguarde o carregamento...");
-
     const dataInicioVal = document.getElementById("atividadeDataInicio").value;
     const dataFimVal = document.getElementById("atividadeDataFim").value;
-    if (
-      dataInicioVal &&
-      dataFimVal &&
-      new Date(dataFimVal) <= new Date(dataInicioVal)
-    )
-      return alert("A data/hora de fim deve ser MAIOR que a de início.");
-
-    const btnSubmit = formNovaAtividade.querySelector('button[type="submit"]');
-    const txtOriginal = btnSubmit.innerHTML;
-    btnSubmit.innerHTML = "Salvando...";
-    btnSubmit.disabled = true;
 
     try {
       const payloadAtividade = {
@@ -560,37 +473,81 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const resAtiv = await fetch(`${baseUrl}/atividade`, {
         method: "POST",
-        headers: { ...headersConfig, Prefer: "return=representation" },
+        headers: headersConfig,
         body: JSON.stringify(payloadAtividade),
       });
-      if (!resAtiv.ok) throw new Error("Erro ao salvar Atividade no banco.");
+      if (!resAtiv.ok) throw new Error("Erro ao salvar Atividade.");
 
-      const novaAtividadeCriada = await resAtiv.json();
-
-      if (dataInicioVal && dataFimVal) {
-        await fetch(`${baseUrl}/sessao_atividade`, {
-          method: "POST",
-          headers: headersConfig,
-          body: JSON.stringify({
-            id_atividade: novaAtividadeCriada[0].id,
-            id_usuario_tecnico: idUsuarioLogado,
-            data_inicio_sessao: new Date(dataInicioVal).toISOString(),
-            data_fim_sessao: new Date(dataFimVal).toISOString(),
-            observacao: "Apontamento inicial.",
-          }),
-        });
-      }
       alert("Atividade registrada com sucesso!");
       modalNovaAtividade.style.display = "none";
       formNovaAtividade.reset();
       carregarAtividadesDaOS();
     } catch (erro) {
       alert(erro.message);
-    } finally {
-      btnSubmit.innerHTML = txtOriginal;
-      btnSubmit.disabled = false;
     }
   });
+
+  async function executarTrocaDeStatus(chaveStatus) {
+    const novoStatusId = mapStatusIds[chaveStatus];
+    if (!idAberturaAtual || !novoStatusId) return alert("Carregando dados...");
+
+    if (chaveStatus === "concluida") {
+      if (arrayAtividadesGlobal.length === 0) {
+        return alert(
+          "Não é possível finalizar a OS pois ela não possui nenhuma atividade cadastrada.",
+        );
+      }
+      const todasConcluidas = arrayAtividadesGlobal.every((a) => {
+        const descStatus = a.status_atividade?.descricao?.toLowerCase() || "";
+        return (
+          descStatus.includes("conclu") || descStatus.includes("concluída")
+        );
+      });
+      if (!todasConcluidas) {
+        return alert(
+          "Todas as atividades devem estar concluídas para que a OS possa ser finalizada.",
+        );
+      }
+    }
+
+    try {
+      const payloadAbertura = {
+        id_status: novoStatusId,
+        id_usuario_ultima_atualizacao: idUsuarioLogado,
+      };
+      if (chaveStatus === "concluida") {
+        payloadAbertura.data_fechamento = new Date().toISOString();
+        payloadAbertura.id_usuario_conclusao = idUsuarioLogado;
+      }
+
+      const resPatch = await fetch(
+        `${baseUrl}/abertura_ordem_servico?id=eq.${idAberturaAtual}`,
+        {
+          method: "PATCH",
+          headers: headersConfig,
+          body: JSON.stringify(payloadAbertura),
+        },
+      );
+      if (!resPatch.ok) throw new Error("Erro ao atualizar status da OS.");
+
+      await fetch(`${baseUrl}/historico_status_ordem_servico`, {
+        method: "POST",
+        headers: headersConfig,
+        body: JSON.stringify({
+          id_abertura_ordem_servico: idAberturaAtual,
+          id_status_anterior: idStatusAtual,
+          id_status_novo: novoStatusId,
+          id_usuario_responsavel: idUsuarioLogado,
+          observacao: "Status atualizado.",
+        }),
+      });
+
+      alert("Status atualizado com sucesso!");
+      window.location.reload();
+    } catch (erro) {
+      alert(erro.message);
+    }
+  }
 
   botoesStatus.forEach((btn) =>
     btn.addEventListener("click", (e) =>
@@ -601,15 +558,30 @@ document.addEventListener("DOMContentLoaded", () => {
     btnCancelarOS.addEventListener(
       "click",
       () =>
-        confirm("Tem certeza que deseja cancelar?") &&
+        confirm("Deseja cancelar esta OS?") &&
         executarTrocaDeStatus("cancelada"),
     );
 
   if (btnFinalizarOS && modalEncerrar) {
-    btnFinalizarOS.addEventListener(
-      "click",
-      () => (modalEncerrar.style.display = "flex"),
-    );
+    btnFinalizarOS.addEventListener("click", () => {
+      if (arrayAtividadesGlobal.length === 0) {
+        return alert(
+          "Não é possível finalizar a OS pois ela não possui nenhuma atividade cadastrada.",
+        );
+      }
+      const todasConcluidas = arrayAtividadesGlobal.every((a) => {
+        const descStatus = a.status_atividade?.descricao?.toLowerCase() || "";
+        return (
+          descStatus.includes("conclu") || descStatus.includes("concluída")
+        );
+      });
+      if (!todasConcluidas) {
+        return alert(
+          "Todas as atividades devem estar concluídas para que a OS possa ser finalizada.",
+        );
+      }
+      modalEncerrar.style.display = "flex";
+    });
     document
       .getElementById("cancelarModal")
       .addEventListener("click", () => (modalEncerrar.style.display = "none"));
@@ -639,5 +611,103 @@ document.addEventListener("DOMContentLoaded", () => {
       () => (modalNovaAtividade.style.display = "none"),
     );
 
+  if (btnAdicionarPeca)
+    btnAdicionarPeca.addEventListener("click", () => {
+      if (arrayAtividadesGlobal.length === 0)
+        return alert(
+          "Cadastre ao menos uma Atividade antes de registrar uma Peça!",
+        );
+      const selectAtiv = document.getElementById("pecaAtividadeVinculada");
+      selectAtiv.innerHTML =
+        '<option value="">Selecione a atividade...</option>';
+      arrayAtividadesGlobal.forEach((a) => {
+        selectAtiv.innerHTML += `<option value="${a.id}">${a.servico}</option>`;
+      });
+      modalNovaPeca.style.display = "flex";
+    });
+  document
+    .getElementById("fecharModalPeca")
+    ?.addEventListener("click", () => (modalNovaPeca.style.display = "none"));
+  document
+    .getElementById("cancelarModalPeca")
+    ?.addEventListener("click", () => (modalNovaPeca.style.display = "none"));
+
   inicializarDados();
+
+  // ==========================================
+  // ADICIONAR NOVA PEÇA E BAIXAR ESTOQUE
+  // ==========================================
+  formNovaPeca?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Captura os valores do formulário
+    const idAtividade = document.getElementById("pecaAtividadeVinculada").value;
+    const idPeca = document.getElementById("pecaSelecionada").value;
+    const quantidade = document.getElementById("pecaQuantidade").value;
+
+    if (!idAtividade || !idPeca || !quantidade) {
+      return alert("Preencha todos os campos obrigatórios.");
+    }
+
+    // Encontra a peça selecionada na variável global para pegar o custo unitário e a quantidade em estoque
+    const pecaObj = window.pecasGlobal.find((p) => p.id == idPeca);
+    if (!pecaObj) {
+      return alert("Peça não encontrada no sistema.");
+    }
+
+    const qtdSolicitada = Number(quantidade);
+
+    // Validação de estoque
+    if (qtdSolicitada > pecaObj.qtde) {
+      return alert(
+        `Quantidade solicitada maior que o estoque disponível (${pecaObj.qtde} un).`,
+      );
+    }
+
+    try {
+      // 1. Insere o registro na tabela troca_peca
+      const payloadTroca = {
+        id_atividade: Number(idAtividade),
+        id_peca: Number(idPeca),
+        quantidade: qtdSolicitada,
+        custo_unitario_na_troca: pecaObj.custo_unitario,
+      };
+
+      const resTroca = await fetch(`${baseUrl}/troca_peca`, {
+        method: "POST",
+        headers: headersConfig,
+        body: JSON.stringify(payloadTroca),
+      });
+
+      if (!resTroca.ok) throw new Error("Erro ao vincular a peça à atividade.");
+
+      // 2. Atualiza (baixa) o estoque na tabela peca
+      const novaQtdEstoque = pecaObj.qtde - qtdSolicitada;
+      const resEstoque = await fetch(`${baseUrl}/peca?id=eq.${idPeca}`, {
+        method: "PATCH",
+        headers: headersConfig,
+        body: JSON.stringify({ qtde: novaQtdEstoque }),
+      });
+
+      if (!resEstoque.ok) {
+        console.warn(
+          "A peça foi adicionada à OS, mas houve um erro ao baixar o estoque principal.",
+        );
+      } else {
+        // Atualiza a variável global localmente para não precisar recarregar o banco todo agora
+        pecaObj.qtde = novaQtdEstoque;
+      }
+
+      alert("Peça adicionada e estoque baixado com sucesso!");
+
+      // Fecha o modal e limpa o formulário
+      modalNovaPeca.style.display = "none";
+      formNovaPeca.reset();
+
+      // Recarrega a tabela de peças na interface
+      await carregarPecasDaOS();
+    } catch (erro) {
+      alert(erro.message);
+    }
+  });
 });

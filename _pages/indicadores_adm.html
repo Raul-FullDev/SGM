@@ -153,12 +153,51 @@
 
           <div class="cabecalho-direito">
             <!-- Notificações -->
-            <button
-              class="botao-notificacao"
-              id="botaoNotificacao"
-              type="button"
-              aria-label="Notificações"
-            ></button>
+            <!-- ========================================== -->
+            <!-- NOTIFICAÇÕES DINÂMICAS COM DROPDOWN        -->
+            <!-- ========================================== -->
+            <div
+              class="notificacao-container"
+              style="position: relative; display: flex; align-items: center"
+            >
+              <button
+                class="botao-notificacao"
+                id="botaoNotificacao"
+                type="button"
+                aria-label="Notificações"
+              >
+                <i class="bi bi-bell"></i>
+                <!-- Bolinha começa invisível e vazia -->
+                <span class="badge-notificacao" style="display: none">0</span>
+              </button>
+
+              <div class="dropdown-notificacoes" id="dropdownNotificacoes">
+                <div class="dropdown-cabecalho-noti">
+                  <span class="dropdown-titulo">Notificações</span>
+                  <button
+                    type="button"
+                    class="btn-marcar-lidas"
+                    id="btnMarcarLidasGlobal"
+                  >
+                    Marcar como lidas
+                  </button>
+                </div>
+
+                <!-- O JavaScript vai injetar as notificações REAIS aqui dentro -->
+                <div class="lista-notificacoes" id="containerListaNotificacoes">
+                  <p
+                    style="
+                      text-align: center;
+                      font-size: 11px;
+                      color: #8b9ab1;
+                      padding: 25px 15px;
+                    "
+                  >
+                    Nenhuma notificação no momento.
+                  </p>
+                </div>
+              </div>
+            </div>
 
             <!-- Perfil -->
             <div class="perfil-container" style="position: relative">
