@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   // CONFIGURAÇÕES DA API SUPABASE
   // ==========================================
-  const baseUrl = "https://akbqnlvyfravlglouoqs.supabase.co/rest/v1";
-  const apikey = "sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK";
+  const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1/";
+  const apikey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
 
   const headersConfig = {
     "Content-Type": "application/json",

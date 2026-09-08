@@ -31,11 +31,11 @@ document.getElementById("userForm").addEventListener("submit", async function (e
     }
 
     try {
-        const checkResponse = await fetch(`https://akbqnlvyfravlglouoqs.supabase.co/rest/v1/usuario?contato=eq.${encodeURIComponent(contato)}`, {
+        const checkResponse = await fetch(`https://umvtsquzpugempndwitx.supabase.co/rest/v1/usuario?contato=eq.${encodeURIComponent(contato)}`, {
             method: 'GET',
             headers: {
-                "apikey": "sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK",
-                "Authorization": "Bearer sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK"
+                "apikey": "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
+                "Authorization": "Bearer sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb"
                 }
             });
 
@@ -55,12 +55,12 @@ document.getElementById("userForm").addEventListener("submit", async function (e
     console.log("Enviando usuário:", novoUsuario);
 
     // 3. Fazendo a requisição (POST) para o Supabase
-    fetch("https://akbqnlvyfravlglouoqs.supabase.co/rest/v1/usuario", {
+    fetch("https://umvtsquzpugempndwitx.supabase.co/rest/v1/usuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        apikey: "sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK",
-        Authorization: "Bearer sb_publishable_1c5c9HTR_Hcf3KF5SX22NQ_wNXFADKK",
+        apikey: "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
+        Authorization: "Bearer sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
         Prefer: "return=representation", // Faz o Supabase devolver os dados inseridos na resposta
       },
       body: JSON.stringify(novoUsuario),
