@@ -20,7 +20,6 @@ body {
   color: #17233f;
 }
 
-
 /* ==========================================
    ESTRUTURA PRINCIPAL
 ========================================== */
@@ -31,7 +30,6 @@ body {
   display: flex;
   overflow: hidden;
 }
-
 
 /* ==========================================
    LADO ESQUERDO
@@ -48,15 +46,8 @@ body {
 
   overflow: hidden;
 
-  background:
-    linear-gradient(
-      135deg,
-      #06275f 0%,
-      #063e93 48%,
-      #0758bd 100%
-    );
+  background: linear-gradient(135deg, #06275f 0%, #063e93 48%, #0758bd 100%);
 }
-
 
 /* Camada azul adicional */
 
@@ -65,16 +56,10 @@ body {
   position: absolute;
   inset: 0;
 
-  background:
-    linear-gradient(
-      120deg,
-      rgba(0, 174, 255, 0.12),
-      transparent 45%
-    );
+  background: linear-gradient(120deg, rgba(0, 174, 255, 0.12), transparent 45%);
 
   pointer-events: none;
 }
-
 
 /* ==========================================
    FORMAS DECORATIVAS
@@ -151,7 +136,6 @@ body {
   pointer-events: none;
 }
 
-
 /* ==========================================
    CONTEÚDO DA MARCA
 ========================================== */
@@ -209,7 +193,6 @@ body {
   letter-spacing: 0.3px;
 }
 
-
 /* ==========================================
    RODAPÉ ESQUERDO
 ========================================== */
@@ -247,7 +230,6 @@ body {
   font-weight: 400;
 }
 
-
 /* ==========================================
    LADO DIREITO
 ========================================== */
@@ -266,15 +248,8 @@ body {
 
   overflow: hidden;
 
-  background:
-    linear-gradient(
-      145deg,
-      #f8fbff 0%,
-      #eef5ff 50%,
-      #dceaff 100%
-    );
+  background: linear-gradient(145deg, #f8fbff 0%, #eef5ff 50%, #dceaff 100%);
 }
-
 
 /* ==========================================
    DECORAÇÕES DO LADO DIREITO
@@ -305,7 +280,6 @@ body {
   left: -150px;
 }
 
-
 /* ==========================================
    CARD
 ========================================== */
@@ -328,7 +302,6 @@ body {
     0 20px 45px rgba(25, 67, 125, 0.12),
     0 4px 12px rgba(25, 67, 125, 0.07);
 }
-
 
 /* ==========================================
    ÍCONE DO USUÁRIO
@@ -359,7 +332,6 @@ body {
   height: 39px;
 }
 
-
 /* ==========================================
    CABEÇALHO DO LOGIN
 ========================================== */
@@ -387,7 +359,6 @@ body {
   font-size: 16px;
 }
 
-
 /* ==========================================
    FORMULÁRIO
 ========================================== */
@@ -411,7 +382,6 @@ body {
   font-size: 14px;
   font-weight: 600;
 }
-
 
 /* ==========================================
    INPUTS
@@ -439,8 +409,7 @@ body {
 
   background: #ffffff;
 
-  box-shadow:
-    0 0 0 3px rgba(44, 115, 223, 0.12);
+  box-shadow: 0 0 0 3px rgba(44, 115, 223, 0.12);
 }
 
 .icone-input {
@@ -480,7 +449,6 @@ body {
   color: #8b9ab1;
 }
 
-
 /* ==========================================
    BOTÃO MOSTRAR SENHA
 ========================================== */
@@ -512,7 +480,6 @@ body {
   width: 22px;
   height: 22px;
 }
-
 
 /* ==========================================
    OPÇÕES
@@ -565,7 +532,6 @@ body {
   text-decoration: underline;
 }
 
-
 /* ==========================================
    BOTÃO LOGIN
 ========================================== */
@@ -583,12 +549,7 @@ body {
   border: none;
   border-radius: 9px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #0758cf,
-      #086de4
-    );
+  background: linear-gradient(135deg, #0758cf, #086de4);
 
   color: white;
 
@@ -597,8 +558,7 @@ body {
 
   cursor: pointer;
 
-  box-shadow:
-    0 8px 18px rgba(7, 88, 207, 0.2);
+  box-shadow: 0 8px 18px rgba(7, 88, 207, 0.2);
 
   transition:
     transform 0.2s ease,
@@ -614,15 +574,9 @@ body {
 }
 
 .botao-login:hover {
-  background:
-    linear-gradient(
-      135deg,
-      #064db7,
-      #075dcc
-    );
+  background: linear-gradient(135deg, #064db7, #075dcc);
 
-  box-shadow:
-    0 10px 22px rgba(7, 88, 207, 0.28);
+  box-shadow: 0 10px 22px rgba(7, 88, 207, 0.28);
 
   transform: translateY(-1px);
 }
@@ -634,7 +588,6 @@ body {
 .botao-login:active {
   transform: translateY(0);
 }
-
 
 /* ==========================================
    RODAPÉ DIREITO
@@ -666,13 +619,74 @@ body {
   letter-spacing: 3px;
 }
 
+/* ==========================================
+   MODAL DE RECUPERAÇÃO DE SENHA
+========================================== */
+.modal-recuperacao {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-recuperacao-conteudo {
+  background: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: fadeInDown 0.3s ease;
+}
+
+.modal-recuperacao-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: #f8fbff;
+  border-bottom: 1px solid #e1e7ef;
+}
+
+.modal-recuperacao-header h3 {
+  color: #12203d;
+  font-size: 18px;
+}
+
+.btn-fechar-recuperacao {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #8b9ab1;
+  cursor: pointer;
+}
+
+.btn-fechar-recuperacao:hover {
+  color: #e33434;
+}
+
+.modal-recuperacao-body {
+  padding: 25px 20px;
+}
+
+.modal-recuperacao-body p {
+  color: #627494;
+  font-size: 13px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
 
 /* ==========================================
    RESPONSIVIDADE
 ========================================== */
 
 @media (max-width: 1000px) {
-
   .lado-esquerdo {
     width: 42%;
   }
@@ -693,12 +707,9 @@ body {
   .slogan-logo {
     font-size: 17px;
   }
-
 }
 
-
 @media (max-width: 768px) {
-
   .login-container {
     flex-direction: column;
     min-height: 100vh;
@@ -754,12 +765,9 @@ body {
   .rodape-direito {
     display: none;
   }
-
 }
 
-
 @media (max-width: 480px) {
-
   .lado-esquerdo {
     min-height: 240px;
   }
@@ -812,5 +820,4 @@ body {
     min-height: 54px;
     font-size: 15px;
   }
-
 }

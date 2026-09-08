@@ -195,7 +195,11 @@
                 <label for="lembrar"> Lembrar meus dados </label>
               </div>
 
-              <a href="#" class="link-senha" onclick="event.preventDefault()">
+              <a
+                href="#"
+                class="link-senha"
+                onclick="abrirModalRecuperacao(event)"
+              >
                 Esqueci minha senha
               </a>
             </div>
@@ -228,6 +232,116 @@
         </div>
       </section>
     </main>
+
+    <!-- ========================================== -->
+    <!-- MODAL DE RECUPERAÇÃO DE SENHA              -->
+    <!-- ========================================== -->
+    <div class="modal-recuperacao" id="modalRecuperacao" style="display: none">
+      <div class="modal-recuperacao-conteudo">
+        <div class="modal-recuperacao-header">
+          <h3>Recuperar Senha</h3>
+          <button
+            type="button"
+            onclick="fecharModalRecuperacao()"
+            class="btn-fechar-recuperacao"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-recuperacao-body">
+          <p id="textoRecuperacao">
+            Confirme sua identidade informando sua Matrícula e o Telefone de
+            Contato cadastrado no sistema.
+          </p>
+
+          <!-- Passo 1: Validação -->
+          <div id="passo1Recuperacao">
+            <div class="campo-formulario">
+              <label>Matrícula</label>
+              <input
+                type="text"
+                id="recMatricula"
+                placeholder="Ex: 10001"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border-radius: 5px;
+                  border: 1px solid #ccc;
+                  margin-bottom: 15px;
+                "
+              />
+            </div>
+            <div class="campo-formulario">
+              <label>Telefone (Somente números)</label>
+              <input
+                type="text"
+                id="recContato"
+                placeholder="Ex: 11999990001"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border-radius: 5px;
+                  border: 1px solid #ccc;
+                  margin-bottom: 15px;
+                "
+              />
+            </div>
+            <button
+              type="button"
+              class="botao-login"
+              onclick="validarUsuarioRecuperacao()"
+              style="min-height: 45px; width: 100%"
+            >
+              Validar Identidade
+            </button>
+          </div>
+
+          <!-- Passo 2: Nova Senha (Escondido no início) -->
+          <div id="passo2Recuperacao" style="display: none">
+            <input type="hidden" id="recIdUsuario" />
+            <div class="campo-formulario">
+              <label>Nova Senha</label>
+              <input
+                type="password"
+                id="recNovaSenha"
+                placeholder="Mínimo 6 caracteres"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border-radius: 5px;
+                  border: 1px solid #ccc;
+                  margin-bottom: 15px;
+                "
+              />
+            </div>
+            <div class="campo-formulario">
+              <label>Confirmar Nova Senha</label>
+              <input
+                type="password"
+                id="recConfirmaSenha"
+                placeholder="Repita a nova senha"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border-radius: 5px;
+                  border: 1px solid #ccc;
+                  margin-bottom: 15px;
+                "
+              />
+            </div>
+            <button
+              type="button"
+              class="botao-login"
+              onclick="salvarNovaSenhaRecuperacao()"
+              style="min-height: 45px; width: 100%; background: #159b72"
+            >
+              Salvar Nova Senha
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ================================ -->
     <!--          FUNCIONALIDADES         -->
@@ -319,6 +433,87 @@
         } finally {
           botaoLogin.innerHTML = textoBotaoOriginal;
           botaoLogin.disabled = false;
+        }
+      }
+
+      // ==========================================
+      // RECUPERAÇÃO DE SENHA
+      // ==========================================
+      function abrirModalRecuperacao(event) {
+        event.preventDefault();
+        document.getElementById("modalRecuperacao").style.display = "flex";
+        document.getElementById("passo1Recuperacao").style.display = "block";
+        document.getElementById("passo2Recuperacao").style.display = "none";
+        document.getElementById("textoRecuperacao").innerText =
+          "Confirme sua identidade informando sua Matrícula e o Telefone de Contato cadastrado no sistema.";
+
+        // Limpar campos
+        document.getElementById("recMatricula").value = "";
+        document.getElementById("recContato").value = "";
+        document.getElementById("recNovaSenha").value = "";
+        document.getElementById("recConfirmaSenha").value = "";
+      }
+
+      function fecharModalRecuperacao() {
+        document.getElementById("modalRecuperacao").style.display = "none";
+      }
+
+      async function validarUsuarioRecuperacao() {
+        const matricula = document.getElementById("recMatricula").value.trim();
+        const contato = document.getElementById("recContato").value.trim();
+
+        if (!matricula || !contato)
+          return alert("Preencha a matrícula e o contato!");
+
+        try {
+          // Busca se existe alguém com essa combinação exata
+          const url = `${baseUrl}/usuario?select=id&matricula=eq.${matricula}&contato=eq.${contato}&is_active=eq.true`;
+          const res = await fetch(url, { headers: headersConfig });
+          const data = await res.json();
+
+          if (data.length === 0) {
+            alert(
+              "Identidade não confirmada! Matrícula ou contato incorretos.",
+            );
+            return;
+          }
+
+          // Passou na verificação! Mostra tela de nova senha.
+          document.getElementById("recIdUsuario").value = data[0].id;
+          document.getElementById("passo1Recuperacao").style.display = "none";
+          document.getElementById("passo2Recuperacao").style.display = "block";
+          document.getElementById("textoRecuperacao").innerText =
+            "Identidade confirmada! Crie sua nova senha abaixo.";
+        } catch (error) {
+          alert("Erro de conexão ao verificar identidade.");
+        }
+      }
+
+      async function salvarNovaSenhaRecuperacao() {
+        const idUsuario = document.getElementById("recIdUsuario").value;
+        const novaSenha = document.getElementById("recNovaSenha").value.trim();
+        const confirma = document
+          .getElementById("recConfirmaSenha")
+          .value.trim();
+
+        if (novaSenha.length < 6)
+          return alert("A senha deve ter pelo menos 6 caracteres.");
+        if (novaSenha !== confirma) return alert("As senhas não coincidem!");
+
+        try {
+          // Faz o UPDATE da senha no banco
+          const res = await fetch(`${baseUrl}/usuario?id=eq.${idUsuario}`, {
+            method: "PATCH",
+            headers: headersConfig,
+            body: JSON.stringify({ senha: novaSenha }),
+          });
+
+          if (!res.ok) throw new Error("Falha ao salvar");
+
+          alert("Senha redefinida com sucesso! Faça login com sua nova senha.");
+          fecharModalRecuperacao();
+        } catch (error) {
+          alert("Erro ao redefinir a senha.");
         }
       }
     </script>

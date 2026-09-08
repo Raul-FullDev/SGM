@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SGM - Meu Perfil</title>
+
+    <link rel="stylesheet" href="../-css/pages/perfil.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="layout">
+      <!-- ========================================== -->
+      <!-- BARRA LATERAL PADRONIZADA                  -->
+      <!-- ========================================== -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
+          <div class="logo">
+            <span class="icone-logo">S</span>
+            <div class="texto-logo">
+              <strong>SGM</strong>
+              <span>Gestão de manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="navegacao-lateral" aria-label="Navegação principal">
+          <ul class="lista-navegacao">
+            <li class="item-navegacao">
+              <a href="dashboard.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-list-task"></i
+                ></span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="item-navegacao">
+              <a href="todas_os.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clipboard-data"></i
+                ></span>
+                <span>Ordens de Serviço</span>
+              </a>
+            </li>
+            <li class="item-navegacao">
+              <a href="equipamentos.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-wrench-adjustable"></i
+                ></span>
+                <span>Equipamentos</span>
+              </a>
+            </li>
+            <li class="item-navegacao">
+              <a href="setor_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-collection"></i
+                ></span>
+                <span>Setor</span>
+              </a>
+            </li>
+            <li class="item-navegacao">
+              <a href="historico_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clock-history"></i
+                ></span>
+                <span>Histórico</span>
+              </a>
+            </li>
+            <li class="item-navegacao">
+              <a href="indicadores_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-bar-chart"></i
+                ></span>
+                <span>Indicadores</span>
+              </a>
+            </li>
+            <li class="item-navegacao">
+              <a href="relatorios_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-file-earmark-text"></i
+                ></span>
+                <span>Relatórios</span>
+              </a>
+            </li>
+            <li class="item-navegacao">
+              <a href="manutencao_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"><i class="bi bi-tools"></i></span>
+                <span>Manutenção</span>
+              </a>
+            </li>
+            <li class="item-navegacao">
+              <a href="pecas_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"><i class="bi bi-nut"></i></span>
+                <span>Peças</span>
+              </a>
+            </li>
+            <li class="item-navegacao">
+              <a href="usuarios.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-people"></i
+                ></span>
+                <span>Administração</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Área principal -->
+      <div class="area-principal">
+        <!-- CABEÇALHO -->
+        <header class="cabecalho">
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="cabecalho-direito">
+            <button
+              class="botao-notificacao"
+              id="botaoNotificacao"
+              type="button"
+              aria-label="Notificações"
+            >
+              <i class="bi bi-bell"></i>
+            </button>
+
+            <!-- NOVO PERFIL COM DROPDOWN -->
+            <div class="perfil-container" style="position: relative">
+              <div
+                class="perfil-usuario"
+                id="botaoPerfil"
+                style="
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                "
+              >
+                <div class="avatar-usuario">AS</div>
+                <div class="informacoes-usuario">
+                  <strong>Admin Sistema</strong>
+                  <span>Administrador</span>
+                </div>
+                <i
+                  class="bi bi-chevron-down"
+                  style="color: #8a9cb4; font-size: 12px; margin-left: 5px"
+                ></i>
+              </div>
+
+              <div class="dropdown-perfil" id="dropdownPerfil">
+                <div class="dropdown-cabecalho">
+                  <span class="dropdown-titulo">Conta</span>
+                </div>
+                <div class="dropdown-divisor"></div>
+                <a href="perfil.html" class="dropdown-item">
+                  <i class="bi bi-person"></i> Meu Perfil
+                </a>
+                <div class="dropdown-divisor"></div>
+                <button
+                  type="button"
+                  class="dropdown-item sair"
+                  onclick="sairSistema()"
+                >
+                  <i class="bi bi-box-arrow-right"></i> Sair do Sistema
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- CONTEÚDO PRINCIPAL DA PÁGINA DE PERFIL -->
+        <main class="conteudo-principal">
+          <div class="cabecalho-pagina">
+            <h1>Meu Perfil</h1>
+            <p>Gerencie suas informações pessoais e credenciais de acesso</p>
+          </div>
+
+          <div class="grid-perfil">
+            <!-- CARD 1: DADOS DO USUÁRIO -->
+            <section class="card-perfil">
+              <div class="card-perfil-header">
+                <div class="avatar-grande" id="perfilAvatar">--</div>
+                <div class="info-header">
+                  <h2 id="perfilNome">Carregando...</h2>
+                  <span class="badge-funcao" id="perfilFuncao">...</span>
+                </div>
+              </div>
+
+              <div class="divisor"></div>
+
+              <div class="dados-usuario">
+                <div class="campo-dado">
+                  <span class="label-dado">Matrícula SGM</span>
+                  <strong id="perfilMatricula">-----</strong>
+                </div>
+                <div class="campo-dado">
+                  <span class="label-dado">Contato / Telefone</span>
+                  <strong id="perfilContato">-----</strong>
+                </div>
+                <div class="campo-dado">
+                  <span class="label-dado">Nível de Acesso</span>
+                  <strong id="perfilNivel">-----</strong>
+                </div>
+              </div>
+            </section>
+
+            <!-- CARD 2: ALTERAR SENHA -->
+            <section class="card-perfil card-senha">
+              <h3>Alterar Senha</h3>
+              <p class="descricao-senha">
+                Sua senha deve ter pelo menos 6 caracteres.
+              </p>
+
+              <form id="formAlterarSenha" class="formulario-senha">
+                <div class="campo-formulario">
+                  <label for="senhaAtual">Senha Atual</label>
+                  <input
+                    type="password"
+                    id="senhaAtual"
+                    placeholder="Digite sua senha atual"
+                    required
+                  />
+                </div>
+
+                <div class="campo-formulario">
+                  <label for="novaSenha">Nova Senha</label>
+                  <input
+                    type="password"
+                    id="novaSenha"
+                    placeholder="Digite a nova senha"
+                    required
+                    minlength="6"
+                  />
+                </div>
+
+                <div class="campo-formulario">
+                  <label for="confirmarSenha">Confirmar Nova Senha</label>
+                  <input
+                    type="password"
+                    id="confirmarSenha"
+                    placeholder="Repita a nova senha"
+                    required
+                    minlength="6"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  class="botao-salvar-senha"
+                  id="btnSalvarSenha"
+                >
+                  Atualizar Senha
+                </button>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../-js/global.js"></script>
+    <script src="../-js/pages/perfil.js"></script>
+  </body>
+</html>
