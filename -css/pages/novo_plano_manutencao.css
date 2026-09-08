@@ -2,9 +2,7 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
-/* =========================================================
-   CONTEÚDO
-========================================================= */
+
 
 .conteudo-principal.novo-plano {
   position: relative;
@@ -14,9 +12,7 @@
   box-sizing: border-box;
 }
 
-/* =========================================================
-   DECORAÇÃO
-========================================================= */
+
 
 .novo-plano::before,
 .novo-plano::after {
@@ -52,9 +48,7 @@
   z-index: 1;
 }
 
-/* =========================================================
-   BREADCRUMB
-========================================================= */
+
 
 .breadcrumb {
   display: flex;
@@ -87,9 +81,7 @@
   font-weight: 600;
 }
 
-/* =========================================================
-   TÍTULO
-========================================================= */
+
 
 .novo-plano .page-title {
   margin-bottom: 21px;
@@ -110,9 +102,6 @@
   line-height: 1.45;
 }
 
-/* =========================================================
-   FORMULÁRIO
-========================================================= */
 
 .maintenance-form {
   width: min(594px, 100%);
@@ -204,9 +193,7 @@
   line-height: 1.3;
 }
 
-/* =========================================================
-   AVISO
-========================================================= */
+
 
 .form-info {
   grid-column: 1 / -1;
@@ -224,9 +211,7 @@
   line-height: 1.4;
 }
 
-/* =========================================================
-   BOTÕES
-========================================================= */
+
 
 .form-actions {
   grid-column: 1 / -1;
@@ -284,13 +269,11 @@
   border-color: #0f4fd2;
 }
 
-/* =========================================================
-   CORREÇÃO DO TEXTAREA (Observações)
-========================================================= */
+
 .maintenance-form textarea {
-  resize: vertical; /* Permite esticar apenas para baixo, bloqueando para os lados */
-  max-height: 180px; /* Trava o tamanho máximo da caixa */
-  min-height: 80px; /* Garante um tamanho mínimo bonito */
+  resize: vertical; 
+  max-height: 180px; 
+  min-height: 80px; 
   font-family: inherit;
   padding: 12px;
   border: 1px solid #dce4ed;
@@ -307,9 +290,7 @@
   outline: none;
 }
 
-/* =========================================================
-   RESPONSIVIDADE
-========================================================= */
+
 
 @media (max-width: 900px) {
   .conteudo-principal.novo-plano {

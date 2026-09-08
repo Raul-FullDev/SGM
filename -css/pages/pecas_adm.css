@@ -2,18 +2,14 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
-/* =========================================================
-   CONTEÚDO PRINCIPAL
-   ========================================================= */
+
 
 .conteudo-principal {
   position: relative;
   overflow: hidden;
 }
 
-/* =========================================================
-   CABEÇALHO DA PÁGINA
-   ========================================================= */
+
 
 .cabecalho-pagina {
   position: relative;
@@ -48,9 +44,7 @@
   flex-wrap: wrap;
 }
 
-/* =========================================================
-   BOTÃO NOVA PEÇA
-   ========================================================= */
+
 
 .botao-nova-peca {
   height: 40px;
@@ -94,9 +88,7 @@
   font-size: 13px;
 }
 
-/* =========================================================
-   CARDS DE RESUMO
-   ========================================================= */
+
 
 .cards-pecas {
   position: relative;
@@ -137,9 +129,7 @@
     0 8px 16px rgba(47, 82, 130, 0.05);
 }
 
-/* =========================================================
-   ÍCONES DOS CARDS
-   ========================================================= */
+
 
 .icone-resumo-peca {
   width: 40px;
@@ -170,9 +160,7 @@
   background: #ff3038;
 }
 
-/* =========================================================
-   CONTEÚDO DOS CARDS
-   ========================================================= */
+
 
 .conteudo-resumo-peca h2 {
   margin-bottom: 5px;
@@ -196,9 +184,7 @@
   font-size: 10px;
 }
 
-/* =========================================================
-   TABELA
-   ========================================================= */
+
 
 .tabela-pecas-container {
   position: relative;
@@ -226,9 +212,7 @@
   table-layout: fixed;
 }
 
-/* =========================================================
-   CABEÇALHO DA TABELA
-   ========================================================= */
+
 
 .tabela-pecas thead {
   background: #f8fafc;
@@ -253,33 +237,31 @@
 
 .tabela-pecas th:nth-child(1) {
   width: 10%;
-} /* Código */
+} 
 .tabela-pecas th:nth-child(2) {
   width: 25%;
-} /* Descrição */
+} 
 .tabela-pecas th:nth-child(3) {
   width: 15%;
-} /* Categoria */
+} 
 .tabela-pecas th:nth-child(4) {
   width: 12%;
   text-align: center;
-} /* Qtd */
+} 
 .tabela-pecas th:nth-child(5) {
   width: 14%;
   text-align: right;
-} /* Custo */
+} 
 .tabela-pecas th:nth-child(6) {
   width: 14%;
   text-align: right;
-} /* Total */
+} 
 .tabela-pecas th:nth-child(7) {
   width: 10%;
   text-align: center;
-} /* Ações */
+} 
 
-/* =========================================================
-   LINHAS
-   ========================================================= */
+
 
 .tabela-pecas tbody tr {
   min-height: 52px;
@@ -319,9 +301,7 @@
   text-align: right;
 }
 
-/* =========================================================
-   DADOS DA TABELA
-   ========================================================= */
+
 
 .codigo-peca {
   color: #526b91 !important;
@@ -360,9 +340,7 @@
   font-weight: 600;
 }
 
-/* =========================================================
-   AÇÕES DA PEÇA
-   ========================================================= */
+
 
 .acoes-peca {
   text-align: center !important;
@@ -386,7 +364,7 @@
   font-size: 17px;
   text-decoration: none;
 
-  /* Lápis Minimalista: Remove o botão cinza padrão do navegador */
+  
   border: none;
   background: transparent;
   cursor: pointer;
@@ -401,9 +379,7 @@
   color: #2055dc;
 }
 
-/* =========================================================
-   ALERTA DE ESTOQUE
-   ========================================================= */
+
 
 .peca-estoque-baixo {
   background: #fffafb;
@@ -430,9 +406,7 @@
   white-space: nowrap;
 }
 
-/* =========================================================
-   POP-UP DE EDIÇÃO
-   ========================================================= */
+
 
 .popup-edicao {
   position: fixed;
@@ -480,9 +454,7 @@
   z-index: 1;
 }
 
-/* =========================================================
-   CABEÇALHO DO POP-UP
-   ========================================================= */
+
 
 .popup-fechar {
   position: absolute;
@@ -557,9 +529,6 @@
   font-size: 11px;
 }
 
-/* =========================================================
-   FORMULÁRIO DO POP-UP
-   ========================================================= */
 
 .form-edicao-peca {
   display: flex;
@@ -579,7 +548,7 @@
   font-weight: 600;
 }
 
-/* Aplicando o estilo para INPUT e SELECT juntos */
+
 .campo-formulario input,
 .campo-formulario select {
   width: 100%;
@@ -598,7 +567,7 @@
     box-shadow 0.2s ease;
 }
 
-/* Setinha customizada e remoção do estilo feio do navegador para o Select */
+
 .campo-formulario select {
   cursor: pointer;
   appearance: none;
@@ -623,9 +592,7 @@
   cursor: default;
 }
 
-/* =========================================================
-   CAMPOS LADO A LADO
-   ========================================================= */
+
 
 .linha-formulario {
   display: grid;
@@ -634,9 +601,7 @@
   gap: 13px;
 }
 
-/* =========================================================
-   BOTÕES DO POP-UP
-   ========================================================= */
+
 
 .acoes-popup {
   display: flex;
@@ -705,9 +670,7 @@
   transform: translateY(1px);
 }
 
-/* =========================================================
-   DECORAÇÕES
-   ========================================================= */
+
 
 .decoracao-pecas {
   position: absolute;
@@ -718,7 +681,7 @@
   pointer-events: none;
 }
 
-/* Pontos */
+
 
 .ponto-peca {
   position: absolute;
@@ -751,7 +714,6 @@
   right: 20.1%;
 }
 
-/* Círculos */
 
 .circulo-peca {
   position: absolute;
@@ -799,7 +761,7 @@
   border: 1px solid #bed6fc;
 }
 
-/* Linhas diagonais */
+
 
 .linhas-peca {
   position: absolute;
@@ -838,9 +800,7 @@
   top: 28px;
 }
 
-/* =========================================================
-   RESPONSIVIDADE
-   ========================================================= */
+
 
 @media (max-width: 1000px) {
   .cards-pecas {

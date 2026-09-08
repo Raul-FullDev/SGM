@@ -3,9 +3,7 @@
 @import url("../layout/header.css");
 
 
-/* =========================================================
-   CONTEÚDO PRINCIPAL
-   ========================================================= */
+
 
 .conteudo-principal {
   position: relative;
@@ -13,9 +11,7 @@
 }
 
 
-/* =========================================================
-   BREADCRUMB
-   ========================================================= */
+
 
 .breadcrumb-pagina {
   position: relative;
@@ -60,9 +56,7 @@
 }
 
 
-/* =========================================================
-   CABEÇALHO DA PÁGINA
-   ========================================================= */
+
 
 .cabecalho-pagina {
   position: relative;
@@ -85,9 +79,7 @@
 }
 
 
-/* =========================================================
-   FORMULÁRIO
-   ========================================================= */
+
 
 .formulario-equipamento {
   position: relative;
@@ -109,9 +101,7 @@
 }
 
 
-/* =========================================================
-   CAMPOS
-   ========================================================= */
+
 
 .campos-equipamento {
   display: grid;
@@ -145,9 +135,7 @@
 }
 
 
-/* =========================================================
-   INPUTS E SELECTS
-   ========================================================= */
+
 
 .campo-formulario input,
 .campo-formulario select {
@@ -188,9 +176,6 @@
 }
 
 
-/* =========================================================
-   AVISO
-   ========================================================= */
 
 .aviso-formulario {
   min-height: 42px;
@@ -216,9 +201,7 @@
 }
 
 
-/* =========================================================
-   AÇÕES
-   ========================================================= */
+
 
 .acoes-formulario {
   position: relative;
@@ -298,9 +281,7 @@
 }
 
 
-/* =========================================================
-   DECORAÇÕES
-   ========================================================= */
+
 
 .decoracao-equipamento {
   position: absolute;
@@ -312,7 +293,7 @@
 }
 
 
-/* Pontos */
+
 
 .ponto-equipamento {
   position: absolute;
@@ -352,7 +333,6 @@
 }
 
 
-/* Círculo principal */
 
 .circulo-equipamento {
   position: absolute;
@@ -371,7 +351,6 @@
 }
 
 
-/* Círculo maior inferior */
 
 .circulo-equipamento-2 {
   width: 230px;
@@ -384,7 +363,6 @@
 }
 
 
-/* Círculo intermediário */
 
 .circulo-equipamento-3 {
   width: 120px;
@@ -397,7 +375,6 @@
 }
 
 
-/* Círculo menor */
 
 .circulo-equipamento-4 {
   width: 180px;
@@ -410,7 +387,6 @@
 }
 
 
-/* Linhas diagonais */
 
 .linhas-equipamento {
   position: absolute;
@@ -450,9 +426,7 @@
 }
 
 
-/* =========================================================
-   RESPONSIVIDADE
-   ========================================================= */
+
 
 @media (max-width: 1000px) {
   .formulario-equipamento,

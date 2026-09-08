@@ -6,10 +6,10 @@
 
     <title>SGM - Indicadores de Manutenção</title>
 
-    <!-- Caminho do CSS mantido -->
+
     <link rel="stylesheet" href="../-css/pages/indicadores_adm.css" />
 
-    <!-- Bootstrap Icons -->
+    
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -18,7 +18,7 @@
 
   <body>
     <div class="layout">
-      <!-- Menu lateral -->
+     
       <aside class="barra-lateral" id="barraLateral">
         <div class="cabecalho-barra">
           <div class="logo">
@@ -33,7 +33,7 @@
 
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
-            <!-- Dashboard -->
+       
             <li class="item-navegacao">
               <a href="dashboard.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -43,7 +43,7 @@
               </a>
             </li>
 
-            <!-- Ordens de Serviço -->
+            
             <li class="item-navegacao">
               <a href="todas_os.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -53,7 +53,7 @@
               </a>
             </li>
 
-            <!-- Equipamentos -->
+           
             <li class="item-navegacao">
               <a href="equipamentos.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -63,7 +63,7 @@
               </a>
             </li>
 
-            <!-- Setor -->
+        
             <li class="item-navegacao">
               <a href="setor_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -73,7 +73,7 @@
               </a>
             </li>
 
-            <!-- Histórico -->
+           
             <li class="item-navegacao">
               <a href="historico_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -83,7 +83,7 @@
               </a>
             </li>
 
-            <!-- Indicadores -->
+        
             <li class="item-navegacao ativo">
               <a href="indicadores_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -93,7 +93,6 @@
               </a>
             </li>
 
-            <!-- Relatórios -->
             <li class="item-navegacao">
               <a href="relatorios_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -103,7 +102,7 @@
               </a>
             </li>
 
-            <!-- Manutenção -->
+      
             <li class="item-navegacao">
               <a href="manutencao_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -113,7 +112,7 @@
               </a>
             </li>
 
-            <!-- Peças -->
+     
             <li class="item-navegacao">
               <a href="pecas_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -123,7 +122,7 @@
               </a>
             </li>
 
-            <!-- Administração -->
+       
             <li class="item-navegacao">
               <a href="usuarios.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -136,7 +135,7 @@
         </nav>
       </aside>
 
-      <!-- Área principal -->
+
       <div class="area-principal">
         <!-- Cabeçalho -->
         <header class="cabecalho">
@@ -152,10 +151,6 @@
           </div>
 
           <div class="cabecalho-direito">
-            <!-- Notificações -->
-            <!-- ========================================== -->
-            <!-- NOTIFICAÇÕES DINÂMICAS COM DROPDOWN        -->
-            <!-- ========================================== -->
             <div
               class="notificacao-container"
               style="position: relative; display: flex; align-items: center"
@@ -167,7 +162,7 @@
                 aria-label="Notificações"
               >
                 <i class="bi bi-bell"></i>
-                <!-- Bolinha começa invisível e vazia -->
+            
                 <span class="badge-notificacao" style="display: none">0</span>
               </button>
 
@@ -183,7 +178,7 @@
                   </button>
                 </div>
 
-                <!-- O JavaScript vai injetar as notificações REAIS aqui dentro -->
+              
                 <div class="lista-notificacoes" id="containerListaNotificacoes">
                   <p
                     style="
@@ -199,9 +194,8 @@
               </div>
             </div>
 
-            <!-- Perfil -->
+       
             <div class="perfil-container" style="position: relative">
-              <!-- Botão clicável (Mantive as classes que você já usava: user-profile, user-avatar, user-info) -->
               <div
                 class="user-profile"
                 id="botaoPerfil"
@@ -223,13 +217,11 @@
                 ></i>
               </div>
 
-              <!-- Caixa do Dropdown (Escondida por padrão) -->
               <div class="dropdown-perfil" id="dropdownPerfil">
                 <div class="dropdown-cabecalho">
                   <span class="dropdown-titulo">Conta</span>
                 </div>
                 <div class="dropdown-divisor"></div>
-                <!-- LINK PARA A TELA DE PERFIL -->
                 <a href="perfil.html" class="dropdown-item">
                   <i class="bi bi-person"></i> Meu Perfil
                 </a>
@@ -246,9 +238,9 @@
           </div>
         </header>
 
-        <!-- Conteúdo principal -->
+   
         <main class="conteudo-principal">
-          <!-- Decorações -->
+     
           <div class="decoracao-indicadores" aria-hidden="true">
             <span class="ponto-indicador ponto-indicador-1"></span>
             <span class="ponto-indicador ponto-indicador-2"></span>
@@ -263,19 +255,18 @@
             <span class="linhas-indicador"></span>
           </div>
 
-          <!-- Cabeçalho da página -->
+     
           <section class="cabecalho-pagina">
             <h1>Indicadores de Manutenção</h1>
             <p>KPI's e métricas operacionais</p>
           </section>
 
-          <!-- Indicadores principais -->
           <section
             class="cards-indicadores"
             id="cardsIndicadores"
             aria-label="Indicadores principais"
           >
-            <!-- MTBF -->
+      
             <article class="card-indicador indicador-mtbf">
               <div class="valor-indicador">312<span>h</span></div>
 
@@ -288,7 +279,7 @@
               </div>
             </article>
 
-            <!-- MTTR -->
+      
             <article class="card-indicador indicador-mttr">
               <div class="valor-indicador">4,2<span>h</span></div>
 
@@ -301,7 +292,6 @@
               </div>
             </article>
 
-            <!-- DISP -->
             <article class="card-indicador indicador-disp">
               <div class="valor-indicador">94<span>%</span></div>
 
@@ -314,7 +304,7 @@
               </div>
             </article>
 
-            <!-- CONF -->
+       
             <article class="card-indicador indicador-conf">
               <div class="valor-indicador">87<span>%</span></div>
 
@@ -327,7 +317,7 @@
               </div>
             </article>
 
-            <!-- FALHA -->
+     
             <article class="card-indicador indicador-falha">
               <div class="valor-indicador">50<span>%</span></div>
 
@@ -341,7 +331,7 @@
             </article>
           </section>
 
-          <!-- Área dos gráficos -->
+
           <section class="area-indicadores">
             <!-- Custo de manutenção -->
             <article class="card-grafico card-custo-mensal">
@@ -402,7 +392,7 @@
               </div>
             </article>
 
-            <!-- OS por tipo -->
+   
             <article class="card-grafico card-tipos-manutencao">
               <h2>OS por Tipo de Manutenção</h2>
 
@@ -418,7 +408,7 @@
                   <strong>18</strong>
                 </div>
 
-                <!-- Preventiva -->
+          
                 <div class="linha-tipo">
                   <span class="nome-tipo">Preventiva</span>
 
@@ -429,7 +419,6 @@
                   <strong>15</strong>
                 </div>
 
-                <!-- Preditiva -->
                 <div class="linha-tipo">
                   <span class="nome-tipo">Preditiva</span>
 
@@ -440,7 +429,7 @@
                   <strong>5</strong>
                 </div>
 
-                <!-- Inspeção -->
+             
                 <div class="linha-tipo">
                   <span class="nome-tipo">Inspeção</span>
 
@@ -477,7 +466,7 @@
       </div>
     </div>
 
-    <!-- Caminho do JS mantido -->
+
     <script src="../-js/global.js"></script>
   </body>
 </html>

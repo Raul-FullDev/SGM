@@ -24,7 +24,7 @@
   font-size: 13px;
 }
 
-/* Grid do Perfil */
+
 .grid-perfil {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -40,7 +40,7 @@
   box-shadow: 0 4px 15px rgba(26, 52, 90, 0.04);
 }
 
-/* Header do Card de Dados */
+
 .card-perfil-header {
   display: flex;
   align-items: center;
@@ -85,7 +85,7 @@
   margin: 25px 0;
 }
 
-/* Campos de Dados */
+
 .dados-usuario {
   display: flex;
   flex-direction: column;
@@ -112,7 +112,7 @@
   font-weight: 500;
 }
 
-/* Card Alterar Senha */
+
 .card-senha h3 {
   color: #182334;
   font-size: 18px;

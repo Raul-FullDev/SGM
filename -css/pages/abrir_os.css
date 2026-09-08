@@ -56,7 +56,7 @@
   font-size: 11px;
 }
 
-/* Divisor */
+
 .service-order-divider,
 .formulario-divisor {
   width: 100%;
@@ -69,7 +69,7 @@
   margin: 31px 0 20px;
 }
 
-/* Formulário */
+
 .formulario-os {
   width: 100%;
 }
@@ -118,7 +118,7 @@
   box-shadow: 0 0 0 2px rgba(20, 91, 234, 0.08);
 }
 
-/* Select */
+
 .campo-formulario select {
   appearance: none;
   padding-right: 36px;
@@ -135,7 +135,7 @@
   cursor: pointer;
 }
 
-/* Solicitante */
+
 .solicitante {
   min-height: 58px;
   display: flex;
@@ -181,7 +181,7 @@
   font-size: 9px;
 }
 
-/* Ações */
+
 .formulario-acoes {
   display: flex;
   align-items: center;
@@ -230,14 +230,14 @@
   line-height: 1;
 }
 
-/* Nova estrutura de campos lado a lado */
+
 .linha-formulario {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
 
-/* Responsividade Específica */
+
 @media (max-width: 850px) {
   .service-order-card {
     width: min(650px, 100%);

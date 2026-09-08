@@ -22,7 +22,6 @@
   letter-spacing: -0.2px;
 }
 
-/* Botão principal */
 .botao-principal {
   min-height: 36px;
   display: inline-flex;
@@ -51,7 +50,7 @@
   line-height: 1;
 }
 
-/* Filtros */
+
 .filtros-os {
   width: 100%;
   margin-bottom: 20px;
@@ -62,7 +61,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
-/* Grid Ajustado para 5 filtros + label */
+
 .formulario-filtros {
   width: 100%;
   display: grid;
@@ -129,7 +128,7 @@
   justify-self: end;
 }
 
-/* Tabela */
+
 .tabela-os {
   width: 100%;
   overflow: hidden;
@@ -179,7 +178,7 @@
   background: #f9fbfe;
 }
 
-/* Larguras ajustadas para 8 colunas */
+
 .tabela-container th:nth-child(1),
 .tabela-container td:nth-child(1) {
   width: 8%;
@@ -218,7 +217,7 @@
   text-align: center;
 }
 
-/* Linhas Específicas */
+
 .numero-os {
   color: #145bea;
   font-size: 13px;
@@ -241,7 +240,6 @@
   font-size: 10px;
 }
 
-/* Etiquetas Tabela */
 .etiqueta-os,
 .status-os {
   display: inline-flex;
@@ -270,7 +268,7 @@
   border-color: #c9b8ff;
 }
 
-/* Cores de Status ajustadas para os termos do banco */
+
 .status-aberta {
   color: #d59600;
   background: #fffcf0;
@@ -292,7 +290,7 @@
   border-color: #fca7a7;
 }
 
-/* Botão visualizar */
+
 .botao-visualizar {
   width: 32px;
   height: 32px;
@@ -310,7 +308,7 @@
   color: #356bbd;
 }
 
-/* Deixa o bloco do calendário lado a lado com o texto com respiro adequado */
+
 .grupo-filtro-data {
   display: flex;
   align-items: center;
@@ -327,7 +325,7 @@
   box-shadow: 0 0 0 2px rgba(34, 89, 210, 0.08);
 }
 
-/* Estilo do texto (Início / Fim) */
+
 .label-filtro-data {
   font-size: 11px;
   color: #516278;
@@ -335,7 +333,7 @@
   white-space: nowrap;
 }
 
-/* O input de data perde a borda própria e preenche o espaço interno do grupo */
+
 .grupo-filtro-data .input-data {
   border: none !important;
   box-shadow: none !important;
@@ -348,7 +346,7 @@
   box-shadow: none !important;
 }
 
-/* Responsividade Específica */
+
 @media (max-width: 1200px) {
   .formulario-filtros {
     grid-template-columns: minmax(180px, 1fr) 120px 120px 120px 120px;

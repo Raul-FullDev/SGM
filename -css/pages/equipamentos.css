@@ -2,9 +2,7 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
-/* ==============================
-   CONTEÚDO DA PÁGINA
-============================== */
+
 
 .main-content {
   width: 100%;
@@ -14,7 +12,6 @@
   overflow: hidden;
 }
 
-/* Fundo decorativo da tela */
 
 .main-content::before,
 .main-content::after {
@@ -54,9 +51,7 @@
   z-index: 1;
 }
 
-/* ==============================
-   CABEÇALHO DA PÁGINA
-============================== */
+
 
 .page-header {
   display: flex;
@@ -84,9 +79,6 @@
   line-height: 1.4;
 }
 
-/* ==============================
-   BOTÃO PRINCIPAL
-============================== */
 
 .botao {
   min-height: 37px;
@@ -127,9 +119,7 @@
   line-height: 1;
 }
 
-/* ==============================
-   PESQUISA E FILTROS
-============================== */
+
 
 .filtros-equipamentos {
   width: 100%;
@@ -190,9 +180,7 @@
   box-shadow: 0 0 0 3px rgba(32, 85, 214, 0.08);
 }
 
-/* ==============================
-   NOVOS FILTROS
-============================== */
+
 
 .campo-filtro-equipamentos {
   flex: 0 0 170px;
@@ -226,9 +214,7 @@
   box-shadow: 0 0 0 3px rgba(32, 85, 214, 0.08);
 }
 
-/* ==============================
-   TABELA DE EQUIPAMENTOS
-============================== */
+
 
 .tabela-equipamentos {
   width: 100%;
@@ -319,7 +305,7 @@
   text-align: center;
 }
 
-/* Botão de Histórico (Ações) */
+
 .btn-ver-historico {
   width: 32px;
   height: 32px;
@@ -341,7 +327,7 @@
   color: #356bbd;
 }
 
-/* Cores de texto das colunas */
+
 
 .tabela-equipamentos td:nth-child(1) {
   color: #28456f;
@@ -362,9 +348,7 @@
   color: #7085a2;
 }
 
-/* ==============================
-   STATUS
-============================== */
+
 
 .status {
   display: inline-flex;
@@ -397,9 +381,7 @@
   color: #65778b;
 }
 
-/* ==============================
-   ESTADO VAZIO
-============================== */
+
 
 .estado-vazio {
   width: 100%;
@@ -440,9 +422,7 @@
   font-size: 10px;
 }
 
-/* ==============================
-   MODAL DE HISTÓRICO
-============================== */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -526,9 +506,7 @@
   color: #145bea;
 }
 
-/* ==============================
-   RESPONSIVIDADE
-============================== */
+
 
 @media (max-width: 1100px) {
   .tabela-equipamentos table {

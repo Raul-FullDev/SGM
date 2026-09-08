@@ -14,7 +14,7 @@
 
   <body>
     <div class="layout">
-      <!-- Menu lateral -->
+   
       <aside class="barra-lateral" id="barraLateral">
         <div class="cabecalho-barra">
           <div class="logo">
@@ -125,9 +125,9 @@
         </nav>
       </aside>
 
-      <!-- Área principal -->
+   
       <div class="area-principal">
-        <!-- Cabeçalho -->
+    
         <header class="cabecalho">
           <div class="cabecalho-esquerdo">
             <button
@@ -141,9 +141,6 @@
           </div>
 
           <div class="cabecalho-direito">
-            <!-- ========================================== -->
-            <!-- NOTIFICAÇÕES DINÂMICAS COM DROPDOWN        -->
-            <!-- ========================================== -->
             <div
               class="notificacao-container"
               style="position: relative; display: flex; align-items: center"
@@ -155,7 +152,6 @@
                 aria-label="Notificações"
               >
                 <i class="bi bi-bell"></i>
-                <!-- Bolinha começa invisível e vazia -->
                 <span class="badge-notificacao" style="display: none">0</span>
               </button>
 
@@ -171,7 +167,7 @@
                   </button>
                 </div>
 
-                <!-- O JavaScript vai injetar as notificações REAIS aqui dentro -->
+            
                 <div class="lista-notificacoes" id="containerListaNotificacoes">
                   <p
                     style="
@@ -187,7 +183,7 @@
               </div>
             </div>
             <div class="perfil-container" style="position: relative">
-              <!-- Botão clicável (Mantive as classes que você já usava: user-profile, user-avatar, user-info) -->
+          
               <div
                 class="user-profile"
                 id="botaoPerfil"
@@ -209,13 +205,11 @@
                 ></i>
               </div>
 
-              <!-- Caixa do Dropdown (Escondida por padrão) -->
               <div class="dropdown-perfil" id="dropdownPerfil">
                 <div class="dropdown-cabecalho">
                   <span class="dropdown-titulo">Conta</span>
                 </div>
                 <div class="dropdown-divisor"></div>
-                <!-- LINK PARA A TELA DE PERFIL -->
                 <a href="perfil.html" class="dropdown-item">
                   <i class="bi bi-person"></i> Meu Perfil
                 </a>
@@ -232,7 +226,6 @@
           </div>
         </header>
 
-        <!-- Conteúdo -->
         <main class="conteudo-principal">
           <div class="cabecalho-pagina">
             <h1>Níveis de Acesso</h1>
@@ -244,7 +237,6 @@
             id="niveisAcesso"
             aria-label="Níveis de acesso"
           >
-            <!-- Administrador -->
             <article class="cartao-nivel cartao-administrador">
               <header class="cabecalho-cartao">
                 <div class="titulo-cartao">
@@ -268,7 +260,6 @@
               </div>
             </article>
 
-            <!-- Solicitante (Antigo Usuário) -->
             <article class="cartao-nivel cartao-usuario">
               <header class="cabecalho-cartao">
                 <div class="titulo-cartao">
@@ -286,7 +277,6 @@
               </div>
             </article>
 
-            <!-- Técnico -->
             <article class="cartao-nivel cartao-tecnico">
               <header class="cabecalho-cartao">
                 <div class="titulo-cartao">
@@ -307,7 +297,7 @@
               </div>
             </article>
 
-            <!-- Gerência -->
+
             <article class="cartao-nivel cartao-gerencia">
               <header class="cabecalho-cartao">
                 <div class="titulo-cartao">
@@ -331,7 +321,6 @@
       </div>
     </div>
 
-    <!-- Caminho do JS -->
     <script src="../-js/global.js"></script>
   </body>
 </html>
