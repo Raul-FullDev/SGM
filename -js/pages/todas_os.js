@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function carregarOrdensDeServico() {
     try {
-      // 1. Busca robusta e direta na tabela ordem_servico trazendo os relacionamentos essenciais
       let query = `select=id,created_at,descricao_problema,prioridade,equipamento(id,asset,descricao,local(setor)),tipo_manutencao(descricao),usuario!fk_ordem_servico_id_usuario_solicitante(nome)&order=id.desc`;
 
       if (papel === 2) {
@@ -79,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!resposta.ok) throw new Error("Erro ao buscar as Ordens de Serviço.");
       todasAsOrdens = await resposta.json();
 
-      // 2. Busca auxiliar para anexar dados de abertura e status reais de cada OS cadastrada
       try {
         const urlAbertura = new URL(`${baseUrl}/abertura_ordem_servico`);
         urlAbertura.searchParams.append(
@@ -240,9 +238,29 @@ document.addEventListener("DOMContentLoaded", () => {
       else if (statusLabel.toLowerCase().includes("cancelada"))
         classeStatus = "status-cancelada";
 
+      // ==========================================
+      // LÓGICA DE BLOQUEIO SE OS ESTIVER CONCLUÍDA
+      // ==========================================
+      const isConcluida = classeStatus === "status-encerrada";
+
+      // Se concluída, removemos o href e deixamos o número cinza
+      const colunaNumero = isConcluida
+        ? `<span class="numero-os" style="color: #94a4b8; cursor: default; text-decoration: none;" title="OS Finalizada">#${numeroFormatado}</span>`
+        : `<a href="detalhes_os.html?id=${os.id}" class="numero-os">#${numeroFormatado}</a>`;
+
+      // Se concluída, o ícone de visualizar some e vira apenas um traço
+      const colunaAcao = isConcluida
+        ? `<span style="color: #94a4b8; font-size: 14px; display: inline-flex; width: 32px; justify-content: center;" title="Detalhes indisponíveis para OS Finalizada">-</span>`
+        : `<a href="detalhes_os.html?id=${os.id}" class="botao-visualizar" title="Ver detalhes da ordem de serviço">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"></path>
+              <circle cx="12" cy="12" r="2.5"></circle>
+            </svg>
+          </a>`;
+
       const tr = document.createElement("tr");
       tr.innerHTML = `
-        <td><a href="detalhes_os.html?id=${os.id}" class="numero-os">#${numeroFormatado}</a></td>
+        <td>${colunaNumero}</td>
         <td>
           <div class="informacao-equipamento">
             <span>${equipDesc}</span>
@@ -255,14 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>${criacaoFormatada}</td>
         <td>${fimFormatada}</td>
         <td><span class="status-os ${classeStatus}">${statusLabel}</span></td>
-        <td>
-          <a href="detalhes_os.html?id=${os.id}" class="botao-visualizar" title="Ver detalhes da ordem de serviço">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"></path>
-              <circle cx="12" cy="12" r="2.5"></circle>
-            </svg>
-          </a>
-        </td>
+        <td>${colunaAcao}</td>
       `;
       corpoTabelaOrdens.appendChild(tr);
     });

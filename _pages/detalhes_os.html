@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SGM - Detalhes da Ordem de Serviço</title>
-    <!-- CSS -->
     <link rel="stylesheet" href="../-css/pages/detalhes_os.css" />
-    <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -15,11 +13,8 @@
 
   <body>
     <div class="layout">
-      <!-- ================================================= -->
       <!-- MENU LATERAL -->
-      <!-- ================================================= -->
       <aside class="barra-lateral" id="barraLateral">
-        <!-- LOGO -->
         <div class="cabecalho-barra">
           <div class="logo">
             <span class="icone-logo">S</span>
@@ -30,176 +25,104 @@
           </div>
         </div>
 
-        <!-- MENU -->
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
-            <!-- DASHBOARD -->
             <li class="item-navegacao">
-              <a href="dashboard.html">
-                <button
-                  class="link-navegacao"
-                  type="button"
-                  data-menu="dashboard"
-                >
+              <a href="dashboard.html"
+                ><button class="link-navegacao" type="button">
                   <span class="icone-navegacao"
-                    ><i class="bi bi-list-task"></i
-                  ></span>
-                  <span>Dashboard</span>
-                  <span class="seta-navegacao"></span>
-                </button>
-              </a>
-            </li>
-
-            <!-- ORDENS DE SERVIÇO -->
-            <li class="item-navegacao ativo">
-              <button
-                class="link-navegacao"
-                type="button"
-                data-menu="ordens-servico"
+                    ><i class="bi bi-list-task"></i></span
+                  ><span>Dashboard</span>
+                </button></a
               >
+            </li>
+            <li class="item-navegacao ativo">
+              <button class="link-navegacao" type="button">
                 <span class="icone-navegacao"
-                  ><i class="bi bi-clipboard-data"></i
-                ></span>
-                <span>Ordens de Serviço</span>
+                  ><i class="bi bi-clipboard-data"></i></span
+                ><span>Ordens de Serviço</span>
               </button>
             </li>
-
-            <!-- EQUIPAMENTOS -->
             <li class="item-navegacao">
-              <a href="equipamentos.html">
-                <button
-                  class="link-navegacao"
-                  type="button"
-                  data-menu="equipamentos"
-                >
+              <a href="equipamentos.html"
+                ><button class="link-navegacao" type="button">
                   <span class="icone-navegacao"
-                    ><i class="bi bi-wrench-adjustable"></i
-                  ></span>
-                  <span>Equipamentos</span>
-                </button>
-              </a>
+                    ><i class="bi bi-wrench-adjustable"></i></span
+                  ><span>Equipamentos</span>
+                </button></a
+              >
             </li>
-
-            <!-- SETOR -->
             <li class="item-navegacao">
-              <a href="setor_adm.html">
-                <button class="link-navegacao" type="button" data-menu="setor">
+              <a href="setor_adm.html"
+                ><button class="link-navegacao" type="button">
                   <span class="icone-navegacao"
-                    ><i class="bi bi-collection"></i
-                  ></span>
-                  <span>Setor</span>
-                </button>
-              </a>
+                    ><i class="bi bi-collection"></i></span
+                  ><span>Setor</span>
+                </button></a
+              >
             </li>
-
-            <!-- HISTÓRICO -->
             <li class="item-navegacao">
-              <a href="historico_adm.html">
-                <button
-                  class="link-navegacao"
-                  type="button"
-                  data-menu="historico"
-                >
+              <a href="historico_adm.html"
+                ><button class="link-navegacao" type="button">
                   <span class="icone-navegacao"
-                    ><i class="bi bi-clock-history"></i
-                  ></span>
-                  <span>Histórico</span>
-                </button>
-              </a>
+                    ><i class="bi bi-clock-history"></i></span
+                  ><span>Histórico</span>
+                </button></a
+              >
             </li>
-
-            <!-- INDICADORES -->
             <li class="item-navegacao">
-              <a href="indicadores_adm.html">
-                <button
-                  class="link-navegacao"
-                  type="button"
-                  data-menu="indicadores"
-                >
+              <a href="indicadores_adm.html"
+                ><button class="link-navegacao" type="button">
                   <span class="icone-navegacao"
-                    ><i class="bi bi-bar-chart"></i
-                  ></span>
-                  <span>Indicadores</span>
-                </button>
-              </a>
+                    ><i class="bi bi-bar-chart"></i></span
+                  ><span>Indicadores</span>
+                </button></a
+              >
             </li>
-
-            <!-- RELATÓRIOS -->
             <li class="item-navegacao">
-              <a href="relatorios_adm.html">
-                <button
-                  class="link-navegacao"
-                  type="button"
-                  data-menu="relatorios"
-                >
+              <a href="relatorios_adm.html"
+                ><button class="link-navegacao" type="button">
                   <span class="icone-navegacao"
-                    ><i class="bi bi-file-earmark-text"></i
-                  ></span>
-                  <span>Relatórios</span>
-                </button>
-              </a>
+                    ><i class="bi bi-file-earmark-text"></i></span
+                  ><span>Relatórios</span>
+                </button></a
+              >
             </li>
-
-            <!-- MANUTENÇÃO -->
             <li class="item-navegacao">
-              <a href="manutencao_adm.html">
-                <button
-                  class="link-navegacao"
-                  type="button"
-                  data-menu="manutencao"
-                >
+              <a href="manutencao_adm.html"
+                ><button class="link-navegacao" type="button">
                   <span class="icone-navegacao"
-                    ><i class="bi bi-tools"></i
-                  ></span>
-                  <span>Manutenção</span>
-                </button>
-              </a>
+                    ><i class="bi bi-tools"></i></span
+                  ><span>Manutenção</span>
+                </button></a
+              >
             </li>
-
-            <!-- PEÇAS -->
             <li class="item-navegacao">
-              <a href="pecas_adm.html">
-                <button class="link-navegacao" type="button" data-menu="pecas">
-                  <span class="icone-navegacao"><i class="bi bi-nut"></i></span>
-                  <span>Peças</span>
-                </button>
-              </a>
+              <a href="pecas_adm.html"
+                ><button class="link-navegacao" type="button">
+                  <span class="icone-navegacao"><i class="bi bi-nut"></i></span
+                  ><span>Peças</span>
+                </button></a
+              >
             </li>
-
-            <!-- ADMINISTRAÇÃO -->
             <li class="item-navegacao">
-              <a href="usuarios.html">
-                <button
-                  class="link-navegacao"
-                  type="button"
-                  data-menu="administracao"
-                >
+              <a href="usuarios.html"
+                ><button class="link-navegacao" type="button">
                   <span class="icone-navegacao"
-                    ><i class="bi bi-people"></i
-                  ></span>
-                  <span>Administração</span>
-                </button>
-              </a>
+                    ><i class="bi bi-people"></i></span
+                  ><span>Administração</span>
+                </button></a
+              >
             </li>
           </ul>
         </nav>
       </aside>
 
-      <!-- ================================================= -->
       <!-- ÁREA PRINCIPAL -->
-      <!-- ================================================= -->
       <div class="area-principal">
-        <!-- CABEÇALHO -->
         <header class="cabecalho">
           <div class="cabecalho-esquerdo">
-            <button
-              class="botao-menu"
-              id="botaoMenu"
-              type="button"
-              aria-label="Abrir menu"
-            >
-              ☰
-            </button>
+            <button class="botao-menu" id="botaoMenu" type="button">☰</button>
           </div>
           <div class="cabecalho-direito">
             <div
@@ -210,12 +133,10 @@
                 class="botao-notificacao"
                 id="botaoNotificacao"
                 type="button"
-                aria-label="Notificações"
               >
-                <i class="bi bi-bell"></i>
-                <span class="badge-notificacao" style="display: none">0</span>
+                <i class="bi bi-bell"></i
+                ><span class="badge-notificacao" style="display: none">0</span>
               </button>
-
               <div class="dropdown-notificacoes" id="dropdownNotificacoes">
                 <div class="dropdown-cabecalho-noti">
                   <span class="dropdown-titulo">Notificações</span>
@@ -254,23 +175,21 @@
               >
                 <div class="user-avatar avatar-usuario">AS</div>
                 <div class="user-info informacoes-usuario">
-                  <strong>Admin Sistema</strong>
-                  <span>Administrador</span>
+                  <strong>Admin Sistema</strong><span>Administrador</span>
                 </div>
                 <i
                   class="bi bi-chevron-down"
                   style="color: #8a9cb4; font-size: 12px; margin-left: 5px"
                 ></i>
               </div>
-
               <div class="dropdown-perfil" id="dropdownPerfil">
                 <div class="dropdown-cabecalho">
                   <span class="dropdown-titulo">Conta</span>
                 </div>
                 <div class="dropdown-divisor"></div>
-                <a href="perfil.html" class="dropdown-item">
-                  <i class="bi bi-person"></i> Meu Perfil
-                </a>
+                <a href="perfil.html" class="dropdown-item"
+                  ><i class="bi bi-person"></i> Meu Perfil</a
+                >
                 <div class="dropdown-divisor"></div>
                 <button
                   type="button"
@@ -284,16 +203,13 @@
           </div>
         </header>
 
-        <!-- CONTEÚDO PRINCIPAL -->
         <main class="conteudo-principal">
-          <!-- VOLTAR -->
           <div class="caminho-pagina">
-            <a href="todas_os.html">
-              <i class="bi bi-arrow-left"></i> Voltar para Ordens de Serviço
-            </a>
+            <a href="todas_os.html"
+              ><i class="bi bi-arrow-left"></i> Voltar para Ordens de Serviço</a
+            >
           </div>
 
-          <!-- CABEÇALHO DA OS -->
           <div class="cabecalho-detalhes-os">
             <div>
               <span class="numero-os">OS #--</span>
@@ -302,48 +218,43 @@
             <span class="status-badge status-em-andamento">Carregando...</span>
           </div>
 
-          <!-- GRID PRINCIPAL -->
           <div class="grid-detalhes-os">
-            <!-- COLUNA ESQUERDA -->
             <div class="coluna-esquerda">
               <!-- INFORMAÇÕES DA OS -->
               <section class="card-detalhes">
-                <div class="card-titulo">
-                  <h2>Informações da OS</h2>
-                </div>
+                <div class="card-titulo"><h2>Informações da OS</h2></div>
                 <div class="divisor"></div>
                 <div class="informacoes-grid">
                   <div class="informacao">
-                    <span class="informacao-label">EQUIPAMENTO</span>
-                    <strong>Carregando...</strong>
+                    <span class="informacao-label">EQUIPAMENTO</span
+                    ><strong>Carregando...</strong>
                   </div>
                   <div class="informacao">
-                    <span class="informacao-label">ASSET</span>
-                    <strong>-</strong>
+                    <span class="informacao-label">ASSET</span
+                    ><strong>-</strong>
                   </div>
                   <div class="informacao">
-                    <span class="informacao-label">SETOR</span>
-                    <strong>-</strong>
+                    <span class="informacao-label">SETOR</span
+                    ><strong>-</strong>
                   </div>
                   <div class="informacao">
-                    <span class="informacao-label">TIPO</span>
-                    <strong>-</strong>
+                    <span class="informacao-label">TIPO</span><strong>-</strong>
                   </div>
                   <div class="informacao">
-                    <span class="informacao-label">SOLICITANTE</span>
-                    <strong>-</strong>
+                    <span class="informacao-label">SOLICITANTE</span
+                    ><strong>-</strong>
                   </div>
                   <div class="informacao">
-                    <span class="informacao-label">TÉCNICO</span>
-                    <strong>-</strong>
+                    <span class="informacao-label">TÉCNICO</span
+                    ><strong>-</strong>
                   </div>
                   <div class="informacao">
-                    <span class="informacao-label">ABERTURA</span>
-                    <strong>-</strong>
+                    <span class="informacao-label">ABERTURA</span
+                    ><strong id="dataAberturaOS">-</strong>
                   </div>
                   <div class="informacao">
-                    <span class="informacao-label">FECHAMENTO</span>
-                    <strong>—</strong>
+                    <span class="informacao-label">FECHAMENTO</span
+                    ><strong id="dataFechamentoOS">—</strong>
                   </div>
                 </div>
                 <div class="descricao-problema">
@@ -360,11 +271,9 @@
                     <select
                       class="filtro-tipo-atividade"
                       id="filtroTipoAtividade"
-                      name="filtroTipoAtividade"
                     >
                       <option value="todos">Todos os tipos</option>
                     </select>
-
                     <button
                       type="button"
                       class="botao-adicionar-atividade"
@@ -375,7 +284,6 @@
                   </div>
                 </div>
                 <div class="divisor"></div>
-
                 <div class="lista-atividades" id="containerListaAtividades">
                   <p
                     style="
@@ -439,7 +347,6 @@
               </section>
             </div>
 
-            <!-- COLUNA DIREITA -->
             <div class="coluna-direita">
               <!-- ALTERAR STATUS -->
               <section class="card-status">
@@ -499,18 +406,25 @@
       </div>
     </div>
 
-    <!-- ================================================= -->
-    <!-- MODAL DE CONFIRMAÇÃO DE ENCERRAMENTO CORRIGIDO -->
-    <!-- ================================================= -->
+    <!-- MODAL FINALIZAR OS (Com Datas) -->
     <div class="modal-overlay" id="modalEncerrarOS" style="display: none">
-      <div
-        class="modal-content"
-        style="max-width: 420px; text-align: center; padding: 30px"
-      >
-        <div style="font-size: 42px; color: #f59e0b; margin-bottom: 12px">
-          <i class="bi bi-exclamation-circle"></i>
+      <div class="modal-content" style="max-width: 480px; padding: 30px">
+        <div
+          class="modal-header"
+          style="justify-content: center; margin-bottom: 5px"
+        >
+          <div style="font-size: 42px; color: #159b72">
+            <i class="bi bi-check-circle"></i>
+          </div>
         </div>
-        <h2 style="font-size: 18px; color: #18386e; margin-bottom: 10px">
+        <h2
+          style="
+            font-size: 18px;
+            color: #18386e;
+            text-align: center;
+            margin-bottom: 10px;
+          "
+        >
           Encerrar Ordem de Serviço?
         </h2>
         <p
@@ -518,37 +432,89 @@
             font-size: 12px;
             color: #657991;
             line-height: 1.5;
+            text-align: center;
             margin-bottom: 24px;
           "
         >
-          Tem certeza que deseja encerrar esta Ordem de Serviço? Essa ação
-          indicará que todas as atividades foram finalizadas.
+          Confirme as datas de início e fim da Ordem de Serviço para encerrá-la
+          de vez.
         </p>
-        <div
-          class="modal-footer"
-          style="justify-content: center; gap: 12px; margin-top: 0"
-        >
-          <button
-            type="button"
-            class="botao-secundario"
-            id="cancelarModal"
-            style="min-width: 110px"
+
+        <form id="formFinalizarOS">
+          <div
+            class="linha-formulario"
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 15px;
+              margin-bottom: 20px;
+              text-align: left;
+            "
           >
-            Cancelar
-          </button>
-          <button
-            type="button"
-            class="botao-principal"
-            id="confirmarEncerramento"
-            style="min-width: 140px; background: #159b72"
+            <div class="campo-formulario">
+              <label
+                for="encerraDataInicio"
+                style="font-size: 12px; color: #273b57; font-weight: 600"
+                >Data/Hora de Início</label
+              >
+              <input
+                type="datetime-local"
+                id="encerraDataInicio"
+                required
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border: 1px solid #dce4ed;
+                  border-radius: 7px;
+                "
+              />
+            </div>
+            <div class="campo-formulario">
+              <label
+                for="encerraDataFim"
+                style="font-size: 12px; color: #273b57; font-weight: 600"
+                >Data/Hora de Fim</label
+              >
+              <input
+                type="datetime-local"
+                id="encerraDataFim"
+                required
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border: 1px solid #dce4ed;
+                  border-radius: 7px;
+                "
+              />
+            </div>
+          </div>
+
+          <div
+            class="modal-footer"
+            style="justify-content: center; gap: 12px; margin-top: 0"
           >
-            Confirmar
-          </button>
-        </div>
+            <button
+              type="button"
+              class="botao-secundario"
+              id="cancelarModal"
+              style="min-width: 110px"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="botao-principal"
+              id="confirmarEncerramento"
+              style="min-width: 140px; background: #159b72"
+            >
+              Confirmar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 
-    <!-- MODAL DE NOVA ATIVIDADE -->
+    <!-- MODAL NOVA ATIVIDADE -->
     <div class="modal-overlay" id="modalNovaAtividade" style="display: none">
       <div class="modal-content">
         <div class="modal-header">
@@ -563,43 +529,40 @@
             style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px"
           >
             <div class="campo-formulario">
-              <label for="atividadeTipoServico">Tipo de Serviço</label>
-              <select id="atividadeTipoServico" required>
+              <label for="atividadeTipoServico">Tipo de Serviço</label
+              ><select id="atividadeTipoServico" required>
                 <option value="">Carregando...</option>
               </select>
             </div>
             <div class="campo-formulario">
-              <label for="atividadeStatus">Status da Atividade</label>
-              <select id="atividadeStatus" required>
+              <label for="atividadeStatus">Status da Atividade</label
+              ><select id="atividadeStatus" required>
                 <option value="">Carregando...</option>
               </select>
             </div>
           </div>
-
           <div class="campo-formulario">
-            <label for="atividadeDescricao">Descrição do que foi feito</label>
-            <textarea
+            <label for="atividadeDescricao">Descrição do que foi feito</label
+            ><textarea
               id="atividadeDescricao"
               rows="3"
               placeholder="Descreva a tarefa..."
               required
             ></textarea>
           </div>
-
           <div
             class="linha-formulario"
             style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px"
           >
             <div class="campo-formulario">
-              <label for="atividadeDataInicio">Data/Hora Início</label>
-              <input type="datetime-local" id="atividadeDataInicio" required />
+              <label for="atividadeDataInicio">Data/Hora Início</label
+              ><input type="datetime-local" id="atividadeDataInicio" required />
             </div>
             <div class="campo-formulario">
-              <label for="atividadeDataFim">Data/Hora Fim</label>
-              <input type="datetime-local" id="atividadeDataFim" />
+              <label for="atividadeDataFim">Data/Hora Fim</label
+              ><input type="datetime-local" id="atividadeDataFim" />
             </div>
           </div>
-
           <div class="modal-footer">
             <button
               type="button"
@@ -616,7 +579,7 @@
       </div>
     </div>
 
-    <!-- MODAL DE EDITAR ATIVIDADE (Com Data/Hora de Término) -->
+    <!-- MODAL EDITAR ATIVIDADE -->
     <div class="modal-overlay" id="modalEditarAtividade" style="display: none">
       <div class="modal-content">
         <div class="modal-header">
@@ -628,37 +591,32 @@
         <form id="formEditarAtividade" class="modal-body">
           <input type="hidden" id="editAtividadeId" />
           <input type="hidden" id="editAtividadeStatusAnterior" />
-
           <div
             class="linha-formulario"
             style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px"
           >
             <div class="campo-formulario">
-              <label for="editAtividadeTipoServico">Tipo de Serviço</label>
-              <select id="editAtividadeTipoServico" required>
+              <label for="editAtividadeTipoServico">Tipo de Serviço</label
+              ><select id="editAtividadeTipoServico" required>
                 <option value="">Carregando...</option>
               </select>
             </div>
             <div class="campo-formulario">
-              <label for="editAtividadeStatus">Status da Atividade</label>
-              <select id="editAtividadeStatus" required>
+              <label for="editAtividadeStatus">Status da Atividade</label
+              ><select id="editAtividadeStatus" required>
                 <option value="">Carregando...</option>
               </select>
             </div>
           </div>
-
           <div class="campo-formulario">
-            <label for="editAtividadeDescricao">Descrição</label>
-            <textarea id="editAtividadeDescricao" rows="3" required></textarea>
+            <label for="editAtividadeDescricao">Descrição</label
+            ><textarea id="editAtividadeDescricao" rows="3" required></textarea>
           </div>
-
           <div class="campo-formulario">
             <label for="editAtividadeDataFim"
               >Data/Hora de Término (Finalizar Atividade)</label
-            >
-            <input type="datetime-local" id="editAtividadeDataFim" />
+            ><input type="datetime-local" id="editAtividadeDataFim" />
           </div>
-
           <div class="modal-footer">
             <button
               type="button"
@@ -675,7 +633,7 @@
       </div>
     </div>
 
-    <!-- MODAL DE NOVA PEÇA -->
+    <!-- MODAL NOVA PEÇA -->
     <div class="modal-overlay" id="modalNovaPeca" style="display: none">
       <div class="modal-content">
         <div class="modal-header">
@@ -686,26 +644,24 @@
         </div>
         <form id="formNovaPeca" class="modal-body">
           <div class="campo-formulario">
-            <label for="pecaAtividadeVinculada">Atividade Referente</label>
-            <select id="pecaAtividadeVinculada" required>
+            <label for="pecaAtividadeVinculada">Atividade Referente</label
+            ><select id="pecaAtividadeVinculada" required>
               <option value="">Carregando atividades...</option>
             </select>
           </div>
-
           <div
             class="linha-formulario"
             style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px"
           >
             <div class="campo-formulario">
-              <label for="pecaSelecionada">Peça do Estoque</label>
-              <select id="pecaSelecionada" required>
+              <label for="pecaSelecionada">Peça do Estoque</label
+              ><select id="pecaSelecionada" required>
                 <option value="">Carregando peças...</option>
               </select>
             </div>
-
             <div class="campo-formulario">
-              <label for="pecaQuantidade">Qtd</label>
-              <input
+              <label for="pecaQuantidade">Qtd</label
+              ><input
                 type="number"
                 id="pecaQuantidade"
                 min="1"
@@ -715,7 +671,6 @@
               />
             </div>
           </div>
-
           <div class="modal-footer">
             <button
               type="button"
@@ -726,6 +681,55 @@
             </button>
             <button type="submit" class="botao-principal">
               Salvar e Baixar Estoque
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL EDITAR PEÇA UTILIZADA -->
+    <div class="modal-overlay" id="modalEditarPeca" style="display: none">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Editar Quantidade da Peça</h2>
+          <button type="button" id="fecharModalEditarPeca" class="btn-fechar">
+            &times;
+          </button>
+        </div>
+        <form id="formEditarPeca" class="modal-body">
+          <input type="hidden" id="editPecaIdTroca" />
+          <input type="hidden" id="editPecaIdOriginal" />
+          <input type="hidden" id="editPecaQtdAntiga" />
+
+          <div class="campo-formulario">
+            <label for="editPecaDescricaoItem">Descrição da Peça</label>
+            <input
+              type="text"
+              id="editPecaDescricaoItem"
+              readonly
+              style="background-color: #f5f7f9"
+            />
+          </div>
+          <div class="campo-formulario">
+            <label for="editPecaQuantidade">Nova Quantidade Utilizada</label>
+            <input
+              type="number"
+              id="editPecaQuantidade"
+              min="0.01"
+              step="0.01"
+              required
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="cancelarModalEditarPeca"
+              class="botao-secundario"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="botao-principal">
+              Salvar Alteração
             </button>
           </div>
         </form>
