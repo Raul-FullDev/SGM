@@ -139,22 +139,17 @@
   color: white;
 }
 
-/* ==========================================
-   CORREÇÃO DO AFASTAMENTO NO CABEÇALHO
-   Força o Sino e o Perfil a ficarem agrupados na direita
-========================================== */
 .cabecalho-direito,
 .topbar-right {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-end !important;
-  gap: 24px !important; /* Mantém exatamente 24px de distância entre o sino e o perfil */
+  gap: 24px !important;
   margin-left: auto !important;
-  flex: 0 1 auto !important; /* Impede a caixa de esticar pela tela toda */
+  flex: 0 1 auto !important;
   width: auto !important;
 }
 
-/* Garante que os containers internos não tentem empurrar um ao outro */
 .notificacao-container,
 .perfil-container {
   flex: 0 0 auto !important;
@@ -175,14 +170,12 @@
   }
 }
 
-/* 1. Mata qualquer submenu que esteja vazio */
 .submenu:empty {
   display: none !important;
   padding: 0 !important;
   margin: 0 !important;
 }
 
-/* 2. Mata submenus que não tenham nenhum item (li) válido dentro */
 .submenu:not(:has(li)) {
   display: none !important;
   padding: 0 !important;

@@ -2,7 +2,7 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
-/* Área principal do formulário */
+
 .user-form-layout {
   position: relative;
   display: grid;
@@ -12,7 +12,7 @@
   min-height: 610px;
 }
 
-/* Card do formulário */
+
 .form-card {
   position: relative;
   z-index: 2;
@@ -29,7 +29,7 @@
   width: 100%;
 }
 
-/* Campos */
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -65,7 +65,7 @@
   box-shadow: 0 0 0 2px rgba(20, 91, 234, 0.08);
 }
 
-/* Campo select */
+
 .form-group select {
   appearance: none;
   padding-right: 36px;
@@ -82,14 +82,14 @@
   cursor: pointer;
 }
 
-/* Linha de dois campos */
+
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   gap: 17px;
 }
 
-/* Botões */
+
 .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -128,7 +128,7 @@
   background: #2f5cae;
 }
 
-/* Ilustração */
+
 .form-illustration {
   position: relative;
   min-height: 575px;
@@ -249,7 +249,7 @@
   opacity: 0.9;
 }
 
-/* Responsividade Específica */
+
 @media (max-width: 1000px) {
   .user-form-layout {
     grid-template-columns: minmax(380px, 500px) 1fr;

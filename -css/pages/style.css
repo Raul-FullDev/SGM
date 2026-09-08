@@ -1,6 +1,4 @@
-/* ==========================================
-   BASE
-========================================== */
+
 
 * {
   margin: 0;
@@ -20,9 +18,7 @@ body {
   color: #17233f;
 }
 
-/* ==========================================
-   ESTRUTURA PRINCIPAL
-========================================== */
+
 
 .login-container {
   width: 100%;
@@ -31,9 +27,7 @@ body {
   overflow: hidden;
 }
 
-/* ==========================================
-   LADO ESQUERDO
-========================================== */
+
 
 .lado-esquerdo {
   position: relative;
@@ -49,7 +43,7 @@ body {
   background: linear-gradient(135deg, #06275f 0%, #063e93 48%, #0758bd 100%);
 }
 
-/* Camada azul adicional */
+
 
 .lado-esquerdo::before {
   content: "";
@@ -61,9 +55,7 @@ body {
   pointer-events: none;
 }
 
-/* ==========================================
-   FORMAS DECORATIVAS
-========================================== */
+
 
 .forma-decorativa {
   position: absolute;
@@ -98,9 +90,7 @@ body {
   transform: rotate(-35deg);
 }
 
-/* ==========================================
-   EFEITO INDUSTRIAL ABSTRATO
-========================================== */
+
 
 .lado-esquerdo::after {
   content: "";
@@ -136,9 +126,7 @@ body {
   pointer-events: none;
 }
 
-/* ==========================================
-   CONTEÚDO DA MARCA
-========================================== */
+
 
 .conteudo-logo {
   position: relative;
@@ -193,9 +181,6 @@ body {
   letter-spacing: 0.3px;
 }
 
-/* ==========================================
-   RODAPÉ ESQUERDO
-========================================== */
 
 .rodape-esquerdo {
   position: absolute;
@@ -230,9 +215,7 @@ body {
   font-weight: 400;
 }
 
-/* ==========================================
-   LADO DIREITO
-========================================== */
+
 
 .lado-direito {
   position: relative;
@@ -251,9 +234,7 @@ body {
   background: linear-gradient(145deg, #f8fbff 0%, #eef5ff 50%, #dceaff 100%);
 }
 
-/* ==========================================
-   DECORAÇÕES DO LADO DIREITO
-========================================== */
+
 
 .forma-direita {
   position: absolute;
@@ -280,9 +261,7 @@ body {
   left: -150px;
 }
 
-/* ==========================================
-   CARD
-========================================== */
+
 
 .card-login {
   position: relative;
@@ -302,10 +281,6 @@ body {
     0 20px 45px rgba(25, 67, 125, 0.12),
     0 4px 12px rgba(25, 67, 125, 0.07);
 }
-
-/* ==========================================
-   ÍCONE DO USUÁRIO
-========================================== */
 
 .area-icone {
   display: flex;
@@ -332,9 +307,6 @@ body {
   height: 39px;
 }
 
-/* ==========================================
-   CABEÇALHO DO LOGIN
-========================================== */
 
 .cabecalho-login {
   margin-top: 18px;
@@ -359,9 +331,7 @@ body {
   font-size: 16px;
 }
 
-/* ==========================================
-   FORMULÁRIO
-========================================== */
+
 
 .formulario-login {
   width: 100%;
@@ -383,9 +353,7 @@ body {
   font-weight: 600;
 }
 
-/* ==========================================
-   INPUTS
-========================================== */
+
 
 .input-container {
   height: 62px;
@@ -449,9 +417,7 @@ body {
   color: #8b9ab1;
 }
 
-/* ==========================================
-   BOTÃO MOSTRAR SENHA
-========================================== */
+
 
 .icone-olho {
   width: 50px;
@@ -481,9 +447,7 @@ body {
   height: 22px;
 }
 
-/* ==========================================
-   OPÇÕES
-========================================== */
+
 
 .opcoes-login {
   display: flex;
@@ -532,9 +496,7 @@ body {
   text-decoration: underline;
 }
 
-/* ==========================================
-   BOTÃO LOGIN
-========================================== */
+
 
 .botao-login {
   width: 100%;
@@ -589,9 +551,7 @@ body {
   transform: translateY(0);
 }
 
-/* ==========================================
-   RODAPÉ DIREITO
-========================================== */
+
 
 .rodape-direito {
   position: absolute;
@@ -619,9 +579,7 @@ body {
   letter-spacing: 3px;
 }
 
-/* ==========================================
-   MODAL DE RECUPERAÇÃO DE SENHA
-========================================== */
+
 .modal-recuperacao {
   position: fixed;
   top: 0;
@@ -682,9 +640,7 @@ body {
   line-height: 1.5;
 }
 
-/* ==========================================
-   RESPONSIVIDADE
-========================================== */
+
 
 @media (max-width: 1000px) {
   .lado-esquerdo {

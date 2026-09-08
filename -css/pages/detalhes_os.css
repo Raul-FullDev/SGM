@@ -474,7 +474,7 @@
   background: #f5f8fc;
 }
 
-/* O azul FORTE (.ativo) FOI REMOVIDO! Só sobra o SELECIONADO clarinho abaixo: */
+
 .opcao-status.selecionado {
   border-color: #2f7df4 !important;
   background: #eaf2ff !important;
@@ -584,9 +584,7 @@
   line-height: 1.4;
 }
 
-/* =========================================================
-   MODALS
-========================================================= */
+
 .modal-overlay {
   position: fixed;
   top: 0;
