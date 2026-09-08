@@ -140,6 +140,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================
+// CONTROLE DO DROPDOWN DO PERFIL NO CABEÇALHO
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+  const botaoPerfil = document.getElementById("botaoPerfil");
+  const dropdownPerfil = document.getElementById("dropdownPerfil");
+
+  if (botaoPerfil && dropdownPerfil) {
+    // Abre/Fecha ao clicar no perfil
+    botaoPerfil.addEventListener("click", (e) => {
+      e.stopPropagation(); // Evita que o clique feche imediatamente
+      dropdownPerfil.classList.toggle("mostrar");
+    });
+
+    // Fecha se clicar em qualquer outro lugar da tela
+    document.addEventListener("click", (e) => {
+      if (
+        !dropdownPerfil.contains(e.target) &&
+        !botaoPerfil.contains(e.target)
+      ) {
+        dropdownPerfil.classList.remove("mostrar");
+      }
+    });
+  }
+});
+
+// ==========================================
 // FUNÇÃO PARA SAIR DO SISTEMA (LOGOUT)
 // ==========================================
 function sairSistema() {

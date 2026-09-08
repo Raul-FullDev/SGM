@@ -18,7 +18,6 @@
 
   <body>
     <div class="layout">
-
       <!-- Menu lateral -->
       <aside class="barra-lateral" id="barraLateral">
         <div class="cabecalho-barra">
@@ -34,7 +33,6 @@
 
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
-
             <!-- Dashboard -->
             <li class="item-navegacao">
               <a href="dashboard.html" class="link-navegacao">
@@ -134,18 +132,14 @@
                 <span>Administração</span>
               </a>
             </li>
-
           </ul>
         </nav>
       </aside>
 
-
       <!-- Área principal -->
       <div class="area-principal">
-
         <!-- Cabeçalho -->
         <header class="cabecalho">
-
           <div class="cabecalho-esquerdo">
             <button
               class="botao-menu"
@@ -158,7 +152,6 @@
           </div>
 
           <div class="cabecalho-direito">
-
             <!-- Notificações -->
             <button
               class="botao-notificacao"
@@ -168,22 +161,54 @@
             ></button>
 
             <!-- Perfil -->
-            <div class="perfil-usuario">
-              <div class="avatar-usuario">AS</div>
+            <div class="perfil-container" style="position: relative">
+              <!-- Botão clicável (Mantive as classes que você já usava: user-profile, user-avatar, user-info) -->
+              <div
+                class="user-profile"
+                id="botaoPerfil"
+                style="
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                "
+              >
+                <div class="user-avatar avatar-usuario">AS</div>
+                <div class="user-info informacoes-usuario">
+                  <strong>Admin Sistema</strong>
+                  <span>Administrador</span>
+                </div>
+                <i
+                  class="bi bi-chevron-down"
+                  style="color: #8a9cb4; font-size: 12px; margin-left: 5px"
+                ></i>
+              </div>
 
-              <div class="informacoes-usuario">
-                <strong>Admin Sistema</strong>
-                <span>Administrador</span>
+              <!-- Caixa do Dropdown (Escondida por padrão) -->
+              <div class="dropdown-perfil" id="dropdownPerfil">
+                <div class="dropdown-cabecalho">
+                  <span class="dropdown-titulo">Conta</span>
+                </div>
+                <div class="dropdown-divisor"></div>
+                <!-- LINK PARA A TELA DE PERFIL -->
+                <a href="perfil.html" class="dropdown-item">
+                  <i class="bi bi-person"></i> Meu Perfil
+                </a>
+                <div class="dropdown-divisor"></div>
+                <button
+                  type="button"
+                  class="dropdown-item sair"
+                  onclick="sairSistema()"
+                >
+                  <i class="bi bi-box-arrow-right"></i> Sair do Sistema
+                </button>
               </div>
             </div>
-
           </div>
         </header>
 
-
         <!-- Conteúdo principal -->
         <main class="conteudo-principal">
-
           <!-- Decorações -->
           <div class="decoracao-historico" aria-hidden="true">
             <span class="ponto-historico ponto-historico-1"></span>
@@ -199,16 +224,12 @@
             <span class="linhas-historico"></span>
           </div>
 
-
           <!-- Cabeçalho da página -->
           <section class="cabecalho-pagina">
             <h1>Histórico de Manutenções</h1>
 
-            <p>
-              Registro completo de serviços executados
-            </p>
+            <p>Registro completo de serviços executados</p>
           </section>
-
 
           <!-- Pesquisa e filtros -->
           <section
@@ -216,7 +237,6 @@
             id="filtrosHistorico"
             aria-label="Pesquisar e filtrar histórico"
           >
-
             <!-- Pesquisa -->
             <div class="campo-pesquisa-historico">
               <i class="bi bi-search"></i>
@@ -230,17 +250,11 @@
               />
             </div>
 
-
             <!-- Filtro de data -->
             <div class="campo-filtro-historico">
-              <label for="filtroDataHistorico">
-                Data
-              </label>
+              <label for="filtroDataHistorico"> Data </label>
 
-              <select
-                id="filtroDataHistorico"
-                name="filtroDataHistorico"
-              >
+              <select id="filtroDataHistorico" name="filtroDataHistorico">
                 <option value="todas">Todas as datas</option>
                 <option value="hoje">Hoje</option>
                 <option value="7dias">Últimos 7 dias</option>
@@ -249,17 +263,11 @@
               </select>
             </div>
 
-
             <!-- Filtro de tipo -->
             <div class="campo-filtro-historico">
-              <label for="filtroTipoHistorico">
-                Tipo
-              </label>
+              <label for="filtroTipoHistorico"> Tipo </label>
 
-              <select
-                id="filtroTipoHistorico"
-                name="filtroTipoHistorico"
-              >
+              <select id="filtroTipoHistorico" name="filtroTipoHistorico">
                 <option value="todos">Todos os tipos</option>
                 <option value="preventiva">Preventiva</option>
                 <option value="corretiva">Corretiva</option>
@@ -267,35 +275,25 @@
               </select>
             </div>
 
-
             <!-- Filtro de status -->
             <div class="campo-filtro-historico">
-              <label for="filtroStatusHistorico">
-                Status
-              </label>
+              <label for="filtroStatusHistorico"> Status </label>
 
-              <select
-                id="filtroStatusHistorico"
-                name="filtroStatusHistorico"
-              >
+              <select id="filtroStatusHistorico" name="filtroStatusHistorico">
                 <option value="todos">Todos os status</option>
                 <option value="andamento">Em andamento</option>
                 <option value="concluida">Concluída</option>
                 <option value="cancelada">Cancelada</option>
               </select>
             </div>
-
           </section>
-
 
           <!-- Tabela de histórico -->
           <section
             class="tabela-historico-container"
             id="tabelaHistoricoContainer"
           >
-
             <table class="tabela-historico">
-
               <thead>
                 <tr>
                   <th scope="col">OS</th>
@@ -309,198 +307,109 @@
                 </tr>
               </thead>
 
-
               <tbody id="listaHistorico">
-
                 <!-- Registro 01 -->
                 <tr>
-                  <td class="os-historico">
-                    OS-2024-0122
-                  </td>
+                  <td class="os-historico">OS-2024-0122</td>
 
-                  <td class="equipamento-historico">
-                    Esteira Transportadora
-                  </td>
+                  <td class="equipamento-historico">Esteira Transportadora</td>
 
-                  <td class="tipo-historico tipo-preventiva">
-                    Preventiva
-                  </td>
+                  <td class="tipo-historico tipo-preventiva">Preventiva</td>
 
-                  <td class="tecnico-historico">
-                    João Ferreira
-                  </td>
+                  <td class="tecnico-historico">João Ferreira</td>
 
-                  <td class="data-historico">
-                    2024-07-29
-                  </td>
+                  <td class="data-historico">2024-07-29</td>
 
-                  <td class="duracao-historico">
-                    6h 30min
-                  </td>
+                  <td class="duracao-historico">6h 30min</td>
 
-                  <td class="status-historico status-concluida">
-                    Concluída
-                  </td>
+                  <td class="status-historico status-concluida">Concluída</td>
 
-                  <td class="custo-historico">
-                    R$ 620.00
-                  </td>
+                  <td class="custo-historico">R$ 620.00</td>
                 </tr>
-
 
                 <!-- Registro 02 -->
                 <tr>
-                  <td class="os-historico">
-                    OS-2024-0121
-                  </td>
+                  <td class="os-historico">OS-2024-0121</td>
 
-                  <td class="equipamento-historico">
-                    Torno CNC
-                  </td>
+                  <td class="equipamento-historico">Torno CNC</td>
 
-                  <td class="tipo-historico tipo-preventiva">
-                    Preventiva
-                  </td>
+                  <td class="tipo-historico tipo-preventiva">Preventiva</td>
 
-                  <td class="tecnico-historico">
-                    João Ferreira
-                  </td>
+                  <td class="tecnico-historico">João Ferreira</td>
 
-                  <td class="data-historico">
-                    2024-07-16
-                  </td>
+                  <td class="data-historico">2024-07-16</td>
 
-                  <td class="duracao-historico">
-                    4h 15min
-                  </td>
+                  <td class="duracao-historico">4h 15min</td>
 
-                  <td class="status-historico status-concluida">
-                    Concluída
-                  </td>
+                  <td class="status-historico status-concluida">Concluída</td>
 
-                  <td class="custo-historico">
-                    R$ 340.00
-                  </td>
+                  <td class="custo-historico">R$ 340.00</td>
                 </tr>
-
 
                 <!-- Registro 03 -->
                 <tr>
-                  <td class="os-historico">
-                    OS-2024-0118
-                  </td>
+                  <td class="os-historico">OS-2024-0118</td>
 
-                  <td class="equipamento-historico">
-                    Compressor de Ar
-                  </td>
+                  <td class="equipamento-historico">Compressor de Ar</td>
 
-                  <td class="tipo-historico tipo-corretiva">
-                    Corretiva
-                  </td>
+                  <td class="tipo-historico tipo-corretiva">Corretiva</td>
 
-                  <td class="tecnico-historico">
-                    Ana Souza
-                  </td>
+                  <td class="tecnico-historico">Ana Souza</td>
 
-                  <td class="data-historico">
-                    2024-07-05
-                  </td>
+                  <td class="data-historico">2024-07-05</td>
 
-                  <td class="duracao-historico">
-                    3h 00min
-                  </td>
+                  <td class="duracao-historico">3h 00min</td>
 
                   <td class="status-historico status-andamento">
                     Em andamento
                   </td>
 
-                  <td class="custo-historico">
-                    R$ 510.00
-                  </td>
+                  <td class="custo-historico">R$ 510.00</td>
                 </tr>
-
 
                 <!-- Registro 04 -->
                 <tr>
-                  <td class="os-historico">
-                    OS-2024-0115
-                  </td>
+                  <td class="os-historico">OS-2024-0115</td>
 
-                  <td class="equipamento-historico">
-                    Gerador
-                  </td>
+                  <td class="equipamento-historico">Gerador</td>
 
-                  <td class="tipo-historico tipo-preditiva">
-                    Preditiva
-                  </td>
+                  <td class="tipo-historico tipo-preditiva">Preditiva</td>
 
-                  <td class="tecnico-historico">
-                    Ricardo Nunes
-                  </td>
+                  <td class="tecnico-historico">Ricardo Nunes</td>
 
-                  <td class="data-historico">
-                    2024-06-22
-                  </td>
+                  <td class="data-historico">2024-06-22</td>
 
-                  <td class="duracao-historico">
-                    2h 45min
-                  </td>
+                  <td class="duracao-historico">2h 45min</td>
 
-                  <td class="status-historico status-cancelada">
-                    Cancelada
-                  </td>
+                  <td class="status-historico status-cancelada">Cancelada</td>
 
-                  <td class="custo-historico">
-                    R$ 280.00
-                  </td>
+                  <td class="custo-historico">R$ 280.00</td>
                 </tr>
-
 
                 <!-- Registro 05 -->
                 <tr>
-                  <td class="os-historico">
-                    OS-2024-0110
-                  </td>
+                  <td class="os-historico">OS-2024-0110</td>
 
-                  <td class="equipamento-historico">
-                    Empilhadeira
-                  </td>
+                  <td class="equipamento-historico">Empilhadeira</td>
 
-                  <td class="tipo-historico tipo-corretiva">
-                    Corretiva
-                  </td>
+                  <td class="tipo-historico tipo-corretiva">Corretiva</td>
 
-                  <td class="tecnico-historico">
-                    Ana Souza
-                  </td>
+                  <td class="tecnico-historico">Ana Souza</td>
 
-                  <td class="data-historico">
-                    2024-06-10
-                  </td>
+                  <td class="data-historico">2024-06-10</td>
 
-                  <td class="duracao-historico">
-                    5h 20min
-                  </td>
+                  <td class="duracao-historico">5h 20min</td>
 
-                  <td class="status-historico status-concluida">
-                    Concluída
-                  </td>
+                  <td class="status-historico status-concluida">Concluída</td>
 
-                  <td class="custo-historico">
-                    R$ 1240.00
-                  </td>
+                  <td class="custo-historico">R$ 1240.00</td>
                 </tr>
-
               </tbody>
-
             </table>
-
           </section>
-
         </main>
       </div>
     </div>
-
 
     <!-- Caminho do JS mantido -->
     <script src="../-js/global.js"></script>

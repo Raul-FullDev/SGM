@@ -1,0 +1,189 @@
+@import url("../global.css");
+@import url("../layout/sidebar.css");
+@import url("../layout/header.css");
+
+.conteudo-principal {
+  width: 100%;
+  min-height: calc(100vh - var(--altura-cabecalho, 70px));
+  padding: 27px 30px 50px;
+}
+
+.cabecalho-pagina {
+  margin-bottom: 30px;
+}
+
+.cabecalho-pagina h1 {
+  color: #102c63;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.cabecalho-pagina p {
+  color: #6f82a0;
+  font-size: 13px;
+}
+
+/* Grid do Perfil */
+.grid-perfil {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.card-perfil {
+  background: white;
+  border: 1px solid #e1e7ef;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(26, 52, 90, 0.04);
+}
+
+/* Header do Card de Dados */
+.card-perfil-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatar-grande {
+  width: 75px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2259d2, #174bc7);
+  color: white;
+  font-size: 28px;
+  font-weight: 600;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(34, 89, 210, 0.3);
+}
+
+.info-header h2 {
+  color: #182334;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.badge-funcao {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #eef4ff;
+  color: #2259d2;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.divisor {
+  height: 1px;
+  background: #edf1f5;
+  margin: 25px 0;
+}
+
+/* Campos de Dados */
+.dados-usuario {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.campo-dado {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label-dado {
+  color: #89a0bd;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.campo-dado strong {
+  color: #3b4e68;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Card Alterar Senha */
+.card-senha h3 {
+  color: #182334;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.descricao-senha {
+  color: #6f82a0;
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+
+.formulario-senha {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo-formulario label {
+  color: #34445a;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.campo-formulario input {
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #dce3eb;
+  border-radius: 8px;
+  outline: none;
+  font-size: 13px;
+  color: #26313e;
+  transition: border-color 0.2s;
+}
+
+.campo-formulario input:focus {
+  border-color: #2259d2;
+  box-shadow: 0 0 0 3px rgba(34, 89, 210, 0.1);
+}
+
+.botao-salvar-senha {
+  margin-top: 10px;
+  height: 42px;
+  background: #2259d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.botao-salvar-senha:hover {
+  background: #174bc7;
+}
+
+.botao-salvar-senha:disabled {
+  background: #aabcea;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .grid-perfil {
+    grid-template-columns: 1fr;
+  }
+}

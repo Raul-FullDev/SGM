@@ -124,11 +124,47 @@
             >
               <i class="bi bi-bell"></i>
             </button>
-            <div class="perfil-usuario">
-              <div class="avatar-usuario">AS</div>
-              <div class="informacoes-usuario">
-                <strong>Admin Sistema</strong>
-                <span>Administrador</span>
+            <div class="perfil-container" style="position: relative">
+              <!-- Botão clicável (Mantive as classes que você já usava: user-profile, user-avatar, user-info) -->
+              <div
+                class="user-profile"
+                id="botaoPerfil"
+                style="
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                "
+              >
+                <div class="user-avatar avatar-usuario">AS</div>
+                <div class="user-info informacoes-usuario">
+                  <strong>Admin Sistema</strong>
+                  <span>Administrador</span>
+                </div>
+                <i
+                  class="bi bi-chevron-down"
+                  style="color: #8a9cb4; font-size: 12px; margin-left: 5px"
+                ></i>
+              </div>
+
+              <!-- Caixa do Dropdown (Escondida por padrão) -->
+              <div class="dropdown-perfil" id="dropdownPerfil">
+                <div class="dropdown-cabecalho">
+                  <span class="dropdown-titulo">Conta</span>
+                </div>
+                <div class="dropdown-divisor"></div>
+                <!-- LINK PARA A TELA DE PERFIL -->
+                <a href="perfil.html" class="dropdown-item">
+                  <i class="bi bi-person"></i> Meu Perfil
+                </a>
+                <div class="dropdown-divisor"></div>
+                <button
+                  type="button"
+                  class="dropdown-item sair"
+                  onclick="sairSistema()"
+                >
+                  <i class="bi bi-box-arrow-right"></i> Sair do Sistema
+                </button>
               </div>
             </div>
           </div>
