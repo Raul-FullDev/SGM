@@ -202,9 +202,6 @@
             </button>
           </div>
           <div class="cabecalho-direito">
-            <!-- ========================================== -->
-            <!-- NOTIFICAÇÕES DINÂMICAS COM DROPDOWN        -->
-            <!-- ========================================== -->
             <div
               class="notificacao-container"
               style="position: relative; display: flex; align-items: center"
@@ -216,7 +213,6 @@
                 aria-label="Notificações"
               >
                 <i class="bi bi-bell"></i>
-                <!-- Bolinha começa invisível e vazia -->
                 <span class="badge-notificacao" style="display: none">0</span>
               </button>
 
@@ -231,8 +227,6 @@
                     Marcar como lidas
                   </button>
                 </div>
-
-                <!-- O JavaScript vai injetar as notificações REAIS aqui dentro -->
                 <div class="lista-notificacoes" id="containerListaNotificacoes">
                   <p
                     style="
@@ -248,7 +242,6 @@
               </div>
             </div>
             <div class="perfil-container" style="position: relative">
-              <!-- Botão clicável (Mantive as classes que você já usava: user-profile, user-avatar, user-info) -->
               <div
                 class="user-profile"
                 id="botaoPerfil"
@@ -270,13 +263,11 @@
                 ></i>
               </div>
 
-              <!-- Caixa do Dropdown (Escondida por padrão) -->
               <div class="dropdown-perfil" id="dropdownPerfil">
                 <div class="dropdown-cabecalho">
                   <span class="dropdown-titulo">Conta</span>
                 </div>
                 <div class="dropdown-divisor"></div>
-                <!-- LINK PARA A TELA DE PERFIL -->
                 <a href="perfil.html" class="dropdown-item">
                   <i class="bi bi-person"></i> Meu Perfil
                 </a>
@@ -305,10 +296,10 @@
           <!-- CABEÇALHO DA OS -->
           <div class="cabecalho-detalhes-os">
             <div>
-              <span class="numero-os">OS #1033</span>
+              <span class="numero-os">OS #--</span>
               <h1>Detalhes da Ordem de Serviço</h1>
             </div>
-            <span class="status-badge status-em-andamento">Em Andamento</span>
+            <span class="status-badge status-em-andamento">Carregando...</span>
           </div>
 
           <!-- GRID PRINCIPAL -->
@@ -324,31 +315,31 @@
                 <div class="informacoes-grid">
                   <div class="informacao">
                     <span class="informacao-label">EQUIPAMENTO</span>
-                    <strong>Compressor de Ar</strong>
+                    <strong>Carregando...</strong>
                   </div>
                   <div class="informacao">
                     <span class="informacao-label">ASSET</span>
-                    <strong>EQ001</strong>
+                    <strong>-</strong>
                   </div>
                   <div class="informacao">
                     <span class="informacao-label">SETOR</span>
-                    <strong>Produção</strong>
+                    <strong>-</strong>
                   </div>
                   <div class="informacao">
                     <span class="informacao-label">TIPO</span>
-                    <strong>Corretiva</strong>
+                    <strong>-</strong>
                   </div>
                   <div class="informacao">
                     <span class="informacao-label">SOLICITANTE</span>
-                    <strong>Pedro Oliveira</strong>
+                    <strong>-</strong>
                   </div>
                   <div class="informacao">
                     <span class="informacao-label">TÉCNICO</span>
-                    <strong>Ana Souza</strong>
+                    <strong>-</strong>
                   </div>
                   <div class="informacao">
                     <span class="informacao-label">ABERTURA</span>
-                    <strong>2024-08-01</strong>
+                    <strong>-</strong>
                   </div>
                   <div class="informacao">
                     <span class="informacao-label">FECHAMENTO</span>
@@ -357,17 +348,15 @@
                 </div>
                 <div class="descricao-problema">
                   <span class="informacao-label">DESCRIÇÃO DO PROBLEMA</span>
-                  <p>Motor apresentou superaquecimento durante operação</p>
+                  <p>Carregando descrição...</p>
                 </div>
               </section>
 
-              <!-- ATIVIDADES -->
               <!-- ATIVIDADES -->
               <section class="card-detalhes">
                 <div class="card-titulo atividades-cabecalho">
                   <h2>Atividades</h2>
                   <div class="atividades-controles">
-                    <!-- Select vazio, o JS vai popular com os dados do banco -->
                     <select
                       class="filtro-tipo-atividade"
                       id="filtroTipoAtividade"
@@ -387,7 +376,6 @@
                 </div>
                 <div class="divisor"></div>
 
-                <!-- Container vazio, o JS vai injetar as atividades reais aqui -->
                 <div class="lista-atividades" id="containerListaAtividades">
                   <p
                     style="
@@ -428,40 +416,22 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Válvula de segurança 1/2"</td>
-                        <td>1</td>
-                        <td>R$ 185.90</td>
-                        <td><strong>R$ 185.90</strong></td>
-                        <td class="acao-peca">
-                          <button
-                            type="button"
-                            class="botao-editar-peca"
-                            aria-label="Editar peça"
-                          >
-                            <i class="bi bi-pencil"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Filtro de ar comprimido</td>
-                        <td>2</td>
-                        <td>R$ 95.00</td>
-                        <td><strong>R$ 190.00</strong></td>
-                        <td class="acao-peca">
-                          <button
-                            type="button"
-                            class="botao-editar-peca"
-                            aria-label="Editar peça"
-                          >
-                            <i class="bi bi-pencil"></i>
-                          </button>
+                        <td
+                          colspan="5"
+                          style="
+                            text-align: center;
+                            color: #6c809b;
+                            font-size: 11px;
+                          "
+                        >
+                          Carregando peças...
                         </td>
                       </tr>
                     </tbody>
                     <tfoot>
                       <tr>
                         <td colspan="4" class="total-label">TOTAL DA OS</td>
-                        <td><strong>R$ 1850.00</strong></td>
+                        <td><strong>R$ 0.00</strong></td>
                       </tr>
                     </tfoot>
                   </table>
@@ -484,7 +454,7 @@
                   </button>
                   <button
                     type="button"
-                    class="opcao-status selecionado"
+                    class="opcao-status"
                     data-status="andamento"
                   >
                     Em Andamento
@@ -492,7 +462,6 @@
                   <button
                     type="button"
                     class="opcao-status"
-                    id="opcaoConcluida"
                     data-status="concluida"
                   >
                     Concluída
@@ -517,17 +486,9 @@
                   <div class="historico-item">
                     <div class="historico-linha"></div>
                     <div class="historico-conteudo">
-                      <strong>Aberta</strong>
-                      <span>2024-08-01 08:30 - Pedro Oliveira</span>
-                      <p>OS criada pelo solicitante.</p>
-                    </div>
-                  </div>
-                  <div class="historico-item">
-                    <div class="historico-linha"></div>
-                    <div class="historico-conteudo">
-                      <strong>Em Andamento</strong>
-                      <span>2024-08-01 09:15 - Carlos Mendes</span>
-                      <p>Aprovada e atribuída ao técnico.</p>
+                      <strong>Status Atualizado</strong>
+                      <span>Acompanhe o fluxo da OS</span>
+                      <p>Banco de dados sincronizado.</p>
                     </div>
                   </div>
                 </div>
@@ -539,36 +500,55 @@
     </div>
 
     <!-- ================================================= -->
-    <!-- MODAL DE CONFIRMAÇÃO DE ENCERRAMENTO -->
+    <!-- MODAL DE CONFIRMAÇÃO DE ENCERRAMENTO CORRIGIDO -->
     <!-- ================================================= -->
-    <div class="modal-confirmacao" id="modalEncerrarOS" aria-hidden="true">
-      <div class="modal-conteudo">
-        <div class="modal-icone">
+    <div class="modal-overlay" id="modalEncerrarOS" style="display: none">
+      <div
+        class="modal-content"
+        style="max-width: 420px; text-align: center; padding: 30px"
+      >
+        <div style="font-size: 42px; color: #f59e0b; margin-bottom: 12px">
           <i class="bi bi-exclamation-circle"></i>
         </div>
-        <h2>Encerrar Ordem de Serviço?</h2>
-        <p>
+        <h2 style="font-size: 18px; color: #18386e; margin-bottom: 10px">
+          Encerrar Ordem de Serviço?
+        </h2>
+        <p
+          style="
+            font-size: 12px;
+            color: #657991;
+            line-height: 1.5;
+            margin-bottom: 24px;
+          "
+        >
           Tem certeza que deseja encerrar esta Ordem de Serviço? Essa ação
           indicará que todas as atividades foram finalizadas.
         </p>
-        <div class="modal-acoes">
-          <button type="button" class="botao-modal-cancelar" id="cancelarModal">
+        <div
+          class="modal-footer"
+          style="justify-content: center; gap: 12px; margin-top: 0"
+        >
+          <button
+            type="button"
+            class="botao-secundario"
+            id="cancelarModal"
+            style="min-width: 110px"
+          >
             Cancelar
           </button>
           <button
             type="button"
-            class="botao-modal-confirmar"
+            class="botao-principal"
             id="confirmarEncerramento"
+            style="min-width: 140px; background: #159b72"
           >
-            Confirmar encerramento
+            Confirmar
           </button>
         </div>
       </div>
     </div>
 
-    <!-- ================================================= -->
-    <!-- MODAL DE NOVA ATIVIDADE (Jira SGM-255)            -->
-    <!-- ================================================= -->
+    <!-- MODAL DE NOVA ATIVIDADE -->
     <div class="modal-overlay" id="modalNovaAtividade" style="display: none">
       <div class="modal-content">
         <div class="modal-header">
@@ -601,7 +581,7 @@
             <textarea
               id="atividadeDescricao"
               rows="3"
-              placeholder="Ex: Foi trocada a correia e ajustado o rolamento..."
+              placeholder="Descreva a tarefa..."
               required
             ></textarea>
           </div>
@@ -611,9 +591,7 @@
             style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px"
           >
             <div class="campo-formulario">
-              <label for="atividadeDataInicio"
-                >Data/Hora Início (Apontamento)</label
-              >
+              <label for="atividadeDataInicio">Data/Hora Início</label>
               <input type="datetime-local" id="atividadeDataInicio" required />
             </div>
             <div class="campo-formulario">
@@ -622,7 +600,6 @@
             </div>
           </div>
 
-          <!-- BOTÕES AJEITADOS AQUI -->
           <div class="modal-footer">
             <button
               type="button"
@@ -639,9 +616,7 @@
       </div>
     </div>
 
-    <!-- ================================================= -->
-    <!-- MODAL DE EDITAR ATIVIDADE (Lápis)                 -->
-    <!-- ================================================= -->
+    <!-- MODAL DE EDITAR ATIVIDADE (Com Data/Hora de Término) -->
     <div class="modal-overlay" id="modalEditarAtividade" style="display: none">
       <div class="modal-content">
         <div class="modal-header">
@@ -651,7 +626,6 @@
           </button>
         </div>
         <form id="formEditarAtividade" class="modal-body">
-          <!-- Campos invisíveis para guardar os IDs da edição -->
           <input type="hidden" id="editAtividadeId" />
           <input type="hidden" id="editAtividadeStatusAnterior" />
 
@@ -674,10 +648,15 @@
           </div>
 
           <div class="campo-formulario">
-            <label for="editAtividadeDescricao"
-              >Descrição do que foi feito</label
-            >
+            <label for="editAtividadeDescricao">Descrição</label>
             <textarea id="editAtividadeDescricao" rows="3" required></textarea>
+          </div>
+
+          <div class="campo-formulario">
+            <label for="editAtividadeDataFim"
+              >Data/Hora de Término (Finalizar Atividade)</label
+            >
+            <input type="datetime-local" id="editAtividadeDataFim" />
           </div>
 
           <div class="modal-footer">
@@ -696,9 +675,7 @@
       </div>
     </div>
 
-    <!-- ================================================= -->
-    <!-- MODAL DE NOVA PEÇA UTILIZADA                      -->
-    <!-- ================================================= -->
+    <!-- MODAL DE NOVA PEÇA -->
     <div class="modal-overlay" id="modalNovaPeca" style="display: none">
       <div class="modal-content">
         <div class="modal-header">
@@ -727,7 +704,7 @@
             </div>
 
             <div class="campo-formulario">
-              <label for="pecaQuantidade">Qtd Utilizada</label>
+              <label for="pecaQuantidade">Qtd</label>
               <input
                 type="number"
                 id="pecaQuantidade"

@@ -474,9 +474,9 @@
   background: #f5f8fc;
 }
 .opcao-status.selecionado {
-  border-color: #a9c9ff;
-  background: #eaf2ff;
-  color: #2562c0;
+  border-color: #2f7df4 !important;
+  background: #eaf2ff !important;
+  color: #2562c0 !important;
   font-weight: 600;
 }
 
@@ -582,15 +582,8 @@
   line-height: 1.4;
 }
 
-.modal-confirmacao {
-  display: none;
-}
-.modal-confirmacao[aria-hidden="false"] {
-  display: flex;
-}
-
 /* =========================================================
-   MODAL PADRÃO (NOVA ATIVIDADE)
+   MODAL PADRÃO
 ========================================================= */
 .modal-overlay {
   position: fixed;
@@ -671,7 +664,6 @@
     box-shadow 0.2s ease;
 }
 
-/* Restringindo o textarea */
 .modal-body textarea {
   resize: none;
   height: 90px;
@@ -692,7 +684,6 @@
   margin-top: 20px;
 }
 
-/* Botões do Modal Centralizados e Uniformes */
 .botao-principal {
   display: inline-flex;
   align-items: center;
@@ -743,61 +734,5 @@
   }
   .informacoes-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 750px) {
-  .conteudo-principal {
-    padding: 22px 18px 35px;
-  }
-  .cabecalho-detalhes-os {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .coluna-direita {
-    display: flex;
-    flex-direction: column;
-  }
-  .atividades-cabecalho {
-    align-items: flex-start;
-  }
-  .atividades-controles {
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
-  .filtro-tipo-atividade {
-    min-width: 115px;
-  }
-  .atividade-info {
-    gap: 8px;
-  }
-  .linha-formulario {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (max-width: 600px) {
-  .conteudo-principal {
-    padding: 20px 13px 30px;
-  }
-  .informacoes-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-  .card-detalhes,
-  .card-status,
-  .card-historico {
-    padding: 17px;
-    border-radius: 11px;
-  }
-  .cabecalho-detalhes-os h1 {
-    font-size: 21px;
-  }
-  .atividades-controles {
-    width: 100%;
-    justify-content: flex-start;
-  }
-  .atividade-info {
-    align-items: flex-start;
   }
 }
