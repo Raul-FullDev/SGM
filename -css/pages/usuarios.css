@@ -13,15 +13,16 @@
 }
 
 .page-header h1 {
-  margin-bottom: 5px;
-  color: #27394f;
+  margin: 0 0 4px;
+  color: #102c63;
   font-size: 25px;
-  font-weight: 400;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.2px;
 }
-
 .page-header p {
-  color: var(--cinza-500, #7b8796);
-  font-size: 11px;
+  color: var(--cinza-500, #616974);
+  font-size: 12px;
 }
 
 /* Buttons */
