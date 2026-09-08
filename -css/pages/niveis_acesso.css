@@ -2,6 +2,29 @@
 @import url("../layout/sidebar.css");
 @import url("../layout/header.css");
 
+.conteudo-principal {
+  position: relative;
+  overflow: hidden;
+}
+
+.cabecalho-pagina {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 25px;
+}
+
+.cabecalho-pagina h1 {
+  margin-bottom: 5px;
+  color: #17275a;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.cabecalho-pagina p {
+  color: #657b99;
+  font-size: 13px;
+}
+
 /* Grade dos níveis */
 .niveis-acesso {
   display: grid;
@@ -13,23 +36,24 @@
 /* Cartão */
 .cartao-nivel {
   position: relative;
-  min-height: 297px;
-  padding: 13px 28px 22px;
+  min-height: 250px;
+  padding: 20px 28px;
   overflow: hidden;
   background: white;
   border: 1px solid #d9dde3;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow:
     0 2px 3px rgba(0, 0, 0, 0.08),
     0 5px 10px rgba(0, 0, 0, 0.03);
 }
+
 .cartao-nivel::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 105px;
+  height: 80px;
   opacity: 0.65;
   pointer-events: none;
 }
@@ -83,10 +107,11 @@
 .cartao-gerencia .cabecalho-cartao {
   border-color: #a9dfa9;
 }
+
 .titulo-cartao {
   display: flex;
   align-items: center;
-  gap: 9px;
+  justify-content: space-between;
 }
 
 /* Etiquetas */
@@ -95,11 +120,11 @@
   align-items: center;
   justify-content: center;
   min-height: 27px;
-  padding: 2px 8px;
+  padding: 2px 12px;
   border: 1px solid;
   border-radius: 12px;
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 600;
   white-space: nowrap;
 }
 .etiqueta-administrador {
@@ -129,11 +154,12 @@
   align-items: center;
   justify-content: center;
   min-height: 25px;
-  padding: 2px 9px;
-  border-radius: 10px;
+  padding: 2px 10px;
+  border-radius: 8px;
   background: #eeeeef;
   color: #77797d;
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -141,12 +167,13 @@
 .corpo-cartao {
   position: relative;
   z-index: 2;
-  padding-top: 10px;
+  padding-top: 15px;
 }
 .corpo-cartao h2 {
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 .cartao-administrador .corpo-cartao h2 {
   color: #5b67e9;
@@ -163,37 +190,19 @@
 
 /* Permissões */
 .lista-permissoes {
-  padding-left: 17px;
+  padding-left: 18px;
   list-style: disc;
 }
 .lista-permissoes li {
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   color: #45474b;
-  font-size: 11px;
-  line-height: 1.35;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
-/* Responsividade Específica */
+/* Responsividade */
 @media (max-width: 900px) {
   .niveis-acesso {
-    gap: 15px;
-  }
-  .cartao-nivel {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-}
-@media (max-width: 700px) {
-  .niveis-acesso {
     grid-template-columns: 1fr;
-  }
-  .cartao-nivel {
-    min-height: 270px;
-  }
-}
-@media (max-width: 650px) {
-  .cartao-nivel {
-    min-height: 260px;
-    padding: 14px 18px 20px;
   }
 }

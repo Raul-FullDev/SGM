@@ -12,138 +12,145 @@
   </head>
   <body>
     <div class="layout">
-      <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
+      <!-- ========================================== -->
+      <!-- BARRA LATERAL PADRONIZADA                  -->
+      <!-- ========================================== -->
+      <aside class="barra-lateral" id="barraLateral">
+        <div class="cabecalho-barra">
           <div class="logo">
-            <span class="logo-icon">S</span>
-            <div class="logo-text">
+            <span class="icone-logo">S</span>
+            <div class="texto-logo">
               <strong>SGM</strong>
               <span>Gestão de manutenção</span>
             </div>
           </div>
         </div>
 
-        <nav class="sidebar-nav" aria-label="Navegação principal">
-          <ul class="nav-list">
-            <li class="nav-item">
-              <a href="dashboard.html" class="nav-link">
-                <span class="nav-icon"><i class="bi bi-list-task"></i></span>
+        <nav class="navegacao-lateral" aria-label="Navegação principal">
+          <ul class="lista-navegacao">
+            <li class="item-navegacao">
+              <a href="dashboard.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-list-task"></i
+                ></span>
                 <span>Dashboard</span>
               </a>
             </li>
 
             <li class="item-navegacao">
               <a href="todas_os.html" class="link-navegacao">
-                <span class="icone-navegacao">
-                  <i class="bi bi-clipboard-data"></i>
-                </span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clipboard-data"></i
+                ></span>
                 <span>Ordens de Serviço</span>
               </a>
             </li>
 
-            <li class="nav-item active">
-              <button class="nav-link" type="button" data-menu="equipamentos">
-                <span class="nav-icon">
-                  <i class="bi bi-wrench-adjustable"></i>
-                </span>
+            <!-- EQUIPAMENTOS (ATIVO) -->
+            <li class="item-navegacao ativo">
+              <button
+                class="link-navegacao"
+                type="button"
+                data-menu="equipamentos"
+              >
+                <span class="icone-navegacao"
+                  ><i class="bi bi-wrench-adjustable"></i
+                ></span>
                 <span>Equipamentos</span>
               </button>
             </li>
 
-            <li class="nav-item">
-              <a href="setor_adm.html" class="nav-link">
-                <span class="nav-icon">
-                  <i class="bi bi-collection"></i>
-                </span>
+            <li class="item-navegacao">
+              <a href="setor_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-collection"></i
+                ></span>
                 <span>Setor</span>
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="historico_adm.html" class="nav-link">
-                <span class="nav-icon">
-                  <i class="bi bi-clock-history"></i>
-                </span>
+            <li class="item-navegacao">
+              <a href="historico_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clock-history"></i
+                ></span>
                 <span>Histórico</span>
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="indicadores_adm.html" class="nav-link">
-                <span class="nav-icon">
-                  <i class="bi bi-bar-chart"></i>
-                </span>
+            <li class="item-navegacao">
+              <a href="indicadores_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-bar-chart"></i
+                ></span>
                 <span>Indicadores</span>
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="relatorios_adm.html" class="nav-link">
-                <span class="nav-icon">
-                  <i class="bi bi-file-earmark-text"></i>
-                </span>
+            <li class="item-navegacao">
+              <a href="relatorios_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-file-earmark-text"></i
+                ></span>
                 <span>Relatórios</span>
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="manutencao_adm.html">
-                <button class="nav-link" type="button" data-menu="manutencao">
-                  <span class="nav-icon">
-                    <i class="bi bi-tools"></i>
-                  </span>
-                  <span>Manutenção</span>
-                </button>
+            <li class="item-navegacao">
+              <a href="manutencao_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"><i class="bi bi-tools"></i></span>
+                <span>Manutenção</span>
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="peca_adm.html">
-                <button class="nav-link" type="button" data-menu="pecas">
-                  <span class="nav-icon">
-                    <i class="bi bi-nut"></i>
-                  </span>
-                  <span>Peças</span>
-                </button>
+            <li class="item-navegacao">
+              <a href="pecas_adm.html" class="link-navegacao">
+                <span class="icone-navegacao"><i class="bi bi-nut"></i></span>
+                <span>Peças</span>
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="usuarios.html">
-                <button
-                  class="nav-link"
-                  type="button"
-                  data-menu="administracao"
-                >
-                  <span class="nav-icon">
-                    <i class="bi bi-people"></i>
-                  </span>
-                  <span>Administração</span>
-                </button>
+            <li class="item-navegacao">
+              <a href="usuarios.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-people"></i
+                ></span>
+                <span>Administração</span>
               </a>
             </li>
           </ul>
         </nav>
       </aside>
 
-      <div class="main-wrapper">
-        <header class="topbar">
-          <div class="topbar-left">
-            <div class="global-search"></div>
+      <div class="area-principal">
+        <!-- ========================================== -->
+        <!-- CABEÇALHO PADRONIZADO                      -->
+        <!-- ========================================== -->
+        <header class="cabecalho">
+          <div class="cabecalho-esquerdo">
+            <button
+              class="botao-menu"
+              id="botaoMenu"
+              type="button"
+              aria-label="Abrir menu"
+            >
+              ☰
+            </button>
           </div>
 
-          <div class="topbar-right">
+          <div class="cabecalho-direito">
             <button
-              class="notification-button"
-              id="notificationButton"
+              class="botao-notificacao"
+              id="botaoNotificacao"
               type="button"
               aria-label="Notificações"
-            ></button>
+            >
+              <i class="bi bi-bell"></i>
+            </button>
 
-            <div class="user-profile">
-              <div class="user-avatar">AS</div>
-
-              <div class="user-info">
+            <div class="perfil-usuario">
+              <div class="avatar-usuario">AS</div>
+              <div class="informacoes-usuario">
                 <strong>Admin Sistema</strong>
                 <span>Administrador</span>
               </div>
@@ -158,7 +165,12 @@
               <p>Cadastro de ativos e máquinas</p>
             </div>
 
-            <a href="novo_equipamento.html" class="botao botao-principal">
+            <!-- Adicionado o ID botaoNovoEquipamento para o JS conseguir bloquear pro Gerente/Técnico -->
+            <a
+              href="novo_equipamento.html"
+              class="botao botao-principal"
+              id="botaoNovoEquipamento"
+            >
               <span>+</span> Novo Equipamento
             </a>
           </div>
@@ -297,6 +309,7 @@
       </div>
     </div>
 
+    <!-- Scripts -->
     <script src="../-js/global.js"></script>
     <script src="../-js/pages/equipamentos.js"></script>
   </body>

@@ -8,6 +8,45 @@ document.addEventListener("DOMContentLoaded", () => {
     Prefer: "return=minimal",
   };
 
+  // ==========================================
+  // 0. VERIFICAÇÃO DE PAPEL DA SESSÃO (RBAC DA TELA)
+  // ==========================================
+  const sessaoStr = localStorage.getItem("sgm_sessao");
+  if (!sessaoStr) return; // Se não tiver, o global.js chuta pra fora
+
+  const sessao = JSON.parse(sessaoStr);
+  const papel = sessao.id_papel; // 1: ADM, 2: Solicitante, 3: Técnico, 4: Gerente
+
+  // Lógica Solicitante: Não vê as abas operacionais
+  if (papel === 2) {
+    // Procura todos os cards da coluna esquerda (Atividades e Peças) e some com eles
+    const cardsEsquerda = document.querySelectorAll(
+      ".coluna-esquerda .card-detalhes",
+    );
+    if (cardsEsquerda.length >= 3) {
+      cardsEsquerda[1].style.display = "none"; // Some com Atividades
+      cardsEsquerda[2].style.display = "none"; // Some com Peças
+    }
+
+    // Solicitante não pode mudar o Status nem encerrar OS (Esconde botões da direita)
+    const cardStatus = document.querySelector(".card-status");
+    if (cardStatus) cardStatus.style.display = "none";
+  }
+
+  // Lógica Gerente: Somente Leitura
+  if (papel === 4) {
+    // Remove todos os botões de adicionar e editar atividades/peças
+    const btnsAcao = document.querySelectorAll(
+      ".botao-adicionar-atividade, .botao-adicionar-peca, .botao-editar-atividade, .botao-editar-peca",
+    );
+    btnsAcao.forEach((btn) => (btn.style.display = "none"));
+
+    // Esconde o painel inteiro de "Alterar Status" e botões de Finalizar/Cancelar
+    const cardStatus = document.querySelector(".card-status");
+    if (cardStatus) cardStatus.style.display = "none";
+  }
+
+  // Elementos do HTML
   const botoesStatus = document.querySelectorAll(".opcao-status");
   const btnCancelarOS = document.getElementById("cancelarOS");
   const btnFinalizarOS = document.getElementById("finalizarOS");
@@ -38,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let idAberturaAtual = null;
   let idStatusAtual = null;
-  let idUsuarioLogado = null;
+  let idUsuarioLogado = sessao.id; // Pegando do localStorage ao invés de buscar do banco
 
   const mapStatusIds = {
     aberta: null,
@@ -52,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   async function inicializarDados() {
     try {
+      // Simulação para testes de UI, já que a URL não tá passando parâmetro "?id=" ainda
       const resOs = await fetch(
         `${baseUrl}/abertura_ordem_servico?select=id,id_status&order=id.desc&limit=1`,
         { headers: headersConfig },
@@ -61,12 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
         idAberturaAtual = dadosOs[0].id;
         idStatusAtual = dadosOs[0].id_status;
       }
-
-      const resUser = await fetch(`${baseUrl}/usuario?select=id&limit=1`, {
-        headers: headersConfig,
-      });
-      const dadosUser = await resUser.json();
-      if (dadosUser.length > 0) idUsuarioLogado = dadosUser[0].id;
 
       const resStatusOS = await fetch(
         `${baseUrl}/status_ordem_servico?select=id,descricao`,
@@ -85,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: headersConfig,
       });
       const tipos = await resTipos.json();
+
       selectTipoServico.innerHTML =
         '<option value="">Selecione o tipo</option>';
       editTipoServico.innerHTML = '<option value="">Selecione o tipo</option>';
@@ -102,33 +137,36 @@ document.addEventListener("DOMContentLoaded", () => {
         { headers: headersConfig },
       );
       const statusAtv = await resStatusAtv.json();
+
       selectStatusAtividade.innerHTML =
         '<option value="">Selecione o status</option>';
       editStatusAtividade.innerHTML =
         '<option value="">Selecione o status</option>';
+
       statusAtv.forEach((s) => {
         selectStatusAtividade.innerHTML += `<option value="${s.id}">${s.descricao}</option>`;
         editStatusAtividade.innerHTML += `<option value="${s.id}">${s.descricao}</option>`;
       });
 
       // Carregar Peças Dinamicamente (SGM-234)
-      const resPecas = await fetch(
-        `${baseUrl}/peca?select=id,descricao,custo_unitario,qtde&is_active=eq.true&order=descricao.asc`,
-        { headers: headersConfig },
-      );
-      const pecasData = await resPecas.json();
-      window.pecasGlobal = pecasData; // Guarda para validarmos o estoque na hora de salvar
+      if (papel !== 2 && selectPeca) {
+        // Solicitante não carrega peças
+        const resPecas = await fetch(
+          `${baseUrl}/peca?select=id,descricao,custo_unitario,qtde&is_active=eq.true&order=descricao.asc`,
+          { headers: headersConfig },
+        );
+        const pecasData = await resPecas.json();
+        window.pecasGlobal = pecasData;
 
-      if (selectPeca) {
         selectPeca.innerHTML = '<option value="">Selecione a peça...</option>';
         pecasData.forEach((p) => {
           selectPeca.innerHTML += `<option value="${p.id}">[Estoque: ${p.qtde}] ${p.descricao} - R$ ${p.custo_unitario.toFixed(2)}</option>`;
         });
       }
 
-      if (idAberturaAtual) {
+      if (idAberturaAtual && papel !== 2) {
         carregarAtividadesDaOS();
-        carregarPecasDaOS(); // Renderiza a tabela de peças utilizadas
+        carregarPecasDaOS();
       }
     } catch (e) {
       console.error("Erro ao inicializar dados:", e);
@@ -145,13 +183,15 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "GET",
         headers: headersConfig,
       });
+
       if (!resposta.ok) throw new Error("Erro ao buscar atividades");
 
       arrayAtividadesGlobal = await resposta.json();
       renderizarAtividades(arrayAtividadesGlobal);
     } catch (erro) {
-      containerListaAtividades.innerHTML =
-        '<p style="text-align: center; color: red;">Erro ao carregar lista.</p>';
+      if (containerListaAtividades)
+        containerListaAtividades.innerHTML =
+          '<p style="text-align: center; color: red;">Erro ao carregar lista.</p>';
     }
   }
 
@@ -177,6 +217,9 @@ document.addEventListener("DOMContentLoaded", () => {
         iconeNumero = '<i class="bi bi-check"></i>';
       }
 
+      // Se for gerente, o botão de edição de atividade não aparece
+      const displayBtnEditar = papel === 4 ? 'style="display: none;"' : "";
+
       containerListaAtividades.innerHTML += `
             <div class="atividade ${classeConcluida}">
                 <span class="atividade-numero">${iconeNumero}</span>
@@ -186,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="atividade-tipo">Tipo: ${tipo}</span>
                     </div>
                     <span class="atividade-status">${status}</span>
-                    <button type="button" class="botao-editar-atividade" data-id="${ativ.id}" aria-label="Editar atividade">
+                    <button type="button" class="botao-editar-atividade" data-id="${ativ.id}" ${displayBtnEditar} aria-label="Editar atividade">
                       <i class="bi bi-pencil"></i>
                     </button>
                 </div>
@@ -205,11 +248,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================
-  // 3. BUSCAR E RENDERIZAR PEÇAS (SGM-234)
+  // 3. BUSCAR E RENDERIZAR PEÇAS
   // ==========================================
   async function carregarPecasDaOS() {
     try {
-      // O "!inner" garante que trazemos apenas as peças vinculadas às atividades desta OS específica
       const query = `select=id,quantidade,custo_unitario_na_troca,peca(descricao),atividade!inner(id_abertura_ordem_servico)&atividade.id_abertura_ordem_servico=eq.${idAberturaAtual}`;
       const res = await fetch(`${baseUrl}/troca_peca?${query}`, {
         headers: headersConfig,
@@ -233,6 +275,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       let totalOS = 0;
+
+      const displayBtnEditar = papel === 4 ? 'style="display: none;"' : "";
+
       trocas.forEach((t) => {
         const totalItem = t.quantidade * t.custo_unitario_na_troca;
         totalOS += totalItem;
@@ -243,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
                       <td>R$ ${t.custo_unitario_na_troca.toFixed(2)}</td>
                       <td><strong>R$ ${totalItem.toFixed(2)}</strong></td>
                       <td class="acao-peca">
-                        <button type="button" class="botao-editar-peca" data-id="${t.id}" aria-label="Editar peça">
+                        <button type="button" class="botao-editar-peca" data-id="${t.id}" ${displayBtnEditar} aria-label="Editar peça">
                           <i class="bi bi-pencil"></i>
                         </button>
                       </td>
@@ -257,14 +302,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
-  // 4. NOVA PEÇA E ATUALIZAÇÃO DE ESTOQUE (SGM-234)
+  // 4. NOVA PEÇA E ATUALIZAÇÃO DE ESTOQUE
   // ==========================================
   if (btnAdicionarPeca) {
     btnAdicionarPeca.addEventListener("click", () => {
-      // Precisamos vincular a peça a uma atividade que o técnico executou
       if (arrayAtividadesGlobal.length === 0) {
         return alert(
-          "Atenção: Você precisa cadastrar ao menos uma Atividade antes de registrar uma Peça!",
+          "Você precisa cadastrar ao menos uma Atividade antes de registrar uma Peça!",
         );
       }
 
@@ -295,9 +339,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     const peca = window.pecasGlobal.find((p) => p.id === idPeca);
-    if (!peca) return alert("Peça não encontrada no sistema.");
+    if (!peca) return alert("Peça não encontrada.");
 
-    // Validação de Estoque (Evita Erro 400 do Banco de Dados)
     if (qtdUsada > peca.qtde) {
       return alert(
         `ESTOQUE INSUFICIENTE: Você tentou usar ${qtdUsada} unidades, mas temos apenas ${peca.qtde} no estoque.`,
@@ -310,7 +353,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btnSubmit.disabled = true;
 
     try {
-      // 1. INSERE O USO DA PEÇA NA OS
       const resTroca = await fetch(`${baseUrl}/troca_peca`, {
         method: "POST",
         headers: headersConfig,
@@ -323,24 +365,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       if (!resTroca.ok) throw new Error("Erro ao vincular a peça à OS.");
 
-      // 2. ATUALIZA O ESTOQUE DA PEÇA (A INTEGRAÇÃO DO SGM-234 ACONTECE AQUI)
       const novoEstoque = peca.qtde - qtdUsada;
       const resEstoque = await fetch(`${baseUrl}/peca?id=eq.${idPeca}`, {
         method: "PATCH",
         headers: headersConfig,
         body: JSON.stringify({ qtde: novoEstoque }),
       });
-      if (!resEstoque.ok)
-        throw new Error("Erro crítico ao dar baixa no estoque.");
+      if (!resEstoque.ok) throw new Error("Erro ao dar baixa no estoque.");
 
-      alert("Peça adicionada e estoque atualizado com sucesso!");
+      alert("Peça adicionada com sucesso!");
       modalNovaPeca.style.display = "none";
       formNovaPeca.reset();
-
-      // Recarrega tudo para atualizar os Dropdowns com o novo estoque
       inicializarDados();
     } catch (erro) {
-      console.error(erro);
       alert(erro.message);
     } finally {
       btnSubmit.innerHTML = txtOriginal;
@@ -349,7 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================
-  // 5. ABRIR E SALVAR EDIÇÃO DA ATIVIDADE (O Lápis)
+  // 5. ABRIR E SALVAR EDIÇÃO DA ATIVIDADE
   // ==========================================
   containerListaAtividades?.addEventListener("click", (e) => {
     const btnEditar = e.target.closest(".botao-editar-atividade");
@@ -417,7 +454,6 @@ document.addEventListener("DOMContentLoaded", () => {
       modalEditarAtividade.style.display = "none";
       carregarAtividadesDaOS();
     } catch (erro) {
-      console.error(erro);
       alert(erro.message);
     } finally {
       btnSubmit.innerHTML = txtOriginal;
@@ -568,6 +604,7 @@ document.addEventListener("DOMContentLoaded", () => {
         confirm("Tem certeza que deseja cancelar?") &&
         executarTrocaDeStatus("cancelada"),
     );
+
   if (btnFinalizarOS && modalEncerrar) {
     btnFinalizarOS.addEventListener(
       "click",

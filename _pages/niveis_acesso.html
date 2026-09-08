@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SGM - Níveis de Acesso</title>
 
-    <!-- Caminho do CSS mantido -->
     <link rel="stylesheet" href="../-css/pages/niveis_acesso.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
   </head>
 
   <body>
@@ -27,117 +29,95 @@
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
             <li class="item-navegacao">
-              <a href="dashboard.html">
-              <button
-                class="link-navegacao"
-                type="button"
-                data-menu="dashboard"
-              >
-                <span class="icone-navegacao"><i class="bi bi-list-task"></i></span>
+              <a href="dashboard.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-list-task"></i
+                ></span>
                 <span>Dashboard</span>
-                
-  
-              </button>
               </a>
             </li>
 
             <li class="item-navegacao">
-              <a href="todas_os.html">
-                <button class="link-navegacao" type="button" data-menu="ordens">
-                  <span class="icone-navegacao"><i class="bi bi-clipboard-data"></i></span>
-                  <span> Ordens de Serviço </span>
-                  
-                </button>
+              <a href="todas_os.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clipboard-data"></i
+                ></span>
+                <span>Ordens de Serviço</span>
               </a>
             </li>
 
             <li class="item-navegacao">
-              <a href="equipamentos.html">
-              <button
-                class="link-navegacao"
-                type="button"
-                data-menu="equipamentos"
-              >
-                <span class="icone-navegacao"><i class="bi bi-wrench-adjustable"></i></span>
+              <a href="equipamentos.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-wrench-adjustable"></i
+                ></span>
                 <span>Equipamentos</span>
-               
-              </button>
               </a>
             </li>
 
-            <!-- ========================================== -->
-            <!-- NOVOS MENUS ADICIONADOS PELO SEU COLEGA    -->
-            <!-- ========================================== -->
             <li class="item-navegacao">
               <a href="setor_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-collection"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-collection"></i
+                ></span>
                 <span>Setor</span>
               </a>
             </li>
 
             <li class="item-navegacao">
               <a href="historico_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-clock-history"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-clock-history"></i
+                ></span>
                 <span>Histórico</span>
               </a>
             </li>
 
             <li class="item-navegacao">
               <a href="indicadores_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-bar-chart"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-bar-chart"></i
+                ></span>
                 <span>Indicadores</span>
               </a>
             </li>
 
             <li class="item-navegacao">
               <a href="relatorios_adm.html" class="link-navegacao">
-                <span class="icone-navegacao"><i class="bi bi-file-earmark-text"></i></span>
+                <span class="icone-navegacao"
+                  ><i class="bi bi-file-earmark-text"></i
+                ></span>
                 <span>Relatórios</span>
               </a>
             </li>
-            <!-- ========================================== -->
 
             <li class="item-navegacao">
-              <a href="manutencao_adm.html">
-              <button
-                class="link-navegacao"
-                type="button"
-                data-menu="manutencao"
-              >
+              <a href="manutencao_adm.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-tools"></i></span>
                 <span>Manutenção</span>
-                
-              </button>
               </a>
             </li>
 
             <li class="item-navegacao">
-              <a href="pecas_adm.html">
-              <button class="link-navegacao" type="button" data-menu="pecas">
+              <a href="pecas_adm.html" class="link-navegacao">
                 <span class="icone-navegacao"><i class="bi bi-nut"></i></span>
                 <span>Peças</span>
-                
-              </button>
               </a>
             </li>
 
             <li class="item-navegacao ativo">
-              <button
-                class="link-navegacao"
-                type="button"
-                data-menu="administracao"
-              >
-                <span class="icone-navegacao"><i class="bi bi-people"></i></span>
+              <a href="usuarios.html" class="link-navegacao">
+                <span class="icone-navegacao"
+                  ><i class="bi bi-people"></i
+                ></span>
                 <span>Administração</span>
-                
-              </button>
-
+              </a>
               <ul class="submenu">
                 <li class="item-submenu">
-                  <a href="usuarios.html"> Usuários </a>
+                  <a href="usuarios.html">Usuários</a>
                 </li>
                 <li class="item-submenu ativo">
-                  <a href="niveis_acesso.html"> Níveis de acesso </a>
+                  <a href="niveis_acesso.html">Níveis de acesso</a>
                 </li>
               </ul>
             </li>
@@ -161,19 +141,12 @@
           </div>
 
           <div class="cabecalho-direito">
-            <!-- ========================================== -->
-            <!-- ÍCONE DO SINO ADICIONADO PELO COLEGA       -->
-            <!-- ========================================== -->
             <button
               class="botao-notificacao"
               id="botaoNotificacao"
               type="button"
               aria-label="Notificações"
-            >
-              
-            </button>
-            <!-- ========================================== -->
-
+            ></button>
             <div class="perfil-usuario">
               <div class="avatar-usuario">AS</div>
               <div class="informacoes-usuario">
@@ -188,6 +161,7 @@
         <main class="conteudo-principal">
           <div class="cabecalho-pagina">
             <h1>Níveis de Acesso</h1>
+            <p>Consulta das permissões de segurança estruturadas no sistema</p>
           </div>
 
           <section
@@ -196,116 +170,97 @@
             aria-label="Níveis de acesso"
           >
             <!-- Administrador -->
-            <article
-              class="cartao-nivel cartao-administrador"
-              data-nivel-id="0"
-              data-nivel="administrador"
-            >
+            <article class="cartao-nivel cartao-administrador">
               <header class="cabecalho-cartao">
                 <div class="titulo-cartao">
-                  <span class="etiqueta etiqueta-administrador">
-                    Administrador
-                  </span>
-                  <span class="numero-nivel"> Nível 0 </span>
+                  <span class="etiqueta etiqueta-administrador"
+                    >Administrador</span
+                  >
+                  <span class="numero-nivel">Nível 0</span>
                 </div>
               </header>
-
               <div class="corpo-cartao">
                 <h2>PERMISSÕES:</h2>
                 <ul class="lista-permissoes">
-                  <li>Dashboard</li>
-                  <li>Ordens de Serviço</li>
-                  <li>Equipamentos</li>
-                  <li>Manutenção</li>
-                  <li>Peças</li>
-                  <li>Relatórios</li>
-                  <li>Usuários</li>
-                  <li>Níveis de acesso</li>
+                  <li>Dashboard (Acesso total)</li>
+                  <li>Ordens de Serviço (Gerenciamento completo)</li>
+                  <li>Equipamentos (Cadastro e alteração)</li>
+                  <li>Manutenção e Planos</li>
+                  <li>Peças e Almoxarifado</li>
+                  <li>Relatórios e Indicadores</li>
+                  <li>Usuários e Níveis de Acesso</li>
                 </ul>
               </div>
             </article>
-            <!-- Usuário -->
-            <article
-              class="cartao-nivel cartao-usuario"
-              data-nivel-id="1"
-              data-nivel="usuario"
-            >
+
+            <!-- Solicitante (Antigo Usuário) -->
+            <article class="cartao-nivel cartao-usuario">
               <header class="cabecalho-cartao">
                 <div class="titulo-cartao">
-                  <span class="etiqueta etiqueta-usuario"> Usuário </span>
-                  <span class="numero-nivel"> Nível 1 </span>
+                  <span class="etiqueta etiqueta-usuario">Solicitante</span>
+                  <span class="numero-nivel">Nível 1</span>
                 </div>
               </header>
-
               <div class="corpo-cartao">
                 <h2>PERMISSÕES:</h2>
                 <ul class="lista-permissoes">
-                  <li>Dashboard</li>
-                  <li>Abrir OS</li>
-                  <li>Minhas OS</li>
+                  <li>Dashboard (Visão resumida)</li>
+                  <li>Ordens de Serviço (Apenas suas solicitações)</li>
+                  <li>
+                    Edição restrita de OS própria
+                  </li>
                 </ul>
               </div>
             </article>
 
             <!-- Técnico -->
-            <article
-              class="cartao-nivel cartao-tecnico"
-              data-nivel-id="2"
-              data-nivel="tecnico"
-            >
+            <article class="cartao-nivel cartao-tecnico">
               <header class="cabecalho-cartao">
                 <div class="titulo-cartao">
-                  <span class="etiqueta etiqueta-tecnico"> Técnico </span>
-                  <span class="numero-nivel"> Nível 2 </span>
+                  <span class="etiqueta etiqueta-tecnico">Técnico</span>
+                  <span class="numero-nivel">Nível 2</span>
                 </div>
               </header>
-
               <div class="corpo-cartao">
                 <h2>PERMISSÕES:</h2>
                 <ul class="lista-permissoes">
                   <li>Dashboard</li>
-                  <li>Ordens de Serviço</li>
-                  <li>Equipamentos</li>
-                  <li>Atividades</li>
-                  <li>Peças</li>
+                  <li>Ordens de Serviço (Execução e histórico)</li>
+                  <li>Equipamentos (Visualização, sem cadastro de novos)</li>
+                  <li>Atividades e Histórico</li>
+                  <li>
+                    Peças (Visualização de estoque)
+                  </li>
                   <li>Encerrar OS</li>
                 </ul>
               </div>
             </article>
 
             <!-- Gerência -->
-            <article
-              class="cartao-nivel cartao-gerencia"
-              data-nivel-id="3"
-              data-nivel="gerencia"
-            >
+            <article class="cartao-nivel cartao-gerencia">
               <header class="cabecalho-cartao">
                 <div class="titulo-cartao">
-                  <span class="etiqueta etiqueta-gerencia"> Gerência </span>
-                  <span class="numero-nivel"> Nível 3 </span>
+                  <span class="etiqueta etiqueta-gerencia">Gerência</span>
+                  <span class="numero-nivel">Nível 3</span>
                 </div>
               </header>
-
               <div class="corpo-cartao">
                 <h2>PERMISSÕES:</h2>
                 <ul class="lista-permissoes">
-                  <li>Dashboard</li>
-                  <li>Ordens de Serviço (leitura)</li>
-                  <li>Equipamentos (leitura)</li>
+                  <li>Dashboard (Visão executiva)</li>
+                  <li>Ordens de Serviço (Leitura e visualização)</li>
+                  <li>Equipamentos (Leitura)</li>
+                  <li>Setores e Indicadores</li>
                   <li>Relatórios</li>
                 </ul>
               </div>
             </article>
           </section>
-          <div
-    class="formulario-papel"
-    id="formularioNovoPapel"
->
         </main>
       </div>
     </div>
 
-    <!-- Caminho do JS mantido -->
+    <!-- Caminho do JS -->
     <script src="../-js/global.js"></script>
   </body>
 </html>

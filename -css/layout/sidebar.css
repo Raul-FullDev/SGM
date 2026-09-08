@@ -152,3 +152,17 @@
     transform: translateX(0);
   }
 }
+
+/* 1. Mata qualquer submenu que esteja vazio */
+.submenu:empty {
+  display: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 2. Mata submenus que não tenham nenhum item (li) válido dentro */
+.submenu:not(:has(li)) {
+  display: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
