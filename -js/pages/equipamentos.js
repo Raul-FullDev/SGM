@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const corpoTabela = document.getElementById("corpoTabelaEquipamentos");
   const inputPesquisa = document.getElementById("pesquisaEquipamento");
-  const filtroFabricante = document.getElementById("filtroFabricante");
   const filtroSetor = document.getElementById("filtroSetor");
   const filtroStatus = document.getElementById("filtroStatus");
   const estadoVazio = document.getElementById("estadoVazio");
@@ -44,22 +43,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      const resEquip = await fetch(
-        `${baseUrl}/equipamento?select=manufaturado`,
-        { headers: headersConfig },
-      );
-      if (resEquip.ok) {
-        const dados = await resEquip.json();
-        const fabricantesUnicos = [
-          ...new Set(dados.map((e) => e.manufaturado).filter(Boolean)),
-        ];
-        if (filtroFabricante) {
-          filtroFabricante.innerHTML = `<option value="">Todos os fabricantes</option>`;
-          fabricantesUnicos.forEach((fab) => {
-            filtroFabricante.innerHTML += `<option value="${fab}">${fab}</option>`;
-          });
-        }
-      }
+      // const resEquip = await fetch(
+      //   `${baseUrl}/equipamento?select=manufaturado`,
+      //   { headers: headersConfig },
+      // );
+      // if (resEquip.ok) {
+      //   const dados = await resEquip.json();
+      //   const fabricantesUnicos = [
+      //     ...new Set(dados.map((e) => e.manufaturado).filter(Boolean)),
+      //   ];
+      //   if (filtroFabricante) {
+      //     filtroFabricante.innerHTML = `<option value="">Todos os fabricantes</option>`;
+      //     fabricantesUnicos.forEach((fab) => {
+      //       filtroFabricante.innerHTML += `<option value="${fab}">${fab}</option>`;
+      //     });
+      //   }
+      // }
     } catch (erro) {
       console.error("Erro ao carregar filtros:", erro);
     }
@@ -76,9 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (idLocal && !idLocal.toLowerCase().includes("todos"))
         urlQuery += `&id_local=eq.${idLocal}`;
 
-      const fabricante = filtroFabricante ? filtroFabricante.value : "";
-      if (fabricante && !fabricante.toLowerCase().includes("todos"))
-        urlQuery += `&manufaturado=eq.${encodeURIComponent(fabricante)}`;
+      // const fabricante = filtroFabricante ? filtroFabricante.value : "";
+      // if (fabricante && !fabricante.toLowerCase().includes("todos"))
+      //   urlQuery += `&manufaturado=eq.${encodeURIComponent(fabricante)}`;
 
       const status = filtroStatus ? filtroStatus.value : "";
       if (status && !status.toLowerCase().includes("todos"))
@@ -133,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
       tr.innerHTML = `
         <td>${eqp.asset || "-"}</td>
         <td>${eqp.descricao || "-"}</td>
-        <td>${eqp.manufaturado || "-"} · ${eqp.modelo || "-"}</td>
         <td>${nomeSetor}</td>
         <td>${eqp.numero_serie || "-"}</td>
         <td>${eqp.data_aquisicao || "-"}</td>
@@ -232,8 +230,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   if (inputPesquisa)
     inputPesquisa.addEventListener("input", carregarEquipamentosFiltrados);
-  if (filtroFabricante)
-    filtroFabricante.addEventListener("change", carregarEquipamentosFiltrados);
+  // if (filtroFabricante)
+  //   filtroFabricante.addEventListener("change", carregarEquipamentosFiltrados);
   if (filtroSetor)
     filtroSetor.addEventListener("change", carregarEquipamentosFiltrados);
   if (filtroStatus)
