@@ -121,8 +121,48 @@ ul {
   border: 0;
 }
 
+/* ==========================================
+   PADRONIZAÇÃO GLOBAL DA BARRA DE PESQUISA (FILTROS)
+========================================== */
 
+/* 1. Para formulários baseados em Flexbox (legado) */
+.filter-form .search-field {
+  flex: 0 1 350px !important;
+  width: 100%;
+}
+.filter-form .search-field input {
+  width: 100%;
+}
 
+/* 2. Para formulários baseados em CSS Grid (ex: todas_os.css, equipamentos.css) */
+.formulario-filtros {
+  /* Força o grid a não esticar itens infinitamente e alinhar tudo à esquerda */
+  justify-content: start !important;
+}
+
+/* 3. Limita o tamanho do campo de pesquisa globalmente */
+/* Cobre possíveis variações de classes que você possa ter usado nas outras telas */
+.campo-pesquisa-os,
+.campo-pesquisa,
+.search-container,
+.barra-pesquisa {
+  max-width: 350px !important;
+  width: 100%;
+}
+
+/* Redefine o 1fr automático da primeira coluna do Grid para respeitar o max-width */
+@media (min-width: 901px) {
+  .formulario-filtros {
+    grid-template-columns: minmax(180px, 350px) repeat(
+        auto-fit,
+        minmax(120px, max-content)
+      ) auto !important;
+  }
+}
+
+/* ==========================================
+   RESPONSIVIDADE GERAL
+========================================== */
 @media (max-width: 900px) {
   :root {
     --largura-barra: 175px;
@@ -132,7 +172,13 @@ ul {
   .conteudo-principal {
     padding: 24px 18px 40px;
   }
+  /* Em telas médias, permite que a barra de pesquisa ocupe a linha inteira */
+  .campo-pesquisa-os,
+  .campo-pesquisa {
+    max-width: 100% !important;
+  }
 }
+
 @media (max-width: 650px) {
   :root {
     --largura-barra: 0;
