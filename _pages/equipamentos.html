@@ -12,9 +12,7 @@
   </head>
   <body>
     <div class="layout">
-      <!-- ========================================== -->
-      <!-- BARRA LATERAL PADRONIZADA                  -->
-      <!-- ========================================== -->
+
       <aside class="barra-lateral" id="barraLateral">
         <div class="cabecalho-barra">
           <div class="logo">
@@ -46,7 +44,6 @@
               </a>
             </li>
 
-            <!-- EQUIPAMENTOS (ATIVO) -->
             <li class="item-navegacao ativo">
               <button
                 class="link-navegacao"
@@ -123,9 +120,6 @@
       </aside>
 
       <div class="area-principal">
-        <!-- ========================================== -->
-        <!-- CABEÇALHO PADRONIZADO                      -->
-        <!-- ========================================== -->
         <header class="cabecalho">
           <div class="cabecalho-esquerdo">
             <button
@@ -139,9 +133,7 @@
           </div>
 
           <div class="cabecalho-direito">
-            <!-- ========================================== -->
-            <!-- NOTIFICAÇÕES DINÂMICAS COM DROPDOWN        -->
-            <!-- ========================================== -->
+
             <div
               class="notificacao-container"
               style="position: relative; display: flex; align-items: center"
@@ -153,7 +145,6 @@
                 aria-label="Notificações"
               >
                 <i class="bi bi-bell"></i>
-                <!-- Bolinha começa invisível e vazia -->
                 <span class="badge-notificacao" style="display: none">0</span>
               </button>
 
@@ -169,7 +160,6 @@
                   </button>
                 </div>
 
-                <!-- O JavaScript vai injetar as notificações REAIS aqui dentro -->
                 <div class="lista-notificacoes" id="containerListaNotificacoes">
                   <p
                     style="
@@ -186,7 +176,6 @@
             </div>
 
             <div class="perfil-container" style="position: relative">
-              <!-- Botão clicável (Mantive as classes que você já usava: user-profile, user-avatar, user-info) -->
               <div
                 class="user-profile"
                 id="botaoPerfil"
@@ -208,13 +197,12 @@
                 ></i>
               </div>
 
-              <!-- Caixa do Dropdown (Escondida por padrão) -->
               <div class="dropdown-perfil" id="dropdownPerfil">
                 <div class="dropdown-cabecalho">
                   <span class="dropdown-titulo">Conta</span>
                 </div>
                 <div class="dropdown-divisor"></div>
-                <!-- LINK PARA A TELA DE PERFIL -->
+
                 <a href="perfil.html" class="dropdown-item">
                   <i class="bi bi-person"></i> Meu Perfil
                 </a>
@@ -238,7 +226,6 @@
               <p>Cadastro de ativos e máquinas</p>
             </div>
 
-            <!-- Adicionado o ID botaoNovoEquipamento para o JS conseguir bloquear pro Gerente/Técnico -->
             <a
               href="novo_equipamento.html"
               class="botao botao-principal"
@@ -317,9 +304,7 @@
       </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- MODAL DE HISTÓRICO DO EQUIPAMENTO          -->
-    <!-- ========================================== -->
+
     <div
       id="modalHistoricoEquipamento"
       class="modal-overlay"

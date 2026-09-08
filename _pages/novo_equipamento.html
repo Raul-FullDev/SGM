@@ -6,10 +6,10 @@
 
     <title>SGM - Novo Equipamento</title>
 
-    <!-- Caminho do CSS mantido -->
+  
     <link rel="stylesheet" href="../-css/pages/novo_equipamento.css" />
 
-    <!-- Bootstrap Icons -->
+   
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -18,7 +18,7 @@
 
   <body>
     <div class="layout">
-      <!-- Menu lateral -->
+
       <aside class="barra-lateral" id="barraLateral">
         <div class="cabecalho-barra">
           <div class="logo">
@@ -43,7 +43,6 @@
               </a>
             </li>
 
-            <!-- Ordens de Serviço -->
             <li class="item-navegacao">
               <a href="todas_os.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -53,7 +52,7 @@
               </a>
             </li>
 
-            <!-- Equipamentos -->
+         
             <li class="item-navegacao ativo">
               <a href="equipamentos.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -63,7 +62,7 @@
               </a>
             </li>
 
-            <!-- Setor -->
+   
             <li class="item-navegacao">
               <a href="setor_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -73,7 +72,7 @@
               </a>
             </li>
 
-            <!-- Histórico -->
+    
             <li class="item-navegacao">
               <a href="historico_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -83,7 +82,7 @@
               </a>
             </li>
 
-            <!-- Indicadores -->
+  
             <li class="item-navegacao">
               <a href="indicadores_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -93,7 +92,7 @@
               </a>
             </li>
 
-            <!-- Relatórios -->
+       
             <li class="item-navegacao">
               <a href="relatorios_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -103,7 +102,6 @@
               </a>
             </li>
 
-            <!-- Manutenção -->
             <li class="item-navegacao">
               <a href="manutencao_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -113,7 +111,7 @@
               </a>
             </li>
 
-            <!-- Peças -->
+     
             <li class="item-navegacao">
               <a href="pecas_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -123,7 +121,7 @@
               </a>
             </li>
 
-            <!-- Administração -->
+         
             <li class="item-navegacao">
               <a href="usuarios.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -136,9 +134,9 @@
         </nav>
       </aside>
 
-      <!-- Área principal -->
+  
       <div class="area-principal">
-        <!-- Cabeçalho -->
+  
         <header class="cabecalho">
           <div class="cabecalho-esquerdo">
             <button
@@ -152,10 +150,7 @@
           </div>
 
           <div class="cabecalho-direito">
-            <!-- Notificações -->
-            <!-- ========================================== -->
-            <!-- NOTIFICAÇÕES DINÂMICAS COM DROPDOWN        -->
-            <!-- ========================================== -->
+         
             <div
               class="notificacao-container"
               style="position: relative; display: flex; align-items: center"
@@ -167,7 +162,7 @@
                 aria-label="Notificações"
               >
                 <i class="bi bi-bell"></i>
-                <!-- Bolinha começa invisível e vazia -->
+            
                 <span class="badge-notificacao" style="display: none">0</span>
               </button>
 
@@ -183,7 +178,7 @@
                   </button>
                 </div>
 
-                <!-- O JavaScript vai injetar as notificações REAIS aqui dentro -->
+                
                 <div class="lista-notificacoes" id="containerListaNotificacoes">
                   <p
                     style="
@@ -199,9 +194,9 @@
               </div>
             </div>
 
-            <!-- Perfil -->
+           
             <div class="perfil-container" style="position: relative">
-              <!-- Botão clicável (Mantive as classes que você já usava: user-profile, user-avatar, user-info) -->
+              
               <div
                 class="user-profile"
                 id="botaoPerfil"
@@ -223,13 +218,13 @@
                 ></i>
               </div>
 
-              <!-- Caixa do Dropdown (Escondida por padrão) -->
+              
               <div class="dropdown-perfil" id="dropdownPerfil">
                 <div class="dropdown-cabecalho">
                   <span class="dropdown-titulo">Conta</span>
                 </div>
                 <div class="dropdown-divisor"></div>
-                <!-- LINK PARA A TELA DE PERFIL -->
+                
                 <a href="perfil.html" class="dropdown-item">
                   <i class="bi bi-person"></i> Meu Perfil
                 </a>
@@ -246,9 +241,9 @@
           </div>
         </header>
 
-        <!-- Conteúdo principal -->
+     
         <main class="conteudo-principal">
-          <!-- Decorações -->
+          
           <div class="decoracao-equipamento" aria-hidden="true">
             <span class="ponto-equipamento ponto-equipamento-1"></span>
             <span class="ponto-equipamento ponto-equipamento-2"></span>
@@ -264,7 +259,7 @@
             <span class="linhas-equipamento"></span>
           </div>
 
-          <!-- Breadcrumb -->
+         
           <nav class="breadcrumb-pagina" aria-label="Navegação estrutural">
             <a href="equipamentos.html">
               <i class="bi bi-chevron-left"></i>
@@ -278,13 +273,12 @@
             <span class="breadcrumb-atual"> Novo Equipamento </span>
           </nav>
 
-          <!-- Cabeçalho da página -->
           <section class="cabecalho-pagina">
             <h1>Novo Equipamento</h1>
             <p>Preencha os dados do ativo para registrá-lo no sistema</p>
           </section>
 
-          <!-- Formulário -->
+       
           <form class="formulario-equipamento" id="formularioEquipamento">
             <div class="campos-equipamento">
               <!-- Código do ativo -->
@@ -303,7 +297,6 @@
                 />
               </div>
 
-              <!-- Status -->
               <div class="campo-formulario">
                 <label for="statusEquipamento">
                   Status
@@ -321,7 +314,6 @@
                 </select>
               </div>
 
-              <!-- Descrição -->
               <div class="campo-formulario campo-largo">
                 <label for="descricaoEquipamento">
                   Descrição / Nome do Equipamento
@@ -337,7 +329,6 @@
                 />
               </div>
 
-              <!-- Fabricante -->
               <div class="campo-formulario">
                 <label for="fabricanteEquipamento">
                   Fabricante
@@ -353,7 +344,7 @@
                 />
               </div>
 
-              <!-- Modelo -->
+           
               <div class="campo-formulario">
                 <label for="modeloEquipamento">
                   Modelo
@@ -369,7 +360,7 @@
                 />
               </div>
 
-              <!-- Número de série -->
+            
               <div class="campo-formulario">
                 <label for="numeroSerie">
                   Número de Série
@@ -385,7 +376,7 @@
                 />
               </div>
 
-              <!-- Data de aquisição -->
+             
               <div class="campo-formulario">
                 <label for="dataAquisicao">
                   Data de Aquisição
@@ -400,7 +391,7 @@
                 />
               </div>
 
-              <!-- Setor / Localização -->
+              
               <div class="campo-formulario campo-largo">
                 <label for="setorLocalizacao">
                   Setor / Localização
@@ -419,7 +410,7 @@
               </div>
             </div>
 
-            <!-- Aviso -->
+            
             <div class="aviso-formulario">
               <i class="bi bi-info-circle"></i>
 
@@ -429,7 +420,7 @@
             </div>
           </form>
 
-          <!-- Ações -->
+         
           <div class="acoes-formulario">
             <a href="equipamentos.html" class="botao-cancelar"> Cancelar </a>
 
@@ -446,7 +437,7 @@
       </div>
     </div>
 
-    <!-- Caminho do JS mantido -->
+   
     <script src="../-js/global.js"></script>
     <script src="../-js/pages/novo_equipamento.js"></script>
   </body>

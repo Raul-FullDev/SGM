@@ -6,10 +6,8 @@
 
     <title>SGM - Nova Peça</title>
 
-    <!-- Caminho do CSS mantido -->
     <link rel="stylesheet" href="../-css/pages/nova_peca_adm.css" />
 
-    <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -18,7 +16,7 @@
 
   <body>
     <div class="layout">
-      <!-- Menu lateral -->
+
       <aside class="barra-lateral" id="barraLateral">
         <div class="cabecalho-barra">
           <div class="logo">
@@ -33,7 +31,7 @@
 
         <nav class="navegacao-lateral" aria-label="Navegação principal">
           <ul class="lista-navegacao">
-            <!-- Dashboard -->
+            
             <li class="item-navegacao">
               <a href="dashboard.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -43,7 +41,7 @@
               </a>
             </li>
 
-            <!-- Ordens de Serviço -->
+           
             <li class="item-navegacao">
               <a href="todas_os.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -53,7 +51,6 @@
               </a>
             </li>
 
-            <!-- Equipamentos -->
             <li class="item-navegacao">
               <a href="equipamentos.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -63,7 +60,7 @@
               </a>
             </li>
 
-            <!-- Setor -->
+         
             <li class="item-navegacao">
               <a href="setor_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -73,7 +70,7 @@
               </a>
             </li>
 
-            <!-- Histórico -->
+          
             <li class="item-navegacao">
               <a href="historico_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -83,7 +80,7 @@
               </a>
             </li>
 
-            <!-- Indicadores -->
+       
             <li class="item-navegacao">
               <a href="indicadores_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -93,7 +90,7 @@
               </a>
             </li>
 
-            <!-- Relatórios -->
+       
             <li class="item-navegacao">
               <a href="relatorios_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -103,7 +100,7 @@
               </a>
             </li>
 
-            <!-- Manutenção -->
+       
             <li class="item-navegacao">
               <a href="manutencao_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -113,7 +110,7 @@
               </a>
             </li>
 
-            <!-- Peças -->
+         
             <li class="item-navegacao ativo">
               <a href="pecas_adm.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -123,7 +120,7 @@
               </a>
             </li>
 
-            <!-- Administração -->
+          
             <li class="item-navegacao">
               <a href="usuarios.html" class="link-navegacao">
                 <span class="icone-navegacao">
@@ -136,9 +133,9 @@
         </nav>
       </aside>
 
-      <!-- Área principal -->
+  
       <div class="area-principal">
-        <!-- Cabeçalho -->
+     
         <header class="cabecalho">
           <div class="cabecalho-esquerdo">
             <button
@@ -152,10 +149,7 @@
           </div>
 
           <div class="cabecalho-direito">
-            <!-- Notificações -->
-            <!-- ========================================== -->
-            <!-- NOTIFICAÇÕES DINÂMICAS COM DROPDOWN        -->
-            <!-- ========================================== -->
+          
             <div
               class="notificacao-container"
               style="position: relative; display: flex; align-items: center"
@@ -167,7 +161,7 @@
                 aria-label="Notificações"
               >
                 <i class="bi bi-bell"></i>
-                <!-- Bolinha começa invisível e vazia -->
+               
                 <span class="badge-notificacao" style="display: none">0</span>
               </button>
 
@@ -183,7 +177,7 @@
                   </button>
                 </div>
 
-                <!-- O JavaScript vai injetar as notificações REAIS aqui dentro -->
+             
                 <div class="lista-notificacoes" id="containerListaNotificacoes">
                   <p
                     style="
@@ -199,9 +193,9 @@
               </div>
             </div>
 
-            <!-- Perfil -->
+           
             <div class="perfil-container" style="position: relative">
-              <!-- Botão clicável (Mantive as classes que você já usava: user-profile, user-avatar, user-info) -->
+             
               <div
                 class="user-profile"
                 id="botaoPerfil"
@@ -223,13 +217,12 @@
                 ></i>
               </div>
 
-              <!-- Caixa do Dropdown (Escondida por padrão) -->
               <div class="dropdown-perfil" id="dropdownPerfil">
                 <div class="dropdown-cabecalho">
                   <span class="dropdown-titulo">Conta</span>
                 </div>
                 <div class="dropdown-divisor"></div>
-                <!-- LINK PARA A TELA DE PERFIL -->
+ 
                 <a href="perfil.html" class="dropdown-item">
                   <i class="bi bi-person"></i> Meu Perfil
                 </a>
@@ -246,9 +239,9 @@
           </div>
         </header>
 
-        <!-- Conteúdo principal -->
+
         <main class="conteudo-principal">
-          <!-- Elementos decorativos -->
+  
           <div class="decoracao-peca" aria-hidden="true">
             <span class="ponto-peca ponto-peca-1"></span>
             <span class="ponto-peca ponto-peca-2"></span>
@@ -264,7 +257,7 @@
             <span class="linhas-peca"></span>
           </div>
 
-          <!-- Breadcrumb -->
+
           <nav class="breadcrumb-pagina" aria-label="Navegação estrutural">
             <a href="pecas_adm.html">
               <i class="bi bi-chevron-left"></i>
@@ -278,17 +271,17 @@
             <span class="breadcrumb-atual"> Nova Peça </span>
           </nav>
 
-          <!-- Cabeçalho da página -->
+
           <section class="cabecalho-pagina">
             <h1>Nova Peça</h1>
 
             <p>Registre uma peça ou material no estoque do almoxarifado</p>
           </section>
 
-          <!-- Formulário -->
+
           <form class="formulario-peca" id="formularioPeca">
             <div class="campos-peca">
-              <!-- Descrição -->
+             
               <div class="campo-formulario campo-largo">
                 <label for="descricaoPeca">
                   Descrição da Peça
@@ -304,7 +297,7 @@
                 />
               </div>
 
-              <!-- Categoria (NOVO CAMPO) -->
+        
               <div class="campo-formulario campo-largo">
                 <label for="categoriaPeca">
                   Categoria
@@ -316,7 +309,7 @@
                 </select>
               </div>
 
-              <!-- Custo Unitário -->
+      
               <div class="campo-formulario">
                 <label for="custoUnitario">
                   Custo Unitário (R$)
@@ -336,7 +329,7 @@
                 <span class="texto-ajuda"> Deve ser maior que zero </span>
               </div>
 
-              <!-- Quantidade em Estoque -->
+    
               <div class="campo-formulario">
                 <label for="quantidadeEstoque">
                   Quantidade em Estoque
@@ -358,7 +351,7 @@
                 </span>
               </div>
 
-              <!-- Estoque Mínimo -->
+     
               <div class="campo-formulario">
                 <label for="estoqueMinimo">
                   Estoque Mínimo
@@ -380,7 +373,7 @@
                 </span>
               </div>
 
-              <!-- Unidade de Medida -->
+           
               <div class="campo-formulario">
                 <label for="unidadeMedida">
                   Unidade de Medida
@@ -398,7 +391,7 @@
               </div>
             </div>
 
-            <!-- Aviso -->
+     
             <div class="aviso-formulario">
               <i class="bi bi-info-circle"></i>
 
@@ -409,7 +402,7 @@
             </div>
           </form>
 
-          <!-- Ações -->
+    
           <div class="acoes-formulario">
             <a href="pecas_adm.html" class="botao-cancelar"> Cancelar </a>
 
@@ -422,7 +415,7 @@
       </div>
     </div>
 
-    <!-- Caminho do JS mantido -->
+
     <script src="../-js/pages/nova_peca_adm.js"></script>
     <script src="../-js/global.js"></script>
   </body>
