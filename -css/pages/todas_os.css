@@ -14,9 +14,12 @@
   gap: 20px;
 }
 .titulo-com-botao h1 {
-  color: #06245f;
-  font-size: 26px;
-  font-weight: 400;
+  margin: 0 0 4px;
+  color: #102c63;
+  font-size: 25px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.2px;
 }
 
 /* Botão principal */
