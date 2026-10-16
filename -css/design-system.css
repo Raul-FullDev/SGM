@@ -1,0 +1,339 @@
+/* =========================================================
+   SGM — CAMADA DE PADRONIZAÇÃO VISUAL
+   Carregada depois do CSS de cada página para harmonizar
+   tipografia, espaçamentos, formulários e componentes comuns.
+   Os componentes exclusivos de cada tela permanecem nos CSS
+   de página correspondentes.
+========================================================= */
+
+:root {
+  /* Tipografia */
+  --sgm-font-family: Arial, Helvetica, sans-serif;
+  --sgm-font-xs: 11px;
+  --sgm-font-sm: 12px;
+  --sgm-font-base: 14px;
+  --sgm-font-md: 15px;
+  --sgm-font-lg: 18px;
+  --sgm-font-title: 25px;
+
+  /* Escala de espaçamento */
+  --sgm-space-1: 4px;
+  --sgm-space-2: 8px;
+  --sgm-space-3: 12px;
+  --sgm-space-4: 16px;
+  --sgm-space-5: 20px;
+  --sgm-space-6: 24px;
+  --sgm-space-7: 32px;
+
+  /* Superfícies, texto e bordas */
+  --sgm-page-bg: #f3f7fd;
+  --sgm-surface: #ffffff;
+  --sgm-surface-subtle: #f8faff;
+  --sgm-border: #dfe6ef;
+  --sgm-heading: #173566;
+  --sgm-text: #303f53;
+  --sgm-muted: #6b7c93;
+  --sgm-primary: #145bea;
+  --sgm-primary-hover: #104dcc;
+  --sgm-focus: rgba(20, 91, 234, 0.16);
+
+  /* Raios e sombras */
+  --sgm-radius-sm: 6px;
+  --sgm-radius-md: 8px;
+  --sgm-radius-lg: 12px;
+  --sgm-shadow-card: 0 2px 8px rgba(31, 62, 104, 0.06);
+}
+
+html {
+  font-family: var(--sgm-font-family);
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--sgm-font-family);
+  font-size: var(--sgm-font-base);
+  line-height: 1.45;
+  color: var(--sgm-text);
+  background: linear-gradient(135deg, #f8faff 0%, var(--sgm-page-bg) 100%);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: var(--sgm-font-family);
+}
+
+button,
+input,
+select,
+textarea,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Área de conteúdo: mesma margem em todas as telas */
+.main-content,
+.conteudo-principal {
+  box-sizing: border-box;
+  padding: 24px 24px 40px !important;
+}
+
+.main-wrapper,
+.area-principal {
+  background: linear-gradient(135deg, #f8faff 0%, var(--sgm-page-bg) 100%);
+}
+
+/* Cabeçalhos de página */
+main .page-header h1,
+main .cabecalho-pagina h1,
+main .cabecalho-detalhes-os h1,
+main .cabecalho-pecas h1,
+main .cabecalho-setores h1,
+main .titulo-com-botao h1,
+main .page-title h1 {
+  color: var(--sgm-heading) !important;
+  font-family: var(--sgm-font-family) !important;
+  font-size: var(--sgm-font-title) !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.25px;
+}
+
+main .page-header p,
+main .cabecalho-pagina p,
+main .cabecalho-detalhes-os p,
+main .cabecalho-pecas p,
+main .cabecalho-setores p,
+main .titulo-com-botao p,
+main .page-title p {
+  margin: 6px 0 0;
+  color: var(--sgm-muted);
+  font-size: 13px !important;
+  line-height: 1.5;
+}
+
+/* Cabeçalhos internos de cartões e seções */
+main h2,
+main h3 {
+  font-family: var(--sgm-font-family);
+  line-height: 1.35;
+}
+
+main .cabecalho-card h2,
+main .cabecalho-card-lateral h2,
+main .card-indicador h2,
+main .card-grafico h2,
+main .card-titulo,
+main .titulo-cartao {
+  color: #263e63;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Breadcrumbs e textos auxiliares */
+main .breadcrumb,
+main .breadcrumb-pagina,
+main .caminho-pagina {
+  font-size: var(--sgm-font-sm);
+  line-height: 1.4;
+}
+
+/* Campos de formulário e filtros */
+main input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+main select,
+main textarea {
+  color: var(--sgm-text);
+  font-family: var(--sgm-font-family);
+  font-size: 13px !important;
+  line-height: 1.4;
+  border-color: var(--sgm-border) !important;
+  border-radius: var(--sgm-radius-md) !important;
+}
+
+main input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+main select {
+  min-height: 38px !important;
+}
+
+main textarea {
+  line-height: 1.5;
+}
+
+main input::placeholder,
+main textarea::placeholder {
+  color: #8b9bb0;
+  opacity: 1;
+}
+
+main input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):focus,
+main select:focus,
+main textarea:focus {
+  border-color: #7da3e8 !important;
+  outline: none;
+  box-shadow: 0 0 0 3px var(--sgm-focus);
+}
+
+main label,
+main .campo-formulario label,
+main .form-group label,
+main .label-dado,
+main .label-filtro-data {
+  font-family: var(--sgm-font-family);
+  font-size: 12px !important;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #34445a;
+}
+
+/* Botões de ação: dimensões e tipografia comuns; as cores de
+   primário/secundário continuam definidas em cada página. */
+main .botao-principal,
+main .botao-secundario,
+main .botao-novo-setor,
+main .botao-nova-peca,
+main .botao-gerar-relatorio,
+main .botao-csv,
+main .button-primary,
+main .btn-primary,
+main .botao {
+  box-sizing: border-box;
+  min-height: 38px;
+  padding: 8px 14px;
+  border-radius: var(--sgm-radius-md);
+  font-family: var(--sgm-font-family);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+main .botao-principal:focus-visible,
+main .botao-secundario:focus-visible,
+main .botao-novo-setor:focus-visible,
+main .botao-nova-peca:focus-visible,
+main .botao-gerar-relatorio:focus-visible,
+main .botao-csv:focus-visible,
+main .button-primary:focus-visible,
+main .btn-primary:focus-visible,
+main .botao:focus-visible {
+  outline: 3px solid var(--sgm-focus);
+  outline-offset: 2px;
+}
+
+main .botao-principal,
+main .botao-novo-setor,
+main .botao-nova-peca,
+main .button-primary,
+main .btn-primary,
+main .botao-gerar-relatorio {
+  color: #ffffff;
+  background-color: var(--sgm-primary);
+  border-color: var(--sgm-primary);
+}
+
+main .botao-principal:hover,
+main .botao-novo-setor:hover,
+main .botao-nova-peca:hover,
+main .button-primary:hover,
+main .btn-primary:hover,
+main .botao-gerar-relatorio:hover {
+  background-color: var(--sgm-primary-hover);
+  border-color: var(--sgm-primary-hover);
+}
+
+/* Tabelas: leitura e contraste consistentes sem alterar a
+   estrutura, a largura ou as colunas específicas de cada tela. */
+main table th {
+  color: #657791;
+  font-family: var(--sgm-font-family);
+  font-size: 11px !important;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+main table td {
+  color: var(--sgm-text);
+  font-family: var(--sgm-font-family);
+  font-size: 12px !important;
+  line-height: 1.45;
+}
+
+/* Status e etiquetas: mínimo legível, mantendo as cores de estado. */
+main .status,
+main .status-item,
+main .status-concluida,
+main .badge,
+main .badge-tecnico,
+main .etiqueta,
+main .contador-registros,
+main .manutencao-item > span {
+  font-size: 10px !important;
+  line-height: 1.25;
+}
+
+/* Cartões comuns usam o mesmo acabamento. Os cards especiais e
+   modais mantêm suas dimensões e layouts. */
+main .card-dashboard,
+main .card-lateral,
+main .card-indicador,
+main .card-grafico,
+main .cartao-nivel,
+main .card-perfil,
+main .card-relatorio,
+main .plan-card,
+main .service-order-card,
+main .form-card,
+main .card-detalhes,
+main .card-resumo-peca {
+  border-radius: var(--sgm-radius-lg);
+}
+
+/* Remove a fonte serifada que destoava dos demais números do painel. */
+main .valor-indicador,
+main .valor-indicador span {
+  font-family: var(--sgm-font-family) !important;
+}
+
+/* Histórico da OS tinha textos menores que 10px, difíceis de ler. */
+main .historico-conteudo strong {
+  font-size: 12px !important;
+}
+
+main .historico-conteudo span,
+main .historico-conteudo p {
+  font-size: 11px !important;
+}
+
+/* Mantém scroll de tabelas e grids em telas menores. */
+@media (max-width: 900px) {
+  .main-content,
+  .conteudo-principal {
+    padding: 22px 18px 36px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .main-content,
+  .conteudo-principal {
+    padding: 18px 12px 28px !important;
+  }
+
+  main .page-header h1,
+  main .cabecalho-pagina h1,
+  main .cabecalho-detalhes-os h1,
+  main .cabecalho-pecas h1,
+  main .cabecalho-setores h1,
+  main .titulo-com-botao h1,
+  main .page-title h1 {
+    font-size: 22px !important;
+  }
+
+  main .page-header,
+  main .cabecalho-pecas,
+  main .cabecalho-setores,
+  main .titulo-com-botao {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}

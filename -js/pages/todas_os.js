@@ -255,6 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
+        <td>${criacaoFormatada}</td>
         <td>${colunaNumero}</td>
         <td>
           <div class="informacao-equipamento">
@@ -265,7 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>${setor}</td>
         <td><span class="etiqueta-os ${classeTipo}">${tipo}</span></td>
         <td>${solicitante}</td>
-        <td>${criacaoFormatada}</td>
         <td>${fimFormatada}</td>
         <td><span class="status-os ${classeStatus}">${statusLabel}</span></td>
         <td>${colunaAcao}</td>

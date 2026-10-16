@@ -6,6 +6,7 @@
     <title>SGM - Ordens de Serviço</title>
 
     <link rel="stylesheet" href="../-css/pages/todas_os.css" />
+    <link rel="stylesheet" href="../-css/design-system.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -272,7 +273,10 @@
             <div class="caminho-pagina"></div>
 
             <div class="titulo-com-botao">
-              <h1>Ordens de Serviço</h1>
+              <div class="titulo-pagina-os">
+                <h1>Ordens de Serviço</h1>
+                <p>Consulte as ordens registradas e acompanhe seus status, equipamentos e datas.</p>
+              </div>
               <a href="abrir_os.html" class="botao-principal" id="btnNovaOS">
                 <span>+</span> Nova Ordem de Serviço
               </a>
@@ -360,12 +364,12 @@
               <table id="tabelaOrdens">
                 <thead>
                   <tr>
+                    <th scope="col">CRIAÇÃO</th>
                     <th scope="col">NÚMERO</th>
                     <th scope="col">EQUIPAMENTO</th>
                     <th scope="col">SETOR</th>
                     <th scope="col">TIPO</th>
                     <th scope="col">SOLICITANTE</th>
-                    <th scope="col">CRIAÇÃO</th>
                     <th scope="col">FIM</th>
                     <th scope="col">STATUS</th>
                     <th scope="col">DETALHES</th>
