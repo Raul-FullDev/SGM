@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const novoEquipamento = {
       asset: document.getElementById("codigoAtivo").value,
-      status: document.getElementById("statusEquipamento").value,
       descricao: document.getElementById("descricaoEquipamento").value,
       manufaturado: document.getElementById("fabricanteEquipamento").value,
       modelo: document.getElementById("modeloEquipamento").value,
