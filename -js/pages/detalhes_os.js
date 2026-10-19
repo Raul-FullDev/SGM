@@ -601,7 +601,7 @@ document.addEventListener("DOMContentLoaded", () => {
         payloadAbertura.data_fechamento = null;
         payloadAbertura.id_usuario_conclusao = null;
       }
-
+      
       const resPatch = await fetch(
         `${baseUrl}/abertura_ordem_servico?id=eq.${idAberturaAtual}`,
         {
@@ -678,6 +678,7 @@ document.addEventListener("DOMContentLoaded", () => {
       executarTrocaDeStatus("concluida", dInicio, dFim);
     });
   }
+
 
   inicializarDados();
 });
