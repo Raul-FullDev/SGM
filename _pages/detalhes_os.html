@@ -648,11 +648,28 @@
             class="linha-formulario"
             style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px"
           >
-            <div class="campo-formulario">
-              <label for="pecaSelecionada">Peça do Estoque</label
-              ><select id="pecaSelecionada" required>
-                <option value="">Carregando peças...</option>
-              </select>
+            <div class="campo-formulario campo-autocomplete-peca">
+              <label for="pesquisaPeca">Peça do Estoque</label>
+              <input
+                type="text"
+                id="pesquisaPeca"
+                placeholder="Digite para pesquisar uma peça..."
+                autocomplete="off"
+                role="combobox"
+                aria-autocomplete="list"
+                aria-controls="sugestoesPeca"
+                aria-expanded="false"
+                required
+              />
+              <input type="hidden" id="pecaSelecionada" />
+              <div
+                id="sugestoesPeca"
+                class="lista-sugestoes-peca"
+                role="listbox"
+                aria-label="Sugestões de peças"
+                hidden
+              ></div>
+              <small id="pecaSelecionadaInfo" class="info-peca-selecionada" aria-live="polite"></small>
             </div>
             <div class="campo-formulario">
               <label for="pecaQuantidade">Qtd</label

@@ -675,6 +675,80 @@
   box-shadow: 0 0 0 2px rgba(20, 91, 234, 0.08);
 }
 
+
+.campo-autocomplete-peca {
+  position: relative;
+}
+
+.lista-sugestoes-peca {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  max-height: 230px;
+  overflow-y: auto;
+  border: 1px solid #dce4ed;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(20, 57, 103, 0.14);
+}
+
+.lista-sugestoes-peca[hidden] {
+  display: none;
+}
+
+.sugestao-peca {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 0;
+  border-bottom: 1px solid #edf1f6;
+  background: #fff;
+  color: #273b57;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.sugestao-peca:last-child {
+  border-bottom: 0;
+}
+
+.sugestao-peca:hover,
+.sugestao-peca.ativa {
+  background: #f0f5ff;
+}
+
+.sugestao-peca-nome {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sugestao-peca-detalhes {
+  color: #687b94;
+  font-size: 11px;
+}
+
+.sugestao-peca-vazia {
+  padding: 12px;
+  color: #687b94;
+  font-size: 12px;
+}
+
+.info-peca-selecionada {
+  color: #526987;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.info-peca-selecionada:empty {
+  display: none;
+}
+
 .modal-footer {
   display: flex;
   justify-content: flex-end;

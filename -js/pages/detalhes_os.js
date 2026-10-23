@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalNovaPeca = document.getElementById("modalNovaPeca");
   const formNovaPeca = document.getElementById("formNovaPeca");
   const selectPeca = document.getElementById("pecaSelecionada");
+  const inputPesquisaPeca = document.getElementById("pesquisaPeca");
+  const sugestoesPeca = document.getElementById("sugestoesPeca");
+  const infoPecaSelecionada = document.getElementById("pecaSelecionadaInfo");
 
   const modalEditarPeca = document.getElementById("modalEditarPeca");
   const formEditarPeca = document.getElementById("formEditarPeca");
@@ -49,6 +52,156 @@ document.addEventListener("DOMContentLoaded", () => {
   let idStatusAtual = null;
   let isOsConcluida = false; 
   const mapStatusIds = {};
+
+  let indiceSugestaoAtiva = -1;
+
+  function normalizarTextoPeca(texto) {
+    return String(texto ?? "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLocaleLowerCase("pt-BR");
+  }
+
+  function formatarCustoPeca(valor) {
+    return Number(valor || 0).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  }
+
+  function fecharSugestoesPeca() {
+    if (!sugestoesPeca || !inputPesquisaPeca) return;
+    sugestoesPeca.hidden = true;
+    inputPesquisaPeca.setAttribute("aria-expanded", "false");
+    inputPesquisaPeca.removeAttribute("aria-activedescendant");
+    indiceSugestaoAtiva = -1;
+  }
+
+  function selecionarPecaAutocomplete(idPeca) {
+    const peca = (window.pecasGlobal || []).find(
+      (item) => String(item.id) === String(idPeca),
+    );
+    if (!peca) return;
+
+    selectPeca.value = String(peca.id);
+    inputPesquisaPeca.value = peca.descricao || "";
+    infoPecaSelecionada.textContent =
+      `Estoque disponível: ${peca.qtde} | Custo unitário: ${formatarCustoPeca(peca.custo_unitario)}`;
+    fecharSugestoesPeca();
+  }
+
+  function renderizarSugestoesPeca(termo) {
+    if (!sugestoesPeca || !inputPesquisaPeca) return;
+
+    const termoNormalizado = normalizarTextoPeca(termo.trim());
+    sugestoesPeca.innerHTML = "";
+    indiceSugestaoAtiva = -1;
+
+    if (!termoNormalizado) {
+      fecharSugestoesPeca();
+      return;
+    }
+
+    const pecasEncontradas = (window.pecasGlobal || [])
+      .filter((peca) => normalizarTextoPeca(peca.descricao).includes(termoNormalizado))
+      .slice(0, 8);
+
+    if (pecasEncontradas.length === 0) {
+      const mensagem = document.createElement("div");
+      mensagem.className = "sugestao-peca-vazia";
+      mensagem.textContent = "Nenhuma peça encontrada.";
+      sugestoesPeca.appendChild(mensagem);
+    } else {
+      pecasEncontradas.forEach((peca) => {
+        const opcao = document.createElement("div");
+        opcao.className = "sugestao-peca";
+        opcao.id = `sugestaoPeca-${peca.id}`;
+        opcao.dataset.id = String(peca.id);
+        opcao.setAttribute("role", "option");
+        opcao.setAttribute("aria-selected", "false");
+        opcao.tabIndex = -1;
+
+        const nome = document.createElement("span");
+        nome.className = "sugestao-peca-nome";
+        nome.textContent = peca.descricao || "Peça sem descrição";
+
+        const detalhes = document.createElement("span");
+        detalhes.className = "sugestao-peca-detalhes";
+        detalhes.textContent = `Estoque: ${peca.qtde} · Custo unitário: ${formatarCustoPeca(peca.custo_unitario)}`;
+
+        opcao.append(nome, detalhes);
+        sugestoesPeca.appendChild(opcao);
+      });
+    }
+
+    sugestoesPeca.hidden = false;
+    inputPesquisaPeca.setAttribute("aria-expanded", "true");
+  }
+
+  inputPesquisaPeca?.addEventListener("input", () => {
+    selectPeca.value = "";
+    if (infoPecaSelecionada) infoPecaSelecionada.textContent = "";
+    renderizarSugestoesPeca(inputPesquisaPeca.value);
+  });
+
+  inputPesquisaPeca?.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape") {
+      fecharSugestoesPeca();
+      return;
+    }
+
+    if (sugestoesPeca.hidden) return;
+    const opcoes = Array.from(
+      sugestoesPeca.querySelectorAll(".sugestao-peca[data-id]"),
+    );
+    if (opcoes.length === 0) return;
+
+    if (evento.key === "ArrowDown" || evento.key === "ArrowUp") {
+      evento.preventDefault();
+      const incremento = evento.key === "ArrowDown" ? 1 : -1;
+      if (indiceSugestaoAtiva === -1) {
+        indiceSugestaoAtiva = incremento === 1 ? 0 : opcoes.length - 1;
+      } else {
+        indiceSugestaoAtiva =
+          (indiceSugestaoAtiva + incremento + opcoes.length) % opcoes.length;
+      }
+
+      opcoes.forEach((opcao, indice) => {
+        const ativa = indice === indiceSugestaoAtiva;
+        opcao.classList.toggle("ativa", ativa);
+        opcao.setAttribute("aria-selected", String(ativa));
+      });
+      const opcaoAtiva = opcoes[indiceSugestaoAtiva];
+      inputPesquisaPeca.setAttribute("aria-activedescendant", opcaoAtiva.id);
+      opcaoAtiva.scrollIntoView({ block: "nearest" });
+    } else if (evento.key === "Enter" && indiceSugestaoAtiva >= 0) {
+      evento.preventDefault();
+      selecionarPecaAutocomplete(opcoes[indiceSugestaoAtiva].dataset.id);
+    }
+  });
+
+  sugestoesPeca?.addEventListener("mousedown", (evento) => {
+    if (evento.target.closest(".sugestao-peca[data-id]")) {
+      evento.preventDefault();
+    }
+  });
+
+  sugestoesPeca?.addEventListener("click", (evento) => {
+    const opcao = evento.target.closest(".sugestao-peca[data-id]");
+    if (opcao) selecionarPecaAutocomplete(opcao.dataset.id);
+  });
+
+  document.addEventListener("click", (evento) => {
+    if (
+      sugestoesPeca &&
+      inputPesquisaPeca &&
+      !sugestoesPeca.contains(evento.target) &&
+      evento.target !== inputPesquisaPeca
+    ) {
+      fecharSugestoesPeca();
+    }
+  });
+
 
   async function inicializarDados() {
     try {
@@ -156,17 +309,15 @@ document.addEventListener("DOMContentLoaded", () => {
         editStatusAtividade.innerHTML += `<option value="${s.id}">${s.descricao}</option>`;
       });
 
-      if (selectPeca) {
+      if (selectPeca && inputPesquisaPeca && sugestoesPeca) {
         const resPecas = await fetch(
           `${baseUrl}/peca?select=id,descricao,custo_unitario,qtde&is_active=eq.true&order=descricao.asc`,
           { headers: headersConfig },
         );
-        const pecasData = await resPecas.json();
-        window.pecasGlobal = pecasData;
-        selectPeca.innerHTML = '<option value="">Selecione a peça...</option>';
-        pecasData.forEach((p) => {
-          selectPeca.innerHTML += `<option value="${p.id}">[Estoque: ${p.qtde}] ${p.descricao} - R$ ${p.custo_unitario.toFixed(2)}</option>`;
-        });
+        if (!resPecas.ok) throw new Error("Erro ao carregar peças do estoque.");
+        window.pecasGlobal = await resPecas.json();
+        selectPeca.value = "";
+        sugestoesPeca.innerHTML = "";
       }
 
       if (idAberturaAtual) {
@@ -453,6 +604,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const idPeca = Number(document.getElementById("pecaSelecionada").value);
     const qtdUsada = Number(document.getElementById("pecaQuantidade").value);
+    if (!idPeca) return alert("Pesquise e selecione uma peça na lista de sugestões.");
     const idAtiv = Number(
       document.getElementById("pecaAtividadeVinculada").value,
     );
@@ -488,6 +640,8 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Peça adicionada e estoque atualizado com sucesso!");
       modalNovaPeca.style.display = "none";
       formNovaPeca.reset();
+      if (infoPecaSelecionada) infoPecaSelecionada.textContent = "";
+      fecharSugestoesPeca();
       inicializarDados(); 
     } catch (erro) {
       alert(erro.message);
@@ -506,6 +660,10 @@ document.addEventListener("DOMContentLoaded", () => {
       arrayAtividadesGlobal.forEach((a) => {
         selectAtiv.innerHTML += `<option value="${a.id}">${a.servico}</option>`;
       });
+      inputPesquisaPeca.value = "";
+      selectPeca.value = "";
+      if (infoPecaSelecionada) infoPecaSelecionada.textContent = "";
+      fecharSugestoesPeca();
       modalNovaPeca.style.display = "flex";
     });
   }
