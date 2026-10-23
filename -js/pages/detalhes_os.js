@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const modalEditarAtividade = document.getElementById("modalEditarAtividade");
   const formEditarAtividade = document.getElementById("formEditarAtividade");
+  const btnExcluirAtividade = document.getElementById("btnExcluirAtividade");
   const editTipoServico = document.getElementById("editAtividadeTipoServico");
   const editStatusAtividade = document.getElementById("editAtividadeStatus");
   const containerListaAtividades = document.getElementById(
@@ -47,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const modalEditarPeca = document.getElementById("modalEditarPeca");
   const formEditarPeca = document.getElementById("formEditarPeca");
+  const btnRemoverPecaOS = document.getElementById("btnRemoverPecaOS");
 
   let idAberturaAtual = null;
   let idStatusAtual = null;
@@ -331,7 +333,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function carregarAtividadesDaOS() {
     try {
-      const query = `select=id,servico,data_inicio,data_fechamento,tipo_servico(id,tipo),status_atividade(id,descricao)&id_abertura_ordem_servico=eq.${idAberturaAtual}&order=id.asc`;
+      const query = `select=id,servico,data_inicio,data_fechamento,tipo_servico(id,tipo),status_atividade(id,descricao)&id_abertura_ordem_servico=eq.${idAberturaAtual}&is_active=eq.true&order=id.asc`;
       const resposta = await fetch(`${baseUrl}/atividade?${query}`, {
         headers: headersConfig,
       });
@@ -405,6 +407,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("editAtividadeDescricao").value = ativ.servico;
     editTipoServico.value = ativ.tipo_servico?.id || "";
     editStatusAtividade.value = ativ.status_atividade?.id || "";
+    if (btnExcluirAtividade) {
+      const statusAtividade = ativ.status_atividade?.descricao?.toLowerCase() || "";
+      const atividadeConcluida = statusAtividade.includes("conclu");
+      btnExcluirAtividade.style.display =
+        atividadeConcluida || isOsConcluida ? "none" : "inline-flex";
+    }
 
     if (ativ.data_fechamento) {
       document.getElementById("editAtividadeDataFim").value =
@@ -466,6 +474,78 @@ document.addEventListener("DOMContentLoaded", () => {
       carregarAtividadesDaOS();
     } catch (erro) {
       alert(erro.message);
+    }
+  });
+
+  btnExcluirAtividade?.addEventListener("click", async () => {
+    const idAtiv = Number(document.getElementById("editAtividadeId").value);
+    if (!idAtiv) return;
+    if (isOsConcluida) {
+      alert("Não é possível excluir atividades de uma OS concluída.");
+      return;
+    }
+
+    try {
+      // Não ocultar uma atividade enquanto existirem peças ativas vinculadas:
+      // elas precisam ser removidas individualmente para devolver o estoque.
+      const resPecasVinculadas = await fetch(
+        `${baseUrl}/troca_peca?select=id&id_atividade=eq.${idAtiv}&is_active=eq.true`,
+        { headers: headersConfig },
+      );
+      if (!resPecasVinculadas.ok)
+        throw new Error("Não foi possível verificar as peças vinculadas à atividade.");
+      const pecasVinculadas = await resPecasVinculadas.json();
+      if (pecasVinculadas.length > 0) {
+        alert(
+          "Esta atividade possui peças utilizadas vinculadas. Remova primeiro essas peças pela seção Peças Utilizadas; a quantidade será devolvida ao estoque.",
+        );
+        return;
+      }
+
+      const resSessoesAbertas = await fetch(
+        `${baseUrl}/sessao_atividade?select=id&id_atividade=eq.${idAtiv}&is_active=eq.true&data_fim_sessao=is.null`,
+        { headers: headersConfig },
+      );
+      if (!resSessoesAbertas.ok)
+        throw new Error("Não foi possível verificar as sessões de trabalho da atividade.");
+      const sessoesAbertas = await resSessoesAbertas.json();
+      if (sessoesAbertas.length > 0) {
+        alert(
+          "Esta atividade possui uma sessão de trabalho aberta. Encerre a sessão antes de desativar a atividade.",
+        );
+        return;
+      }
+
+      // Preservar sessões e histórico de status: a atividade é desativada, não apagada.
+      const confirmar = confirm(
+        "Excluir esta atividade da visualização da OS? Ela será desativada e seu histórico será preservado.",
+      );
+      if (!confirmar) return;
+
+      btnExcluirAtividade.disabled = true;
+      const resDesativar = await fetch(
+        `${baseUrl}/atividade?id=eq.${idAtiv}&is_active=eq.true`,
+        {
+          method: "PATCH",
+          headers: headersConfig,
+          body: JSON.stringify({
+            is_active: false,
+            id_usuario_ultima_atualizacao: idUsuarioLogado,
+          }),
+        },
+      );
+      if (!resDesativar.ok) throw new Error("Não foi possível desativar a atividade.");
+      const atividadesDesativadas = await resDesativar.json().catch(() => []);
+      if (!Array.isArray(atividadesDesativadas) || atividadesDesativadas.length === 0)
+        throw new Error("A atividade já foi alterada; atualize a tela e tente novamente.");
+
+      alert("Atividade removida da OS. O histórico foi preservado.");
+      modalEditarAtividade.style.display = "none";
+      await inicializarDados();
+    } catch (erro) {
+      alert(erro.message || "Erro ao desativar a atividade.");
+    } finally {
+      if (btnExcluirAtividade) btnExcluirAtividade.disabled = false;
     }
   });
 
@@ -539,7 +619,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
   
       const resAtiv = await fetch(
-        `${baseUrl}/atividade?select=id&id_abertura_ordem_servico=eq.${idAberturaAtual}`,
+        `${baseUrl}/atividade?select=id&id_abertura_ordem_servico=eq.${idAberturaAtual}&is_active=eq.true`,
         { headers: headersConfig },
       );
       if (!resAtiv.ok) throw new Error("Erro ao buscar atividades para peças");
@@ -559,7 +639,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const idsAtividades = ativs.map((a) => a.id);
-      const queryPecas = `${baseUrl}/troca_peca?select=id,id_peca,quantidade,custo_unitario_na_troca,peca(descricao),id_atividade&id_atividade=in.(${idsAtividades.join(",")})`;
+      const queryPecas = `${baseUrl}/troca_peca?select=id,id_peca,quantidade,custo_unitario_na_troca,peca(descricao),id_atividade&id_atividade=in.(${idsAtividades.join(",")})&is_active=eq.true`;
       const resTrocas = await fetch(queryPecas, { headers: headersConfig });
       if (!resTrocas.ok) throw new Error("Erro ao buscar peças utilizadas");
 
@@ -608,16 +688,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const idAtiv = Number(
       document.getElementById("pecaAtividadeVinculada").value,
     );
+    if (!idAtiv || !arrayAtividadesGlobal.some((atividade) => atividade.id === idAtiv))
+      return alert("Selecione uma atividade ativa para vincular a peça.");
 
-    const peca = window.pecasGlobal.find((p) => p.id === idPeca);
-    if (!peca) return alert("Peça não encontrada no sistema.");
+    const pecaSelecionada = window.pecasGlobal.find((p) => p.id === idPeca);
+    if (!pecaSelecionada) return alert("Peça não encontrada no sistema.");
+    if (!Number.isFinite(qtdUsada) || qtdUsada <= 0)
+      return alert("Informe uma quantidade válida maior que zero.");
 
-    if (qtdUsada > peca.qtde)
-      return alert(
-        `ESTOQUE INSUFICIENTE: Você tentou usar ${qtdUsada} unidades, mas temos apenas ${peca.qtde} no estoque.`,
-      );
-
+    let estoqueAnterior = null;
+    let estoqueAtualizado = false;
     try {
+      const resPecaAtual = await fetch(
+        `${baseUrl}/peca?select=id,descricao,custo_unitario,qtde,is_active&id=eq.${idPeca}`,
+        { headers: headersConfig },
+      );
+      if (!resPecaAtual.ok) throw new Error("Não foi possível consultar o estoque atual.");
+      const pecasAtuais = await resPecaAtual.json();
+      if (!pecasAtuais.length || pecasAtuais[0].is_active !== true)
+        throw new Error("Esta peça não está mais ativa para utilização.");
+
+      const peca = pecasAtuais[0];
+      estoqueAnterior = Number(peca.qtde);
+      if (!Number.isFinite(estoqueAnterior) || estoqueAnterior < qtdUsada) {
+        throw new Error(
+          `Estoque insuficiente: solicitado ${qtdUsada}, disponível ${Number.isFinite(estoqueAnterior) ? estoqueAnterior : 0}.`,
+        );
+      }
+
+      const resEstoque = await fetch(`${baseUrl}/peca?id=eq.${idPeca}`, {
+        method: "PATCH",
+        headers: headersConfig,
+        body: JSON.stringify({ qtde: estoqueAnterior - qtdUsada }),
+      });
+      if (!resEstoque.ok) throw new Error("Não foi possível baixar a quantidade do estoque.");
+      estoqueAtualizado = true;
+
       const resTroca = await fetch(`${baseUrl}/troca_peca`, {
         method: "POST",
         headers: headersConfig,
@@ -630,20 +736,24 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       if (!resTroca.ok) throw new Error("Erro ao vincular a peça à OS.");
 
-      const novoEstoque = peca.qtde - qtdUsada;
-      await fetch(`${baseUrl}/peca?id=eq.${idPeca}`, {
-        method: "PATCH",
-        headers: headersConfig,
-        body: JSON.stringify({ qtde: novoEstoque }),
-      });
-
       alert("Peça adicionada e estoque atualizado com sucesso!");
       modalNovaPeca.style.display = "none";
       formNovaPeca.reset();
       if (infoPecaSelecionada) infoPecaSelecionada.textContent = "";
       fecharSugestoesPeca();
-      inicializarDados(); 
+      await inicializarDados();
     } catch (erro) {
+      if (estoqueAtualizado && estoqueAnterior !== null) {
+        try {
+          await fetch(`${baseUrl}/peca?id=eq.${idPeca}`, {
+            method: "PATCH",
+            headers: headersConfig,
+            body: JSON.stringify({ qtde: estoqueAnterior }),
+          });
+        } catch (erroCompensacao) {
+          console.error("Falha ao reverter baixa de estoque:", erroCompensacao);
+        }
+      }
       alert(erro.message);
     }
   });
@@ -692,6 +802,106 @@ document.addEventListener("DOMContentLoaded", () => {
     modalEditarPeca.style.display = "flex";
   });
 
+  btnRemoverPecaOS?.addEventListener("click", async () => {
+    const idTroca = Number(document.getElementById("editPecaIdTroca").value);
+    const idPeca = Number(document.getElementById("editPecaIdOriginal").value);
+    const qtdUsada = Number(document.getElementById("editPecaQtdAntiga").value);
+    if (!idTroca || !idPeca || !Number.isFinite(qtdUsada) || qtdUsada <= 0) {
+      alert("Não foi possível identificar a peça utilizada.");
+      return;
+    }
+    if (isOsConcluida) {
+      alert("Não é possível remover peças de uma OS concluída.");
+      return;
+    }
+
+    const confirmar = confirm(
+      `Remover esta utilização da OS? ${qtdUsada} unidade(s) serão devolvidas ao estoque. O registro será preservado como inativo.`,
+    );
+    if (!confirmar) return;
+
+    if (btnRemoverPecaOS) btnRemoverPecaOS.disabled = true;
+    let estoqueAnterior = null;
+    let estoqueAtualizado = false;
+    let trocaDesativada = false;
+
+    try {
+      const resUsoAtual = await fetch(
+        `${baseUrl}/troca_peca?select=id,id_peca,quantidade&id=eq.${idTroca}&is_active=eq.true`,
+        { headers: headersConfig },
+      );
+      if (!resUsoAtual.ok) throw new Error("Não foi possível confirmar a utilização da peça.");
+      const usosAtuais = await resUsoAtual.json();
+      if (
+        !usosAtuais.length ||
+        Number(usosAtuais[0].id_peca) !== idPeca ||
+        Number(usosAtuais[0].quantidade) !== qtdUsada
+      ) {
+        throw new Error("A utilização foi alterada por outro usuário. Atualize a tela e tente novamente.");
+      }
+
+      // Ler o saldo atual (inclusive se a peça do catálogo já tiver sido desativada).
+      const resPeca = await fetch(
+        `${baseUrl}/peca?select=id,qtde&id=eq.${idPeca}`,
+        { headers: headersConfig },
+      );
+      if (!resPeca.ok) throw new Error("Não foi possível consultar o estoque atual.");
+      const dadosPeca = await resPeca.json();
+      if (!dadosPeca.length) throw new Error("A peça não foi encontrada no estoque.");
+      estoqueAnterior = Number(dadosPeca[0].qtde);
+      if (!Number.isFinite(estoqueAnterior))
+        throw new Error("O saldo atual da peça é inválido.");
+
+      const resAtualizarEstoque = await fetch(`${baseUrl}/peca?id=eq.${idPeca}`, {
+        method: "PATCH",
+        headers: headersConfig,
+        body: JSON.stringify({ qtde: estoqueAnterior + qtdUsada }),
+      });
+      if (!resAtualizarEstoque.ok)
+        throw new Error("Não foi possível devolver a quantidade ao estoque.");
+      estoqueAtualizado = true;
+      const pecasAtualizadas = await resAtualizarEstoque.json().catch(() => []);
+      if (!Array.isArray(pecasAtualizadas) || pecasAtualizadas.length === 0)
+        throw new Error("O estoque não retornou confirmação da atualização.");
+
+      const resDesativarTroca = await fetch(
+        `${baseUrl}/troca_peca?id=eq.${idTroca}&is_active=eq.true`,
+        {
+          method: "PATCH",
+          headers: headersConfig,
+          body: JSON.stringify({ is_active: false }),
+        },
+      );
+      if (!resDesativarTroca.ok)
+        throw new Error("Não foi possível remover o vínculo da peça com a OS.");
+      const trocasDesativadas = await resDesativarTroca.json().catch(() => []);
+      if (!Array.isArray(trocasDesativadas) || trocasDesativadas.length === 0)
+        throw new Error("A utilização já foi alterada; a operação foi revertida quando possível.");
+      trocaDesativada = true;
+
+      alert("Peça removida da OS e quantidade devolvida ao estoque.");
+      modalEditarPeca.style.display = "none";
+      await inicializarDados();
+    } catch (erro) {
+      // Tentativa de compensação caso a atualização do estoque tenha ocorrido,
+      // mas a remoção lógica do vínculo tenha falhado.
+      if (estoqueAtualizado && !trocaDesativada && estoqueAnterior !== null) {
+        try {
+          await fetch(`${baseUrl}/peca?id=eq.${idPeca}`, {
+            method: "PATCH",
+            headers: headersConfig,
+            body: JSON.stringify({ qtde: estoqueAnterior }),
+          });
+        } catch (erroCompensacao) {
+          console.error("Falha ao reverter saldo de estoque:", erroCompensacao);
+        }
+      }
+      alert(erro.message || "Erro ao remover a peça da OS.");
+    } finally {
+      if (btnRemoverPecaOS) btnRemoverPecaOS.disabled = false;
+    }
+  });
+
   formEditarPeca?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const idTroca = document.getElementById("editPecaIdTroca").value;
@@ -701,32 +911,61 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     const qtdNova = Number(document.getElementById("editPecaQuantidade").value);
 
+    let estoqueAnterior = null;
+    let estoqueAtualizado = false;
     try {
-      const res = await fetch(`${baseUrl}/troca_peca?id=eq.${idTroca}`, {
-        method: "PATCH",
-        headers: headersConfig,
-        body: JSON.stringify({ quantidade: qtdNova }),
-      });
-      if (!res.ok) throw new Error("Erro ao atualizar a quantidade.");
-
+      if (!Number.isFinite(qtdNova) || qtdNova <= 0)
+        throw new Error("Informe uma quantidade válida maior que zero.");
 
       const diferenca = qtdNova - qtdAntiga;
       if (diferenca !== 0) {
-        const peca = window.pecasGlobal.find((p) => p.id == idPecaOrig);
-        if (peca) {
-          const novoEstoque = peca.qtde - diferenca;
-          await fetch(`${baseUrl}/peca?id=eq.${idPecaOrig}`, {
-            method: "PATCH",
-            headers: headersConfig,
-            body: JSON.stringify({ qtde: novoEstoque }),
-          });
-        }
+        const resPecaAtual = await fetch(
+          `${baseUrl}/peca?select=id,qtde&id=eq.${idPecaOrig}`,
+          { headers: headersConfig },
+        );
+        if (!resPecaAtual.ok) throw new Error("Não foi possível consultar o estoque atual.");
+        const pecasAtuais = await resPecaAtual.json();
+        if (!pecasAtuais.length) throw new Error("A peça não foi encontrada no estoque.");
+        estoqueAnterior = Number(pecasAtuais[0].qtde);
+        if (!Number.isFinite(estoqueAnterior)) throw new Error("O saldo de estoque é inválido.");
+        const novoEstoque = estoqueAnterior - diferenca;
+        if (novoEstoque < 0)
+          throw new Error("Estoque insuficiente para aumentar a quantidade utilizada.");
+
+        const resEstoque = await fetch(`${baseUrl}/peca?id=eq.${idPecaOrig}`, {
+          method: "PATCH",
+          headers: headersConfig,
+          body: JSON.stringify({ qtde: novoEstoque }),
+        });
+        if (!resEstoque.ok) throw new Error("Não foi possível atualizar o estoque.");
+        estoqueAtualizado = true;
       }
+
+      const res = await fetch(
+        `${baseUrl}/troca_peca?id=eq.${idTroca}&is_active=eq.true`,
+        {
+          method: "PATCH",
+          headers: headersConfig,
+          body: JSON.stringify({ quantidade: qtdNova }),
+        },
+      );
+      if (!res.ok) throw new Error("Erro ao atualizar a quantidade utilizada.");
 
       alert("Quantidade atualizada com sucesso!");
       modalEditarPeca.style.display = "none";
-      inicializarDados(); 
+      await inicializarDados();
     } catch (err) {
+      if (estoqueAtualizado && estoqueAnterior !== null) {
+        try {
+          await fetch(`${baseUrl}/peca?id=eq.${idPecaOrig}`, {
+            method: "PATCH",
+            headers: headersConfig,
+            body: JSON.stringify({ qtde: estoqueAnterior }),
+          });
+        } catch (erroCompensacao) {
+          console.error("Falha ao reverter ajuste de estoque:", erroCompensacao);
+        }
+      }
       alert(err.message);
     }
   });

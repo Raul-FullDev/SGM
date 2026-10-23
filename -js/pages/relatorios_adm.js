@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         case "consumo-pecas":
           const resPecas = await fetch(
-            `${baseUrl}/peca?select=descricao,qtde,custo_unitario`,
+            `${baseUrl}/peca?select=descricao,qtde,custo_unitario&is_active=eq.true`,
             { headers: headersConfig },
           );
           const rawPecas = await resPecas.json();

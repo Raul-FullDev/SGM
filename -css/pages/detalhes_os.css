@@ -795,6 +795,47 @@
   background: #f5f7f9;
 }
 
+.botao-excluir-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  margin-right: auto;
+  padding: 0 13px;
+  border: 1px solid #ffd0d3;
+  border-radius: 7px;
+  background: #fff7f8;
+  color: #d64550;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.botao-excluir-item:hover:not(:disabled) {
+  background: #ffecee;
+  border-color: #ffb8bd;
+  color: #bd303b;
+}
+
+.botao-excluir-item:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+@media (max-width: 560px) {
+  .modal-footer {
+    flex-wrap: wrap;
+  }
+
+  .botao-excluir-item {
+    margin-right: 0;
+  }
+}
+
+
 @media (max-width: 1050px) {
   .grid-detalhes-os {
     grid-template-columns: 1fr;

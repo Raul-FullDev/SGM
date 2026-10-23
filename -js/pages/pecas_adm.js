@@ -114,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!peca) return;
 
       document.getElementById("editPecaId").value = peca.id;
-      document.getElementById("editPecaDescricao").value = peca.descricao;
       document.getElementById("editPecaQuantidade").value = peca.qtde;
       document.getElementById("editPecaCusto").value = peca.custo_unitario;
       document.getElementById("editPecaCategoria").value =
@@ -145,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const id = document.getElementById("editPecaId").value;
     const payload = {
-      descricao: document.getElementById("editPecaDescricao").value,
       id_categoria: Number(document.getElementById("editPecaCategoria").value),
       qtde: Number(document.getElementById("editPecaQuantidade").value),
       custo_unitario: Number(document.getElementById("editPecaCusto").value),
@@ -170,10 +168,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document
-    .getElementById("btnExcluirPeca")
+    .getElementById("btnDesativarPeca")
     ?.addEventListener("click", async () => {
-      if (!confirm("Tem certeza que deseja excluir esta peça do estoque?"))
-        return;
+      const confirmar = confirm(
+        "Desativar esta peça? Ela deixará de aparecer para novas utilizações, mas os registros históricos serão preservados.",
+      );
+      if (!confirmar) return;
 
       const id = document.getElementById("editPecaId").value;
       try {
@@ -182,8 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: headersConfig,
           body: JSON.stringify({ is_active: false }),
         });
-        if (!res.ok) throw new Error("Erro ao excluir peça.");
-        alert("Peça excluída com sucesso!");
+        if (!res.ok) throw new Error("Não foi possível desativar a peça.");
+        alert("Peça desativada. O histórico de utilização foi preservado.");
         fecharModalEditar();
         inicializarTela();
       } catch (err) {
