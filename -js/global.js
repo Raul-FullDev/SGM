@@ -166,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const headersSupabase = {
     "Content-Type": "application/json",
     apikey: apiKeySupabase,
-    Authorization: `Bearer ${apiKeySupabase}`,
   };
 
   async function carregarNotificacoesDinamicas() {

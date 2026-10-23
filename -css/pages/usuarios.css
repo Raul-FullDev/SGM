@@ -367,3 +367,11 @@ td:nth-child(6) {
     width: 100%;
   }
 }
+
+
+.estado-tabela-usuarios {
+  height: 72px;
+  color: #71839e;
+  text-align: center;
+  font-size: 12px;
+}

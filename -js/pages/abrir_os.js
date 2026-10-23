@@ -6,11 +6,66 @@ document.addEventListener("DOMContentLoaded", () => {
   const headersConfig = {
     "Content-Type": "application/json",
     apikey: apiKey,
-    Authorization: `Bearer ${apiKey}`,
     Prefer: "return=representation",
   };
 
   const selectEquipamento = document.getElementById("equipamento");
+  const selectTipoManutencao = document.getElementById("tipoManutencao");
+
+  function normalizarTexto(valor) {
+    return String(valor || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function deduplicarPorDescricao(registros) {
+    const vistos = new Set();
+    return [...registros]
+      .sort((a, b) => Number(a.id) - Number(b.id))
+      .filter((registro) => {
+        const chave = normalizarTexto(registro.descricao);
+        if (!chave || vistos.has(chave)) return false;
+        vistos.add(chave);
+        return true;
+      });
+  }
+
+  function ehTipoPermitido(descricao) {
+    const nome = normalizarTexto(descricao);
+    return nome.includes("preventiv") || nome.includes("corretiv");
+  }
+
+  async function carregarTiposManutencao() {
+    try {
+      const resposta = await fetch(
+        `${baseUrl}/tipo_manutencao?select=id,descricao&is_active=eq.true&order=id.asc`,
+        { headers: headersConfig },
+      );
+      if (!resposta.ok) throw new Error(await resposta.text());
+
+      const tipos = deduplicarPorDescricao(
+        (await resposta.json()).filter((tipo) => ehTipoPermitido(tipo.descricao)),
+      );
+      selectTipoManutencao.innerHTML = '<option value="">Selecione Preventivo ou Corretivo...</option>';
+
+      tipos.forEach((tipo) => {
+        const option = document.createElement("option");
+        option.value = String(tipo.id);
+        option.textContent = tipo.descricao;
+        selectTipoManutencao.appendChild(option);
+      });
+
+      if (tipos.length === 0) {
+        selectTipoManutencao.innerHTML = '<option value="">Nenhum tipo preventivo ou corretivo ativo foi encontrado</option>';
+      }
+    } catch (erro) {
+      console.error("Falha ao buscar tipos de manutenção:", erro);
+      selectTipoManutencao.innerHTML = '<option value="">Erro ao carregar tipos de manutenção</option>';
+    }
+  }
 
   async function carregarEquipamentos() {
     try {
@@ -41,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   carregarEquipamentos();
+  carregarTiposManutencao();
 
   document
     .getElementById("formularioOrdemServico")

@@ -273,9 +273,13 @@
                       type="tel"
                       id="userContact"
                       name="contact"
-                      placeholder="11999990000"
+                      placeholder="Ex.: 11999990000"
                       autocomplete="tel"
+                      inputmode="numeric"
+                      maxlength="12"
+                      required
                     />
+                    <small>Informe o DDD e o telefone, usando apenas números.</small>
                   </div>
                 </div>
 
@@ -306,12 +310,8 @@
                   <label for="userLevel"> Nível de acesso </label>
 
                   <select id="userLevel" name="level" required>
-                    <option value="1">Administrador</option>
-                    <option value="2">Solicitante</option>
-                    <option value="3">Técnico</option>
-                    <option value="4">Gerencia</option>
+                    <option value="">Carregando níveis de acesso...</option>
                   </select>
-                  <!-- ========================================== -->
                 </div>
 
                 <div class="form-actions">

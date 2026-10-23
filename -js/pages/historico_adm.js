@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const headersConfig = {
     "Content-Type": "application/json",
     apikey: apiKey,
-    Authorization: `Bearer ${apiKey}`,
   };
 
   const listaHistorico = document.getElementById("listaHistorico");
@@ -18,6 +17,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let dadosHistorico = [];
 
+  function normalizarRotulo(valor) {
+    return String(valor || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function deduplicarPorDescricao(registros) {
+    const vistos = new Set();
+    return [...registros]
+      .sort((a, b) => Number(a.id) - Number(b.id))
+      .filter((registro) => {
+        const chave = normalizarRotulo(registro.descricao);
+        if (!chave || vistos.has(chave)) return false;
+        vistos.add(chave);
+        return true;
+      });
+  }
+
   async function carregarFiltrosDropdown() {
     try {
       const resStatus = await fetch(
@@ -25,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { headers: headersConfig },
       );
       if (resStatus.ok && filtroStatus) {
-        const statusData = await resStatus.json();
+        const statusData = deduplicarPorDescricao(await resStatus.json());
         filtroStatus.innerHTML =
           '<option value="todos">Todos os status</option>';
         statusData.forEach((s) => {
@@ -38,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { headers: headersConfig },
       );
       if (resTipos.ok && filtroTipo) {
-        const tiposData = await resTipos.json();
+        const tiposData = deduplicarPorDescricao(await resTipos.json());
         filtroTipo.innerHTML = '<option value="todos">Todos os tipos</option>';
         tiposData.forEach((t) => {
           filtroTipo.innerHTML += `<option value="${t.descricao.toLowerCase()}">${t.descricao}</option>`;

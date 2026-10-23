@@ -356,7 +356,6 @@
       const headersConfig = {
         "Content-Type": "application/json",
         apikey: apiKey,
-        Authorization: `Bearer ${apiKey}`,
       };
 
       // ==========================================
@@ -391,16 +390,53 @@
         botaoLogin.disabled = true;
 
         try {
-          // CORREÇÃO: Puxando da tabela nivel(funcao)
-          const url = `${baseUrl}/usuario?select=*,nivel(funcao)&matricula=eq.${matricula}&senha=eq.${senha}`;
+          let usuarios = [];
+          let consultaValidaSemResultados = false;
+          let ultimoErro = null;
+          let usuariosSemNivelRelacionado = [];
 
-          const resposta = await fetch(url, {
-            method: "GET",
-            headers: headersConfig,
-          });
-          if (!resposta.ok) throw new Error("Erro na conexão com o banco.");
+          // Compatibilidade entre esquemas: algumas versões usam papel e outras nivel.
+          for (const relacionamento of ["papel(funcao)", "nivel(funcao)", null]) {
+            const parametros = new URLSearchParams({
+              select: relacionamento ? `*,${relacionamento}` : "*",
+              matricula: `eq.${matricula}`,
+              senha: `eq.${senha}`,
+            });
 
-          const usuarios = await resposta.json();
+            try {
+              const resposta = await fetch(`${baseUrl}/usuario?${parametros.toString()}`, {
+                method: "GET",
+                headers: headersConfig,
+              });
+              if (!resposta.ok) {
+                ultimoErro = new Error(await resposta.text());
+                continue;
+              }
+
+              const resultado = await resposta.json();
+              if (resultado.length > 0) {
+                const possuiNivelRelacionado = resultado.some((usuario) =>
+                  usuario.papel?.funcao || usuario.nivel?.funcao,
+                );
+                if (!relacionamento || possuiNivelRelacionado) {
+                  usuarios = resultado;
+                  break;
+                }
+                usuariosSemNivelRelacionado = resultado;
+                continue;
+              }
+              consultaValidaSemResultados = true;
+            } catch (erroConsulta) {
+              ultimoErro = erroConsulta;
+            }
+          }
+
+          if (usuarios.length === 0 && usuariosSemNivelRelacionado.length > 0) {
+            usuarios = usuariosSemNivelRelacionado;
+          }
+          if (usuarios.length === 0 && !consultaValidaSemResultados) {
+            throw ultimoErro || new Error("Não foi possível consultar os usuários.");
+          }
 
           if (usuarios.length === 0) {
             alert("Matrícula ou senha incorretos!");
@@ -420,16 +456,14 @@
             nome: usuarioLogado.nome,
             matricula: usuarioLogado.matricula,
             id_papel: usuarioLogado.id_papel,
-            nome_papel: usuarioLogado.nivel
-              ? usuarioLogado.nivel.funcao
-              : "Indefinido",
+            nome_papel: usuarioLogado.papel?.funcao || usuarioLogado.nivel?.funcao || "Indefinido",
           };
 
           localStorage.setItem("sgm_sessao", JSON.stringify(dadosSessao));
           window.location.href = "_pages/dashboard.html";
         } catch (erro) {
           console.error(erro);
-          alert("Erro ao fazer login.");
+          alert(`Erro ao fazer login. ${erro.message || "Verifique a conexão com o banco."}`);
         } finally {
           botaoLogin.innerHTML = textoBotaoOriginal;
           botaoLogin.disabled = false;

@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const headersConfig = {
     "Content-Type": "application/json",
     apikey: apiKey,
-    Authorization: `Bearer ${apiKey}`,
     Prefer: "return=representation",
   };
 

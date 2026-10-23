@@ -78,14 +78,14 @@ CREATE TABLE periocidade (
   CONSTRAINT periocidade_pkey PRIMARY KEY (id)
 );
 
-COMMENT ON TABLE periocidade IS 'Descrição: diario, semanal, mensal, trimestral, semestral, anual';
+COMMENT ON TABLE periocidade IS 'Periodicidades reconhecidas: diário, semanal, mensal, bimestral, trimestral, semestral e anual.';
 
 -- local
 CREATE TABLE local (
   id BIGSERIAL NOT NULL,
   setor VARCHAR(100) NOT NULL UNIQUE,
-  created_at TIMESTAMP NOT NULL DEFAULT TIMESTAMP,
-  updated_at TIMESTAMP NOT NULL DEFAULT TIMESTAMP,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   is_active BOOLEAN NOT NULL DEFAULT true,
   CONSTRAINT local_pkey PRIMARY KEY (id)
 );
@@ -96,7 +96,7 @@ CREATE TABLE usuario (
   id BIGSERIAL NOT NULL,
   nome VARCHAR(255) NOT NULL,
   matricula CHAR(10) NOT NULL,
-  id_papel BIGINT NOT NULL,  -- FK to nivel_usuario
+  id_papel BIGINT NOT NULL,  -- FK to papel
   senha VARCHAR(255) NOT NULL DEFAULT 'sgm123456',
   funcao VARCHAR(255) NOT NULL,
   contato VARCHAR(12) NOT NULL UNIQUE,
@@ -107,7 +107,7 @@ CREATE TABLE usuario (
 );
 
 ALTER TABLE usuario ADD CONSTRAINT fk_usuario_id_papel FOREIGN KEY (id_papel) REFERENCES papel (id);
-COMMENT ON COLUMN usuario.id_papel IS 'FK to nivel_usuario';
+COMMENT ON COLUMN usuario.id_papel IS 'Foreign key to papel.id';
 
 --***********************************************************************
 -- equipamento
@@ -135,7 +135,7 @@ COMMENT ON COLUMN equipamento.id_local IS 'FK to 9809a90a-bc22-4190-9edc-2de66e7
 CREATE TABLE plano_manutencao (
   id BIGSERIAL NOT NULL,
   descricao VARCHAR(255) NOT NULL,
-  periodo INTEGER NOT NULL,
+  periodo INTEGER NOT NULL CHECK (periodo > 0),
   data_inicio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   data_ultima_execucao DATE,
   data_proxima_execucao DATE NOT NULL,
@@ -154,7 +154,57 @@ ALTER TABLE plano_manutencao ADD CONSTRAINT fk_plano_manutencao_id_tipo_manutenc
 ALTER TABLE plano_manutencao ADD CONSTRAINT fk_plano_manutencao_id_periocidade FOREIGN KEY (id_periocidade) REFERENCES periocidade (id);
 COMMENT ON COLUMN plano_manutencao.id_equipamento IS 'FK to equipamento';
 COMMENT ON COLUMN plano_manutencao.id_tipo_manutencao IS 'FK to tipo_manutencao';
+COMMENT ON COLUMN plano_manutencao.periodo IS 'Quantidade de unidades da periodicidade selecionada (ex.: 2 semanas ou 3 meses).';
 COMMENT ON COLUMN plano_manutencao.id_periocidade IS 'FK to periocidade';
+
+-- Validação de regras de negócio do plano de manutenção.
+CREATE OR REPLACE FUNCTION validar_datas_plano_manutencao()
+RETURNS TRIGGER AS $$
+DECLARE
+  data_atual DATE := (CURRENT_TIMESTAMP AT TIME ZONE 'America/Manaus')::date;
+BEGIN
+  IF NEW.periodo IS NULL OR NEW.periodo < 1 THEN
+    RAISE EXCEPTION 'O período deve ser um número inteiro maior que zero.';
+  END IF;
+
+  IF TG_OP = 'INSERT' THEN
+    IF NEW.data_inicio::date < data_atual THEN
+      RAISE EXCEPTION 'A data de início não pode ser anterior à data atual.';
+    END IF;
+    IF NEW.data_proxima_execucao < data_atual THEN
+      RAISE EXCEPTION 'A próxima execução não pode ser anterior à data atual.';
+    END IF;
+    IF NEW.data_proxima_execucao < NEW.data_inicio::date THEN
+      RAISE EXCEPTION 'A próxima execução não pode ser anterior ao início do plano.';
+    END IF;
+  ELSE
+    IF NEW.data_inicio IS DISTINCT FROM OLD.data_inicio
+       AND NEW.data_inicio::date < data_atual THEN
+      RAISE EXCEPTION 'A data de início não pode ser anterior à data atual.';
+    END IF;
+
+    IF NEW.data_proxima_execucao IS DISTINCT FROM OLD.data_proxima_execucao
+       AND NEW.data_proxima_execucao < data_atual THEN
+      RAISE EXCEPTION 'A próxima execução não pode ser anterior à data atual.';
+    END IF;
+
+    IF (NEW.data_inicio IS DISTINCT FROM OLD.data_inicio
+        OR NEW.data_proxima_execucao IS DISTINCT FROM OLD.data_proxima_execucao)
+       AND NEW.data_proxima_execucao < NEW.data_inicio::date THEN
+      RAISE EXCEPTION 'A próxima execução não pode ser anterior ao início do plano.';
+    END IF;
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS trg_validar_datas_plano_manutencao ON plano_manutencao;
+CREATE TRIGGER trg_validar_datas_plano_manutencao
+BEFORE INSERT OR UPDATE OF data_inicio, data_proxima_execucao, periodo, id_periocidade
+ON plano_manutencao
+FOR EACH ROW
+EXECUTE FUNCTION validar_datas_plano_manutencao();
 
 --***********************************************************************
 -- plano_atividade

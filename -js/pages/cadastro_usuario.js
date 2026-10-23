@@ -1,84 +1,184 @@
-document.getElementById("userForm").addEventListener("submit", async function (event) {
-    event.preventDefault();
-    
-    const nome = document.getElementById("userName").value;
-    const matricula = document.getElementById("userRegistration").value;
-    const contato = document.getElementById("userContact").value;
-    const funcao = document.getElementById("userFunction").value;
-    const senha = document.getElementById("userPassword").value;
-    const nivel = document.getElementById("userLevel").value;
+document.addEventListener("DOMContentLoaded", () => {
+  const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1";
+  const apiKey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
+  const headersConfig = {
+    "Content-Type": "application/json",
+    apikey: apiKey,
+    Prefer: "return=representation",
+  };
 
-    const novoUsuario = {
-      nome: nome,
-      matricula: matricula,
-      contato: contato,
-      funcao: funcao,
-      senha: senha,
-      id_papel: Number(nivel),
-    };
+  const form = document.getElementById("userForm");
+  const selectNivel = document.getElementById("userLevel");
+  const inputContato = document.getElementById("userContact");
+  const btnSubmit = document.getElementById("saveUserButton");
 
-    if (contato.length > 12){
-      alert("Seu número de telefone passa do limite de 12 caracteres");
-      return;
-    }
+  function normalizarTelefone(valor) {
+    return valor.replace(/\D/g, "");
+  }
 
-    if (contato.length < 12){
-      alert("Digite um número valido")
-      return;
-    }
+  function normalizarTexto(valor) {
+    return String(valor || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim();
+  }
 
-    try {
-        const checkResponse = await fetch(`https://umvtsquzpugempndwitx.supabase.co/rest/v1/usuario?contato=eq.${encodeURIComponent(contato)}`, {
-            method: 'GET',
-            headers: {
-                "apikey": "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
-                "Authorization": "Bearer sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb"
-                }
-            });
+  async function consultarNiveisAcesso() {
+    let ultimoErro = null;
+    let consultaValidaSemResultados = false;
 
-            const checagemContanto = await checkResponse.json();
-
-            if (checagemContanto.length > 0){
-                alert("O número inserido já foi cadastrado");
-                return;
-            }
-
-            } catch (error) {
-            console.error("Erro na verificação de contato:", error);
-                alert("Erro ao verificar duplicidade de contato.");
-                return;
-            }
-
-    console.log("Enviando usuário:", novoUsuario);
-
-    fetch("https://umvtsquzpugempndwitx.supabase.co/rest/v1/usuario", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        apikey: "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
-        Authorization: "Bearer sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb",
-        Prefer: "return=representation", 
-      },
-      body: JSON.stringify(novoUsuario),
-    })
-      .then(async (response) => {
-        const respostaText = await response.text();
-
-        if (!response.ok) {
-          throw new Error(`Erro ${response.status}: ${respostaText}`);
+    for (const tabela of ["papel", "nivel"]) {
+      let resposta;
+      try {
+        resposta = await fetch(
+          `${baseUrl}/${tabela}?select=id,funcao&is_active=eq.true&order=id.asc`,
+          { headers: headersConfig },
+        );
+        if (!resposta.ok) {
+          ultimoErro = new Error(`${tabela}: ${await resposta.text()}`);
+          resposta = await fetch(
+            `${baseUrl}/${tabela}?select=id,funcao&order=id.asc`,
+            { headers: headersConfig },
+          );
+        }
+        if (!resposta.ok) {
+          ultimoErro = new Error(`${tabela}: ${await resposta.text()}`);
+          continue;
         }
 
-        return respostaText ? JSON.parse(respostaText) : {};
-      })
-      .then((dadosInseridos) => {
-        console.log("Usuário cadastrado com sucesso:", dadosInseridos);
-        alert("Usuário cadastrado com sucesso!");
+        const niveis = await resposta.json();
+        if (niveis.length > 0) {
+          const vistos = new Set();
+          return niveis.filter((nivel) => {
+            const chave = normalizarTexto(nivel.funcao);
+            if (!chave || vistos.has(chave)) return false;
+            vistos.add(chave);
+            return true;
+          });
+        }
+        consultaValidaSemResultados = true;
+      } catch (erro) {
+        ultimoErro = erro;
+      }
+    }
 
-        document.getElementById("userForm").reset();
+    if (consultaValidaSemResultados) return [];
+    throw ultimoErro || new Error("Não foi possível consultar os níveis de acesso.");
+  }
 
-      })
-      .catch((error) => {
-        console.error("Falha ao salvar no banco:", error);
-        alert("Ocorreu um erro ao cadastrar. Verifique o console.");
+  async function carregarNiveisAcesso() {
+    selectNivel.innerHTML = '<option value="">Carregando níveis de acesso...</option>';
+    selectNivel.disabled = true;
+    btnSubmit.disabled = true;
+
+    try {
+      const niveis = await consultarNiveisAcesso();
+      selectNivel.innerHTML = '<option value="">Selecione um nível de acesso...</option>';
+
+      niveis.forEach((nivel) => {
+        const option = document.createElement("option");
+        option.value = String(nivel.id);
+        option.textContent = nivel.funcao;
+        selectNivel.appendChild(option);
       });
+
+      if (niveis.length === 0) {
+        selectNivel.innerHTML = '<option value="">Nenhum nível de acesso ativo</option>';
+      }
+    } catch (erro) {
+      console.error("Erro ao carregar níveis de acesso:", erro);
+      selectNivel.innerHTML = '<option value="">Erro ao carregar níveis de acesso</option>';
+      alert(`Não foi possível carregar os níveis de acesso. ${erro.message}`);
+    } finally {
+      selectNivel.disabled = false;
+      btnSubmit.disabled = selectNivel.options.length <= 1 || !selectNivel.value;
+    }
+  }
+
+  selectNivel.addEventListener("change", () => {
+    btnSubmit.disabled = !selectNivel.value;
+  });
+
+  inputContato.addEventListener("blur", () => {
+    inputContato.value = normalizarTelefone(inputContato.value);
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const nome = document.getElementById("userName").value.trim();
+    const matricula = document.getElementById("userRegistration").value.trim();
+    const contato = normalizarTelefone(inputContato.value);
+    const funcao = document.getElementById("userFunction").value.trim();
+    const senha = document.getElementById("userPassword").value;
+    const idPapel = Number(selectNivel.value);
+
+    // O banco aceita até 12 caracteres; telefones brasileiros locais costumam ter 10 ou 11 dígitos.
+    if (!/^\d{10,12}$/.test(contato)) {
+      alert("Digite um telefone válido com DDD (10 a 12 dígitos, sem letras). ");
+      inputContato.focus();
+      return;
+    }
+
+    if (!Number.isInteger(idPapel) || idPapel <= 0) {
+      alert("Selecione um nível de acesso válido.");
+      selectNivel.focus();
+      return;
+    }
+
+    const novoUsuario = {
+      nome,
+      matricula,
+      contato,
+      funcao,
+      senha,
+      id_papel: idPapel,
+    };
+
+    const textoOriginal = btnSubmit.textContent;
+    btnSubmit.textContent = "Cadastrando...";
+    btnSubmit.disabled = true;
+
+    try {
+      const respostaContato = await fetch(
+        `${baseUrl}/usuario?select=id&contato=eq.${encodeURIComponent(contato)}`,
+        { headers: headersConfig },
+      );
+
+      if (!respostaContato.ok) {
+        throw new Error(`Não foi possível verificar o contato: ${await respostaContato.text()}`);
+      }
+
+      const usuariosComContato = await respostaContato.json();
+      if (usuariosComContato.length > 0) {
+        alert("O número inserido já foi cadastrado.");
+        inputContato.focus();
+        return;
+      }
+
+      const respostaCadastro = await fetch(`${baseUrl}/usuario`, {
+        method: "POST",
+        headers: headersConfig,
+        body: JSON.stringify(novoUsuario),
+      });
+
+      const respostaTexto = await respostaCadastro.text();
+      if (!respostaCadastro.ok) {
+        throw new Error(`Erro ${respostaCadastro.status}: ${respostaTexto}`);
+      }
+
+      alert("Usuário cadastrado com sucesso! Ele será exibido na lista de usuários.");
+      window.location.href = "usuarios.html?atualizado=1";
+    } catch (erro) {
+      console.error("Falha ao cadastrar usuário:", erro);
+      alert(`Não foi possível cadastrar o usuário. ${erro.message}`);
+    } finally {
+      btnSubmit.textContent = textoOriginal;
+      btnSubmit.disabled = !selectNivel.value;
+    }
+  });
+
+  carregarNiveisAcesso();
 });

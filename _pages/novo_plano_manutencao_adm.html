@@ -236,7 +236,7 @@
             <h1>Novo Plano de Manutenção</h1>
 
             <p>
-              Configure um plano preventivo ou preditivo para um equipamento
+              Configure um plano preventivo ou corretivo para um equipamento
             </p>
           </section>
 
@@ -282,9 +282,7 @@
               </label>
 
               <select id="tipo-manutencao" name="tipo-manutencao" required>
-                <option value="preventiva">Preventiva</option>
-
-                <option value="preditiva">Preditiva</option>
+                <option value="">Carregando tipos de manutenção...</option>
               </select>
             </div>
 
@@ -295,21 +293,13 @@
               </label>
 
               <select id="periodicidade" name="periodicidade" required>
-                <option value="mensal">Mensal</option>
-
-                <option value="bimestral">Bimestral</option>
-
-                <option value="trimestral">Trimestral</option>
-
-                <option value="semestral">Semestral</option>
-
-                <option value="anual">Anual</option>
+                <option value="">Carregando periodicidades...</option>
               </select>
             </div>
 
             <div class="form-group">
               <label for="periodo">
-                Período (dias)
+                Período (meses)
                 <span>*</span>
               </label>
 
@@ -317,11 +307,13 @@
                 type="number"
                 id="periodo"
                 name="periodo"
-                placeholder="Ex: 90"
+                placeholder="Ex.: 1"
+                min="1"
+                step="1"
                 required
               />
 
-              <small> Intervalo entre execuções em dias </small>
+              <small id="periodo-ajuda">Informe a quantidade de meses entre as execuções.</small>
             </div>
 
             <div class="form-group">
@@ -331,6 +323,7 @@
               </label>
 
               <input type="date" id="data-inicio" name="data-inicio" required />
+              <small>A data de início não pode ser anterior a hoje.</small>
             </div>
 
             <div class="form-group">
@@ -345,6 +338,7 @@
                 name="proxima-execucao"
                 required
               />
+              <small>A próxima execução deve ser hoje ou uma data futura, e não pode anteceder o início do plano.</small>
             </div>
 
             <div class="form-group">

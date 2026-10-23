@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const headersConfig = {
     "Content-Type": "application/json",
     apikey: apiKey,
-    Authorization: `Bearer ${apiKey}`,
   };
 
 
@@ -29,17 +28,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function carregarDadosPerfil() {
     try {
-      const resposta = await fetch(
-        `${baseUrl}/usuario?select=*,nivel(funcao)&id=eq.${idUsuario}`,
-        {
+      let usuarios = [];
+      let ultimoErro = null;
+      let consultaValida = false;
+      let usuarioSemNivelRelacionado = null;
+
+      for (const relacionamento of ["papel(funcao)", "nivel(funcao)", null]) {
+        const parametros = new URLSearchParams({
+          select: relacionamento ? `*,${relacionamento}` : "*",
+          id: `eq.${idUsuario}`,
+        });
+        const resposta = await fetch(`${baseUrl}/usuario?${parametros.toString()}`, {
           method: "GET",
           headers: headersConfig,
-        },
-      );
+        });
 
-      if (!resposta.ok) throw new Error("Erro ao buscar dados do perfil.");
+        if (!resposta.ok) {
+          ultimoErro = new Error(await resposta.text());
+          continue;
+        }
 
-      const usuarios = await resposta.json();
+        const resultado = await resposta.json();
+        consultaValida = true;
+        if (resultado.length > 0) {
+          const possuiNivelRelacionado = resultado.some((usuario) =>
+            usuario.papel?.funcao || usuario.nivel?.funcao,
+          );
+          if (!relacionamento || possuiNivelRelacionado) {
+            usuarios = resultado;
+            break;
+          }
+          usuarioSemNivelRelacionado = resultado[0];
+        }
+      }
+
+      if (usuarios.length === 0 && !consultaValida) {
+        throw ultimoErro || new Error("Não foi possível consultar o perfil.");
+      }
+      if (usuarios.length === 0 && usuarioSemNivelRelacionado) {
+        usuarios = [usuarioSemNivelRelacionado];
+      }
       if (usuarios.length === 0) return;
 
       const usuarioData = usuarios[0];
@@ -55,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
       perfilMatricula.textContent = usuarioData.matricula;
       perfilContato.textContent = usuarioData.contato || "Não informado";
       perfilNivel.textContent =
-        usuarioData.nivel?.funcao || "Nível Desconhecido";
+        usuarioData.papel?.funcao || usuarioData.nivel?.funcao || "Nível Desconhecido";
 
       senhaRealDoBanco = usuarioData.senha;
     } catch (erro) {

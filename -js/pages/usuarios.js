@@ -1,138 +1,223 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1/";
-  const apikey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
-
+  const baseUrl = "https://umvtsquzpugempndwitx.supabase.co/rest/v1";
+  const apiKey = "sb_publishable_58JIZcrwwFjp2gnEPPVZeg_tkrJ-LHb";
   const headersConfig = {
     "Content-Type": "application/json",
-    apikey: apikey,
-    Authorization: `Bearer ${apikey}`,
-    Prefer: "return=representation",
+    apikey: apiKey,
   };
 
   const corpoTabela = document.getElementById("usersTableBody");
   const inputPesquisa = document.getElementById("userSearch");
   const filtroNivel = document.getElementById("levelFilter");
   const tabelaContainer = document.querySelector(".table-container");
-  const estadoVazio = document.getElementById("estadoVazioUsuarios");
 
-  let todosUsuarios = [];
+  function normalizarTexto(valor) {
+    return String(valor || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
 
+  function escaparHTML(valor) {
+    return String(valor ?? "").replace(/[&<>"']/g, (caractere) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    })[caractere]);
+  }
 
-    async function carregarFiltroNiveis() {
-        if (!filtroNivel) return;
+  function mostrarMensagemTabela(mensagem) {
+    if (!corpoTabela) return;
+    corpoTabela.innerHTML = `<tr><td colspan="6" class="estado-tabela-usuarios">${escaparHTML(mensagem)}</td></tr>`;
+  }
 
-        try {
-        const resposta = await fetch(`${baseUrl}/nivel?select=id,funcao&order=id.asc`, {
-            method: "GET",
+  function removerNiveisDuplicados(niveis) {
+    const vistos = new Set();
+    return niveis.filter((nivel) => {
+      const chave = normalizarTexto(nivel.funcao).replace(/\s+/g, " ").trim();
+      if (!chave || vistos.has(chave)) return false;
+      vistos.add(chave);
+      return true;
+    });
+  }
+
+  async function consultarNiveis() {
+    let ultimoErro = null;
+    let consultaValidaSemResultados = false;
+
+    for (const tabela of ["papel", "nivel"]) {
+      const urlAtivos = `${baseUrl}/${tabela}?select=id,funcao&is_active=eq.true&order=id.asc`;
+
+      try {
+        let resposta = await fetch(urlAtivos, { headers: headersConfig });
+        if (!resposta.ok) {
+          ultimoErro = new Error(`${tabela}: ${await resposta.text()}`);
+          resposta = await fetch(`${baseUrl}/${tabela}?select=id,funcao&order=id.asc`, {
             headers: headersConfig,
-        });
+          });
+        }
 
-        if (resposta.ok) {
-            const niveis = await resposta.json();
-            filtroNivel.innerHTML = `<option value="all">Todos os níveis</option>`;
-            niveis.forEach((n) => {
-            filtroNivel.innerHTML += `<option value="${n.id}">${n.funcao}</option>`;
-            });
+        if (!resposta.ok) {
+          ultimoErro = new Error(`${tabela}: ${await resposta.text()}`);
+          continue;
         }
-        } catch (erro) {
-        console.error("Erro ao carregar opções do filtro de nível: ", erro);
-        }
+
+        const niveis = await resposta.json();
+        if (niveis.length > 0) return removerNiveisDuplicados(niveis);
+        consultaValidaSemResultados = true;
+      } catch (erro) {
+        ultimoErro = erro;
+      }
     }
 
-  async function carregarUsuario() {
+    if (consultaValidaSemResultados) return [];
+    throw ultimoErro || new Error("Não foi possível consultar os níveis de acesso.");
+  }
+
+  async function carregarFiltroNiveis() {
+    if (!filtroNivel) return;
+
+    filtroNivel.innerHTML = '<option value="all">Todos os níveis</option>';
     try {
-      let urlQuery = `${baseUrl}/usuario?select=*,nivel(funcao)&order=id.asc`;
-      const idNivel = filtroNivel ? filtroNivel.value : "";
-      if (idNivel && idNivel !== "all" && !idNivel.toLowerCase().includes("todos")) {
-        urlQuery += `&id_papel=eq.${idNivel}`;
+      const niveis = await consultarNiveis();
+      niveis.forEach((nivel) => {
+        const option = document.createElement("option");
+        option.value = String(nivel.id);
+        option.textContent = nivel.funcao;
+        filtroNivel.appendChild(option);
+      });
+    } catch (erro) {
+      console.error("Erro ao carregar níveis de acesso:", erro);
+      filtroNivel.innerHTML = '<option value="all">Todos os níveis (indisponíveis)</option>';
+    }
+  }
+
+  async function consultarUsuarios(parametros) {
+    let ultimoErro = null;
+    let consultaValidaSemResultados = false;
+    let usuariosSemNivelRelacionado = [];
+
+    for (const relacionamento of ["papel(funcao)", "nivel(funcao)", null]) {
+      const params = new URLSearchParams(parametros);
+      params.set("select", relacionamento ? `*,${relacionamento}` : "*");
+
+      try {
+        const resposta = await fetch(`${baseUrl}/usuario?${params.toString()}`, {
+          headers: headersConfig,
+        });
+        if (!resposta.ok) {
+          ultimoErro = new Error(await resposta.text());
+          continue;
+        }
+
+        const usuarios = await resposta.json();
+        if (usuarios.length > 0) {
+          const possuiNivelRelacionado = usuarios.some((usuario) =>
+            usuario.papel?.funcao || usuario.nivel?.funcao,
+          );
+          if (!relacionamento || possuiNivelRelacionado) return usuarios;
+          usuariosSemNivelRelacionado = usuarios;
+          continue;
+        }
+        consultaValidaSemResultados = true;
+      } catch (erro) {
+        ultimoErro = erro;
+      }
+    }
+
+    if (usuariosSemNivelRelacionado.length > 0) return usuariosSemNivelRelacionado;
+    if (consultaValidaSemResultados) return [];
+    throw ultimoErro || new Error("Não foi possível consultar os usuários.");
+  }
+
+  async function carregarUsuarios() {
+    if (!corpoTabela) return;
+    mostrarMensagemTabela("Carregando usuários...");
+    if (tabelaContainer) tabelaContainer.style.display = "block";
+
+    try {
+      const parametros = new URLSearchParams({
+        order: "id.asc",
+      });
+
+      const idPapel = filtroNivel ? filtroNivel.value : "all";
+      if (idPapel && idPapel !== "all") {
+        parametros.set("id_papel", `eq.${idPapel}`);
       }
 
       const termo = inputPesquisa ? inputPesquisa.value.trim() : "";
       if (termo) {
-        urlQuery += `&or=(nome.ilike.*${encodeURIComponent(termo)}*,matricula.ilike.*${encodeURIComponent(termo)}*,funcao.ilike.*${encodeURIComponent(termo)}*,contato.ilike.*${encodeURIComponent(termo)}*)`;
+        const termoSeguro = termo.replace(/[(),]/g, " ").trim();
+        const termoCodificado = `*${termoSeguro}*`;
+        parametros.set(
+          "or",
+          `(nome.ilike.${termoCodificado},matricula.ilike.${termoCodificado},funcao.ilike.${termoCodificado},contato.ilike.${termoCodificado})`,
+        );
       }
 
-      const resposta = await fetch(urlQuery, {
-        method: "GET",
-        headers: headersConfig,
-      });
-
-      if (!resposta.ok) throw new Error("Erro ao buscar usuarios");
-
-      todosUsuarios = await resposta.json();
-
-      renderizarTabela(todosUsuarios);
+      const usuarios = await consultarUsuarios(parametros);
+      renderizarTabela(usuarios);
     } catch (erro) {
-      console.error("Falha ao carregar usuarios: ", erro);
+      console.error("Falha ao carregar usuários:", erro);
+      mostrarMensagemTabela("Não foi possível carregar os usuários do banco. Verifique a conexão e tente novamente.");
     }
   }
 
   function obterIniciais(nome) {
-    if (!nome) return "US";
-    const separar = nome.trim().split(" ");
-    if (separar.length === 1) return separar[0].substring(0, 2).toUpperCase();
-    return (separar[0][0] + separar[separar.length - 1][0]).toUpperCase();
+    const palavras = String(nome || "Usuário").trim().split(/\s+/).filter(Boolean);
+    if (palavras.length === 0) return "US";
+    if (palavras.length === 1) return palavras[0].slice(0, 2).toUpperCase();
+    return `${palavras[0][0]}${palavras[palavras.length - 1][0]}`.toUpperCase();
   }
 
-  function renderizarTabela(dados) {
+  function renderizarTabela(usuarios) {
     if (!corpoTabela) return;
-
     corpoTabela.innerHTML = "";
 
-    if (dados.length === 0) {
-      if (tabelaContainer) tabelaContainer.style.display = "none";
-      if (estadoVazio) estadoVazio.style.display = "flex";
+    if (usuarios.length === 0) {
+      mostrarMensagemTabela("Nenhum usuário encontrado.");
       return;
     }
 
-    if (tabelaContainer) tabelaContainer.style.display = "block";
-    if (estadoVazio) estadoVazio.style.display = "none";
+    usuarios.forEach((usuario) => {
+      const nomeNivel = usuario.papel?.funcao || usuario.nivel?.funcao || "Nível não identificado";
+      const nomeNivelNormalizado = normalizarTexto(nomeNivel);
+      let classeNivel = "badge-usuario";
+      if (nomeNivelNormalizado.includes("admin")) classeNivel = "badge-administrador";
+      else if (nomeNivelNormalizado.includes("tecnic")) classeNivel = "badge-tecnico";
+      else if (nomeNivelNormalizado.includes("geren")) classeNivel = "badge-gerencia";
 
-    dados.forEach((user) => {
-      const nomeNivel = user.nivel ? user.nivel.funcao : "Usuário";
-
-      let classe = "badge-usuario";
-      if (nomeNivel === "Administrador" || nomeNivel === "ADM") classe = "badge-administrador";
-      if (nomeNivel === "Técnico" || nomeNivel === "Tecnico") classe = "badge-tecnico";
-      if (nomeNivel === "Gerência" || nomeNivel === "Gerencia") classe = "badge-gerencia";
-
-      const isAtivo = user.is_active === true || user.is_active === 1 || String(user.is_active).toLowerCase() === "ativo";
-      const iniciais = obterIniciais(user.nome);
-
+      const statusAtivo = String(usuario.is_active).toLowerCase();
+      const ativo = usuario.is_active === true || usuario.is_active === 1 || statusAtivo === "ativo" || statusAtivo === "true";
       const tr = document.createElement("tr");
-      tr.setAttribute("data-user-id", user.id || "");
-
+      tr.dataset.userId = usuario.id || "";
       tr.innerHTML = `
         <td>
           <div class="user-cell">
-            <div class="table-avatar">${iniciais}</div>
-            <span>${user.nome || "-"}</span>
+            <div class="table-avatar">${escaparHTML(obterIniciais(usuario.nome))}</div>
+            <span>${escaparHTML(usuario.nome || "-")}</span>
           </div>
         </td>
-        <td>${user.matricula || "-"}</td>
-        <td>${user.funcao || "-"}</td>
-        <td>
-          <span class="badge ${classe}">${nomeNivel}</span>
-        </td>
-        <td>${user.contato || "-"}</td>
-        <td>
-          <span class="status ${isAtivo ? "status-active" : "status-inactive"}">
-            ${isAtivo ? "Ativo" : "Inativo"}
-          </span>
-        </td>
+        <td>${escaparHTML(usuario.matricula || "-")}</td>
+        <td>${escaparHTML(usuario.funcao || "-")}</td>
+        <td><span class="badge ${classeNivel}">${escaparHTML(nomeNivel)}</span></td>
+        <td>${escaparHTML(usuario.contato || "-")}</td>
+        <td><span class="status ${ativo ? "status-active" : "status-inactive"}">${ativo ? "Ativo" : "Inativo"}</span></td>
       `;
-
       corpoTabela.appendChild(tr);
     });
   }
 
-  if (inputPesquisa) {
-    inputPesquisa.addEventListener("input", carregarUsuario);
-  }
-  if (filtroNivel) {
-    filtroNivel.addEventListener("change", carregarUsuario);
+  if (inputPesquisa) inputPesquisa.addEventListener("input", carregarUsuarios);
+  if (filtroNivel) filtroNivel.addEventListener("change", carregarUsuarios);
+
+  async function inicializar() {
+    mostrarMensagemTabela("Carregando usuários...");
+    await carregarFiltroNiveis();
+    await carregarUsuarios();
   }
 
-  carregarFiltroNiveis()
-  carregarUsuario();
+  inicializar();
 });

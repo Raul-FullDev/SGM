@@ -4,8 +4,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const headersConfig = {
     "Content-Type": "application/json",
     apikey: apiKey,
-    Authorization: `Bearer ${apiKey}`,
   };
+
+  function normalizarTexto(valor) {
+    return String(valor || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
+
+  function formatarPeriodo(periodo, descricaoPeriodicidade) {
+    const nome = normalizarTexto(descricaoPeriodicidade);
+    let unidade = "períodos";
+    if (nome.includes("diar") || nome === "dia") unidade = Number(periodo) === 1 ? "dia" : "dias";
+    else if (nome.includes("seman")) unidade = Number(periodo) === 1 ? "semana" : "semanas";
+    else if (nome.includes("bimestr")) unidade = Number(periodo) === 1 ? "bimestre" : "bimestres";
+    else if (nome.includes("trimestr")) unidade = Number(periodo) === 1 ? "trimestre" : "trimestres";
+    else if (nome.includes("semestr")) unidade = Number(periodo) === 1 ? "semestre" : "semestres";
+    else if (nome.includes("anual") || nome === "ano") unidade = Number(periodo) === 1 ? "ano" : "anos";
+    else if (nome.includes("mens") || nome === "mes") unidade = Number(periodo) === 1 ? "mês" : "meses";
+    return `${periodo} ${unidade}`;
+  }
 
   function exportarCSV(colunasVisiveis, chavesDados, dados, nomeArquivo) {
     let csvContent = "data:text/csv;charset=utf-8,\uFEFF"; 
@@ -144,11 +163,52 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
 
         case "historico-tecnico":
-          const resTec = await fetch(
-            `${baseUrl}/usuario?select=nome,matricula,funcao,contato&id_papel=eq.3`,
-            { headers: headersConfig },
-          );
-          const rawTec = await resTec.json();
+          let usuarios = [];
+          let ultimoErroTecnicos = null;
+          let consultaTecnicosValida = false;
+          let usuariosSemNivelRelacionado = [];
+
+          for (const relacionamento of ["papel(funcao)", "nivel(funcao)", null]) {
+            const parametrosTecnicos = new URLSearchParams({
+              select: relacionamento
+                ? `nome,matricula,funcao,contato,${relacionamento}`
+                : "nome,matricula,funcao,contato",
+              order: "nome.asc",
+            });
+            const respostaTecnicos = await fetch(
+              `${baseUrl}/usuario?${parametrosTecnicos.toString()}`,
+              { headers: headersConfig },
+            );
+            if (!respostaTecnicos.ok) {
+              ultimoErroTecnicos = new Error(await respostaTecnicos.text());
+              continue;
+            }
+
+            const resultadoTecnicos = await respostaTecnicos.json();
+            consultaTecnicosValida = true;
+            if (resultadoTecnicos.length > 0) {
+              const possuiNivelRelacionado = resultadoTecnicos.some((usuario) =>
+                usuario.papel?.funcao || usuario.nivel?.funcao,
+              );
+              if (!relacionamento || possuiNivelRelacionado) {
+                usuarios = resultadoTecnicos;
+                break;
+              }
+              usuariosSemNivelRelacionado = resultadoTecnicos;
+            }
+          }
+
+          if (usuarios.length === 0 && usuariosSemNivelRelacionado.length > 0) {
+            usuarios = usuariosSemNivelRelacionado;
+          }
+          if (usuarios.length === 0 && !consultaTecnicosValida && ultimoErroTecnicos) {
+            throw ultimoErroTecnicos;
+          }
+          const rawTec = usuarios
+            .filter((usuario) => normalizarTexto(
+              usuario.papel?.funcao || usuario.nivel?.funcao || usuario.funcao,
+            ).includes("tecnic"))
+            .map(({ papel, nivel, ...usuario }) => usuario);
 
           tituloPDF = "Quadro de Técnicos de Manutenção";
           colunasVisiveis = [
@@ -188,16 +248,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         case "plano-preventivo":
           const resPlanos = await fetch(
-            `${baseUrl}/plano_manutencao?select=descricao,periodo,data_proxima_execucao,equipamento(descricao)`,
+            `${baseUrl}/plano_manutencao?select=descricao,periodo,data_proxima_execucao,equipamento(descricao),periocidade(descricao)`,
             { headers: headersConfig },
           );
+          if (!resPlanos.ok) throw new Error(await resPlanos.text());
           const rawPlanos = await resPlanos.json();
 
-          tituloPDF = "Relatório de Planos Preventivos";
+          tituloPDF = "Relatório de Planos de Manutenção";
           colunasVisiveis = [
             "Plano",
             "Equipamento",
-            "Período (Dias)",
+            "Intervalo entre execuções",
             "Próxima Execução",
           ];
           chavesDados = ["plano", "equipamento", "periodo", "proxima"];
@@ -205,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
           dados = rawPlanos.map((pl) => ({
             plano: pl.descricao,
             equipamento: pl.equipamento?.descricao || "-",
-            periodo: pl.periodo,
+            periodo: formatarPeriodo(pl.periodo, pl.periocidade?.descricao),
             proxima: pl.data_proxima_execucao
               ? new Date(pl.data_proxima_execucao).toLocaleDateString("pt-BR")
               : "-",

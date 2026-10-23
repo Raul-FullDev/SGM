@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const headersConfig = {
     "Content-Type": "application/json",
     apikey: apiKey,
-    Authorization: `Bearer ${apiKey}`,
   };
 
   const sessaoStr = localStorage.getItem("sgm_sessao");
@@ -30,6 +29,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let todasAsOrdens = [];
 
+  function normalizarRotulo(valor) {
+    return String(valor || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function deduplicarPorDescricao(registros) {
+    const vistos = new Set();
+    return [...registros]
+      .sort((a, b) => Number(a.id) - Number(b.id))
+      .filter((registro) => {
+        const chave = normalizarRotulo(registro.descricao);
+        if (!chave || vistos.has(chave)) return false;
+        vistos.add(chave);
+        return true;
+      });
+  }
+
   async function carregarFiltros() {
     try {
       const resStatus = await fetch(
@@ -37,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { headers: headersConfig },
       );
       if (resStatus.ok) {
-        const statusData = await resStatus.json();
+        const statusData = deduplicarPorDescricao(await resStatus.json());
         let statusHtml = '<option value="todos">Todos os status</option>';
         statusData.forEach((s) => {
           statusHtml += `<option value="${s.descricao.toLowerCase()}">${s.descricao}</option>`;
@@ -50,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { headers: headersConfig },
       );
       if (resTipos.ok) {
-        const tiposData = await resTipos.json();
+        const tiposData = deduplicarPorDescricao(await resTipos.json());
         let tiposHtml = '<option value="todos">Todos os tipos</option>';
         tiposData.forEach((t) => {
           tiposHtml += `<option value="${t.descricao.toLowerCase()}">${t.descricao}</option>`;
