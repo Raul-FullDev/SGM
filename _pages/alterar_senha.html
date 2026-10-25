@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Alterar senha</title>
+    <link rel='stylesheet' href='main.css'>
+</head>
+<body>
+    PLACEHOLDER
+    <section class="card-perfil card-senha">
+              <h3>Alterar Senha</h3>
+              <p class="descricao-senha">
+                Sua senha deve ter pelo menos 6 caracteres.
+              </p>
+
+              <form id="formAlterarSenha" class="formulario-senha">
+
+                <div class="campo-formulario">
+                  <label for="novaSenha">Nova Senha</label>
+                  <input
+                    type="password"
+                    id="novaSenha"
+                    placeholder="Digite a nova senha"
+                    required
+                    minlength="6"
+                  />
+                </div>
+
+                <div class="campo-formulario">
+                  <label for="confirmarSenha">Confirmar Nova Senha</label>
+                  <input
+                    type="password"
+                    id="confirmarSenha"
+                    placeholder="Repita a nova senha"
+                    required
+                    minlength="6"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  class="botao-salvar-senha"
+                  id="btnSalvarSenha"
+                >
+                  Trocar Senha
+                </button>
+              </form>
+            </section>
+
+    <script src="../-js/global.js"></script>
+    <script src="../-js/pages/alterar_senha.js"></script>
+</body>
+</html>

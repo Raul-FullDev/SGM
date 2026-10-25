@@ -5,7 +5,49 @@ document.addEventListener("DOMContentLoaded", () => {
     "Content-Type": "application/json",
     apikey: apiKey,
   };
+  async function verificarTrocaSenhaNaDashboard() {
+      try {
+          const sessaoStr = localStorage.getItem("sgm_sessao");
 
+          if (!sessaoStr) return;
+
+          const sessao = JSON.parse(sessaoStr);
+          const idUsuarioLogado = sessao.id;
+
+          if (!idUsuarioLogado) return;
+
+          const resposta = await fetch(
+              `${baseUrl}/usuario?select=precisa_trocar_senha&id=eq.${encodeURIComponent(idUsuarioLogado)}`,
+              {
+                  headers: headersConfig
+              }
+          );
+
+          if (!resposta.ok) {
+              throw new Error(
+                  `Erro ao verificar a senha: ${resposta.status}`
+              );
+          }
+
+          const usuarios = await resposta.json();
+
+          if (
+              usuarios.length > 0 &&
+              usuarios[0].precisa_trocar_senha === true
+          ) {
+              window.location.replace("alterar_senha.html");
+          }
+
+      } catch (erro) {
+          console.error(
+              "Erro ao verificar a troca obrigatória de senha:",
+              erro
+          );
+      }
+  }
+
+  verificarTrocaSenhaNaDashboard();
+  
   const sessaoStr = localStorage.getItem("sgm_sessao");
   if (!sessaoStr) return;
 

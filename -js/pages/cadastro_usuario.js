@@ -112,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const matricula = document.getElementById("userRegistration").value.trim();
     const contato = normalizarTelefone(inputContato.value);
     const funcao = document.getElementById("userFunction").value.trim();
-    const senha = document.getElementById("userPassword").value;
     const idPapel = Number(selectNivel.value);
 
     // O banco aceita até 12 caracteres; telefones brasileiros locais costumam ter 10 ou 11 dígitos.
@@ -133,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
       matricula,
       contato,
       funcao,
-      senha,
       id_papel: idPapel,
     };
 
